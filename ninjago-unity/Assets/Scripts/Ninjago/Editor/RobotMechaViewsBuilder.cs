@@ -97,8 +97,9 @@ namespace Nex.Ninjago.Editor
 
         #region Widgets
 
-        // One player's half: tag, hearts, arm icons and kills top right, time top center, the first prompt above the
-        // mecha, banners, and the edge arrows drawn over everything else.
+        // One player's half: everything sits in the top-right block (the camera preview owns the screen's top-left
+        // corner, over player 1's half): tag and hearts, arm icons and time left, kills. The first prompt sits above the
+        // mecha, then the banners, and the edge arrows draw over everything else.
         static MechaHud BuildHud(Image heartPrefab, Image arrowPrefab)
         {
             var outline = OutlineTextMaterial();
@@ -110,14 +111,11 @@ namespace Nex.Ninjago.Editor
             var tag = NinjagoWorldBuilder.BuildPlayerTag(root, Vector2.zero, 72f);
             Place((RectTransform)tag.transform, topRight, topRight, topRight, new Vector2(-30f, -20f), new Vector2(150f, 90f));
             var hearts = CursorGamesViewsBuilder.Row(root, "Hearts", topRight, new Vector2(-190f, -32f), new Vector2(360f, 64f), 8f, TextAnchor.MiddleRight);
-            var leftArm = LGlyph(root, "LeftArmIcon", Vector2.zero, new Vector2(54f, 64f), false);
-            Place(leftArm.rectTransform, topRight, topRight, topRight, new Vector2(-262f, -112f), new Vector2(54f, 64f));
-            var rightArm = LGlyph(root, "RightArmIcon", Vector2.zero, new Vector2(54f, 64f), true);
-            Place(rightArm.rectTransform, topRight, topRight, topRight, new Vector2(-190f, -112f), new Vector2(54f, 64f));
+            var arms = ArmIcons(root, topRight, new Vector2(-240f, -120f), new Vector2(54f, 64f));
+            var time = Label(root, "TimeLeft", null, "70", 100f, Color.white, outline, TextAlignmentOptions.Right);
+            Place((RectTransform)time.transform, topRight, topRight, topRight, new Vector2(-30f, -96f), new Vector2(200f, 110f));
             var kills = Label(root, "Kills", null, "Kills 0", 54f, Color.white, outline, TextAlignmentOptions.Right);
-            Place((RectTransform)kills.transform, topRight, topRight, topRight, new Vector2(-30f, -190f), new Vector2(320f, 70f));
-            var time = Label(root, "TimeLeft", null, "70", 110f, Color.white, outline);
-            Place((RectTransform)time.transform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -12f), new Vector2(320f, 130f));
+            Place((RectTransform)kills.transform, topRight, topRight, topRight, new Vector2(-30f, -205f), new Vector2(320f, 64f));
 
             var prompt = NewRect("RobotArmsPrompt", root);
             Place(prompt, Center, Center, Center, new Vector2(0f, 220f), new Vector2(1000f, 240f));
@@ -134,8 +132,8 @@ namespace Nex.Ninjago.Editor
             Set(hud, "playerTag", tag);
             Set(hud, "heartsRow", hearts);
             Set(hud, "heartPrefab", heartPrefab);
-            Set(hud, "leftArmIcon", leftArm);
-            Set(hud, "rightArmIcon", rightArm);
+            Set(hud, "leftArmIcon", arms.left);
+            Set(hud, "rightArmIcon", arms.right);
             Set(hud, "timeLabel", time);
             SetLocalized(hud, "timeText", "ninjago.mecha.time_left");
             Set(hud, "killsLabel", kills);
@@ -176,10 +174,7 @@ namespace Nex.Ninjago.Editor
             var left = new Vector2(0f, 0.5f);
             var tag = NinjagoWorldBuilder.BuildPlayerTag(root, Vector2.zero, 64f);
             Place((RectTransform)tag.transform, left, left, left, new Vector2(16f, 0f), new Vector2(110f, 80f));
-            var leftArm = LGlyph(root, "LeftArmIcon", Vector2.zero, new Vector2(60f, 70f), false);
-            Place(leftArm.rectTransform, left, left, left, new Vector2(140f, 14f), new Vector2(60f, 70f));
-            var rightArm = LGlyph(root, "RightArmIcon", Vector2.zero, new Vector2(60f, 70f), true);
-            Place(rightArm.rectTransform, left, left, left, new Vector2(220f, 14f), new Vector2(60f, 70f));
+            var arms = ArmIcons(root, left, new Vector2(140f, 14f), new Vector2(60f, 70f));
             var track = NewImage(root, "HoldTrack", GetSprite("Panel"), new Color(0.25f, 0.25f, 0.3f));
             track.type = Image.Type.Sliced;
             Place(track.rectTransform, left, left, left, new Vector2(140f, -44f), new Vector2(160f, 20f));
@@ -191,8 +186,8 @@ namespace Nex.Ninjago.Editor
             Place(done.rectTransform, left, left, left, new Vector2(318f, 0f), new Vector2(64f, 64f));
 
             Set(card, "playerTag", tag);
-            Set(card, "leftArmIcon", leftArm);
-            Set(card, "rightArmIcon", rightArm);
+            Set(card, "leftArmIcon", arms.left);
+            Set(card, "rightArmIcon", arms.right);
             Set(card, "holdFill", fill);
             Set(card, "doneMark", done.gameObject);
             return SavePrefab(root.gameObject, WidgetsRoot + "/RobotArmsCard.prefab").GetComponent<RobotArmsCard>();
@@ -203,6 +198,26 @@ namespace Nex.Ninjago.Editor
         #region Helpers
 
         static Vector2 Center => new(0.5f, 0.5f);
+
+        // Left arm, a head dot, right arm: reads as a little robot holding both Ls. anchor is also the pivot; the group
+        // starts at position (its edge on the anchor side) and runs away from that edge.
+        static (Image left, Image right) ArmIcons(RectTransform parent, Vector2 anchor, Vector2 position, Vector2 iconSize)
+        {
+            var away = anchor.x > 0.5f ? -1f : 1f;
+            var headSize = iconSize.x * 0.5f;
+            var step = new Vector2(away * (iconSize.x + headSize + 8f), 0f);
+            var first = LGlyph(parent, away > 0f ? "LeftArmIcon" : "RightArmIcon", Vector2.zero, iconSize, away < 0f);
+            Place(first.rectTransform, anchor, anchor, anchor, position, iconSize);
+            // The head sits just above the shoulder line (the L's foot), between the two arms.
+            var iconTop = position.y + (1f - anchor.y) * iconSize.y;
+            var headCenter = iconTop - 0.55f * iconSize.y;
+            var head = NewImage(parent, "HeadDot", GetSprite("Circle"), new Color(0.95f, 0.95f, 1f));
+            Place(head.rectTransform, anchor, anchor, anchor, new Vector2(position.x + away * (iconSize.x + 4f), headCenter - (0.5f - anchor.y) * headSize),
+                Vector2.one * headSize);
+            var second = LGlyph(parent, away > 0f ? "RightArmIcon" : "LeftArmIcon", Vector2.zero, iconSize, away > 0f);
+            Place(second.rectTransform, anchor, anchor, anchor, position + step, iconSize);
+            return away > 0f ? (first, second) : (second, first);
+        }
 
         // The L shape: the player's left arm reads as an L in the mirrored camera picture, the right arm as its mirror.
         static Image LGlyph(RectTransform parent, string name, Vector2 position, Vector2 size, bool mirrored)

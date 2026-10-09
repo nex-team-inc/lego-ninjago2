@@ -31,7 +31,7 @@ namespace Nex.Ninjago
         [Header("Arm Held Color")]
         [SerializeField] Color armHeldColor = new(0.3f, 1f, 0.35f);
         [Header("Arm Broken Color")]
-        [SerializeField] Color armBrokenColor = new(0.35f, 0.35f, 0.38f, 0.8f);
+        [SerializeField] Color armBrokenColor = new(0.55f, 0.55f, 0.6f, 0.9f);
         [Header("Time Label")]
         [SerializeField] NexLocalizedString timeLabel = null!;
         [Header("Time Text")]

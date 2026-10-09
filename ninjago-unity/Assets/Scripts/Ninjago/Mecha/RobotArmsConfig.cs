@@ -62,6 +62,8 @@ namespace Nex.Ninjago
         public float SetupHoldSeconds => setupHoldSeconds;
         public float BodyHandFallbackSeconds => bodyHandFallbackSeconds;
         public float DeadzoneInches { get => deadzoneInches; set => deadzoneInches = Mathf.Max(0f, value); }
+        public float FullYawOffsetInches { get => fullYawOffsetInches; set => fullYawOffsetInches = Mathf.Max(0.5f, value); }
+        public float FullPitchOffsetInches { get => fullPitchOffsetInches; set => fullPitchOffsetInches = Mathf.Max(0.5f, value); }
         public float PitchClampDegrees { get => pitchClampDegrees; set => pitchClampDegrees = Mathf.Clamp(value, 1f, 89f); }
         public bool SwapAxes { get => swapAxes; set => swapAxes = value; }
         public float YawSpeed { get => yawSpeed; set => yawSpeed = Mathf.Max(1f, value); }

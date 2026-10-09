@@ -204,10 +204,14 @@ namespace Nex
         public float SealW4Breakthrough { get => W4.breakthroughSeconds; set => W4.breakthroughSeconds = value; }
 
         // Robot Mecha: same rule as the rows above, the config assets are edited live.
-        [DebugOrder(-300), Description("Mecha: Elbow Angle Tolerance (deg either side of 90)"), NumericSteps(Steps = 1, Min = 5, Max = 45), ES3NonSerializable]
+        [DebugOrder(-300), Description("Mecha: Elbow Tolerance (± deg from 90)"), NumericSteps(Steps = 1, Min = 5, Max = 45), ES3NonSerializable]
         public float MechaElbowTolerance { get => RobotArms.ElbowAngleTolerance; set => RobotArms.ElbowAngleTolerance = value; }
         [DebugOrder(-299), Description("Mecha: Hand Deadzone (in)"), NumericSteps(Steps = 0.25, Min = 0, Max = 6), ES3NonSerializable]
         public float MechaDeadzone { get => RobotArms.DeadzoneInches; set => RobotArms.DeadzoneInches = value; }
+        [DebugOrder(-289), Description("Mecha: Hand Offset For Full Turn (in)"), NumericSteps(Steps = 0.5, Min = 2, Max = 30), ES3NonSerializable]
+        public float MechaFullTurnOffset { get => RobotArms.FullYawOffsetInches; set => RobotArms.FullYawOffsetInches = value; }
+        [DebugOrder(-288), Description("Mecha: Hand Offset For Full Pitch (in)"), NumericSteps(Steps = 0.5, Min = 2, Max = 30), ES3NonSerializable]
+        public float MechaFullPitchOffset { get => RobotArms.FullPitchOffsetInches; set => RobotArms.FullPitchOffsetInches = value; }
         [DebugOrder(-298), Description("Mecha: Yaw Speed (deg/s)"), NumericSteps(Steps = 2, Min = 10, Max = 360), ES3NonSerializable]
         public float MechaYawSpeed { get => RobotArms.YawSpeed; set => RobotArms.YawSpeed = value; }
         [DebugOrder(-297), Description("Mecha: Pitch Speed (deg/s)"), NumericSteps(Steps = 1, Min = 5, Max = 180), ES3NonSerializable]
@@ -220,7 +224,7 @@ namespace Nex
         public float MechaBeamWidth { get => MechaFight.BeamWidth; set => MechaFight.BeamWidth = value; }
         [DebugOrder(-293), Description("Mecha: Beam Damage (per s)"), NumericSteps(Steps = 0.1, Min = 0.1, Max = 20), ES3NonSerializable]
         public float MechaBeamDamage { get => MechaFight.BeamDamagePerSecond; set => MechaFight.BeamDamagePerSecond = value; }
-        [DebugOrder(-292), Description("Mecha: Spawn Timing x (lower = sooner, denser)"), NumericSteps(Steps = 0.05, Min = 0.3, Max = 2), ES3NonSerializable]
+        [DebugOrder(-292), Description("Mecha: Spawn Timing x (lower = sooner)"), NumericSteps(Steps = 0.05, Min = 0.3, Max = 2), ES3NonSerializable]
         public float MechaSpawnTiming { get => MechaFight.SpawnTimeScale; set => MechaFight.SpawnTimeScale = value; }
         [DebugOrder(-291), Description("Mecha: Hearts"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 12), ES3NonSerializable]
         public int MechaHearts { get => MechaFight.Hearts; set => MechaFight.Hearts = value; }

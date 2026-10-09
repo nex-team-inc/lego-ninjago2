@@ -107,10 +107,19 @@ namespace Nex.Ninjago.Editor
             var modes = serialized.FindProperty("modes");
             Mode(settings, modes, GameModeType.SlipAndSpin, SlipAndSpinPath, "ninjago.mode.slip_and_spin");
             Mode(settings, modes, GameModeType.ChestChase, ChestChasePath, "ninjago.mode.chest_chase");
-            // The menu shows the Ninjago mini-games; the PressButtonToWin test entry stays defined but unlisted. The
-            // StoneKick and EarthSeal definitions come from CursorGamesBuilder.
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(config);
+            WriteMenuOrder();
+        }
+
+        // The menu shows the Ninjago mini-games; the PressButtonToWin test entry stays defined but unlisted. The
+        // StoneKick and EarthSeal definitions come from CursorGamesBuilder, RobotMecha from RobotMechaBuilder.
+        internal static void WriteMenuOrder()
+        {
+            var config = Load<GameModeConfig>(GameModeConfigPath);
+            var serialized = new SerializedObject(config);
             var order = serialized.FindProperty("modeOrders");
-            var listed = new[] { GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal };
+            var listed = new[] { GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal, GameModeType.RobotMecha };
             order.arraySize = listed.Length;
             for (var i = 0; i < listed.Length; i++) order.GetArrayElementAtIndex(i).intValue = (int)listed[i];
             serialized.ApplyModifiedPropertiesWithoutUndo();

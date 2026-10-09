@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3114b7aeeeed48c9905162fcfec3600, type: 3}
+  m_Name: RobotArmsConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.RobotArmsConfig
+  elbowAngleCenter: 90
+  elbowAngleTolerance: 20
+  wristBelowElbowInches: 2
+  poseGainSeconds: 0.1
+  poseLossSeconds: 0.2
+  setupHoldSeconds: 1
+  bodyHandFallbackSeconds: 0.3
+  deadzoneInches: 1.2
+  fullYawOffsetInches: 10
+  yawRangeDegrees: 180
+  fullPitchOffsetInches: 7
+  pitchClampDegrees: 40
+  swapAxes: 0
+  yawSpeed: 78
+  pitchSpeed: 35
+  turnAcceleration: 320

@@ -1305,6 +1305,59 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 196492722355298304
+    m_Localized: Robot Mecha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492608
+    m_Localized: ROBOT ARMS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492609
+    m_Localized: Make an L with both arms and hold it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492610
+    m_Localized: Elbows bent, hands up, like a robot!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492611
+    m_Localized: '{seconds}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 196492722359492612
+    m_Localized: Kills {count}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 196492722359492613
+    m_Localized: DOWN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492614
+    m_Localized: SURVIVED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492615
+    m_Localized: Wave survived!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492616
+    m_Localized: Mecha down!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492617
+    m_Localized: P{player}    Time {time:0.0} s    Kills {kills}    Hearts lost {lost}   
+      Pose {pose}%
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 196492722359492618
+    m_Localized: Best    Time {time:0.0} s    Pose {pose}%
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1371,3 +1424,7 @@ MonoBehaviour:
         - id: 196468021692194816
         - id: 196468021692194817
         - id: 196468021692194818
+        - id: 196492722359492611
+        - id: 196492722359492612
+        - id: 196492722359492617
+        - id: 196492722359492618

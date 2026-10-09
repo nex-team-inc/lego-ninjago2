@@ -1227,6 +1227,54 @@ MonoBehaviour:
     m_Key: ninjago.result.kick_stones_no_kick
     m_Metadata:
       m_Items: []
+  - m_Id: 196492722355298304
+    m_Key: ninjago.mode.robot_mecha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492608
+    m_Key: ninjago.mecha.robot_arms
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492609
+    m_Key: ninjago.mecha.setup_hold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492610
+    m_Key: ninjago.mecha.setup_hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492611
+    m_Key: ninjago.mecha.time_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492612
+    m_Key: ninjago.mecha.kills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492613
+    m_Key: ninjago.mecha.down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492614
+    m_Key: ninjago.mecha.survived
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492615
+    m_Key: ninjago.result.mecha_survived
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492616
+    m_Key: ninjago.result.mecha_down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492617
+    m_Key: ninjago.result.mecha_player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196492722359492618
+    m_Key: ninjago.result.mecha_best
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

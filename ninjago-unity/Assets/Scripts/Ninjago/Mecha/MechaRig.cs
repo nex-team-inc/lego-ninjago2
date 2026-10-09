@@ -21,7 +21,7 @@ namespace Nex.Ninjago
         [Tooltip("Beam origin on the chest; its forward is the beam direction.")]
         [SerializeField] Transform muzzle = null!;
         [Header("Beam")]
-        [Tooltip("Unit beam along local +Z with a diameter of 1; scaled to the beam width and length.")]
+        [Tooltip("Unit beam along local +Z for a hit width of 1; scaled to the beam width and length.")]
         [SerializeField] Transform beam = null!;
         [Header("Left Shoulder")]
         [SerializeField] Transform leftShoulder = null!;

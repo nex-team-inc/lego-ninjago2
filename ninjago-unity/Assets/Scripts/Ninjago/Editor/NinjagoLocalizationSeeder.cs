@@ -73,6 +73,18 @@ namespace Nex.Ninjago.Editor
             ("ninjago.result.seal_team", "Two-hand seals {twoHands}    Dropped seals {drops}", true),
             ("ninjago.result.seal_player", "P{player}    Held {held} seals    On cracks {seconds:0.0} s    Dropped {drops}", true),
             ("ninjago.result.seal_best", "Best    Seals {seals}    Two-hand seals {twoHands}", true),
+            ("ninjago.mode.robot_mecha", "Robot Mecha", false),
+            ("ninjago.mecha.robot_arms", "ROBOT ARMS", false),
+            ("ninjago.mecha.setup_hold", "Make an L with both arms and hold it", false),
+            ("ninjago.mecha.setup_hint", "Elbows bent, hands up, like a robot!", false),
+            ("ninjago.mecha.time_left", "{seconds}", true),
+            ("ninjago.mecha.kills", "Kills {count}", true),
+            ("ninjago.mecha.down", "DOWN", false),
+            ("ninjago.mecha.survived", "SURVIVED!", false),
+            ("ninjago.result.mecha_survived", "Wave survived!", false),
+            ("ninjago.result.mecha_down", "Mecha down!", false),
+            ("ninjago.result.mecha_player", "P{player}    Time {time:0.0} s    Kills {kills}    Hearts lost {lost}    Pose {pose}%", true),
+            ("ninjago.result.mecha_best", "Best    Time {time:0.0} s    Pose {pose}%", true),
         };
 
         #region Entry Point

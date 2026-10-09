@@ -53,7 +53,7 @@ namespace Nex.Ninjago.Editor
             });
         }
 
-        static void Register(SerializedProperty dict, VfxManager.VisualEffect effect, ParticleSystem prefab, int defaultSize, int maxSize)
+        internal static void Register(SerializedProperty dict, VfxManager.VisualEffect effect, ParticleSystem prefab, int defaultSize, int maxSize)
         {
             var spec = EnumDictionaryEditorUtils.GetValueProperty(dict, (int)effect);
             spec.FindPropertyRelative("prefab").objectReferenceValue = prefab;
@@ -61,7 +61,7 @@ namespace Nex.Ninjago.Editor
             spec.FindPropertyRelative("maxPoolSize").intValue = maxSize;
         }
 
-        static ParticleSystem Save(string name, ParticleSystem system)
+        internal static ParticleSystem Save(string name, ParticleSystem system)
         {
             return SavePrefab(system.gameObject, $"{VfxRoot}/{name}.prefab").GetComponent<ParticleSystem>();
         }
@@ -276,7 +276,7 @@ namespace Nex.Ninjago.Editor
 
         #region Helpers
 
-        static ParticleSystem NewSystem(string name, Material material, float duration, bool loop, int maxParticles)
+        internal static ParticleSystem NewSystem(string name, Material material, float duration, bool loop, int maxParticles)
         {
             var go = new GameObject(name);
             var system = go.AddComponent<ParticleSystem>();
@@ -297,13 +297,13 @@ namespace Nex.Ninjago.Editor
             return system;
         }
 
-        static void Burst(ParticleSystem system, int count)
+        internal static void Burst(ParticleSystem system, int count)
         {
             var emission = system.emission;
             emission.SetBursts(new[] { new ParticleSystem.Burst(0f, (short)count) });
         }
 
-        static void Orbit(ParticleSystem system, float orbitalY, float radial, float rise)
+        internal static void Orbit(ParticleSystem system, float orbitalY, float radial, float rise)
         {
             var velocity = system.velocityOverLifetime;
             velocity.enabled = true;
@@ -313,7 +313,7 @@ namespace Nex.Ninjago.Editor
             velocity.y = rise;
         }
 
-        static void FadeOut(ParticleSystem system)
+        internal static void FadeOut(ParticleSystem system)
         {
             var color = system.colorOverLifetime;
             color.enabled = true;
@@ -323,14 +323,14 @@ namespace Nex.Ninjago.Editor
             color.color = gradient;
         }
 
-        static void GrowOverLife(ParticleSystem system, float endScale)
+        internal static void GrowOverLife(ParticleSystem system, float endScale)
         {
             var size = system.sizeOverLifetime;
             size.enabled = true;
             size.size = new ParticleSystem.MinMaxCurve(1f, AnimationCurve.Linear(0f, 1f, 1f, endScale));
         }
 
-        static void MeshRenderer(ParticleSystem system, Mesh mesh)
+        internal static void MeshRenderer(ParticleSystem system, Mesh mesh)
         {
             var renderer = system.GetComponent<ParticleSystemRenderer>();
             renderer.renderMode = ParticleSystemRenderMode.Mesh;

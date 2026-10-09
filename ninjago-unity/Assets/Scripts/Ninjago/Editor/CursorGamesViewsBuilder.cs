@@ -239,7 +239,7 @@ namespace Nex.Ninjago.Editor
             return layer;
         }
 
-        static RectTransform Row(RectTransform parent, string name, Vector2 anchor, Vector2 position, Vector2 size, float spacing, TextAnchor alignment)
+        internal static RectTransform Row(RectTransform parent, string name, Vector2 anchor, Vector2 position, Vector2 size, float spacing, TextAnchor alignment)
         {
             var row = NewRect(name, parent);
             Place(row, anchor, anchor, anchor, position, size);

@@ -29,7 +29,7 @@ namespace Nex.Ninjago
         [SerializeField] Transform[] pillarTops = null!;
         [Header("Bow Height")]
         [Tooltip("Meters above an archer's feet where its arrows leave.")]
-        [SerializeField] float bowHeight = 1.6f;
+        [SerializeField] float bowHeight = 1.85f;
         [Header("Arrow Target Height")]
         [Tooltip("Meters above the center mark where arrows land on the mecha.")]
         [SerializeField] float arrowTargetHeight = 1.8f;

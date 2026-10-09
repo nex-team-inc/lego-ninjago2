@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2933cdb591b674c518bd10ad051213ee, type: 3}
+  m_Name: MechaFightConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.MechaFightConfig
+  hearts: 5
+  waveSeconds: 70
+  promptSeconds: 5
+  endHoldSeconds: 2.5
+  beamWidth: 1
+  beamRange: 32
+  beamDamagePerSecond: 2.2
+  spawnRadius: 22
+  meleeRadius: 2.2
+  arrowArcHeight: 3
+  enemies:
+    pairs:
+    - key: 0
+      value:
+        health: 1
+        speed: 2.4
+        hitRadius: 1.05
+        height: 1.6
+        stopDistance: 15
+        firstDrawDelay: 1
+        drawSeconds: 1.2
+        arrowFlightSeconds: 2.4
+        reloadSeconds: 3
+    - key: 1
+      value:
+        health: 1.5
+        speed: 1.8
+        hitRadius: 0.7
+        height: 3
+        stopDistance: 15
+        firstDrawDelay: 1
+        drawSeconds: 1.4
+        arrowFlightSeconds: 2.4
+        reloadSeconds: 3.5
+  spawnTimeScale: 1
+  spawns:
+  - time: 2.5
+    type: 0
+    angle: 0
+    high: 0
+  - time: 5.5
+    type: 0
+    angle: -18
+    high: 0
+  - time: 8
+    type: 0
+    angle: 20
+    high: 0
+  - time: 10
+    type: 1
+    angle: 12
+    high: 0
+  - time: 12.5
+    type: 0
+    angle: -8
+    high: 0
+  - time: 16
+    type: 0
+    angle: 75
+    high: 0
+  - time: 19
+    type: 0
+    angle: -80
+    high: 0
+  - time: 22
+    type: 1
+    angle: -22.5
+    high: 1
+  - time: 24
+    type: 0
+    angle: 95
+    high: 0
+  - time: 27
+    type: 0
+    angle: -60
+    high: 0
+  - time: 30
+    type: 0
+    angle: 110
+    high: 0
+  - time: 32
+    type: 0
+    angle: -100
+    high: 0
+  - time: 35
+    type: 0
+    angle: 70
+    high: 0
+  - time: 37.5
+    type: 0
+    angle: -90
+    high: 0
+  - time: 41
+    type: 0
+    angle: 180
+    high: 0
+  - time: 43
+    type: 1
+    angle: 135
+    high: 0
+  - time: 45
+    type: 0
+    angle: 160
+    high: 0
+  - time: 48
+    type: 0
+    angle: -170
+    high: 0
+  - time: 50
+    type: 1
+    angle: -112.5
+    high: 1
+  - time: 53
+    type: 0
+    angle: -160
+    high: 0
+  - time: 56
+    type: 0
+    angle: 150
+    high: 0
+  - time: 59
+    type: 0
+    angle: -150
+    high: 0
+  - time: 62
+    type: 0
+    angle: 175
+    high: 0
+  - time: 65
+    type: 0
+    angle: -175
+    high: 0

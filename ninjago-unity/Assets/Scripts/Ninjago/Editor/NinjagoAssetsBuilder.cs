@@ -54,7 +54,7 @@ namespace Nex.Ninjago.Editor
         public static Sprite GetSprite(string name) => Load<Sprite>($"{SpritesRoot}/{name}.png");
 
         // 4x4 supersampled white shape on transparent; inside(u, v) with u, v in -1..1, v up.
-        static void BuildSprite(string name, int size, Func<float, float, bool> inside, Vector4 border)
+        internal static void BuildSprite(string name, int size, Func<float, float, bool> inside, Vector4 border)
         {
             var path = $"{SpritesRoot}/{name}.png";
             var texture = new Texture2D(size, size, TextureFormat.RGBA32, false);
@@ -128,7 +128,7 @@ namespace Nex.Ninjago.Editor
             return material;
         }
 
-        static Material MaterialAsset(string name, string shaderName)
+        internal static Material MaterialAsset(string name, string shaderName)
         {
             EnsureFolder(MaterialsRoot);
             var path = $"{MaterialsRoot}/{name}.mat";

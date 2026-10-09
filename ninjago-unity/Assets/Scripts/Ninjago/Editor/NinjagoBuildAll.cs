@@ -30,6 +30,7 @@ namespace Nex.Ninjago.Editor
             NinjagoViewsBuilder.Build();
             NinjagoGamesBuilder.Build();
             CursorGamesBuilder.Build();
+            RobotMechaBuilder.Build();
             AssetDatabase.SaveAssets();
             return $"[NinjagoBuildAll] done ({localization})";
         }

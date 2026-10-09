@@ -54,3 +54,5 @@ MonoBehaviour:
   handCursorConfig: {fileID: 11400000, guid: 4c13153be93834b90bfafaa7ce964012, type: 2}
   stoneKickConfig: {fileID: 11400000, guid: 00e401ed13fab41179d8dedb2287dae4, type: 2}
   earthSealConfig: {fileID: 11400000, guid: 0f2715350ef1643fd84c8a5c2217debb, type: 2}
+  robotArmsConfig: {fileID: 11400000, guid: b5a4b0e11d9dd45f9b7fce1a029fa135, type: 2}
+  mechaFightConfig: {fileID: 11400000, guid: 7d23b8068a18344f3880df7d2ac42e71, type: 2}

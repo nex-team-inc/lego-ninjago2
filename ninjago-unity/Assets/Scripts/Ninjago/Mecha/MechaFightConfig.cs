@@ -60,8 +60,8 @@ namespace Nex.Ninjago
         [SerializeField, Range(0f, 6f)] float endHoldSeconds = 2.5f;
 
         [Header("Beam")]
-        [Tooltip("Laser thickness in meters; the hit test and the visible beam both use it.")]
-        [SerializeField, Range(0.1f, 4f)] float beamWidth = 0.8f;
+        [Tooltip("Laser thickness in meters the hit test uses; the visible beam scales with it (bright core inside, glow outside).")]
+        [SerializeField, Range(0.1f, 4f)] float beamWidth = 1f;
         [Tooltip("Laser reach in meters.")]
         [SerializeField, Range(5f, 80f)] float beamRange = 32f;
         [Tooltip("Damage per second to the nearest enemy inside the beam.")]

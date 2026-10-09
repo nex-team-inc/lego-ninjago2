@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebd76231c05374090b418ddf8b24abec
+    m_Address: RobotMechaGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee333de8ba4bb4e32a7190f794a5e4ee
     m_Address: EarthSealGame
     m_ReadOnly: 0

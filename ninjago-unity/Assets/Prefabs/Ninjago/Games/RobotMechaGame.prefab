@@ -81,12 +81,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.RobotMechaGame
   detectionEnginePrefab: {fileID: 2637131507758446840, guid: f7d14f6559fa04af390078e069985146, type: 3}
   enginesRoot: {fileID: 3433169572543416772}
-  setupViewPrefab: {fileID: 7656980892690604727, guid: c9f81b5f83fdd4f87ad3c0ab3c5be255, type: 3}
+  setupViewPrefab: {fileID: 2387082197184314747, guid: c9f81b5f83fdd4f87ad3c0ab3c5be255, type: 3}
   resultViewPrefab: {fileID: 2627943057487524080, guid: beeeda81d6ea8435188726ad32657ca3, type: 3}
   playersConfig: {fileID: 11400000, guid: 859a766aa9a0849278e666db4e6d1a95, type: 2}
   arms: {fileID: 6736337958593748890}
   armsConfig: {fileID: 11400000, guid: b5a4b0e11d9dd45f9b7fce1a029fa135, type: 2}
-  viewPrefab: {fileID: 872110289247777638, guid: d8ada3470c2b64347bb65ab316d89c42, type: 3}
+  viewPrefab: {fileID: 8983838042585995713, guid: d8ada3470c2b64347bb65ab316d89c42, type: 3}
   config: {fileID: 11400000, guid: 7d23b8068a18344f3880df7d2ac42e71, type: 2}
   survivedTitle:
     m_TableReference:

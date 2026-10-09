@@ -123,7 +123,7 @@ namespace Nex.Ninjago
 
             hitElapsed += deltaTime;
             var shake = 1f - Mathf.Clamp01(hitElapsed / hitShakeSeconds);
-            body.localPosition = new Vector3(Mathf.Sin(hitElapsed * 70f) * 0.12f * shake, 0f, 0f);
+            body.localPosition = shake > 0f ? new Vector3(Mathf.Sin(hitElapsed * 70f) * 0.12f * shake, 0f, 0f) : Vector3.zero;
             if (!down) return;
             downElapsed += deltaTime;
             var fall = Mathf.Clamp01(downElapsed / toppleSeconds);

@@ -120,10 +120,10 @@ namespace Nex.Ninjago.Editor
             Place((RectTransform)time.transform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -12f), new Vector2(320f, 130f));
 
             var prompt = NewRect("RobotArmsPrompt", root);
-            Place(prompt, Center, Center, Center, new Vector2(0f, 250f), new Vector2(1000f, 240f));
-            LGlyph(prompt, "BigL", new Vector2(-330f, 0f), new Vector2(170f, 200f), false);
+            Place(prompt, Center, Center, Center, new Vector2(0f, 220f), new Vector2(1000f, 240f));
+            LGlyph(prompt, "BigL", new Vector2(-380f, 0f), new Vector2(170f, 200f), false);
             var promptText = Label(prompt, "RobotArms", "ninjago.mecha.robot_arms", "ROBOT ARMS", 124f, laserPink, outline, TextAlignmentOptions.Left);
-            Place((RectTransform)promptText.transform, Center, Center, new Vector2(0f, 0.5f), new Vector2(-210f, 0f), new Vector2(760f, 170f));
+            Place((RectTransform)promptText.transform, Center, Center, new Vector2(0f, 0.5f), new Vector2(-270f, 0f), new Vector2(760f, 170f));
             var down = NinjagoViewsBuilder.Banner(root, "DownBanner", "ninjago.mecha.down", "DOWN", 170f, warnRed, new Vector2(0f, 80f));
             var survived = NinjagoViewsBuilder.Banner(root, "SurvivedBanner", "ninjago.mecha.survived", "SURVIVED!", 140f, safeGreen, new Vector2(0f, 80f));
             var edgeLayer = Stretch(NewRect("EdgeArrows", root));

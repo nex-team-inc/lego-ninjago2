@@ -69,6 +69,7 @@ namespace Nex.Ninjago
             field.MechaHit += TakeHit;
             Hearts = config.Hearts;
             hud.Initialize(body.PlayerIndex, body.Color, Hearts);
+            hud.SetTimeLeft(Mathf.CeilToInt(config.WaveSeconds));
             ApplyAim();
         }
 

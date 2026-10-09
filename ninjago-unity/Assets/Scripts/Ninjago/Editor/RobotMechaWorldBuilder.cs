@@ -155,13 +155,15 @@ namespace Nex.Ninjago.Editor
             Block(PrimitiveType.Cube, "Antenna", pitch, new Vector3(0f, 1.86f, -0.05f), new Vector3(0.08f, 0.26f, 0.08f), dark);
             lights.Add(Renderer(Block(PrimitiveType.Cube, "AntennaTip", pitch, new Vector3(0f, 2.02f, -0.05f), new Vector3(0.17f, 0.17f, 0.17f), lightOn)));
             Block(PrimitiveType.Cube, "Backpack", pitch, new Vector3(0f, 0.65f, -0.68f), new Vector3(1.15f, 0.9f, 0.4f), dark);
+            // The camera sees the back: the backpack core and exhausts are the lights that show the pose dropping.
+            lights.Add(Renderer(Block(PrimitiveType.Cube, "BackCore", pitch, new Vector3(0f, 0.78f, -0.89f), new Vector3(0.6f, 0.36f, 0.04f), lightOn)));
             var tinted = new List<Object>();
             foreach (var side in new[] { -1f, 1f })
             {
                 Block(PrimitiveType.Cube, "Ear", pitch, new Vector3(side * 0.5f, 1.45f, 0f), new Vector3(0.15f, 0.35f, 0.35f), magenta);
                 tinted.Add(Renderer(Block(PrimitiveType.Cube, "ShoulderPad", pitch, new Vector3(side * 1.05f, 1.06f, 0f), new Vector3(0.64f, 0.42f, 0.82f), tint)));
                 lights.Add(Renderer(Block(PrimitiveType.Cube, "ShoulderLamp", pitch, new Vector3(side * 1.05f, 1.06f, 0.42f), new Vector3(0.32f, 0.15f, 0.03f), lightOn)));
-                lights.Add(Renderer(Block(PrimitiveType.Cube, "Exhaust", pitch, new Vector3(side * 0.3f, 0.32f, -0.9f), new Vector3(0.24f, 0.24f, 0.08f), lightOn)));
+                lights.Add(Renderer(Block(PrimitiveType.Cube, "Exhaust", pitch, new Vector3(side * 0.34f, 0.32f, -0.9f), new Vector3(0.3f, 0.3f, 0.1f), lightOn)));
             }
 
             var leftShoulder = BuildArm(pitch, "LeftShoulder", -1.05f, lavender, white, dark, out var leftElbow);

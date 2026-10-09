@@ -8,5 +8,6 @@ namespace Nex
         ChestChase = 3,
         StoneKick = 4,
         EarthSeal = 5,
+        RobotMecha = 6,
     }
 }

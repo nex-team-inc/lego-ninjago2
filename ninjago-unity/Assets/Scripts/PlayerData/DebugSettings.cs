@@ -203,6 +203,30 @@ namespace Nex
         [DebugOrder(-125), Description("Seal W4: Breakthrough (s)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 10), ES3NonSerializable]
         public float SealW4Breakthrough { get => W4.breakthroughSeconds; set => W4.breakthroughSeconds = value; }
 
+        // Robot Mecha: same rule as the rows above, the config assets are edited live.
+        [DebugOrder(-300), Description("Mecha: Elbow Angle Tolerance (deg either side of 90)"), NumericSteps(Steps = 1, Min = 5, Max = 45), ES3NonSerializable]
+        public float MechaElbowTolerance { get => RobotArms.ElbowAngleTolerance; set => RobotArms.ElbowAngleTolerance = value; }
+        [DebugOrder(-299), Description("Mecha: Hand Deadzone (in)"), NumericSteps(Steps = 0.25, Min = 0, Max = 6), ES3NonSerializable]
+        public float MechaDeadzone { get => RobotArms.DeadzoneInches; set => RobotArms.DeadzoneInches = value; }
+        [DebugOrder(-298), Description("Mecha: Yaw Speed (deg/s)"), NumericSteps(Steps = 2, Min = 10, Max = 360), ES3NonSerializable]
+        public float MechaYawSpeed { get => RobotArms.YawSpeed; set => RobotArms.YawSpeed = value; }
+        [DebugOrder(-297), Description("Mecha: Pitch Speed (deg/s)"), NumericSteps(Steps = 1, Min = 5, Max = 180), ES3NonSerializable]
+        public float MechaPitchSpeed { get => RobotArms.PitchSpeed; set => RobotArms.PitchSpeed = value; }
+        [DebugOrder(-296), Description("Mecha: Pitch Clamp (deg)"), NumericSteps(Steps = 1, Min = 5, Max = 80), ES3NonSerializable]
+        public float MechaPitchClamp { get => RobotArms.PitchClampDegrees; set => RobotArms.PitchClampDegrees = value; }
+        [DebugOrder(-295), Description("Mecha: Swap Axes (hand height turns)"), ES3NonSerializable]
+        public bool MechaSwapAxes { get => RobotArms.SwapAxes; set => RobotArms.SwapAxes = value; }
+        [DebugOrder(-294), Description("Mecha: Beam Width (m)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 4), ES3NonSerializable]
+        public float MechaBeamWidth { get => MechaFight.BeamWidth; set => MechaFight.BeamWidth = value; }
+        [DebugOrder(-293), Description("Mecha: Beam Damage (per s)"), NumericSteps(Steps = 0.1, Min = 0.1, Max = 20), ES3NonSerializable]
+        public float MechaBeamDamage { get => MechaFight.BeamDamagePerSecond; set => MechaFight.BeamDamagePerSecond = value; }
+        [DebugOrder(-292), Description("Mecha: Spawn Timing x (lower = sooner, denser)"), NumericSteps(Steps = 0.05, Min = 0.3, Max = 2), ES3NonSerializable]
+        public float MechaSpawnTiming { get => MechaFight.SpawnTimeScale; set => MechaFight.SpawnTimeScale = value; }
+        [DebugOrder(-291), Description("Mecha: Hearts"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 12), ES3NonSerializable]
+        public int MechaHearts { get => MechaFight.Hearts; set => MechaFight.Hearts = value; }
+        [DebugOrder(-290), Description("Mecha: Wave Length (s)"), NumericSteps(Steps = 5, Min = 10, Max = 300), ES3NonSerializable]
+        public float MechaWaveLength { get => MechaFight.WaveSeconds; set => MechaFight.WaveSeconds = value; }
+
         [DebugOrder(-99), Description("Fight: Slip Window (s)"), NumericSteps(Steps = 0.05, Min = 0.2, Max = 2), ES3NonSerializable]
         public float FightSlipWindow { get => Fight.SlipWindowSeconds; set => Fight.SlipWindowSeconds = value; }
         [DebugOrder(-98), Description("Fight: Lean Threshold (in)"), NumericSteps(Steps = 0.5, Min = 1, Max = 12), ES3NonSerializable]
@@ -265,6 +289,8 @@ namespace Nex
         static HandCursorConfig Cursor => GameConfigsManager.Instance.HandCursorConfig;
         static StoneKickConfig StoneKick => GameConfigsManager.Instance.StoneKickConfig;
         static EarthSealConfig EarthSeal => GameConfigsManager.Instance.EarthSealConfig;
+        static RobotArmsConfig RobotArms => GameConfigsManager.Instance.RobotArmsConfig;
+        static MechaFightConfig MechaFight => GameConfigsManager.Instance.MechaFightConfig;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

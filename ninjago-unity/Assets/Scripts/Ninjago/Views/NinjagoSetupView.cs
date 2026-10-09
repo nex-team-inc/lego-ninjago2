@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -11,7 +12,8 @@ namespace Nex.Ninjago
     /// <summary>
     /// Camera setup before every mini-game: every player stands in frame and holds still, and that player's body
     /// origin (chest, and resting knees for kicks) is stored. Games with hand cursors then confirm each player's hands
-    /// drive a cursor. In two-player mode a player who never appears is dropped after the solo-fallback wait.
+    /// drive a cursor; Robot Mecha has each player hold the L with both arms instead. In two-player mode a player who
+    /// never appears is dropped after the solo-fallback wait.
     /// </summary>
     public class NinjagoSetupView : SimpleCanvasView
     {
@@ -23,6 +25,9 @@ namespace Nex.Ninjago
         [Header("Hand Cursor Check")]
         [Tooltip("Only in the setup view of the hand cursor games; runs after the body calibration.")]
         [SerializeField] HandCursorCheck? handCheck;
+        [Header("Robot Arms Check")]
+        [Tooltip("Only in the setup view of Robot Mecha; runs after the body calibration.")]
+        [SerializeField] RobotArmsCheck? robotArmsCheck;
         [Header("Prompt: Stand In Frame")]
         [SerializeField] LocalizedString standPrompt = new();
         [Header("Prompt: Hold Still")]
@@ -46,6 +51,7 @@ namespace Nex.Ninjago
         IReadOnlyList<PlayerBody> bodies = null!;
         DetectionManager detection = null!;
         HandCursorTracker? cursors;
+        RobotArmsTracker? robotArms;
         PreviewsManager previewsManager = null!;
         NinjagoPlayersConfig config = null!;
         bool[] inGoodPosition = null!;
@@ -84,12 +90,15 @@ namespace Nex.Ninjago
         #region Initialization
 
         /// <param name="aCursors">The game's hand cursors, or null for games without them (no hand check).</param>
-        public void Initialize(IReadOnlyList<PlayerBody> aBodies, DetectionManager aDetection, NinjagoPlayersConfig aConfig, HandCursorTracker? aCursors)
+        /// <param name="aRobotArms">Robot Mecha's arms tracker, or null for the other games (no robot arms hold).</param>
+        public void Initialize(IReadOnlyList<PlayerBody> aBodies, DetectionManager aDetection, NinjagoPlayersConfig aConfig, HandCursorTracker? aCursors,
+            RobotArmsTracker? aRobotArms)
         {
             bodies = aBodies;
             detection = aDetection;
             config = aConfig;
             cursors = aCursors;
+            robotArms = aRobotArms;
             inGoodPosition = new bool[bodies.Count];
             holds = new Hold[bodies.Count];
             previewsManager = Instantiate(previewsManagerPrefab);
@@ -132,6 +141,12 @@ namespace Nex.Ninjago
                 if (cursors != null)
                 {
                     calibrated = await ConfirmHandsAsync(cursors, handCheck!, calibrated, cancellationToken);
+                    if (calibrated == null) return null;
+                }
+
+                if (robotArms != null)
+                {
+                    calibrated = await HoldRobotArmsAsync(robotArms, robotArmsCheck!, calibrated, cancellationToken);
                     if (calibrated == null) return null;
                 }
 
@@ -220,13 +235,32 @@ namespace Nex.Ninjago
             return true;
         }
 
-        // Every calibrated player fills their ring with a cursor; in two-player mode a player who never does is dropped
-        // after the solo-fallback wait, like a body that never appears.
-        async UniTask<List<PlayerBody>?> ConfirmHandsAsync(HandCursorTracker handCursors, HandCursorCheck check, List<PlayerBody> calibrated,
+        // Every calibrated player fills their ring with a cursor.
+        UniTask<List<PlayerBody>?> ConfirmHandsAsync(HandCursorTracker handCursors, HandCursorCheck check, List<PlayerBody> calibrated,
             CancellationToken cancellationToken)
         {
             handCursors.SetDetecting(true);
             check.Show(calibrated, handCursors, detection, bodies.Count);
+            return ConfirmEachAsync(calibrated, slot => check.Tick(slot, Time.unscaledDeltaTime, config.HandCheckSeconds),
+                (player, seconds) => NinjagoAnalytics.PlayerHandsConfirmed(player.PlayerIndex, seconds), check.ShowReady, cancellationToken);
+        }
+
+        // Every calibrated player holds the L with both arms; the hold stores that player's hand origin and elbow reference.
+        UniTask<List<PlayerBody>?> HoldRobotArmsAsync(RobotArmsTracker tracker, RobotArmsCheck check, List<PlayerBody> calibrated,
+            CancellationToken cancellationToken)
+        {
+            tracker.SetDetecting(true);
+            check.Show(calibrated, tracker, detection, bodies.Count);
+            return ConfirmEachAsync(calibrated, slot => check.Tick(slot, Time.unscaledDeltaTime),
+                (player, seconds) => MechaAnalytics.SetupHold(player.PlayerIndex, seconds, tracker.ElbowReference(player.PlayerIndex)), check.ShowReady,
+                cancellationToken);
+        }
+
+        // tick(slot) is true on the frame that player passes the game's check; in two-player mode a player who never does
+        // is dropped after the solo-fallback wait, like a body that never appears.
+        async UniTask<List<PlayerBody>?> ConfirmEachAsync(List<PlayerBody> calibrated, Func<int, bool> tick, Action<PlayerBody, float> onConfirmed,
+            Action showReady, CancellationToken cancellationToken)
+        {
             var confirmed = new List<PlayerBody>(calibrated.Count);
             var done = new bool[calibrated.Count];
             var startTime = Time.unscaledTime;
@@ -236,18 +270,18 @@ namespace Nex.Ninjago
                 var now = Time.unscaledTime;
                 for (var slot = 0; slot < calibrated.Count; slot++)
                 {
-                    if (done[slot] || !check.Tick(slot, Time.unscaledDeltaTime, config.HandCheckSeconds)) continue;
+                    if (done[slot] || !tick(slot)) continue;
                     done[slot] = true;
                     confirmed.Add(calibrated[slot]);
                     firstConfirmTime ??= now;
-                    NinjagoAnalytics.PlayerHandsConfirmed(calibrated[slot].PlayerIndex, now - startTime);
+                    onConfirmed(calibrated[slot], now - startTime);
                     SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.UiSelect);
                 }
 
                 var soloTimeUp = firstConfirmTime.HasValue && now - firstConfirmTime.Value >= config.SoloFallbackSeconds;
                 if (confirmed.Count == calibrated.Count || soloTimeUp)
                 {
-                    check.ShowReady();
+                    showReady();
                     await UniTask.Delay((int)(config.ReadyHoldSeconds * 1000f), DelayType.UnscaledDeltaTime, cancellationToken: cancellationToken);
                     confirmed.Sort((a, b) => a.PlayerIndex.CompareTo(b.PlayerIndex));
                     return confirmed;

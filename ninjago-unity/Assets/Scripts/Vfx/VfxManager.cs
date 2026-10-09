@@ -52,6 +52,13 @@ namespace Nex
             SealDust = 130,
             SealComplete = 131,
             Breakthrough = 132,
+            LaserMuzzle = 140,
+            LaserImpact = 141,
+            EnemyExplosion = 142,
+            MechaHit = 143,
+            MechaPowerDown = 144,
+            MechaPowerUp = 145,
+            ArrowFizzle = 146,
         }
 
         #region Pool

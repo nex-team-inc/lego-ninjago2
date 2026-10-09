@@ -34,6 +34,8 @@ namespace Nex.Ninjago
         protected abstract GameModeType Mode { get; }
         /// <summary>Hand cursors the setup view confirms before gameplay; null for games without them.</summary>
         protected virtual HandCursorTracker? SetupCursors => null;
+        /// <summary>Robot arms the setup view has every player hold before gameplay; null for games without them.</summary>
+        protected virtual RobotArmsTracker? SetupRobotArms => null;
 
         public override int NumOfPlayers => Mathf.Clamp(PlayerDataManager.Instance.PlayerPreference.numPlayers, 1, SimulatedBody.MaxPlayers);
 
@@ -66,7 +68,7 @@ namespace Nex.Ninjago
             while (true)
             {
                 var setupView = Instantiate(setupViewPrefab);
-                setupView.Initialize(bodies, Detection, playersConfig, SetupCursors);
+                setupView.Initialize(bodies, Detection, playersConfig, SetupCursors, SetupRobotArms);
                 if (firstRound)
                 {
                     await Views.PushView(setupView);

@@ -24,6 +24,7 @@ namespace Nex
             NinjaChase = 41,
             StoneKick = 42,
             EarthSeal = 43,
+            RobotMecha = 44,
         }
 
         public enum StingerType

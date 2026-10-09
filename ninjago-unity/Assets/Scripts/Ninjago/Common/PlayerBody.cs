@@ -104,6 +104,22 @@ namespace Nex.Ninjago
             return true;
         }
 
+        /// <summary>Smoothed shoulder, elbow and wrist of one arm in aspect-normalized space; false while any of them is hidden.</summary>
+        public bool TryGetArm(bool leftArm, out Vector2 shoulder, out Vector2 elbow, out Vector2 wrist)
+        {
+            shoulder = elbow = wrist = default;
+            var pose = Pose;
+            if (pose == null) return false;
+            var shoulderNode = leftArm ? pose.LeftShoulder() : pose.RightShoulder();
+            var elbowNode = leftArm ? pose.LeftElbow() : pose.RightElbow();
+            var wristNode = leftArm ? pose.LeftWrist() : pose.RightWrist();
+            if (!shoulderNode.isDetected || !elbowNode.isDetected || !wristNode.isDetected) return false;
+            shoulder = shoulderNode.ToVector2();
+            elbow = elbowNode.ToVector2();
+            wrist = wristNode.ToVector2();
+            return true;
+        }
+
         /// <summary>Vertical hip-to-knee drop of each leg (x left, y right) in body inches; a lifted knee shrinks it.</summary>
         public bool TryGetKneeDrops(out Vector2 drops)
         {

@@ -25,6 +25,10 @@ namespace Nex
         [SerializeField] StoneKickConfig stoneKickConfig = null!;
         [Header("Ninjago Earth Seal Tuning")]
         [SerializeField] EarthSealConfig earthSealConfig = null!;
+        [Header("Ninjago Robot Arms Tuning")]
+        [SerializeField] RobotArmsConfig robotArmsConfig = null!;
+        [Header("Ninjago Mecha Fight Tuning")]
+        [SerializeField] MechaFightConfig mechaFightConfig = null!;
         public string MainScene => mainScene;
         public string ARGameScene => arGameScene;
         public string NonARGameScene => nonARGameScene;
@@ -35,6 +39,8 @@ namespace Nex
         public HandCursorConfig HandCursorConfig => handCursorConfig;
         public StoneKickConfig StoneKickConfig => stoneKickConfig;
         public EarthSealConfig EarthSealConfig => earthSealConfig;
+        public RobotArmsConfig RobotArmsConfig => robotArmsConfig;
+        public MechaFightConfig MechaFightConfig => mechaFightConfig;
 
         public GameModeType SelectedMode { get; set; }
 

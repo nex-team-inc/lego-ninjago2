@@ -84,6 +84,9 @@ namespace Nex
             PieceHit = 712,
             SealComplete = 713,
             Breakthrough = 714,
+            LaserHum = 720,
+            MechaHit = 721,
+            EnemyExplosion = 722,
         }
 
         [SerializeField] AudioSource audioSource = null!;
@@ -123,6 +126,7 @@ namespace Nex
 
         readonly HashSet<int> currentlyStartedClips = new();
         readonly Dictionary<int, float> lastPlayTimeByEffect = new();
+        readonly List<AudioSource> loopSources = new();
         AudioSource[] pooledSources = Array.Empty<AudioSource>();
         int nextPooledIndex;
 
@@ -162,6 +166,24 @@ namespace Nex
         {
             if (!TryPickClip(effect, out var audioClip)) return;
             PlayAudioClip(audioClip, pitch, volume);
+        }
+
+        /// <summary>Starts a looping clip on a source of its own (a hum under gameplay); null when the effect has no clip.</summary>
+        public AudioSource? StartLoop(SoundEffect effect, float volume = 1f)
+        {
+            if (!soundEffectDict.TryGetValue(effect, out var spec) || spec == null) return null;
+            var clip = spec.PickSingleClip();
+            if (clip == null) return null;
+            var source = IdleLoopSource();
+            source.clip = clip;
+            source.volume = volume;
+            source.Play();
+            return source;
+        }
+
+        public void StopLoop(AudioSource source)
+        {
+            source.Stop();
         }
 
         public bool HasClips(SoundEffect effect)
@@ -227,6 +249,22 @@ namespace Nex
                 source.priority = audioSource.priority;
                 pooledSources[i] = source;
             }
+        }
+
+        AudioSource IdleLoopSource()
+        {
+            foreach (var candidate in loopSources)
+            {
+                if (!candidate.isPlaying) return candidate;
+            }
+
+            var source = gameObject.AddComponent<AudioSource>();
+            source.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
+            source.playOnAwake = false;
+            source.loop = true;
+            source.spatialBlend = audioSource.spatialBlend;
+            loopSources.Add(source);
+            return source;
         }
 
         AudioSource NextPooledSource()

@@ -56,6 +56,7 @@ namespace Nex
             NinjagoResult,
             StoneKick,
             EarthSeal,
+            MechaFight,
         }
 
         /// <summary>

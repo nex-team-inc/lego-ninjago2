@@ -35,5 +35,10 @@ namespace Nex.Ninjago
         public int earthSealBestTwoHandSeals;
         // -1 until the first finished wall.
         public int earthSealFewestBreakthroughs = -1;
+
+        public int robotMechaRuns;
+        public float robotMechaBestSurviveSeconds;
+        // Percent of the survived time the L pose was held, 0..100.
+        public int robotMechaBestPosePercent;
     }
 }

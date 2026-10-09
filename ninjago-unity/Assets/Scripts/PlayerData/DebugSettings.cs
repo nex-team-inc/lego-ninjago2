@@ -204,8 +204,8 @@ namespace Nex
         public float SealW4Breakthrough { get => W4.breakthroughSeconds; set => W4.breakthroughSeconds = value; }
 
         // Robot Mecha: same rule as the rows above, the config assets are edited live.
-        [DebugOrder(-300), Description("Mecha: Elbow Tolerance (± deg from 90)"), NumericSteps(Steps = 1, Min = 5, Max = 45), ES3NonSerializable]
-        public float MechaElbowTolerance { get => RobotArms.ElbowAngleTolerance; set => RobotArms.ElbowAngleTolerance = value; }
+        [DebugOrder(-300), Description("Mecha: Slack Line (0 chest, 1 hips)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 1), ES3NonSerializable]
+        public float MechaSlackLine { get => RobotArms.SlackLine; set => RobotArms.SlackLine = value; }
         [DebugOrder(-299), Description("Mecha: Hand Deadzone (in)"), NumericSteps(Steps = 0.25, Min = 0, Max = 6), ES3NonSerializable]
         public float MechaDeadzone { get => RobotArms.DeadzoneInches; set => RobotArms.DeadzoneInches = value; }
         [DebugOrder(-289), Description("Mecha: Hand Offset For Full Turn (in)"), NumericSteps(Steps = 0.5, Min = 2, Max = 30), ES3NonSerializable]

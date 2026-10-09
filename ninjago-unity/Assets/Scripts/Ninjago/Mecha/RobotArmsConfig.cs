@@ -5,19 +5,18 @@ using UnityEngine;
 namespace Nex.Ninjago
 {
     /// <summary>
-    /// Robot Mecha input tuning: the L pose window, the hand aim mapping and the turn speeds. Setters exist for the Debug
+    /// Robot Mecha input tuning: the robot arms slack line, the hand aim mapping and the turn speeds. Setters exist for the Debug
     /// Settings rows, which edit this asset live during a playtest.
     /// </summary>
     [CreateAssetMenu(fileName = "RobotArmsConfig", menuName = "Nex/Ninjago/Robot Arms Config")]
     public class RobotArmsConfig : ScriptableObject
     {
         [Header("Pose Window")]
-        [Tooltip("Elbow angle (degrees between upper arm and forearm) in the middle of the L window.")]
-        [SerializeField, Range(45f, 135f)] float elbowAngleCenter = 90f;
-        [Tooltip("Degrees either side of the center an elbow may bend and still hold the L; 20 = 70 to 110.")]
-        [SerializeField, Range(5f, 45f)] float elbowAngleTolerance = 20f;
-        [Tooltip("Body inches a wrist may sit below its own elbow and still count as raised (hands at or above the elbows).")]
-        [SerializeField, Range(0f, 8f)] float wristBelowElbowInches = 2f;
+        [Tooltip("The robot L is elbows down by the sides, forearms bent up in front. A hand that sinks below this line between " +
+            "the chest (0) and the hips (1) is slacking and breaks the L; 0.5 = closer to the hips than to the chest.")]
+        [SerializeField, Range(0.1f, 1f)] float slackLine = 0.5f;
+        [Tooltip("Body inches from the chest down to the hips, used while the hips are out of view (setup measures each player when it can).")]
+        [SerializeField, Range(8f, 30f)] float torsoInches = 17f;
         [Tooltip("Seconds both arms must hold the L before steering turns on; filters one noisy frame.")]
         [SerializeField, Range(0f, 1f)] float poseGainSeconds = 0.1f;
         [Tooltip("Seconds either arm may break the L before steering cuts off; filters one dropped frame.")]
@@ -30,14 +29,15 @@ namespace Nex.Ninjago
         [SerializeField, Range(0.05f, 2f)] float bodyHandFallbackSeconds = 0.3f;
 
         [Header("Aim")]
-        [Tooltip("Body inches the averaged hands may drift from their calibrated origin without steering (breathing).")]
-        [SerializeField, Range(0f, 6f)] float deadzoneInches = 1.2f;
-        [Tooltip("Body inches of sideways hand offset, past the deadzone, that ask for the whole yaw range.")]
-        [SerializeField, Range(2f, 30f)] float fullYawOffsetInches = 10f;
+        [Tooltip("Body inches the averaged hands may drift from their calibrated spot (left/right from the shoulders, height from " +
+            "the chest) without steering (breathing).")]
+        [SerializeField, Range(0f, 6f)] float deadzoneInches = 1f;
+        [Tooltip("Body inches the hands move sideways from the shoulders' middle, past the deadzone, to ask for the whole yaw range.")]
+        [SerializeField, Range(2f, 30f)] float fullYawOffsetInches = 7f;
         [Tooltip("Yaw the whole sideways offset asks for; 180 = hands far to one side turn the mecha to face behind.")]
         [SerializeField, Range(30f, 180f)] float yawRangeDegrees = 180f;
-        [Tooltip("Body inches of hand height offset, past the deadzone, that ask for the whole pitch.")]
-        [SerializeField, Range(2f, 30f)] float fullPitchOffsetInches = 7f;
+        [Tooltip("Body inches the hands rise or sink against the chest, past the deadzone, to ask for the whole pitch.")]
+        [SerializeField, Range(2f, 30f)] float fullPitchOffsetInches = 6f;
         [Tooltip("Pitch limit up and down in degrees.")]
         [SerializeField, Range(5f, 80f)] float pitchClampDegrees = 40f;
         [Tooltip("Swaps the axes: hand height turns the mecha and left/right pitches it.")]
@@ -53,10 +53,8 @@ namespace Nex.Ninjago
 
         #region Public API
 
-        public float ElbowAngleTolerance { get => elbowAngleTolerance; set => elbowAngleTolerance = Mathf.Clamp(value, 1f, 89f); }
-        public float MinElbowAngle => elbowAngleCenter - elbowAngleTolerance;
-        public float MaxElbowAngle => elbowAngleCenter + elbowAngleTolerance;
-        public float WristBelowElbowInches => wristBelowElbowInches;
+        public float SlackLine { get => slackLine; set => slackLine = Mathf.Clamp(value, 0.05f, 1.5f); }
+        public float TorsoInches => torsoInches;
         public float PoseGainSeconds => poseGainSeconds;
         public float PoseLossSeconds => poseLossSeconds;
         public float SetupHoldSeconds => setupHoldSeconds;

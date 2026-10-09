@@ -104,19 +104,28 @@ namespace Nex.Ninjago
             return true;
         }
 
-        /// <summary>Smoothed shoulder, elbow and wrist of one arm in aspect-normalized space; false while any of them is hidden.</summary>
-        public bool TryGetArm(bool leftArm, out Vector2 shoulder, out Vector2 elbow, out Vector2 wrist)
+        /// <summary>
+        /// Smoothed chest and shoulders in aspect-normalized space, and the hips' average height (null while both hips are
+        /// hidden); false while the chest or a shoulder is hidden.
+        /// </summary>
+        public bool TryGetTorso(out Vector2 chest, out Vector2 leftShoulder, out Vector2 rightShoulder, out float? hipY)
         {
-            shoulder = elbow = wrist = default;
+            chest = leftShoulder = rightShoulder = default;
+            hipY = null;
             var pose = Pose;
             if (pose == null) return false;
-            var shoulderNode = leftArm ? pose.LeftShoulder() : pose.RightShoulder();
-            var elbowNode = leftArm ? pose.LeftElbow() : pose.RightElbow();
-            var wristNode = leftArm ? pose.LeftWrist() : pose.RightWrist();
-            if (!shoulderNode.isDetected || !elbowNode.isDetected || !wristNode.isDetected) return false;
-            shoulder = shoulderNode.ToVector2();
-            elbow = elbowNode.ToVector2();
-            wrist = wristNode.ToVector2();
+            var chestNode = pose.Chest();
+            var leftShoulderNode = pose.LeftShoulder();
+            var rightShoulderNode = pose.RightShoulder();
+            if (!chestNode.isDetected || !leftShoulderNode.isDetected || !rightShoulderNode.isDetected) return false;
+            chest = chestNode.ToVector2();
+            leftShoulder = leftShoulderNode.ToVector2();
+            rightShoulder = rightShoulderNode.ToVector2();
+            var leftHip = pose.LeftHip();
+            var rightHip = pose.RightHip();
+            if (leftHip.isDetected && rightHip.isDetected) hipY = (leftHip.ToVector2().y + rightHip.ToVector2().y) * 0.5f;
+            else if (leftHip.isDetected) hipY = leftHip.ToVector2().y;
+            else if (rightHip.isDetected) hipY = rightHip.ToVector2().y;
             return true;
         }
 

@@ -167,6 +167,7 @@ namespace Nex.Ninjago
         {
             var startTime = Time.unscaledTime;
             float? firstReadyTime = null;
+            var missingSeenTime = float.NegativeInfinity;
             while (!quitRequested)
             {
                 var now = Time.unscaledTime;
@@ -182,11 +183,11 @@ namespace Nex.Ninjago
                     }
 
                     if (bodies[i].IsCalibrated) readyCount++;
+                    else if (bodies[i].TryGetChest(out _)) missingSeenTime = now;
                     anyHolding |= holds[i].active;
                 }
 
-                var soloTimeUp = firstReadyTime.HasValue && now - firstReadyTime.Value >= config.SoloFallbackSeconds;
-                if (readyCount == bodies.Count || soloTimeUp) return CollectCalibrated();
+                if (readyCount == bodies.Count || SoloTimeUp(now, firstReadyTime, missingSeenTime)) return CollectCalibrated();
                 ShowPrompt(anyHolding ? holdPrompt : standPrompt);
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
@@ -252,12 +253,12 @@ namespace Nex.Ninjago
             tracker.SetDetecting(true);
             check.Show(calibrated, tracker, detection, bodies.Count);
             return ConfirmEachAsync(calibrated, slot => check.Tick(slot, Time.unscaledDeltaTime),
-                (player, seconds) => MechaAnalytics.SetupHold(player.PlayerIndex, seconds, tracker.ElbowReference(player.PlayerIndex)), check.ShowReady,
-                cancellationToken);
+                (player, seconds) => MechaAnalytics.SetupHold(player.PlayerIndex, seconds, tracker.NeutralOffset(player.PlayerIndex),
+                    tracker.TorsoReference(player.PlayerIndex)), check.ShowReady, cancellationToken);
         }
 
         // tick(slot) is true on the frame that player passes the game's check; in two-player mode a player who never does
-        // is dropped after the solo-fallback wait, like a body that never appears.
+        // is dropped after the solo-fallback wait once they are out of view, like a body that never appears.
         async UniTask<List<PlayerBody>?> ConfirmEachAsync(List<PlayerBody> calibrated, Func<int, bool> tick, Action<PlayerBody, float> onConfirmed,
             Action showReady, CancellationToken cancellationToken)
         {
@@ -265,12 +266,19 @@ namespace Nex.Ninjago
             var done = new bool[calibrated.Count];
             var startTime = Time.unscaledTime;
             float? firstConfirmTime = null;
+            var missingSeenTime = float.NegativeInfinity;
             while (!quitRequested)
             {
                 var now = Time.unscaledTime;
                 for (var slot = 0; slot < calibrated.Count; slot++)
                 {
-                    if (done[slot] || !tick(slot)) continue;
+                    if (done[slot]) continue;
+                    if (!tick(slot))
+                    {
+                        if (calibrated[slot].TryGetChest(out _)) missingSeenTime = now;
+                        continue;
+                    }
+
                     done[slot] = true;
                     confirmed.Add(calibrated[slot]);
                     firstConfirmTime ??= now;
@@ -278,8 +286,7 @@ namespace Nex.Ninjago
                     SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.UiSelect);
                 }
 
-                var soloTimeUp = firstConfirmTime.HasValue && now - firstConfirmTime.Value >= config.SoloFallbackSeconds;
-                if (confirmed.Count == calibrated.Count || soloTimeUp)
+                if (confirmed.Count == calibrated.Count || SoloTimeUp(now, firstConfirmTime, missingSeenTime))
                 {
                     showReady();
                     await UniTask.Delay((int)(config.ReadyHoldSeconds * 1000f), DelayType.UnscaledDeltaTime, cancellationToken: cancellationToken);
@@ -291,6 +298,12 @@ namespace Nex.Ninjago
             }
 
             return null;
+        }
+
+        // Two-player mode closes the empty half only for a player who is out of view: anyone still in frame is waited for.
+        bool SoloTimeUp(float now, float? firstDoneTime, float missingSeenTime)
+        {
+            return firstDoneTime.HasValue && now - Mathf.Max(firstDoneTime.Value, missingSeenTime) >= config.SoloFallbackSeconds;
         }
 
         List<PlayerBody> CollectCalibrated()

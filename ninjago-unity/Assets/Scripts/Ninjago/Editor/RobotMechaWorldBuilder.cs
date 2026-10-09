@@ -166,8 +166,10 @@ namespace Nex.Ninjago.Editor
                 lights.Add(Renderer(Block(PrimitiveType.Cube, "Exhaust", pitch, new Vector3(side * 0.34f, 0.32f, -0.9f), new Vector3(0.3f, 0.3f, 0.1f), lightOn)));
             }
 
-            var leftShoulder = BuildArm(pitch, "LeftShoulder", -1.05f, lavender, white, dark, out var leftElbow);
-            var rightShoulder = BuildArm(pitch, "RightShoulder", 1.05f, lavender, white, dark, out var rightElbow);
+            var leftShoulder = BuildArm(pitch, "LeftShoulder", -1.05f, lavender, white, lightOn, out var leftElbow, out var leftFist);
+            var rightShoulder = BuildArm(pitch, "RightShoulder", 1.05f, lavender, white, lightOn, out var rightElbow, out var rightFist);
+            lights.Add(Renderer(leftFist));
+            lights.Add(Renderer(rightFist));
             var beam = BuildBeam(muzzle);
             var marker = NinjagoWorldBuilder.BuildPlayerTagCanvas(yawRoot, "Marker", new Vector3(0f, 3.5f, 0f), 0.013f, 64f, true);
             marker.transform.parent.localRotation = Quaternion.Euler(22f, 0f, 0f);
@@ -189,14 +191,16 @@ namespace Nex.Ninjago.Editor
             return rig;
         }
 
-        // Shoulder pivot with the upper arm hanging along -Y; MechaRig swings it out and the forearm up into the L.
-        static Transform BuildArm(Transform pitch, string name, float x, Material upper, Material lower, Material fist, out Transform elbow)
+        // Shoulder pivot with the arm hanging along -Y; MechaRig bends the forearm up to point forward into the L. The
+        // glowing fist is one of the lights, so it dims with the rest when the pose breaks.
+        static Transform BuildArm(Transform pitch, string name, float x, Material upper, Material lower, Material fistLight, out Transform elbow,
+            out GameObject fist)
         {
             var shoulder = Empty(name, pitch, new Vector3(x, 0.95f, 0f));
             Block(PrimitiveType.Cube, "UpperArm", shoulder, new Vector3(0f, -0.38f, 0f), new Vector3(0.38f, 0.76f, 0.42f), upper);
             elbow = Empty("Elbow", shoulder, new Vector3(0f, -0.76f, 0f));
-            Block(PrimitiveType.Cube, "Forearm", elbow, new Vector3(0f, -0.36f, 0f), new Vector3(0.44f, 0.72f, 0.48f), lower);
-            Block(PrimitiveType.Cube, "Fist", elbow, new Vector3(0f, -0.8f, 0f), new Vector3(0.52f, 0.34f, 0.52f), fist);
+            Block(PrimitiveType.Cube, "Forearm", elbow, new Vector3(0f, -0.4f, 0f), new Vector3(0.46f, 0.8f, 0.5f), lower);
+            fist = Block(PrimitiveType.Cube, "Fist", elbow, new Vector3(0f, -0.92f, 0f), new Vector3(0.56f, 0.36f, 0.56f), fistLight);
             return shoulder;
         }
 

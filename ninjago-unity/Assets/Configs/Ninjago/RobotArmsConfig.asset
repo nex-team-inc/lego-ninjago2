@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3114b7aeeeed48c9905162fcfec3600, type: 3}
   m_Name: RobotArmsConfig
   m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.RobotArmsConfig
-  elbowAngleCenter: 90
-  elbowAngleTolerance: 20
-  wristBelowElbowInches: 2
+  slackLine: 0.5
+  torsoInches: 17
   poseGainSeconds: 0.1
   poseLossSeconds: 0.2
   setupHoldSeconds: 1
   bodyHandFallbackSeconds: 0.3
-  deadzoneInches: 1.2
-  fullYawOffsetInches: 10
+  deadzoneInches: 1
+  fullYawOffsetInches: 7
   yawRangeDegrees: 180
-  fullPitchOffsetInches: 7
+  fullPitchOffsetInches: 6
   pitchClampDegrees: 40
   swapAxes: 0
   yawSpeed: 78

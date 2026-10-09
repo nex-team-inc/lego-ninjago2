@@ -6,7 +6,7 @@ namespace Nex.Ninjago
 {
     /// <summary>
     /// The brick mecha: yaws on the center mark, tilts its upper body to pitch, fires the beam out of its chest and copies
-    /// the robot arms (arms up in an L and lights on while the pose holds, arms hanging and lights dim when it breaks).
+    /// the robot arms (forearms up in front and lights on while the pose holds, arms hanging and lights dim when it breaks).
     /// </summary>
     public class MechaRig : MonoBehaviour
     {
@@ -115,11 +115,11 @@ namespace Nex.Ninjago
         {
             armBlend = Mathf.MoveTowards(armBlend, powered ? 1f : 0f, deltaTime / armSwingSeconds);
             var eased = armBlend * armBlend * (3f - 2f * armBlend);
-            // L: upper arm out to the side, forearm straight up. Rest: arms hanging a little open.
-            leftShoulder.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(-12f, -90f, eased));
-            leftElbow.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(0f, -90f, eased));
-            rightShoulder.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(12f, 90f, eased));
-            rightElbow.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(0f, 90f, eased));
+            // L: elbows down by the sides, forearms bent up to point forward. Slacking: arms hanging straight.
+            leftShoulder.localRotation = Quaternion.Euler(Mathf.Lerp(0f, -10f, eased), 0f, -8f);
+            leftElbow.localRotation = Quaternion.Euler(Mathf.Lerp(0f, -90f, eased), 0f, 0f);
+            rightShoulder.localRotation = Quaternion.Euler(Mathf.Lerp(0f, -10f, eased), 0f, 8f);
+            rightElbow.localRotation = Quaternion.Euler(Mathf.Lerp(0f, -90f, eased), 0f, 0f);
 
             hitElapsed += deltaTime;
             var shake = 1f - Mathf.Clamp01(hitElapsed / hitShakeSeconds);

@@ -37,10 +37,10 @@ namespace Nex.Ninjago
 
         #region Public API
 
-        public void Show(bool leftArmL, bool rightArmL, float hold01)
+        public void Show(bool leftRaised, bool rightRaised, float hold01)
         {
-            leftArmIcon.color = leftArmL ? armHeldColor : armBrokenColor;
-            rightArmIcon.color = rightArmL ? armHeldColor : armBrokenColor;
+            leftArmIcon.color = leftRaised ? armHeldColor : armBrokenColor;
+            rightArmIcon.color = rightRaised ? armHeldColor : armBrokenColor;
             holdFill.fillAmount = hold01;
         }
 

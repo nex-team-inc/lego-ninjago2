@@ -54,7 +54,7 @@ namespace Nex.Ninjago.Editor
             LGlyph(root, "BigL", new Vector2(-520f, 190f), new Vector2(200f, 236f), false);
             var title = Label(root, "RobotArms", "ninjago.mecha.robot_arms", "ROBOT ARMS", 120f, laserPink, outline);
             Place((RectTransform)title.transform, Center, Center, Center, new Vector2(-520f, -10f), new Vector2(820f, 150f));
-            var hint = Label(root, "Hint", "ninjago.mecha.setup_hint", "Elbows bent, hands up, like a robot!", 50f, promptWhite, outline);
+            var hint = Label(root, "Hint", "ninjago.mecha.setup_hint", "Elbows down, forearms up in front, like a robot!", 50f, promptWhite, outline);
             Place((RectTransform)hint.transform, Center, Center, Center, new Vector2(-520f, -100f), new Vector2(860f, 80f));
             var cards = CursorGamesViewsBuilder.Row(root, "Cards", Center, new Vector2(-520f, -250f), new Vector2(860f, 140f), 30f, TextAnchor.MiddleCenter);
             // Large, so each player can see their own arms while making the L.

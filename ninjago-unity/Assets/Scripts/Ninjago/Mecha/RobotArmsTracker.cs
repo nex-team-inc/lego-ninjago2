@@ -7,10 +7,11 @@ using UnityEngine;
 namespace Nex.Ninjago
 {
     /// <summary>
-    /// Reads each player's robot arms every frame: whether each arm holds the L (that player's body shoulder, elbow and
-    /// wrist nodes) and where the two hands are (the team.nex.mdk.hand detector, playerHands[playerIndex] only, so one
-    /// player's hands never aim another's mecha; stale hands fall back to that player's body hand nodes). Holds each
-    /// player's hand origin and elbow reference from the setup hold.
+    /// Reads each player's robot arms every frame from where the hands are against that player's torso: a hand held up
+    /// in front (closer to the chest than to the hips) holds its half of the L; the hands' midpoint against the shoulders
+    /// (left/right) and the chest (height) is the aim. Hands come from the team.nex.mdk.hand detector
+    /// (playerHands[playerIndex] only, so one player's hands never aim another's mecha); a stale hand falls back to that
+    /// player's body hand node. Holds each player's neutral hand spot and torso length from the setup hold.
     /// </summary>
     // Before gameplay Updates, so the lanes read this frame's arms.
     [DefaultExecutionOrder(-100)]
@@ -22,17 +23,20 @@ namespace Nex.Ninjago
 
         public struct Reading
         {
-            /// <summary>Both arms' shoulder, elbow and wrist nodes are visible.</summary>
-            public bool armsTracked;
-            public bool leftArmL;
-            public bool rightArmL;
-            public float leftElbowAngle;
-            public float rightElbowAngle;
+            /// <summary>The chest and both shoulders are visible.</summary>
+            public bool bodyTracked;
             public bool handsTracked;
-            /// <summary>Average of the two hands in aspect-normalized frame space (x = the player's right, y up).</summary>
-            public Vector2 handMidpoint;
+            public bool leftRaised;
+            public bool rightRaised;
+            /// <summary>How far each hand has sunk down the torso: 0 at the chest, 1 at the hips.</summary>
+            public float leftDrop;
+            public float rightDrop;
+            /// <summary>Hands' midpoint from the shoulders' middle (x = the player's right) and from the chest (y up), in body inches.</summary>
+            public Vector2 bodyOffsetInches;
+            /// <summary>Chest to hips in body inches; 0 while the hips are hidden.</summary>
+            public float torsoInches;
 
-            public readonly bool BothArmsL => leftArmL && rightArmL;
+            public readonly bool BothRaised => leftRaised && rightRaised;
         }
 
         struct HandSample
@@ -45,8 +49,8 @@ namespace Nex.Ninjago
         RobotArmsConfig config = null!;
         Reading[] readings = null!;
         HandSample[] samples = null!;
-        Vector2[] handOrigins = null!;
-        Vector2[] elbowReferences = null!;
+        Vector2[] neutralOffsets = null!;
+        float[] torsoReferences = null!;
 
         public float SetupHoldSeconds => config.SetupHoldSeconds;
 
@@ -58,8 +62,8 @@ namespace Nex.Ninjago
             bodies = aBodies;
             readings = new Reading[bodies.Count];
             samples = new HandSample[bodies.Count * 2];
-            handOrigins = new Vector2[bodies.Count];
-            elbowReferences = new Vector2[bodies.Count];
+            neutralOffsets = new Vector2[bodies.Count];
+            torsoReferences = new float[bodies.Count];
             var trackHands = new List<ShouldTrackHands>(bodies.Count);
             for (var playerIndex = 0; playerIndex < bodies.Count; playerIndex++)
             {
@@ -92,16 +96,18 @@ namespace Nex.Ninjago
 
         public Reading Get(int playerIndex) => readings[playerIndex];
 
-        /// <summary>Stores the setup hold: the averaged hands' origin and the two elbow angles (x left, y right) while holding the L.</summary>
-        public void Calibrate(int playerIndex, Vector2 handOrigin, Vector2 elbowReference)
+        /// <summary>Stores the setup hold: the hands' neutral spot against the body and, when the hips were seen, the torso length (body inches).</summary>
+        public void Calibrate(int playerIndex, Vector2 neutralOffsetInches, float? torsoInches)
         {
-            handOrigins[playerIndex] = handOrigin;
-            elbowReferences[playerIndex] = elbowReference;
+            neutralOffsets[playerIndex] = neutralOffsetInches;
+            torsoReferences[playerIndex] = torsoInches ?? config.TorsoInches;
         }
 
-        public Vector2 ElbowReference(int playerIndex) => elbowReferences[playerIndex];
+        public Vector2 NeutralOffset(int playerIndex) => neutralOffsets[playerIndex];
 
-        /// <summary>The averaged hands' offset from their calibrated origin in body inches (x = the player's right, y up).</summary>
+        public float TorsoReference(int playerIndex) => torsoReferences[playerIndex] > 0f ? torsoReferences[playerIndex] : config.TorsoInches;
+
+        /// <summary>The hands' offset from their calibrated spot against the body, in body inches (x = the player's right, y up).</summary>
         public bool TryGetAimInches(PlayerBody body, out Vector2 inches)
         {
             if (SimulatedBody.IsEnabled)
@@ -111,10 +117,8 @@ namespace Nex.Ninjago
             }
 
             var reading = readings[body.PlayerIndex];
-            inches = default;
-            if (!reading.handsTracked || body.RawPpi <= 0f) return false;
-            inches = (reading.handMidpoint - handOrigins[body.PlayerIndex]) / body.RawPpi;
-            return true;
+            inches = reading.bodyOffsetInches - neutralOffsets[body.PlayerIndex];
+            return reading.handsTracked;
         }
 
         #endregion
@@ -154,59 +158,46 @@ namespace Nex.Ninjago
         Reading Read(PlayerBody body)
         {
             var reading = new Reading();
-            if (body.RawPpi <= 0f) return reading;
-            var drop = config.WristBelowElbowInches * body.RawPpi;
-            var leftTracked = body.TryGetArm(true, out var shoulder, out var elbow, out var wrist);
-            if (leftTracked)
-            {
-                reading.leftElbowAngle = RobotArmsPose.ElbowAngle(shoulder, elbow, wrist);
-                reading.leftArmL = RobotArmsPose.IsArmL(shoulder, elbow, wrist, config.MinElbowAngle, config.MaxElbowAngle, drop);
-            }
-
-            var rightTracked = body.TryGetArm(false, out shoulder, out elbow, out wrist);
-            if (rightTracked)
-            {
-                reading.rightElbowAngle = RobotArmsPose.ElbowAngle(shoulder, elbow, wrist);
-                reading.rightArmL = RobotArmsPose.IsArmL(shoulder, elbow, wrist, config.MinElbowAngle, config.MaxElbowAngle, drop);
-            }
-
-            reading.armsTracked = leftTracked && rightTracked;
-            reading.handsTracked = TryGetHandMidpoint(body, out reading.handMidpoint);
+            var ppi = body.RawPpi;
+            if (ppi <= 0f || !body.TryGetTorso(out var chest, out var leftShoulder, out var rightShoulder, out var hipY)) return reading;
+            reading.bodyTracked = true;
+            if (!TryGetHand(body, 0, out var leftHand) || !TryGetHand(body, 1, out var rightHand)) return reading;
+            reading.handsTracked = true;
+            var hip = hipY ?? chest.y - TorsoReference(body.PlayerIndex) * ppi;
+            if (hipY.HasValue) reading.torsoInches = (chest.y - hipY.Value) / ppi;
+            reading.leftDrop = RobotArmsPose.HandDrop(leftHand.y, chest.y, hip);
+            reading.rightDrop = RobotArmsPose.HandDrop(rightHand.y, chest.y, hip);
+            reading.leftRaised = reading.leftDrop < config.SlackLine;
+            reading.rightRaised = reading.rightDrop < config.SlackLine;
+            reading.bodyOffsetInches = RobotArmsPose.BodyOffset(leftHand, rightHand, leftShoulder, rightShoulder, chest) / ppi;
             return reading;
         }
 
-        // Both hands from the detector while it reports them, else both body hand nodes; never one of each, so the
-        // midpoint does not jump when only one hand's source changes.
-        bool TryGetHandMidpoint(PlayerBody body, out Vector2 midpoint)
+        // hand 0 = left, 1 = right; the detector's hand while it reports it, else the body hand node.
+        bool TryGetHand(PlayerBody body, int hand, out Vector2 position)
         {
-            var now = Time.unscaledTime;
-            var left = samples[body.PlayerIndex * 2];
-            var right = samples[body.PlayerIndex * 2 + 1];
-            var fallbackAfter = config.BodyHandFallbackSeconds;
-            if (now - left.time <= fallbackAfter && now - right.time <= fallbackAfter)
+            var sample = samples[body.PlayerIndex * 2 + hand];
+            if (Time.unscaledTime - sample.time <= config.BodyHandFallbackSeconds)
             {
-                midpoint = (left.position + right.position) * 0.5f;
+                position = sample.position;
                 return true;
             }
 
-            midpoint = default;
-            if (!body.TryGetHand(true, out var leftHand) || !body.TryGetHand(false, out var rightHand)) return false;
-            midpoint = (leftHand + rightHand) * 0.5f;
-            return true;
+            return body.TryGetHand(hand == 0, out position);
         }
 
-        // Debug stand-in: the L holds unless that player's storm key is down; the lean keys move the hands (TryGetAimInches).
+        // Debug stand-in: the hands stay up unless that player's storm key is down; the lean keys move them (TryGetAimInches).
         static Reading Simulated(int playerIndex)
         {
             var holding = !SimulatedBody.IsStorming(playerIndex);
             return new Reading
             {
-                armsTracked = true,
-                leftArmL = holding,
-                rightArmL = holding,
-                leftElbowAngle = holding ? 90f : 170f,
-                rightElbowAngle = holding ? 90f : 170f,
+                bodyTracked = true,
                 handsTracked = true,
+                leftRaised = holding,
+                rightRaised = holding,
+                leftDrop = holding ? 0.2f : 0.9f,
+                rightDrop = holding ? 0.2f : 0.9f,
             };
         }
 

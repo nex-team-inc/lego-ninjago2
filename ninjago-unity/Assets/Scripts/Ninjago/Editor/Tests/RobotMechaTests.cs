@@ -7,54 +7,65 @@ namespace Nex.Ninjago.Editor.Tests
 {
     public class RobotArmsPoseTests
     {
-        const float min = 70f;
-        const float max = 110f;
-        const float drop = 0.05f;
-
-        static bool IsL(Vector2 shoulder, Vector2 elbow, Vector2 wrist) => RobotArmsPose.IsArmL(shoulder, elbow, wrist, min, max, drop);
+        // Frame space, y up: chest at 1.0, hips at 0.6 (a 0.4 torso).
+        const float chestY = 1f;
+        const float hipY = 0.6f;
+        const float slack = 0.5f;
+        static readonly Vector2 chest = new(0.5f, chestY);
+        static readonly Vector2 leftShoulder = new(0.42f, 1.02f);
+        static readonly Vector2 rightShoulder = new(0.58f, 1.02f);
 
         [Test]
-        public void GoalPostArmIsAnL()
+        public void ForearmsUpInFrontHoldTheL()
         {
-            // Upper arm out to the side, forearm straight up.
-            Assert.AreEqual(90f, RobotArmsPose.ElbowAngle(Vector2.zero, new Vector2(-1f, 0f), new Vector2(-1f, 1f)), 1e-3f);
-            Assert.IsTrue(IsL(Vector2.zero, new Vector2(-1f, 0f), new Vector2(-1f, 1f)));
+            // Elbows down by the sides, hands in front a little below the chest.
+            Assert.IsTrue(RobotArmsPose.IsRaised(0.92f, chestY, hipY, slack));
+            Assert.AreEqual(0.2f, RobotArmsPose.HandDrop(0.92f, chestY, hipY), 1e-4f);
         }
 
         [Test]
-        public void ForearmLevelWithTheElbowIsAnL()
+        public void HandsCloserToTheHipsThanTheChestAreSlacking()
         {
-            // Upper arm down by the side, forearm out level: the hand sits at the elbow height.
-            Assert.IsTrue(IsL(Vector2.zero, new Vector2(0f, -1f), new Vector2(1f, -1f)));
+            Assert.IsFalse(RobotArmsPose.IsRaised(0.75f, chestY, hipY, slack));
+            Assert.IsFalse(RobotArmsPose.IsRaised(0.55f, chestY, hipY, slack));
+            Assert.IsTrue(RobotArmsPose.IsRaised(0.85f, chestY, hipY, slack));
         }
 
         [Test]
-        public void StraightArmIsNotAnL()
+        public void HandsAboveTheChestStillHoldTheL()
         {
-            Assert.AreEqual(180f, RobotArmsPose.ElbowAngle(Vector2.zero, new Vector2(0f, -1f), new Vector2(0f, -2f)), 1e-3f);
-            Assert.IsFalse(IsL(Vector2.zero, new Vector2(0f, -1f), new Vector2(0f, -2f)));
-            Assert.IsFalse(IsL(Vector2.zero, new Vector2(-1f, 0f), new Vector2(-2f, 0f)));
+            Assert.IsTrue(RobotArmsPose.IsRaised(1.15f, chestY, hipY, slack));
+            Assert.Less(RobotArmsPose.HandDrop(1.15f, chestY, hipY), 0f);
         }
 
         [Test]
-        public void HandHangingBelowTheElbowIsNotAnL()
+        public void TheSlackLineMovesTheCutoff()
         {
-            // Right angle, but the forearm points down (hands on the hips).
-            Assert.IsFalse(IsL(Vector2.zero, new Vector2(-1f, 0f), new Vector2(-1f, -1f)));
+            Assert.IsFalse(RobotArmsPose.IsRaised(0.85f, chestY, hipY, 0.3f));
+            Assert.IsTrue(RobotArmsPose.IsRaised(0.75f, chestY, hipY, 0.8f));
         }
 
         [Test]
-        public void TheWindowEdgesCount()
+        public void SidewaysIsMeasuredFromTheShoulders()
         {
-            var elbow = new Vector2(-1f, 0f);
-            Assert.IsTrue(IsL(Vector2.zero, elbow, elbow + Rotate(Vector2.right, 70.5f)));
-            Assert.IsTrue(IsL(Vector2.zero, elbow, elbow + Rotate(Vector2.right, 109.5f)));
-            Assert.IsFalse(IsL(Vector2.zero, elbow, elbow + Rotate(Vector2.right, 60f)));
-            Assert.IsFalse(IsL(Vector2.zero, elbow, elbow + Rotate(Vector2.right, 120f)));
+            var centered = RobotArmsPose.BodyOffset(new Vector2(0.44f, 0.92f), new Vector2(0.56f, 0.92f), leftShoulder, rightShoulder, chest);
+            Assert.AreEqual(0f, centered.x, 1e-4f);
+            Assert.AreEqual(-0.08f, centered.y, 1e-4f);
+            // Both forearms swing toward the player's right.
+            var right = RobotArmsPose.BodyOffset(new Vector2(0.50f, 0.92f), new Vector2(0.62f, 0.92f), leftShoulder, rightShoulder, chest);
+            Assert.AreEqual(0.06f, right.x, 1e-4f);
         }
 
-        // The upper arm points +x from the elbow; the forearm leaves at this many degrees, bending upward.
-        static Vector2 Rotate(Vector2 v, float degrees) => Quaternion.Euler(0f, 0f, degrees) * v;
+        [Test]
+        public void SwayingTheWholeBodyDoesNotSteer()
+        {
+            var shift = new Vector2(0.1f, -0.03f);
+            var before = RobotArmsPose.BodyOffset(new Vector2(0.47f, 0.95f), new Vector2(0.6f, 0.93f), leftShoulder, rightShoulder, chest);
+            var after = RobotArmsPose.BodyOffset(new Vector2(0.47f, 0.95f) + shift, new Vector2(0.6f, 0.93f) + shift, leftShoulder + shift, rightShoulder + shift,
+                chest + shift);
+            Assert.AreEqual(before.x, after.x, 1e-4f);
+            Assert.AreEqual(before.y, after.y, 1e-4f);
+        }
     }
 
     public class PoseLatchTests

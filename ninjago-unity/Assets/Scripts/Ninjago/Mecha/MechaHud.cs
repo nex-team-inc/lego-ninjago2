@@ -93,10 +93,10 @@ namespace Nex.Ninjago
             }
         }
 
-        public void SetArms(bool leftArmL, bool rightArmL)
+        public void SetArms(bool leftRaised, bool rightRaised)
         {
-            leftArmIcon.color = leftArmL ? armHeldColor : armBrokenColor;
-            rightArmIcon.color = rightArmL ? armHeldColor : armBrokenColor;
+            leftArmIcon.color = leftRaised ? armHeldColor : armBrokenColor;
+            rightArmIcon.color = rightRaised ? armHeldColor : armBrokenColor;
         }
 
         public void SetTimeLeft(int seconds)

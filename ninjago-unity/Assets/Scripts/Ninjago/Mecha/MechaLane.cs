@@ -143,8 +143,8 @@ namespace Nex.Ninjago
         void UpdatePose(float deltaTime)
         {
             var reading = arms.Get(PlayerIndex);
-            hud.SetArms(reading.leftArmL, reading.rightArmL);
-            var change = latch.Update(reading.BothArmsL, waveTime, armsConfig.PoseGainSeconds, armsConfig.PoseLossSeconds);
+            hud.SetArms(reading.leftRaised, reading.rightRaised);
+            var change = latch.Update(reading.BothRaised, waveTime, armsConfig.PoseGainSeconds, armsConfig.PoseLossSeconds);
             if (change == PoseLatch.Change.Gained)
             {
                 poseGainedAt = waveTime;
@@ -186,9 +186,9 @@ namespace Nex.Ninjago
 
         static string LossReason(RobotArmsTracker.Reading reading)
         {
-            if (!reading.armsTracked) return "not_tracked";
-            if (!reading.leftArmL && !reading.rightArmL) return "both_arms";
-            return reading.leftArmL ? "right_arm" : "left_arm";
+            if (!reading.bodyTracked || !reading.handsTracked) return "not_tracked";
+            if (!reading.leftRaised && !reading.rightRaised) return "both_hands";
+            return reading.leftRaised ? "right_hand" : "left_hand";
         }
 
         #endregion
@@ -266,10 +266,9 @@ namespace Nex.Ninjago
 #if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
             if (!PlayerDataManager.Instance.DebugSettings.enableDebugPrinter) return;
             var reading = arms.Get(PlayerIndex);
-            var reference = arms.ElbowReference(PlayerIndex);
             arms.TryGetAimInches(body, out var inches);
             DebugPrinter.Instance.Print($"Mecha P{PlayerIndex + 1}",
-                $"elbows {reading.leftElbowAngle:0}/{reading.rightElbowAngle:0} (setup {reference.x:0}/{reference.y:0}) hands {inches.x:0.0},{inches.y:0.0} in yaw {yaw.Value:0} pitch {pitch.Value:0}");
+                $"hand drop {reading.leftDrop:0.00}/{reading.rightDrop:0.00} (slack {armsConfig.SlackLine:0.00}) torso {arms.TorsoReference(PlayerIndex):0} in aim {inches.x:0.0},{inches.y:0.0} in yaw {yaw.Value:0} pitch {pitch.Value:0}");
 #endif
         }
 

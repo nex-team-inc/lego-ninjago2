@@ -9,8 +9,9 @@ namespace Nex.Ninjago
 {
     /// <summary>
     /// The Robot Mecha setup step after the body calibration: under a big L and ROBOT ARMS, each player holds the L with
-    /// both arms until their card fills; that hold stores the player's hand origin (neutral aim) and elbow reference. The
-    /// large camera preview stays up so the players see their own arms.
+    /// both arms (elbows down, forearms up in front) until their card fills; that hold stores the player's hand origin
+    /// (the hands' neutral spot against the body) and torso length. The large camera preview stays up so the players see
+    /// their own arms.
     /// </summary>
     public class RobotArmsCheck : MonoBehaviour
     {
@@ -35,9 +36,10 @@ namespace Nex.Ninjago
         struct Hold
         {
             public float progress;
-            public Vector2 handSum;
-            public Vector2 angleSum;
+            public Vector2 offsetSum;
             public int count;
+            public float torsoSum;
+            public int torsoCount;
         }
 
         readonly List<RobotArmsCard> cards = new();
@@ -74,12 +76,16 @@ namespace Nex.Ninjago
             var reading = tracker.Get(playerIndex);
             ref var hold = ref holds[slot];
             var step = deltaTime / tracker.SetupHoldSeconds;
-            if (reading.BothArmsL && reading.handsTracked)
+            if (reading.BothRaised)
             {
                 hold.progress = Mathf.Min(1f, hold.progress + step);
-                hold.handSum += reading.handMidpoint;
-                hold.angleSum += new Vector2(reading.leftElbowAngle, reading.rightElbowAngle);
+                hold.offsetSum += reading.bodyOffsetInches;
                 hold.count++;
+                if (reading.torsoInches > 0f)
+                {
+                    hold.torsoSum += reading.torsoInches;
+                    hold.torsoCount++;
+                }
             }
             else
             {
@@ -88,9 +94,9 @@ namespace Nex.Ninjago
                 if (hold.progress <= 0f) hold = default;
             }
 
-            cards[slot].Show(reading.leftArmL, reading.rightArmL, hold.progress);
+            cards[slot].Show(reading.leftRaised, reading.rightRaised, hold.progress);
             if (hold.progress < 1f) return false;
-            tracker.Calibrate(playerIndex, hold.handSum / hold.count, hold.angleSum / hold.count);
+            tracker.Calibrate(playerIndex, hold.offsetSum / hold.count, hold.torsoCount > 0 ? hold.torsoSum / hold.torsoCount : null);
             cards[slot].ShowDone();
             return true;
         }

@@ -12,13 +12,14 @@ namespace Nex.Ninjago
 
         #region Setup
 
-        /// <param name="elbowReference">Elbow angles in degrees while holding the L at setup (x left arm, y right arm).</param>
-        public static void SetupHold(int playerIndex, float seconds, Vector2 elbowReference)
+        /// <param name="neutralOffset">The hands' spot while holding the L at setup, in body inches: x from the shoulders' middle, y from the chest.</param>
+        /// <param name="torsoInches">Chest to hips in body inches (the default when the hips stayed hidden).</param>
+        public static void SetupHold(int playerIndex, float seconds, Vector2 neutralOffset, float torsoInches)
         {
             Analytics.TrackEvent("mecha_setup_hold", new GameAnalyticsProperties
             {
                 ["player_index"] = playerIndex, ["seconds"] = Round(seconds),
-                ["left_elbow_deg"] = Round(elbowReference.x), ["right_elbow_deg"] = Round(elbowReference.y),
+                ["hands_x_in"] = Round(neutralOffset.x), ["hands_y_in"] = Round(neutralOffset.y), ["torso_in"] = Round(torsoInches),
             });
         }
 
@@ -33,7 +34,7 @@ namespace Nex.Ninjago
             Analytics.TrackEvent("mecha_pose_gained", props);
         }
 
-        /// <param name="reason">"left_arm", "right_arm", "both_arms" or "not_tracked".</param>
+        /// <param name="reason">"left_hand", "right_hand", "both_hands" (sank toward the hips) or "not_tracked".</param>
         public static void PoseLost(int playerIndex, float waveSeconds, float heldSeconds, string reason)
         {
             var props = Player(playerIndex, waveSeconds);

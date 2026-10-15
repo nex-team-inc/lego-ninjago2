@@ -57,6 +57,8 @@ namespace Nex
             StoneKick,
             EarthSeal,
             MechaFight,
+            CrouchRun,
+            ThreeWeapons,
         }
 
         /// <summary>

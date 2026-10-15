@@ -133,6 +133,8 @@ namespace Nex.Ninjago
             GameModeType.StoneKick => "stone_kick",
             GameModeType.EarthSeal => "earth_seal",
             GameModeType.RobotMecha => "robot_mecha",
+            GameModeType.CrouchRun => "crouch_run",
+            GameModeType.ThreeWeapons => "three_weapons",
             _ => mode.ToString(),
         };
 

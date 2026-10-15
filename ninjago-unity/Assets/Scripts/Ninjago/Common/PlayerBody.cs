@@ -22,6 +22,8 @@ namespace Nex.Ninjago
         public Vector2 Origin { get; private set; }
         /// <summary>Hip-to-knee drop of each leg (x left, y right) in body inches while standing at setup; null when the knees were hidden.</summary>
         public Vector2? RestingKneeDrops { get; private set; }
+        /// <summary>Shoulders, head and hands against the chest at setup (typical proportions where setup never saw them).</summary>
+        public BodyShape Shape { get; private set; } = BodyShape.Typical;
         public bool IsCalibrated { get; private set; }
         /// <summary>Frame heights per inch for this player, averaged by the engine; 0 before the first detection.</summary>
         public float RawPpi => engine.RawPpi;
@@ -35,10 +37,11 @@ namespace Nex.Ninjago
 
         #region Calibration
 
-        public void SetOrigin(Vector2 chest, Vector2? restingKneeDrops)
+        public void SetOrigin(Vector2 chest, Vector2? restingKneeDrops, BodyShape? shape)
         {
             Origin = chest;
             RestingKneeDrops = restingKneeDrops;
+            Shape = shape ?? BodyShape.Typical;
             IsCalibrated = true;
         }
 
@@ -144,10 +147,66 @@ namespace Nex.Ninjago
             return true;
         }
 
+        /// <summary>Head (the nose, else the eyes or ears) relative to the chest in body inches; false while hidden.</summary>
+        public bool TryGetHeadInches(out Vector2 inches)
+        {
+            inches = default;
+            var pose = Pose;
+            if (pose == null) return false;
+            var chest = pose.Chest();
+            if (!chest.isDetected || !TryGetHead(pose, out var head)) return false;
+            inches = (head - chest.ToVector2()) / engine.RawPpi;
+            return true;
+        }
+
+        /// <summary>One shoulder relative to the chest in body inches; false while hidden.</summary>
+        public bool TryGetShoulderInches(bool leftShoulder, out Vector2 inches)
+        {
+            inches = default;
+            var pose = Pose;
+            if (pose == null) return false;
+            var chest = pose.Chest();
+            var shoulder = leftShoulder ? pose.LeftShoulder() : pose.RightShoulder();
+            if (!chest.isDetected || !shoulder.isDetected) return false;
+            inches = (shoulder.ToVector2() - chest.ToVector2()) / engine.RawPpi;
+            return true;
+        }
+
+        /// <summary>This frame's shoulders, head and body hand nodes against the chest; false while any of them is hidden.</summary>
+        public bool TrySampleShape(out BodyShape shape)
+        {
+            shape = default;
+            if (!TryGetShoulderInches(true, out var leftShoulder) || !TryGetShoulderInches(false, out var rightShoulder) ||
+                !TryGetHeadInches(out var head) || !TryGetChest(out var chest) || !TryGetHand(true, out var leftHand) || !TryGetHand(false, out var rightHand))
+            {
+                return false;
+            }
+
+            shape = new BodyShape(leftShoulder, rightShoulder, head, (leftHand - chest) / engine.RawPpi, (rightHand - chest) / engine.RawPpi);
+            return true;
+        }
+
         /// <summary>Camera timestamp (seconds) of the body detection behind the current node values.</summary>
         public double BodyFrameTime => engine.LastBodyPoseDetectionResult.original?.frameTime ?? 0d;
 
         BodyPose? Pose => engine.RawPpi > 0f ? engine.LastBodyPoseDetectionResult.processed?.GetPlayerPose(PlayerIndex)?.bodyPose : null;
+
+        static bool TryGetHead(BodyPose pose, out Vector2 head)
+        {
+            head = default;
+            var nose = pose.Nose();
+            if (nose.isDetected)
+            {
+                head = nose.ToVector2();
+                return true;
+            }
+
+            var left = pose.LeftEye().isDetected ? pose.LeftEye() : pose.LeftEar();
+            var right = pose.RightEye().isDetected ? pose.RightEye() : pose.RightEar();
+            if (!left.isDetected || !right.isDetected) return false;
+            head = (left.ToVector2() + right.ToVector2()) * 0.5f;
+            return true;
+        }
 
         #endregion
     }

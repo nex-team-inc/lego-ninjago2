@@ -59,6 +59,12 @@ namespace Nex
             MechaPowerDown = 144,
             MechaPowerUp = 145,
             ArrowFizzle = 146,
+            Heard = 150,
+            GateCleared = 151,
+            WeaponSlash = 160,
+            NunchuckSpin = 161,
+            ShurikenHit = 162,
+            MonsterBreak = 163,
         }
 
         #region Pool

@@ -40,5 +40,15 @@ namespace Nex.Ninjago
         public float robotMechaBestSurviveSeconds;
         // Percent of the survived time the L pose was held, 0..100.
         public int robotMechaBestPosePercent;
+
+        public int crouchRunRuns;
+        // Highest level cleared, 0..3.
+        public int crouchRunFurthestLevel;
+        // Seconds left on the clock when the furthest level was cleared; -1 until the first clear.
+        public float crouchRunBestTimeLeft = -1f;
+
+        public int threeWeaponsRuns;
+        // Fastest full gauntlet in seconds; -1 until the first clear.
+        public float threeWeaponsBestSeconds = -1f;
     }
 }

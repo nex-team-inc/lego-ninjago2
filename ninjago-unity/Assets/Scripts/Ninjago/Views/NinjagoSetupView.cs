@@ -46,6 +46,8 @@ namespace Nex.Ninjago
             public int count;
             public Vector2 kneeDropSum;
             public int kneeDropCount;
+            public BodyShape shapeSum;
+            public int shapeCount;
         }
 
         IReadOnlyList<PlayerBody> bodies = null!;
@@ -202,7 +204,7 @@ namespace Nex.Ninjago
             ref var hold = ref holds[playerIndex];
             if (SimulatedBody.IsEnabled)
             {
-                body.SetOrigin(body.TryGetChest(out var simulatedChest) ? simulatedChest : Vector2.zero, null);
+                body.SetOrigin(body.TryGetChest(out var simulatedChest) ? simulatedChest : Vector2.zero, null, null);
                 playerStatuses[playerIndex].Show(SetupPlayerStatus.State.Ready);
                 return true;
             }
@@ -227,10 +229,17 @@ namespace Nex.Ninjago
                 hold.kneeDropCount++;
             }
 
+            if (body.TrySampleShape(out var shape))
+            {
+                hold.shapeSum = hold.shapeSum.Plus(shape);
+                hold.shapeCount++;
+            }
+
             playerStatuses[playerIndex].Show(SetupPlayerStatus.State.Holding);
             if (now - hold.startTime < config.CalibrationSeconds) return false;
 
-            body.SetOrigin(hold.sum / hold.count, hold.kneeDropCount > 0 ? hold.kneeDropSum / hold.kneeDropCount : null);
+            body.SetOrigin(hold.sum / hold.count, hold.kneeDropCount > 0 ? hold.kneeDropSum / hold.kneeDropCount : null,
+                hold.shapeCount > 0 ? hold.shapeSum.Scaled(1f / hold.shapeCount) : null);
             hold.active = false;
             playerStatuses[playerIndex].Show(SetupPlayerStatus.State.Ready);
             return true;

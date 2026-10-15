@@ -203,6 +203,22 @@ namespace Nex
         [DebugOrder(-125), Description("Seal W4: Breakthrough (s)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 10), ES3NonSerializable]
         public float SealW4Breakthrough { get => W4.breakthroughSeconds; set => W4.breakthroughSeconds = value; }
 
+        // Crouch Run: the config asset is edited live, like the rows below.
+        [DebugOrder(-400), Description("Crouch: Crouch Threshold (in below standing)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
+        public float CrouchThreshold { get => CrouchRun.CrouchDropInches; set => CrouchRun.CrouchDropInches = value; }
+        [DebugOrder(-399), Description("Crouch: Run Speed (m/s)"), NumericSteps(Steps = 0.25, Min = 1, Max = 20), ES3NonSerializable]
+        public float CrouchRunSpeed { get => CrouchRun.RunSpeed; set => CrouchRun.RunSpeed = value; }
+        [DebugOrder(-398), Description("Crouch: Crouch Speed (m/s)"), NumericSteps(Steps = 0.25, Min = 0.25, Max = 10), ES3NonSerializable]
+        public float CrouchWalkSpeed { get => CrouchRun.CrouchSpeed; set => CrouchRun.CrouchSpeed = value; }
+        [DebugOrder(-397), Description("Crouch: Heard Penalty (s)"), NumericSteps(Steps = 0.5, Min = 0, Max = 15), ES3NonSerializable]
+        public float CrouchHeardPenalty { get => CrouchRun.HeardPenaltySeconds; set => CrouchRun.HeardPenaltySeconds = value; }
+        [DebugOrder(-396), Description("Crouch: Level 1 Timer (s)"), NumericSteps(Steps = 1, Min = 5, Max = 180), ES3NonSerializable]
+        public float CrouchTimer1 { get => CrouchRun.GetLevel(0).timerSeconds; set => CrouchRun.GetLevel(0).timerSeconds = value; }
+        [DebugOrder(-395), Description("Crouch: Level 2 Timer (s)"), NumericSteps(Steps = 1, Min = 5, Max = 180), ES3NonSerializable]
+        public float CrouchTimer2 { get => CrouchRun.GetLevel(1).timerSeconds; set => CrouchRun.GetLevel(1).timerSeconds = value; }
+        [DebugOrder(-394), Description("Crouch: Level 3 Timer (s)"), NumericSteps(Steps = 1, Min = 5, Max = 180), ES3NonSerializable]
+        public float CrouchTimer3 { get => CrouchRun.GetLevel(2).timerSeconds; set => CrouchRun.GetLevel(2).timerSeconds = value; }
+
         // Robot Mecha: same rule as the rows above, the config assets are edited live.
         [DebugOrder(-300), Description("Mecha: Slack Line (0 chest, 1 hips)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 1), ES3NonSerializable]
         public float MechaSlackLine { get => RobotArms.SlackLine; set => RobotArms.SlackLine = value; }
@@ -295,6 +311,7 @@ namespace Nex
         static EarthSealConfig EarthSeal => GameConfigsManager.Instance.EarthSealConfig;
         static RobotArmsConfig RobotArms => GameConfigsManager.Instance.RobotArmsConfig;
         static MechaFightConfig MechaFight => GameConfigsManager.Instance.MechaFightConfig;
+        static CrouchRunConfig CrouchRun => GameConfigsManager.Instance.CrouchRunConfig;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

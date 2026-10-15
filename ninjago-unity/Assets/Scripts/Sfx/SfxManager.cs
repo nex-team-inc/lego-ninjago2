@@ -87,6 +87,11 @@ namespace Nex
             LaserHum = 720,
             MechaHit = 721,
             EnemyExplosion = 722,
+            RunStep = 730,
+            SneakStep = 731,
+            WeaponSlash = 740,
+            WeaponSpin = 741,
+            WeaponThrow = 742,
         }
 
         [SerializeField] AudioSource audioSource = null!;

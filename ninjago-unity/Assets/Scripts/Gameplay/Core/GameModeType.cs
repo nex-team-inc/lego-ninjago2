@@ -9,5 +9,7 @@ namespace Nex
         StoneKick = 4,
         EarthSeal = 5,
         RobotMecha = 6,
+        CrouchRun = 7,
+        ThreeWeapons = 8,
     }
 }

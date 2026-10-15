@@ -19,6 +19,7 @@ namespace Nex.Ninjago
 
         readonly List<HandCursor> cursors = new();
         readonly List<HandCursorMark> marks = new();
+        readonly HashSet<int> hiddenPlayers = new();
 
         #region Initialization
 
@@ -44,6 +45,13 @@ namespace Nex.Ninjago
         /// <summary>Layer-local position (pivot at the center) of a screen-normalized point.</summary>
         public Vector2 ToLocal(Vector2 screenPosition) => Vector2.Scale(screenPosition - new Vector2(0.5f, 0.5f), layer.rect.size);
 
+        /// <summary>Shows or hides one player's cursors (the cursors keep tracking either way).</summary>
+        public void SetPlayerVisible(int playerIndex, bool visible)
+        {
+            if (visible) hiddenPlayers.Remove(playerIndex);
+            else hiddenPlayers.Add(playerIndex);
+        }
+
         #endregion
 
         #region Life Cycle
@@ -54,8 +62,9 @@ namespace Nex.Ninjago
             {
                 var cursor = cursors[i];
                 var mark = marks[i];
-                if (mark.gameObject.activeSelf != cursor.IsVisible) mark.gameObject.SetActive(cursor.IsVisible);
-                if (cursor.IsVisible) mark.Rect.anchoredPosition = ToLocal(cursor.ScreenPosition);
+                var shown = cursor.IsVisible && !hiddenPlayers.Contains(cursor.PlayerIndex);
+                if (mark.gameObject.activeSelf != shown) mark.gameObject.SetActive(shown);
+                if (shown) mark.Rect.anchoredPosition = ToLocal(cursor.ScreenPosition);
             }
         }
 

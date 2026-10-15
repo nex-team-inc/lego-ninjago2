@@ -31,6 +31,8 @@ namespace Nex
         [SerializeField] MechaFightConfig mechaFightConfig = null!;
         [Header("Ninjago Crouch Run Tuning")]
         [SerializeField] CrouchRunConfig crouchRunConfig = null!;
+        [Header("Ninjago Three Weapons Tuning")]
+        [SerializeField] ThreeWeaponsConfig threeWeaponsConfig = null!;
         public string MainScene => mainScene;
         public string ARGameScene => arGameScene;
         public string NonARGameScene => nonARGameScene;
@@ -44,6 +46,7 @@ namespace Nex
         public RobotArmsConfig RobotArmsConfig => robotArmsConfig;
         public MechaFightConfig MechaFightConfig => mechaFightConfig;
         public CrouchRunConfig CrouchRunConfig => crouchRunConfig;
+        public ThreeWeaponsConfig ThreeWeaponsConfig => threeWeaponsConfig;
 
         public GameModeType SelectedMode { get; set; }
 

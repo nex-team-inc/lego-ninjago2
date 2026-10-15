@@ -203,6 +203,24 @@ namespace Nex
         [DebugOrder(-125), Description("Seal W4: Breakthrough (s)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 10), ES3NonSerializable]
         public float SealW4Breakthrough { get => W4.breakthroughSeconds; set => W4.breakthroughSeconds = value; }
 
+        // Three Weapons: the config asset is edited live, like the rows below.
+        [DebugOrder(-500), Description("Weapons: Slash Speed (in/s)"), NumericSteps(Steps = 5, Min = 5, Max = 200), ES3NonSerializable]
+        public float WeaponsSlashSpeed { get => ThreeWeapons.SlashSpeed; set => ThreeWeapons.SlashSpeed = value; }
+        [DebugOrder(-499), Description("Weapons: Slash Cooldown (s)"), NumericSteps(Steps = 0.01, Min = 0, Max = 0.5), ES3NonSerializable]
+        public float WeaponsSlashCooldown { get => ThreeWeapons.SlashCooldownSeconds; set => ThreeWeapons.SlashCooldownSeconds = value; }
+        [DebugOrder(-498), Description("Weapons: Slashes To Kill"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 40), ES3NonSerializable]
+        public int WeaponsSlashesToKill { get => ThreeWeapons.SlashesToKill; set => ThreeWeapons.SlashesToKill = value; }
+        [DebugOrder(-497), Description("Weapons: Spin Window (s)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 1.5), ES3NonSerializable]
+        public float WeaponsSpinWindow { get => ThreeWeapons.SpinWindowSeconds; set => ThreeWeapons.SpinWindowSeconds = value; }
+        [DebugOrder(-496), Description("Weapons: Spin Path Length (in)"), NumericSteps(Steps = 1, Min = 4, Max = 80), ES3NonSerializable]
+        public float WeaponsSpinPath { get => ThreeWeapons.SpinPathInches; set => ThreeWeapons.SpinPathInches = value; }
+        [DebugOrder(-495), Description("Weapons: Spin Radius (in)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
+        public float WeaponsSpinRadius { get => ThreeWeapons.SpinRadiusInches; set => ThreeWeapons.SpinRadiusInches = value; }
+        [DebugOrder(-494), Description("Weapons: Throws To Kill"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 30), ES3NonSerializable]
+        public int WeaponsThrowsToKill { get => ThreeWeapons.ThrowsToKill; set => ThreeWeapons.ThrowsToKill = value; }
+        [DebugOrder(-493), Description("Weapons: Card Hold (s)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 3), ES3NonSerializable]
+        public float WeaponsHold { get => ThreeWeapons.HoldSeconds; set => ThreeWeapons.HoldSeconds = value; }
+
         // Crouch Run: the config asset is edited live, like the rows below.
         [DebugOrder(-400), Description("Crouch: Crouch Threshold (in below standing)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
         public float CrouchThreshold { get => CrouchRun.CrouchDropInches; set => CrouchRun.CrouchDropInches = value; }
@@ -312,6 +330,7 @@ namespace Nex
         static RobotArmsConfig RobotArms => GameConfigsManager.Instance.RobotArmsConfig;
         static MechaFightConfig MechaFight => GameConfigsManager.Instance.MechaFightConfig;
         static CrouchRunConfig CrouchRun => GameConfigsManager.Instance.CrouchRunConfig;
+        static ThreeWeaponsConfig ThreeWeapons => GameConfigsManager.Instance.ThreeWeaponsConfig;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

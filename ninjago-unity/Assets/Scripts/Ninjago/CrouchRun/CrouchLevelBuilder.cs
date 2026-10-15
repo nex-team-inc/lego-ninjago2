@@ -31,6 +31,9 @@ namespace Nex.Ninjago
         [SerializeField] Color[] monsterColors = { new(0.45f, 0.75f, 0.3f), new(0.85f, 0.45f, 0.75f), new(0.35f, 0.55f, 0.95f), new(0.95f, 0.65f, 0.2f) };
         [Header("Gate Prefab")]
         [SerializeField] Transform gatePrefab = null!;
+        [Header("Ground Prefab")]
+        [Tooltip("Unit length along +X, stretched under the whole level from in front of the path to the hills.")]
+        [SerializeField] Transform groundPrefab = null!;
         [Header("Hedge Prefab")]
         [Tooltip("Unit cube along +X, stretched over the whole level just behind the path.")]
         [SerializeField] Transform hedgePrefab = null!;
@@ -91,12 +94,18 @@ namespace Nex.Ninjago
 
         void PlaceScenery(float from, float to, System.Random random)
         {
-            var hedge = Instantiate(hedgePrefab, levelRoot);
-            hedge.localPosition = new Vector3((from + to) * 0.5f, 0f, 2.2f);
-            hedge.localScale = new Vector3(to - from, 1f, 1f);
+            Stretch(groundPrefab, from, to, 0f);
+            Stretch(hedgePrefab, from, to, 2.2f);
             Scatter(treePrefab, from, to, 6f, 9f, 0.9f, 1.3f, random);
             Scatter(housePrefab, from, to, 16f, 18f, 0.9f, 1.2f, random);
             Scatter(hillPrefab, from, to, 32f, 40f, 0.8f, 1.4f, random);
+        }
+
+        void Stretch(Transform prefab, float from, float to, float depth)
+        {
+            var piece = Instantiate(prefab, levelRoot);
+            piece.localPosition = new Vector3((from + to) * 0.5f, 0f, depth);
+            piece.localScale = new Vector3(to - from, 1f, 1f);
         }
 
         // One piece every spacing meters (with jitter) at a depth behind the path, randomly sized.

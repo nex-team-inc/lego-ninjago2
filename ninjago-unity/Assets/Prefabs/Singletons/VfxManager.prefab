@@ -251,3 +251,33 @@ MonoBehaviour:
         prefab: {fileID: 7636437166253519142, guid: 852ebf3698cd444039b6b32ffdb05128, type: 3}
         defaultPoolSize: 2
         maxPoolSize: 6
+    - key: 150
+      value:
+        prefab: {fileID: 2073781905152827262, guid: d16b393b07da946b9a5443483607feee, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 4
+    - key: 151
+      value:
+        prefab: {fileID: 5797143519956668621, guid: 21917e1adb7274e9182b9a3a84e9bddc, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 4
+    - key: 160
+      value:
+        prefab: {fileID: 7636437166253519142, guid: 852ebf3698cd444039b6b32ffdb05128, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 6
+    - key: 161
+      value:
+        prefab: {fileID: 7636437166253519142, guid: 852ebf3698cd444039b6b32ffdb05128, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 6
+    - key: 162
+      value:
+        prefab: {fileID: 7636437166253519142, guid: 852ebf3698cd444039b6b32ffdb05128, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 6
+    - key: 163
+      value:
+        prefab: {fileID: 7636437166253519142, guid: 852ebf3698cd444039b6b32ffdb05128, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 6

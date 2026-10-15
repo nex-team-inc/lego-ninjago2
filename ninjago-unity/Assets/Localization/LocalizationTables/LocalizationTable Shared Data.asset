@@ -1275,6 +1275,70 @@ MonoBehaviour:
     m_Key: ninjago.result.mecha_best
     m_Metadata:
       m_Items: []
+  - m_Id: 198540774448553984
+    m_Key: ninjago.mode.crouch_run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136896
+    m_Key: ninjago.crouch.clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136897
+    m_Key: ninjago.crouch.stand_to_run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136898
+    m_Key: ninjago.crouch.talking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136899
+    m_Key: ninjago.crouch.crouch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136900
+    m_Key: ninjago.crouch.heard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136901
+    m_Key: ninjago.crouch.level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136902
+    m_Key: ninjago.crouch.clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136903
+    m_Key: ninjago.crouch.heard_count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136904
+    m_Key: ninjago.crouch.cleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136905
+    m_Key: ninjago.crouch.time_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136906
+    m_Key: ninjago.result.crouch_all_clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136907
+    m_Key: ninjago.result.crouch_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136908
+    m_Key: ninjago.result.crouch_cleared_line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136909
+    m_Key: ninjago.result.crouch_failed_line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136910
+    m_Key: ninjago.result.crouch_best
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

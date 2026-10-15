@@ -140,7 +140,43 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         maxPlayers: 2
-  modeOrders: 0200000003000000040000000500000006000000
+    - key: 7
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198540774448553984
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        gamePrefab:
+          m_AssetGUID: a8b914fb07f474d7a86c12c5740c7961
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        maxPlayers: 2
+    - key: 8
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 196492722355298304
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        gamePrefab:
+          m_AssetGUID: ebd76231c05374090b418ddf8b24abec
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        maxPlayers: 2
+  modeOrders: 020000000300000004000000050000000600000007000000
   references:
     version: 2
     RefIds: []

@@ -39,7 +39,7 @@ namespace Nex.Ninjago
         [SerializeField] Camera laneCamera = null!;
         [Header("Camera Offset")]
         [Tooltip("From the ninja: ahead (so the next zone shows), up and out to the side.")]
-        [SerializeField] Vector3 cameraOffset = new(4.5f, 2.4f, -13f);
+        [SerializeField] Vector3 cameraOffset = new(4f, 2.2f, -11.5f);
         [Header("Solo Field Of View")]
         [SerializeField] float soloFieldOfView = 34f;
         [Header("Split Field Of View")]
@@ -63,6 +63,10 @@ namespace Nex.Ninjago
         public Color PlayerColor => body.Color;
         public IReadOnlyList<LevelResult> Results => results;
         public bool ClearedAll { get; private set; }
+        /// <summary>The level being played (0-based).</summary>
+        public int LevelIndex { get; private set; }
+        /// <summary>Meters the ninja has covered in the current level.</summary>
+        public float Distance => distance;
 
         #region Initialization
 
@@ -76,6 +80,8 @@ namespace Nex.Ninjago
             ninja.Initialize(body.PlayerIndex, body.Color);
             hud.Initialize(body.PlayerIndex, body.Color);
             hud.HideZone();
+            hud.SetLevel(1);
+            hud.SetClock(config.GetLevel(0).timerSeconds);
             PlaceNinja(0f);
         }
 
@@ -88,6 +94,7 @@ namespace Nex.Ninjago
         {
             for (var levelIndex = startLevel; levelIndex < config.LevelCount; levelIndex++)
             {
+                LevelIndex = levelIndex;
                 var gate = levelBuilder.Build(config, levelIndex);
                 PlaceNinja(0f);
                 hud.SetLevel(levelIndex + 1);

@@ -1358,6 +1358,76 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 198540774448553984
+    m_Localized: Crouch Run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136896
+    m_Localized: CLEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136897
+    m_Localized: STAND TO RUN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136898
+    m_Localized: TALKING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136899
+    m_Localized: CROUCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136900
+    m_Localized: HEARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136901
+    m_Localized: LEVEL {level}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198540774461136902
+    m_Localized: '{seconds}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198540774461136903
+    m_Localized: Heard {count}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198540774461136904
+    m_Localized: CLEARED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136905
+    m_Localized: TIME UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136906
+    m_Localized: All three levels cleared!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136907
+    m_Localized: Level failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198540774461136908
+    m_Localized: P{player}    Level {level}    Time left {time:0.0} s    Heard {heard}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198540774461136909
+    m_Localized: P{player}    Level {level} failed    Heard {heard}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198540774461136910
+    m_Localized: Best    Level {level}    Time left {time:0.0} s
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1428,3 +1498,9 @@ MonoBehaviour:
         - id: 196492722359492612
         - id: 196492722359492617
         - id: 196492722359492618
+        - id: 198540774461136901
+        - id: 198540774461136902
+        - id: 198540774461136903
+        - id: 198540774461136908
+        - id: 198540774461136909
+        - id: 198540774461136910

@@ -54,15 +54,27 @@ namespace Nex.Ninjago
         [SerializeField] LocalizedString clearedString = new();
         [Header("Time Up Text")]
         [SerializeField] LocalizedString timeUpString = new();
+        [Header("Compact Elements")]
+        [Tooltip("Scaled down (about their top pivots) when two players share the screen as half-height strips.")]
+        [SerializeField] RectTransform[] compactElements = null!;
+        [Header("Compact Scale")]
+        [SerializeField, Range(0.3f, 1f)] float compactScale = 0.62f;
 
         float heardStart = float.NegativeInfinity;
+        float heardRestScale = 1f;
         int shownSeconds = -1;
 
         #region Initialization
 
-        public void Initialize(int playerIndex, Color color)
+        public void Initialize(int playerIndex, Color color, bool compact)
         {
             playerTag.Initialize(playerIndex, color);
+            if (compact)
+            {
+                foreach (var element in compactElements) element.localScale = Vector3.one * compactScale;
+                heardRestScale = compactScale;
+            }
+
             heardFlash.gameObject.SetActive(false);
             centerBanner.gameObject.SetActive(false);
             SetHeardCount(0);
@@ -139,7 +151,7 @@ namespace Nex.Ninjago
                 return;
             }
 
-            heardFlash.localScale = Vector3.one * (1f + 0.5f * (1f - Mathf.Clamp01(t * 4f)));
+            heardFlash.localScale = Vector3.one * (heardRestScale * (1f + 0.5f * (1f - Mathf.Clamp01(t * 4f))));
         }
 
         #endregion

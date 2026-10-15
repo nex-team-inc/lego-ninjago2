@@ -52,8 +52,8 @@ namespace Nex.Ninjago.Editor
             Set(builder, "treePrefab", tree);
             Set(builder, "housePrefab", house);
             Set(builder, "hillPrefab", hill);
-            // Locked to the side: looks along +Z at the path, a little from above; CrouchLane moves it along X with the ninja.
-            var camera = NinjagoWorldBuilder.NewCamera(root.transform, new Vector3(4f, 2.2f, -11.5f), new Vector3(4f, 0f, 0f), 34f);
+            // Locked to the side: looks along +Z at the path, level, so the path sits low and the monsters have room above; CrouchLane moves it along X with the ninja.
+            var camera = NinjagoWorldBuilder.NewCamera(root.transform, new Vector3(4f, 2.2f, -11.5f), Vector3.zero, 34f);
             camera.backgroundColor = skyColor;
             camera.farClipPlane = 120f;
             Set(lane, "ninja", ninja);

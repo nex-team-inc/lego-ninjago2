@@ -89,9 +89,11 @@ namespace Nex.Ninjago
 
             staggerElapsed += deltaTime;
             var stagger = 1f - Mathf.Clamp01(staggerElapsed / staggerSeconds);
+            var hop = stagger > 0f ? 0.25f * Mathf.Sin(stagger * Mathf.PI) : 0f;
+            var wobble = stagger > 0f ? 25f * stagger * Mathf.Sin(staggerElapsed * 30f) : 0f;
             var bob = Mathf.Abs(Mathf.Cos(cycle)) * 0.06f * moving * (1f - crouchBlend);
-            body.localPosition = bodyRest + new Vector3(0f, bob - crouchSink * crouchBlend + 0.25f * Mathf.Sin(stagger * Mathf.PI), 0f);
-            body.localRotation = Quaternion.Euler(0f, 0f, -crouchLeanDegrees * crouchBlend + 25f * stagger * Mathf.Sin(staggerElapsed * 30f));
+            body.localPosition = bodyRest + new Vector3(0f, bob - crouchSink * crouchBlend + hop, 0f);
+            body.localRotation = Quaternion.Euler(0f, 0f, -crouchLeanDegrees * crouchBlend + wobble);
         }
 
         #endregion

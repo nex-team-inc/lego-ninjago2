@@ -78,7 +78,7 @@ MonoBehaviour:
       length: 40
     - state: 1
       length: 24
-  - timerSeconds: 40
+  - timerSeconds: 41
     zones:
     - state: 0
       length: 30
@@ -92,7 +92,7 @@ MonoBehaviour:
       length: 28
     - state: 1
       length: 14
-  - timerSeconds: 40
+  - timerSeconds: 41
     zones:
     - state: 0
       length: 20

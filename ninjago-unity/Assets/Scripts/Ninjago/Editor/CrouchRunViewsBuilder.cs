@@ -84,7 +84,7 @@ namespace Nex.Ninjago.Editor
             Place((RectTransform)heardCount.transform, topRight, topRight, topRight, new Vector2(-30f, -196f), new Vector2(360f, 60f));
 
             var heard = Label(root, "Heard", "ninjago.crouch.heard", "HEARD", 210f, warnRed, outline);
-            Place((RectTransform)heard.transform, center, center, center, new Vector2(0f, -10f), new Vector2(1400f, 260f));
+            Place((RectTransform)heard.transform, center, center, center, new Vector2(0f, 60f), new Vector2(1400f, 260f));
             var centerBanner = Label(root, "CenterBanner", null, "LEVEL 1", 140f, Color.white, outline);
             Place((RectTransform)centerBanner.transform, center, center, center, new Vector2(0f, -30f), new Vector2(1400f, 180f));
 
@@ -103,6 +103,11 @@ namespace Nex.Ninjago.Editor
             Set(hud, "centerBanner", centerBanner);
             SetLocalized(hud, "clearedString", "ninjago.crouch.cleared");
             SetLocalized(hud, "timeUpString", "ninjago.crouch.time_up");
+            SetArray(hud, "compactElements", new Object[]
+            {
+                panel.rectTransform, (RectTransform)tag.transform, (RectTransform)clock.transform, (RectTransform)level.transform,
+                (RectTransform)heardCount.transform, (RectTransform)centerBanner.transform,
+            });
             Stretch(root);
             return SavePrefab(root.gameObject, HudPath).GetComponent<CrouchHud>();
         }

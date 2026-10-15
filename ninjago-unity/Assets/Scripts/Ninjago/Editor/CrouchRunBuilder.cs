@@ -87,7 +87,7 @@ namespace Nex.Ninjago.Editor
             look.FindPropertyRelative("color").colorValue = color;
         }
 
-        // At the starting speeds (run 6 m/s, crouch 2 m/s) a perfect run leaves about 7.7 s, 5.3 s and 4.7 s.
+        // At the starting speeds (run 6 m/s, crouch 2 m/s) a perfect run leaves about 7.7 s, 6.3 s and 5.7 s.
         static void WriteStartingLevels(SerializedProperty levels)
         {
             const CrouchZoneState c = CrouchZoneState.Clear;
@@ -96,9 +96,9 @@ namespace Nex.Ninjago.Editor
             {
                 (45f, new[] { (c, 40f), (t, 24f), (c, 40f), (t, 24f) }),
                 // The short clear zone before the second talking zone: a late crouch gets heard.
-                (40f, new[] { (c, 30f), (t, 16f), (c, 12f), (t, 16f), (c, 28f), (t, 14f) }),
+                (41f, new[] { (c, 30f), (t, 16f), (c, 12f), (t, 16f), (c, 28f), (t, 14f) }),
                 // Faster changes, and the last talking zone is the longest: sprinting the ending fails.
-                (40f, new[] { (c, 20f), (t, 10f), (c, 14f), (t, 10f), (c, 12f), (t, 8f), (c, 16f), (t, 22f) }),
+                (41f, new[] { (c, 20f), (t, 10f), (c, 14f), (t, 10f), (c, 12f), (t, 8f), (c, 16f), (t, 22f) }),
             };
             levels.arraySize = starting.Length;
             for (var i = 0; i < starting.Length; i++)

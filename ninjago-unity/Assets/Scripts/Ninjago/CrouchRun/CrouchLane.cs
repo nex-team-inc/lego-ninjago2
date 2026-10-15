@@ -78,7 +78,7 @@ namespace Nex.Ninjago
             laneCamera.targetTexture = target;
             laneCamera.fieldOfView = splitScreen ? splitFieldOfView : soloFieldOfView;
             ninja.Initialize(body.PlayerIndex, body.Color);
-            hud.Initialize(body.PlayerIndex, body.Color);
+            hud.Initialize(body.PlayerIndex, body.Color, splitScreen);
             hud.HideZone();
             hud.SetLevel(1);
             hud.SetClock(config.GetLevel(0).timerSeconds);

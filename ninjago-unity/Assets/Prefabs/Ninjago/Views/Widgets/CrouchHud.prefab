@@ -445,6 +445,14 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  compactElements:
+  - {fileID: 2951154136509773756}
+  - {fileID: 7418833864428795372}
+  - {fileID: 2882497939551892836}
+  - {fileID: 8026763092427411870}
+  - {fileID: 5035039561798984358}
+  - {fileID: 3960363258356160527}
+  compactScale: 0.62
   references:
     version: 2
     RefIds: []
@@ -1058,7 +1066,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 1400, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4862935063126121248

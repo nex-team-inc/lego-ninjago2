@@ -25,10 +25,11 @@ namespace Nex.Ninjago
 
         #region Initialization
 
-        public void Initialize(WeaponType weapon, ThreeWeaponsConfig.WeaponSettings settings, Sprite iconSprite, Color playerColor, Vector2 localPosition)
+        public void Initialize(WeaponType weapon, ThreeWeaponsConfig.WeaponSettings settings, Sprite iconSprite, Color playerColor, Vector2 localPosition, float scale)
         {
             Weapon = weapon;
             rect.anchoredPosition = localPosition;
+            rect.localScale = Vector3.one * scale;
             background.color = settings.color;
             icon.sprite = iconSprite;
             label.StringReference = settings.label;
@@ -43,7 +44,7 @@ namespace Nex.Ninjago
         public bool Contains(Vector2 localPosition)
         {
             var offset = localPosition - rect.anchoredPosition;
-            var half = rect.rect.size * 0.5f;
+            var half = rect.rect.size * (0.5f * rect.localScale.x);
             return Mathf.Abs(offset.x) <= half.x && Mathf.Abs(offset.y) <= half.y;
         }
 

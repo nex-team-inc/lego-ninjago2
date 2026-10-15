@@ -31,6 +31,8 @@ namespace Nex.Ninjago.Editor
             NinjagoGamesBuilder.Build();
             CursorGamesBuilder.Build();
             RobotMechaBuilder.Build();
+            CrouchRunBuilder.Build();
+            ThreeWeaponsBuilder.Build();
             AssetDatabase.SaveAssets();
             return $"[NinjagoBuildAll] done ({localization})";
         }

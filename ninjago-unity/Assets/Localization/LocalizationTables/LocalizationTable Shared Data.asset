@@ -1339,6 +1339,62 @@ MonoBehaviour:
     m_Key: ninjago.result.crouch_best
     m_Metadata:
       m_Items: []
+  - m_Id: 198544201085870080
+    m_Key: ninjago.mode.three_weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258688
+    m_Key: ninjago.weapons.sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258689
+    m_Key: ninjago.weapons.nunchucks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258690
+    m_Key: ninjago.weapons.shuriken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258691
+    m_Key: ninjago.weapons.slash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258692
+    m_Key: ninjago.weapons.spin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258693
+    m_Key: ninjago.weapons.throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258694
+    m_Key: ninjago.weapons.pick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258695
+    m_Key: ninjago.weapons.fight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258696
+    m_Key: ninjago.weapons.cleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258697
+    m_Key: ninjago.result.weapons_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258698
+    m_Key: ninjago.result.weapons_order
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258699
+    m_Key: ninjago.result.weapons_counts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258700
+    m_Key: ninjago.result.weapons_best
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -144,7 +144,7 @@ namespace Nex.Ninjago.Editor
             });
         }
 
-        static void BuildGame<T>(string name, string path, Action<T> wire) where T : HandCursorGame
+        internal static void BuildGame<T>(string name, string path, Action<T> wire) where T : HandCursorGame
         {
             var root = new GameObject(name);
             var game = root.AddComponent<T>();

@@ -230,7 +230,7 @@ namespace Nex.Ninjago.Editor
 
         #region Helpers
 
-        static HandCursorLayer CursorLayer(RectTransform parent, HandCursorMark mark)
+        internal static HandCursorLayer CursorLayer(RectTransform parent, HandCursorMark mark)
         {
             var rect = Stretch(NewRect("CursorLayer", parent));
             var layer = rect.gameObject.AddComponent<HandCursorLayer>();

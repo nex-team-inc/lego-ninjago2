@@ -34,13 +34,17 @@ namespace Nex.Ninjago
 
         public Vector3 ChestPosition => chestPoint.position;
 
-        #region Life Cycle
+        #region Initialization
 
-        void Awake()
+        public void Initialize()
         {
             litMaterials = new Material[litRenderers.Length];
             for (var i = 0; i < litRenderers.Length; i++) litMaterials[i] = litRenderers[i].sharedMaterial;
         }
+
+        #endregion
+
+        #region Life Cycle
 
         void Update()
         {

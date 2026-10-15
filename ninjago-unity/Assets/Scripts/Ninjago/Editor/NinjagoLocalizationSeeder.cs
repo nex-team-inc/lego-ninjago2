@@ -101,6 +101,20 @@ namespace Nex.Ninjago.Editor
             ("ninjago.result.crouch_cleared_line", "P{player}    Level {level}    Time left {time:0.0} s    Heard {heard}", true),
             ("ninjago.result.crouch_failed_line", "P{player}    Level {level} failed    Heard {heard}", true),
             ("ninjago.result.crouch_best", "Best    Level {level}    Time left {time:0.0} s", true),
+            ("ninjago.mode.three_weapons", "Three Weapons", false),
+            ("ninjago.weapons.sword", "SWORD", false),
+            ("ninjago.weapons.nunchucks", "NUNCHUCKS", false),
+            ("ninjago.weapons.shuriken", "SHURIKEN", false),
+            ("ninjago.weapons.slash", "SLASH", false),
+            ("ninjago.weapons.spin", "SPIN", false),
+            ("ninjago.weapons.throw", "THROW", false),
+            ("ninjago.weapons.pick", "PICK A WEAPON", false),
+            ("ninjago.weapons.fight", "FIGHT {current}/{total}", true),
+            ("ninjago.weapons.cleared", "GAUNTLET CLEARED!", false),
+            ("ninjago.result.weapons_title", "Gauntlet cleared!", false),
+            ("ninjago.result.weapons_order", "P{player}    {first}  >  {second}  >  {third}    {time:0.0} s", true),
+            ("ninjago.result.weapons_counts", "P{player}    Slashes {slashes}    Spin bursts {spins}    Throws {throws}", true),
+            ("ninjago.result.weapons_best", "Best clear    {time:0.0} s", true),
         };
 
         #region Entry Point

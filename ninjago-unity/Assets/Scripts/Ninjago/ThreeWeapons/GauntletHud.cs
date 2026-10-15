@@ -6,7 +6,11 @@ using UnityEngine.Localization;
 
 namespace Nex.Ninjago
 {
-    /// <summary>One player's half of the Three Weapons HUD: tag, fight counter, the PICK A WEAPON prompt and the cleared banner. The gesture hints live on the ninja.</summary>
+    /// <summary>
+    /// One player's half of the Three Weapons HUD: tag, fight counter, the PICK A WEAPON prompt, the weapon's gesture
+    /// word (SLASH / SPIN / THROW) in the same top slot so it never covers the monster, and the cleared banner. The
+    /// other gesture hints live on the ninja.
+    /// </summary>
     public class GauntletHud : MonoBehaviour
     {
         [Header("Player Tag")]
@@ -18,6 +22,8 @@ namespace Nex.Ninjago
         [SerializeField] LocalizedString fightString = new();
         [Header("Pick Prompt")]
         [SerializeField] GameObject pickPrompt = null!;
+        [Header("Gesture Prompt")]
+        [SerializeField] NexLocalizedString gesturePrompt = null!;
         [Header("Cleared Banner")]
         [SerializeField] GameObject clearedBanner = null!;
 
@@ -28,6 +34,7 @@ namespace Nex.Ninjago
             playerTag.Initialize(playerIndex, color);
             SetFight(1, 3);
             pickPrompt.SetActive(false);
+            gesturePrompt.gameObject.SetActive(false);
             clearedBanner.SetActive(false);
         }
 
@@ -43,6 +50,17 @@ namespace Nex.Ninjago
         public void ShowPick(bool visible)
         {
             pickPrompt.SetActive(visible);
+        }
+
+        public void ShowGesture(LocalizedString prompt)
+        {
+            gesturePrompt.StringReference = prompt;
+            gesturePrompt.gameObject.SetActive(true);
+        }
+
+        public void HideGesture()
+        {
+            gesturePrompt.gameObject.SetActive(false);
         }
 
         public void ShowCleared()

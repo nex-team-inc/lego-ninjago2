@@ -114,7 +114,7 @@ namespace Nex.Ninjago.Editor
 
         // The menu shows the Ninjago mini-games; the PressButtonToWin test entry stays defined but unlisted. The
         // StoneKick and EarthSeal definitions come from CursorGamesBuilder, RobotMecha from RobotMechaBuilder, CrouchRun from
-        // CrouchRunBuilder.
+        // CrouchRunBuilder, ThreeWeapons from ThreeWeaponsBuilder.
         internal static void WriteMenuOrder()
         {
             var config = Load<GameModeConfig>(GameModeConfigPath);
@@ -123,7 +123,7 @@ namespace Nex.Ninjago.Editor
             var listed = new[]
             {
                 GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal, GameModeType.RobotMecha,
-                GameModeType.CrouchRun,
+                GameModeType.CrouchRun, GameModeType.ThreeWeapons,
             };
             order.arraySize = listed.Length;
             for (var i = 0; i < listed.Length; i++) order.GetArrayElementAtIndex(i).intValue = (int)listed[i];

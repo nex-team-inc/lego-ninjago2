@@ -57,3 +57,4 @@ MonoBehaviour:
   robotArmsConfig: {fileID: 11400000, guid: b5a4b0e11d9dd45f9b7fce1a029fa135, type: 2}
   mechaFightConfig: {fileID: 11400000, guid: 7d23b8068a18344f3880df7d2ac42e71, type: 2}
   crouchRunConfig: {fileID: 11400000, guid: b88be8b677ea346b08e14e9c8612085a, type: 2}
+  threeWeaponsConfig: {fileID: 11400000, guid: b26f449b5477c4e3792ac3502696aa93, type: 2}

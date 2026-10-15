@@ -1,8 +1,6 @@
 #nullable enable
 
-using Nex.Localization;
 using UnityEngine;
-using UnityEngine.Localization;
 
 namespace Nex.Ninjago
 {
@@ -59,14 +57,8 @@ namespace Nex.Ninjago
         [SerializeField] GameObject leftDartIcon = null!;
         [Header("Right Dart Icon")]
         [SerializeField] GameObject rightDartIcon = null!;
-        [Header("Prompt Root")]
-        [SerializeField] GameObject promptRoot = null!;
-        [Header("Prompt Label")]
-        [SerializeField] NexLocalizedString promptLabel = null!;
         [Header("Player Color Renderers")]
         [SerializeField] Renderer[] colorRenderers = null!;
-        [Header("Player Marker")]
-        [SerializeField] PlayerTagLabel marker = null!;
         [Header("Pose Sharpness")]
         [Tooltip("How fast the arms move to their pose, per second.")]
         [SerializeField] float poseSharpness = 14f;
@@ -86,14 +78,13 @@ namespace Nex.Ninjago
 
         #region Initialization
 
-        public void Initialize(int playerIndex, Color color)
+        public void Initialize(Color color)
         {
             foreach (var colorRenderer in colorRenderers)
             {
                 colorRenderer.material.color = color;
             }
 
-            marker.Initialize(playerIndex, color);
             ShowIdle();
         }
 
@@ -115,10 +106,9 @@ namespace Nex.Ninjago
         {
             mode = Mode.Idle;
             ShowProps(null);
-            promptRoot.SetActive(false);
         }
 
-        public void ShowWeapon(WeaponType weapon, LocalizedString prompt)
+        public void ShowWeapon(WeaponType weapon)
         {
             mode = weapon switch
             {
@@ -128,8 +118,6 @@ namespace Nex.Ninjago
             };
             cockedHand = 1;
             ShowProps(weapon);
-            promptLabel.StringReference = prompt;
-            promptRoot.SetActive(true);
         }
 
         public void SetSpinArea(SpinArea area)

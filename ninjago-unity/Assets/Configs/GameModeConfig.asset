@@ -164,19 +164,19 @@ MonoBehaviour:
           m_TableReference:
             m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
           m_TableEntryReference:
-            m_KeyId: 196492722355298304
+            m_KeyId: 198544201085870080
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
         gamePrefab:
-          m_AssetGUID: ebd76231c05374090b418ddf8b24abec
+          m_AssetGUID: 303f7b6593574405582e18d30536315a
           m_SubObjectName: 
           m_SubObjectType: 
           m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         maxPlayers: 2
-  modeOrders: 020000000300000004000000050000000600000007000000
+  modeOrders: 02000000030000000400000005000000060000000700000008000000
   references:
     version: 2
     RefIds: []

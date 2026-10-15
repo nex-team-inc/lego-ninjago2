@@ -38,6 +38,9 @@ namespace Nex.Ninjago
         [Header("Card Height")]
         [Tooltip("Screen height (0 bottom, 1 top) of the weapon cards: between the ninja and the monster.")]
         [SerializeField, Range(0f, 1f)] float cardHeight = 0.42f;
+        [Header("Split Card Scale")]
+        [Tooltip("Three cards must fit side by side in half the screen.")]
+        [SerializeField] float splitCardScale = 0.72f;
         [Header("Projectile Seconds")]
         [SerializeField] float projectileSeconds = 0.22f;
 
@@ -82,11 +85,20 @@ namespace Nex.Ninjago
             areaCaller = new SpinAreaCaller(body.PlayerIndex * 31 + Environment.TickCount);
             laneCamera.targetTexture = target;
             laneCamera.fieldOfView = region.width < 1f ? splitFieldOfView : soloFieldOfView;
-            ninja.Initialize(body.PlayerIndex, body.Color);
+            ninja.Initialize(body.Color);
             hud.Initialize(body.PlayerIndex, body.Color);
             hud.SetFight(1, monsters.Length);
-            foreach (var monster in monsters) monster.SetActive(false);
-            foreach (var watcher in crowd) watcher.SetActive(false);
+            foreach (var monster in monsters)
+            {
+                monster.Initialize();
+                monster.SetActive(false);
+            }
+
+            foreach (var watcher in crowd)
+            {
+                watcher.Initialize();
+                watcher.SetActive(false);
+            }
             foreach (var projectile in projectiles) projectile.gameObject.SetActive(false);
             FollowWith(monsters[0]);
         }
@@ -140,7 +152,8 @@ namespace Nex.Ninjago
                 var card = Instantiate(cardPrefab, cardsRoot);
                 var settings = config.GetWeapon(remaining[i]);
                 var x = region.xMin + region.width * (i + 1f) / (remaining.Count + 1f);
-                card.Initialize(remaining[i], settings, settings.icon!, body.Color, cursorLayer.ToLocal(new Vector2(x, cardHeight)));
+                card.Initialize(remaining[i], settings, settings.icon!, body.Color, cursorLayer.ToLocal(new Vector2(x, cardHeight)),
+                    region.width < 1f ? splitCardScale : 1f);
                 cards.Add(card);
             }
 
@@ -177,7 +190,8 @@ namespace Nex.Ninjago
             var released = 0;
             landed = 0;
             var start = Time.time;
-            ninja.ShowWeapon(weapon, settings.prompt);
+            ninja.ShowWeapon(weapon);
+            hud.ShowGesture(settings.prompt);
             if (weapon == WeaponType.Nunchucks) ninja.SetSpinArea(areaCaller.Current);
             gestures.Reset();
             while (landed < needed)
@@ -194,6 +208,7 @@ namespace Nex.Ninjago
             }
 
             ninja.ShowIdle();
+            hud.HideGesture();
             var system = VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.MonsterBreak, monster.ChestPosition, Quaternion.identity);
             if (system != null)
             {
@@ -204,7 +219,12 @@ namespace Nex.Ninjago
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.EnemyExplosion);
             monster.Break();
             ThreeWeaponsAnalytics.MonsterKilled(PlayerIndex, fight + 1, weapon, Time.time - start, released);
-            await UniTask.Delay(TimeSpan.FromSeconds(config.KillPauseSeconds), DelayType.DeltaTime, PlayerLoopTiming.Update, cancellationToken);
+            var pauseEnd = Time.time + config.KillPauseSeconds;
+            while (Time.time < pauseEnd)
+            {
+                ninja.Tick(Time.deltaTime, 0f);
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+            }
         }
 
         void Strike(WeaponType weapon, int hand, int fight, GauntletMonster monster, int needed)

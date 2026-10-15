@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52743c185edad475aa7d1eabb80deb69, type: 3}
+  m_Name: ThreeWeaponsConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ThreeWeaponsConfig
+  weapons:
+    pairs:
+    - key: 0
+      value:
+        hitsToKill: 12
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198544201094258688
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        prompt:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198544201094258691
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 0.35, g: 0.6, b: 1, a: 1}
+        icon: {fileID: 21300000, guid: 05468bd8a157c468a81c3a7f327772a5, type: 3}
+    - key: 1
+      value:
+        hitsToKill: 4
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198544201094258689
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        prompt:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198544201094258692
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 1, g: 0.55, b: 0.15, a: 1}
+        icon: {fileID: 21300000, guid: 2859d6537072a4db19f525e010d14f6c, type: 3}
+    - key: 2
+      value:
+        hitsToKill: 6
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198544201094258690
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        prompt:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198544201094258693
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 0.65, g: 0.35, b: 0.95, a: 1}
+        icon: {fileID: 21300000, guid: 9791c8f0c063a4acf86e2affaa329d82, type: 3}
+  holdSeconds: 0.6
+  slashSpeed: 30
+  slashCooldownSeconds: 0.08
+  spinWindowSeconds: 0.35
+  spinPathInches: 18
+  spinRadiusInches: 7
+  spinAreaRadiusInches: 8
+  spinCooldownSeconds: 0.5
+  throwSpeed: 40
+  cockOutsideInches: 5
+  cockBelowShoulderInches: 6
+  flickWindowSeconds: 0.6
+  walkSpeed: 3
+  stopDistance: 2.4
+  killPauseSeconds: 1.2
+  endHoldSeconds: 2
+  references:
+    version: 2
+    RefIds: []

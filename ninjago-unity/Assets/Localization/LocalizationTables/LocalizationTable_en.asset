@@ -1428,6 +1428,67 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 198544201085870080
+    m_Localized: Three Weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258688
+    m_Localized: SWORD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258689
+    m_Localized: NUNCHUCKS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258690
+    m_Localized: SHURIKEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258691
+    m_Localized: SLASH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258692
+    m_Localized: SPIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258693
+    m_Localized: THROW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258694
+    m_Localized: PICK A WEAPON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258695
+    m_Localized: FIGHT {current}/{total}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198544201094258696
+    m_Localized: GAUNTLET CLEARED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258697
+    m_Localized: Gauntlet cleared!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198544201094258698
+    m_Localized: P{player}    {first}  >  {second}  >  {third}    {time:0.0} s
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198544201094258699
+    m_Localized: P{player}    Slashes {slashes}    Spin bursts {spins}    Throws
+      {throws}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198544201094258700
+    m_Localized: Best clear    {time:0.0} s
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1504,3 +1565,7 @@ MonoBehaviour:
         - id: 198540774461136908
         - id: 198540774461136909
         - id: 198540774461136910
+        - id: 198544201094258695
+        - id: 198544201094258698
+        - id: 198544201094258699
+        - id: 198544201094258700

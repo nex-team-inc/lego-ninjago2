@@ -45,6 +45,99 @@ namespace Nex.Ninjago.Editor.Tests
             new((float)(random.NextDouble() * 2.0 - 1.0) * amount, (float)(random.NextDouble() * 2.0 - 1.0) * amount);
     }
 
+    public class ClapReaderTests
+    {
+        ClapReader.Settings settings;
+
+        [SetUp]
+        public void SetUp()
+        {
+            var config = ScriptableObject.CreateInstance<BuildConfig>();
+            settings = config.ReaderSettings;
+            Object.DestroyImmediate(config);
+        }
+
+        [Test]
+        public void EveryCalmClapIsOneClick()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                // Hands from the sides to together in front of the belly, about one clap a second, eight times.
+                var events = Read(t => Clap(t, -1f), t => Clap(t, 1f), 8.2f, seed);
+                Assert.AreEqual(8, events.FindAll(e => e == ClapReader.Event.Clap).Count, $"seed {seed}");
+                Assert.AreEqual(0, events.FindAll(e => e == ClapReader.Event.NearClap).Count, $"seed {seed}");
+            }
+        }
+
+        [Test]
+        public void AQuickSmallClapInFrontOfTheChestCounts()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                // Small and quick: hands a little wider than the shoulders at chest height, meeting one and a half times a second.
+                var events = Read(t => new Vector2(-8f + 7.5f * Pulse(t, 1.5f), 0f), t => new Vector2(8f - 7.5f * Pulse(t, 1.5f), 0f), 6.1f, seed);
+                Assert.AreEqual(9, events.FindAll(e => e == ClapReader.Event.Clap).Count, $"seed {seed}");
+            }
+        }
+
+        [Test]
+        public void HandsThatStopShortAreANearClap()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                // Hands stop 8 in apart (0.57 shoulder widths): closer than near, not together.
+                var events = Read(t => new Vector2(-8f + 4f * Pulse(t, 1f), -4f), t => new Vector2(8f - 4f * Pulse(t, 1f), -4f), 4.3f, seed);
+                Assert.AreEqual(0, events.FindAll(e => e == ClapReader.Event.Clap).Count, $"seed {seed}");
+                Assert.AreEqual(4, events.FindAll(e => e == ClapReader.Event.NearClap).Count, $"seed {seed}");
+            }
+        }
+
+        [Test]
+        public void StandingStillOrHandsHangingNeverClicks()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                CollectionAssert.IsEmpty(Read(_ => KidsPoses.LeftHanging, _ => KidsPoses.RightHanging, 6f, seed, 1f), $"hanging, seed {seed}");
+                // Hands resting together on the belly from the start: never apart, so no click.
+                CollectionAssert.IsEmpty(Read(_ => new Vector2(-1f, -8f), _ => new Vector2(1f, -8f), 6f, seed, 0.6f), $"resting together, seed {seed}");
+                // Hanging hands drifting close below the waist do not click.
+                CollectionAssert.IsEmpty(Read(t => new Vector2(-8f + 6f * Pulse(t, 1f), -20f), t => new Vector2(8f - 6f * Pulse(t, 1f), -20f), 4f, seed),
+                    $"low, seed {seed}");
+            }
+        }
+
+        [Test]
+        public void BricksFillRowByRowAndAFastBuilderHelps()
+        {
+            var taken = new bool[6];
+            Assert.AreEqual(0, BuildScene.NextSlot(taken, 2, 0));
+            taken[0] = true;
+            Assert.AreEqual(1, BuildScene.NextSlot(taken, 2, 1), "the partner's own column in the same row");
+            Assert.AreEqual(1, BuildScene.NextSlot(taken, 2, 0), "the fast builder fills the partner's slot before running ahead");
+            taken[1] = true;
+            Assert.AreEqual(3, BuildScene.NextSlot(taken, 2, 1));
+            for (var i = 0; i < taken.Length; i++) taken[i] = true;
+            Assert.AreEqual(-1, BuildScene.NextSlot(taken, 2, 0));
+        }
+
+        // 0 apart, 1 together, a smooth press once per period.
+        static float Pulse(float t, float perSecond) => Mathf.Pow(Mathf.Sin(Mathf.PI * t * perSecond), 2f);
+
+        static Vector2 Clap(float t, float side) => Vector2.Lerp(new Vector2(9f * side, -18f), new Vector2(0.8f * side, -4f), Pulse(t, 1f));
+
+        List<ClapReader.Event> Read(Func<float, Vector2> left, Func<float, Vector2> right, float seconds, int seed, float jitter = 0.4f)
+        {
+            var reader = new ClapReader();
+            var events = new List<ClapReader.Event>();
+            KidsPoses.Run(left, right, seconds, seed, (pose, t) =>
+            {
+                var e = reader.Update(pose, t, settings);
+                if (e != ClapReader.Event.None) events.Add(e);
+            }, jitter);
+            return events;
+        }
+    }
+
     public class CallReaderTests
     {
         CallReader.Settings settings;

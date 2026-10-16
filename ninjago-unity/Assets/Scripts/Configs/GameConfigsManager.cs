@@ -39,6 +39,8 @@ namespace Nex
         [SerializeField] GuardConfig guardConfig = null!;
         [Header("Ninjago Call Tuning")]
         [SerializeField] CallConfig callConfig = null!;
+        [Header("Ninjago Build Tuning")]
+        [SerializeField] BuildConfig buildConfig = null!;
         public string MainScene => mainScene;
         public string ARGameScene => arGameScene;
         public string NonARGameScene => nonARGameScene;
@@ -56,6 +58,7 @@ namespace Nex
         public OnePunchConfig OnePunchConfig => onePunchConfig;
         public GuardConfig GuardConfig => guardConfig;
         public CallConfig CallConfig => callConfig;
+        public BuildConfig BuildConfig => buildConfig;
 
         public GameModeType SelectedMode { get; set; }
 

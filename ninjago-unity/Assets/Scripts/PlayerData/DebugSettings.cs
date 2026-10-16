@@ -277,6 +277,20 @@ namespace Nex
         [DebugOrder(-794), Description("Call: Calm Hand Speed (in/s)"), NumericSteps(Steps = 1, Min = 2, Max = 80), ES3NonSerializable]
         public float CallCalmSpeed { get => Call.CalmHandSpeed; set => Call.CalmHandSpeed = value; }
 
+        // Build: the config asset is edited live, like the rows below.
+        [DebugOrder(-900), Description("Build: Hands Together (shoulder widths)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 1), ES3NonSerializable]
+        public float BuildTogether { get => Build.TogetherRatio; set => Build.TogetherRatio = value; }
+        [DebugOrder(-899), Description("Build: Hands Apart (shoulder widths)"), NumericSteps(Steps = 0.05, Min = 0.3, Max = 2), ES3NonSerializable]
+        public float BuildApart { get => Build.ApartRatio; set => Build.ApartRatio = value; }
+        [DebugOrder(-898), Description("Build: Near Clap (shoulder widths)"), NumericSteps(Steps = 0.05, Min = 0.2, Max = 1.5), ES3NonSerializable]
+        public float BuildNear { get => Build.NearRatio; set => Build.NearRatio = value; }
+        [DebugOrder(-897), Description("Build: Shortest Gap Between Claps (s)"), NumericSteps(Steps = 0.05, Min = 0, Max = 1), ES3NonSerializable]
+        public float BuildMinClap { get => Build.MinClapSeconds; set => Build.MinClapSeconds = value; }
+        [DebugOrder(-896), Description("Build: Bridge Rows (next run)"), NumericSteps(IntSteps = 1, IntMin = 2, IntMax = 30), ES3NonSerializable]
+        public int BuildRows { get => Build.Rows; set => Build.Rows = value; }
+        [DebugOrder(-895), Description("Build: Time Limit (s)"), NumericSteps(Steps = 5, Min = 20, Max = 300), ES3NonSerializable]
+        public float BuildTimeLimit { get => Build.TimeLimitSeconds; set => Build.TimeLimitSeconds = value; }
+
         // Crouch Run: the config asset is edited live, like the rows below.
         [DebugOrder(-400), Description("Crouch: Crouch Threshold (in below standing)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
         public float CrouchThreshold { get => CrouchRun.CrouchDropInches; set => CrouchRun.CrouchDropInches = value; }
@@ -390,6 +404,7 @@ namespace Nex
         static OnePunchConfig OnePunch => GameConfigsManager.Instance.OnePunchConfig;
         static GuardConfig Guard => GameConfigsManager.Instance.GuardConfig;
         static CallConfig Call => GameConfigsManager.Instance.CallConfig;
+        static BuildConfig Build => GameConfigsManager.Instance.BuildConfig;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

@@ -93,6 +93,9 @@ namespace Nex
             WeaponSlash = 740,
             WeaponSpin = 741,
             WeaponThrow = 742,
+            Punch = 750,
+            FlyAway = 751,
+            Pin = 752,
         }
 
         [SerializeField] AudioSource audioSource = null!;

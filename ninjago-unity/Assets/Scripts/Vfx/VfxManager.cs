@@ -65,6 +65,10 @@ namespace Nex
             NunchuckSpin = 161,
             ShurikenHit = 162,
             MonsterBreak = 163,
+            PunchImpact = 170,
+            BrickTrail = 171,
+            BrickBurst = 172,
+            PinSlam = 173,
         }
 
         #region Pool

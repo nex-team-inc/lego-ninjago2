@@ -27,6 +27,7 @@ namespace Nex
             RobotMecha = 44,
             CrouchRun = 45,
             ThreeWeapons = 46,
+            OnePunch = 47,
         }
 
         public enum StingerType

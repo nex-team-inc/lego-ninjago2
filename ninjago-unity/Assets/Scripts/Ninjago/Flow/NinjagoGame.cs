@@ -36,6 +36,8 @@ namespace Nex.Ninjago
         protected virtual HandCursorTracker? SetupCursors => null;
         /// <summary>Robot arms the setup view has every player hold before gameplay; null for games without them.</summary>
         protected virtual RobotArmsTracker? SetupRobotArms => null;
+        /// <summary>True when setup must also see and store each player's shoulders, wrists and hips.</summary>
+        protected virtual bool SetupStoresRestJoints => false;
 
         public override int NumOfPlayers => Mathf.Clamp(PlayerDataManager.Instance.PlayerPreference.numPlayers, 1, SimulatedBody.MaxPlayers);
 
@@ -68,7 +70,7 @@ namespace Nex.Ninjago
             while (true)
             {
                 var setupView = Instantiate(setupViewPrefab);
-                setupView.Initialize(bodies, Detection, playersConfig, SetupCursors, SetupRobotArms);
+                setupView.Initialize(bodies, Detection, playersConfig, SetupCursors, SetupRobotArms, SetupStoresRestJoints);
                 if (firstRound)
                 {
                     await Views.PushView(setupView);

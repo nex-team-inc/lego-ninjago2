@@ -24,6 +24,8 @@ namespace Nex.Ninjago
         public Vector2? RestingKneeDrops { get; private set; }
         /// <summary>Shoulders, head and hands against the chest at setup (typical proportions where setup never saw them).</summary>
         public BodyShape Shape { get; private set; } = BodyShape.Typical;
+        /// <summary>Shoulders, wrists and hips against the chest at setup, for games whose setup stores them (typical proportions otherwise).</summary>
+        public RestJoints Rest { get; private set; } = RestJoints.Typical;
         public bool IsCalibrated { get; private set; }
         /// <summary>Frame heights per inch for this player, averaged by the engine; 0 before the first detection.</summary>
         public float RawPpi => engine.RawPpi;
@@ -45,9 +47,15 @@ namespace Nex.Ninjago
             IsCalibrated = true;
         }
 
+        public void SetRestJoints(RestJoints joints)
+        {
+            Rest = joints;
+        }
+
         public void ClearOrigin()
         {
             IsCalibrated = false;
+            Rest = RestJoints.Typical;
         }
 
         #endregion
@@ -186,10 +194,77 @@ namespace Nex.Ninjago
             return true;
         }
 
+        /// <summary>This frame's shoulders, wrists and hip center against the chest; false while any of them or the chest is hidden.</summary>
+        public bool TrySampleRestJoints(out RestJoints joints)
+        {
+            joints = default;
+            if (!TryGetArmInches(true, out var leftShoulder, out var rightShoulder, out var leftWrist) ||
+                !TryGetArmInches(false, out _, out _, out var rightWrist) || !TryGetHipCenter(out var hips) || !TryGetChest(out var chest))
+            {
+                return false;
+            }
+
+            joints = new RestJoints(leftShoulder, rightShoulder, leftWrist, rightWrist, (hips - chest) / engine.RawPpi);
+            return true;
+        }
+
+        /// <summary>
+        /// One arm against the chest in body inches: that side's shoulder, the other shoulder and that side's wrist; false
+        /// while any of them or the chest is hidden.
+        /// </summary>
+        public bool TryGetArmInches(bool left, out Vector2 shoulder, out Vector2 otherShoulder, out Vector2 wrist)
+        {
+            shoulder = otherShoulder = wrist = default;
+            var pose = Pose;
+            if (pose == null) return false;
+            var chest = pose.Chest();
+            var shoulderNode = left ? pose.LeftShoulder() : pose.RightShoulder();
+            var otherNode = left ? pose.RightShoulder() : pose.LeftShoulder();
+            var wristNode = left ? pose.LeftWrist() : pose.RightWrist();
+            if (!chest.isDetected || !shoulderNode.isDetected || !otherNode.isDetected || !wristNode.isDetected) return false;
+            var origin = chest.ToVector2();
+            shoulder = (shoulderNode.ToVector2() - origin) / engine.RawPpi;
+            otherShoulder = (otherNode.ToVector2() - origin) / engine.RawPpi;
+            wrist = (wristNode.ToVector2() - origin) / engine.RawPpi;
+            return true;
+        }
+
+        /// <summary>
+        /// Hip center against the calibrated chest origin in body inches; false while either hip is hidden. The simulated
+        /// body sways with the lean keys and shakes its hips while its storm key is held.
+        /// </summary>
+        public bool TryGetHipInches(out Vector2 hips)
+        {
+            if (SimulatedBody.IsEnabled)
+            {
+                var shake = SimulatedBody.IsStorming(PlayerIndex) ? 3f * Mathf.Sin(2f * Mathf.PI * 2.5f * Time.time) : 0f;
+                hips = SimulatedBody.GetLeanInches(PlayerIndex) + new Vector2(shake, Rest.hips.y);
+                return true;
+            }
+
+            hips = default;
+            if (!IsCalibrated || !TryGetHipCenter(out var center)) return false;
+            hips = (center - Origin) / engine.RawPpi;
+            return true;
+        }
+
         /// <summary>Camera timestamp (seconds) of the body detection behind the current node values.</summary>
         public double BodyFrameTime => engine.LastBodyPoseDetectionResult.original?.frameTime ?? 0d;
 
         BodyPose? Pose => engine.RawPpi > 0f ? engine.LastBodyPoseDetectionResult.processed?.GetPlayerPose(PlayerIndex)?.bodyPose : null;
+
+        // Midpoint of both hips in aspect-normalized space.
+        bool TryGetHipCenter(out Vector2 center)
+        {
+            center = default;
+            var pose = Pose;
+            if (pose == null) return false;
+            var leftHip = pose.LeftHip();
+            var rightHip = pose.RightHip();
+            if (!leftHip.isDetected || !rightHip.isDetected) return false;
+            center = (leftHip.ToVector2() + rightHip.ToVector2()) * 0.5f;
+            return true;
+        }
 
         static bool TryGetHead(BodyPose pose, out Vector2 head)
         {

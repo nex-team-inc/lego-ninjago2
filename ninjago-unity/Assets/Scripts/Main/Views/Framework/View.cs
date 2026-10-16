@@ -59,6 +59,7 @@ namespace Nex
             MechaFight,
             CrouchRun,
             ThreeWeapons,
+            OnePunch,
         }
 
         /// <summary>

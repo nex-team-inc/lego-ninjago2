@@ -50,5 +50,14 @@ namespace Nex.Ninjago
         public int threeWeaponsRuns;
         // Fastest full gauntlet in seconds; -1 until the first clear.
         public float threeWeaponsBestSeconds = -1f;
+
+        public int onePunchRuns;
+        // Most waves cleared in one run, 0..5.
+        public int onePunchBestWaves;
+        // Punch tries over every run, by how they were read.
+        public int onePunchExtensionTries;
+        public int onePunchTowardCameraTries;
+        public int onePunchSideSlashTries;
+        public int onePunchNothingTries;
     }
 }

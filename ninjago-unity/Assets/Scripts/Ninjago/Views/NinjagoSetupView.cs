@@ -11,12 +11,16 @@ namespace Nex.Ninjago
 {
     /// <summary>
     /// Camera setup before every mini-game: every player stands in frame and holds still, and that player's body
-    /// origin (chest, and resting knees for kicks) is stored. Games with hand cursors then confirm each player's hands
-    /// drive a cursor; Robot Mecha has each player hold the L with both arms instead. In two-player mode a player who
-    /// never appears is dropped after the solo-fallback wait.
+    /// origin (chest, and resting knees for kicks) is stored; One Punch also stores the shoulders, wrists and hips and
+    /// waits until they are seen. Games with hand cursors then confirm each player's hands drive a cursor; Robot Mecha
+    /// has each player hold the L with both arms instead. In two-player mode a player who never appears is dropped
+    /// after the solo-fallback wait.
     /// </summary>
     public class NinjagoSetupView : SimpleCanvasView
     {
+        // Frames of shoulders, wrists and hips the hold needs before it may store them.
+        const int minRestJointSamples = 5;
+
         [Header("Camera Previews Prefab")]
         [Tooltip("Instantiated as its own root: its canvas is a screen-space overlay and does not size as a nested canvas.")]
         [SerializeField] PreviewsManager previewsManagerPrefab = null!;
@@ -36,6 +40,9 @@ namespace Nex.Ninjago
         [SerializeField] LocalizedString readyPrompt = new();
         [Header("Prompt: Starting Solo")]
         [SerializeField] LocalizedString soloPrompt = new();
+        [Header("Prompt: Show Hands And Hips")]
+        [Tooltip("Games that store the rest joints: shown while a holding player's wrists or hips are out of view.")]
+        [SerializeField] LocalizedString jointsPrompt = new();
 
         struct Hold
         {
@@ -48,6 +55,8 @@ namespace Nex.Ninjago
             public int kneeDropCount;
             public BodyShape shapeSum;
             public int shapeCount;
+            public RestJoints restSum;
+            public int restCount;
         }
 
         IReadOnlyList<PlayerBody> bodies = null!;
@@ -58,6 +67,8 @@ namespace Nex.Ninjago
         NinjagoPlayersConfig config = null!;
         bool[] inGoodPosition = null!;
         Hold[] holds = null!;
+        bool storeRestJoints;
+        bool[] missingJoints = null!;
         LocalizedString? shownPrompt;
         bool quitRequested;
 
@@ -93,16 +104,19 @@ namespace Nex.Ninjago
 
         /// <param name="aCursors">The game's hand cursors, or null for games without them (no hand check).</param>
         /// <param name="aRobotArms">Robot Mecha's arms tracker, or null for the other games (no robot arms hold).</param>
+        /// <param name="aStoreRestJoints">True when the hold must also see and store each player's shoulders, wrists and hips.</param>
         public void Initialize(IReadOnlyList<PlayerBody> aBodies, DetectionManager aDetection, NinjagoPlayersConfig aConfig, HandCursorTracker? aCursors,
-            RobotArmsTracker? aRobotArms)
+            RobotArmsTracker? aRobotArms, bool aStoreRestJoints)
         {
             bodies = aBodies;
             detection = aDetection;
             config = aConfig;
             cursors = aCursors;
             robotArms = aRobotArms;
+            storeRestJoints = aStoreRestJoints;
             inGoodPosition = new bool[bodies.Count];
             holds = new Hold[bodies.Count];
+            missingJoints = new bool[bodies.Count];
             previewsManager = Instantiate(previewsManagerPrefab);
             for (var i = 0; i < playerStatuses.Length; i++)
             {
@@ -175,6 +189,7 @@ namespace Nex.Ninjago
                 var now = Time.unscaledTime;
                 var readyCount = 0;
                 var anyHolding = false;
+                var anyMissingJoints = false;
                 for (var i = 0; i < bodies.Count; i++)
                 {
                     if (!bodies[i].IsCalibrated && UpdateHold(i, now))
@@ -187,10 +202,11 @@ namespace Nex.Ninjago
                     if (bodies[i].IsCalibrated) readyCount++;
                     else if (bodies[i].TryGetChest(out _)) missingSeenTime = now;
                     anyHolding |= holds[i].active;
+                    anyMissingJoints |= missingJoints[i];
                 }
 
                 if (readyCount == bodies.Count || SoloTimeUp(now, firstReadyTime, missingSeenTime)) return CollectCalibrated();
-                ShowPrompt(anyHolding ? holdPrompt : standPrompt);
+                ShowPrompt(anyMissingJoints ? jointsPrompt : anyHolding ? holdPrompt : standPrompt);
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
 
@@ -202,6 +218,7 @@ namespace Nex.Ninjago
         {
             var body = bodies[playerIndex];
             ref var hold = ref holds[playerIndex];
+            missingJoints[playerIndex] = false;
             if (SimulatedBody.IsEnabled)
             {
                 body.SetOrigin(body.TryGetChest(out var simulatedChest) ? simulatedChest : Vector2.zero, null, null);
@@ -235,11 +252,23 @@ namespace Nex.Ninjago
                 hold.shapeCount++;
             }
 
+            if (storeRestJoints && body.TrySampleRestJoints(out var joints))
+            {
+                hold.restSum = hold.restSum.Plus(joints);
+                hold.restCount++;
+            }
+
             playerStatuses[playerIndex].Show(SetupPlayerStatus.State.Holding);
             if (now - hold.startTime < config.CalibrationSeconds) return false;
+            if (storeRestJoints && hold.restCount < minRestJointSamples)
+            {
+                missingJoints[playerIndex] = true;
+                return false;
+            }
 
             body.SetOrigin(hold.sum / hold.count, hold.kneeDropCount > 0 ? hold.kneeDropSum / hold.kneeDropCount : null,
                 hold.shapeCount > 0 ? hold.shapeSum.Scaled(1f / hold.shapeCount) : null);
+            if (storeRestJoints) body.SetRestJoints(hold.restSum.Scaled(1f / hold.restCount));
             hold.active = false;
             playerStatuses[playerIndex].Show(SetupPlayerStatus.State.Ready);
             return true;

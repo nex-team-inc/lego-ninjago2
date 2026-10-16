@@ -134,6 +134,7 @@ namespace Nex.Ninjago.Editor
             SetLocalized(view, "holdPrompt", "ninjago.setup.hold");
             SetLocalized(view, "readyPrompt", "ninjago.setup.ready");
             SetLocalized(view, "soloPrompt", "ninjago.setup.solo");
+            SetLocalized(view, "jointsPrompt", "ninjago.setup.joints");
             Set(view, "keyResponder", BackProxy(ui));
         }
 

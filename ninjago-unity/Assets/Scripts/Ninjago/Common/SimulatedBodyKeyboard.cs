@@ -7,7 +7,8 @@ namespace Nex.Ninjago
 {
     /// <summary>
     /// Keyboard and mouse driver for SimulatedBody. Writes only on input changes so CLI-set values persist: the mouse
-    /// moves player 1's right-hand cursor, I/J/K/L move player 2's, and the storm keys also pulse that player's knee.
+    /// moves player 1's right-hand cursor, I/J/K/L move player 2's, the storm keys also pulse that player's knee, and
+    /// Q/E (player 1) and U/O (player 2) punch with the left and right hand.
     /// </summary>
     public class SimulatedBodyKeyboard : MonoBehaviour
     {
@@ -27,6 +28,12 @@ namespace Nex.Ninjago
             new[] { KeyCode.J, KeyCode.L, KeyCode.I, KeyCode.K, KeyCode.RightShift },
         };
 
+        static readonly KeyCode[][] punchKeysByPlayer =
+        {
+            new[] { KeyCode.Q, KeyCode.E },
+            new[] { KeyCode.U, KeyCode.O },
+        };
+
         Vector3 lastMousePosition;
 
         void Update()
@@ -36,6 +43,10 @@ namespace Nex.Ninjago
             {
                 var keys = keysByPlayer[playerIndex];
                 if (DebugInput.GetKeyDown(keys[4])) SimulatedBody.PulseKnee(playerIndex);
+                for (var hand = 0; hand < 2; hand++)
+                {
+                    if (DebugInput.GetKeyDown(punchKeysByPlayer[playerIndex][hand])) SimulatedBody.PulsePunch(playerIndex, hand);
+                }
                 if (!AnyKeyChanged(keys)) continue;
                 var x = (DebugInput.GetKey(keys[1]) ? leanInches : 0f) - (DebugInput.GetKey(keys[0]) ? leanInches : 0f);
                 var y = (DebugInput.GetKey(keys[2]) ? riseInches : 0f) - (DebugInput.GetKey(keys[3]) ? riseInches : 0f);

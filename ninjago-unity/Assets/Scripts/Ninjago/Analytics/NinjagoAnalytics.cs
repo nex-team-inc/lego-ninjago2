@@ -135,6 +135,7 @@ namespace Nex.Ninjago
             GameModeType.RobotMecha => "robot_mecha",
             GameModeType.CrouchRun => "crouch_run",
             GameModeType.ThreeWeapons => "three_weapons",
+            GameModeType.OnePunch => "one_punch",
             _ => mode.ToString(),
         };
 

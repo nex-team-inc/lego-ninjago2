@@ -100,7 +100,7 @@ namespace Nex
 
         // Ninjago playtest rows. The properties edit the config assets directly (session only, never saved with these
         // settings); keep good values by copying them into the assets under Assets/Configs/Ninjago.
-        [DebugOrder(-100), Description("Ninja: Simulated Body (keys A/D W/S Space, J/L I/K RightShift, mouse)")]
+        [DebugOrder(-100), Description("Ninja: Simulated Body (keys A/D W/S Space, J/L I/K RightShift, mouse, punch Q/E U/O)")]
         public bool ninjaSimulatedBody;
 
         // Hand cursor games (Stone Kick, Earth Seal): same rule as the rows above, the config assets are edited live.
@@ -221,6 +221,32 @@ namespace Nex
         [DebugOrder(-493), Description("Weapons: Card Hold (s)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 3), ES3NonSerializable]
         public float WeaponsHold { get => ThreeWeapons.HoldSeconds; set => ThreeWeapons.HoldSeconds = value; }
 
+        // One Punch: the config asset is edited live, like the rows below.
+        [DebugOrder(-600), Description("Punch: Extension Speed (in/s)"), NumericSteps(Steps = 1, Min = 5, Max = 200), ES3NonSerializable]
+        public float PunchExtensionSpeed { get => OnePunch.ExtensionSpeed; set => OnePunch.ExtensionSpeed = value; }
+        [DebugOrder(-599), Description("Punch: Chest-Front Window (in above/below chest)"), NumericSteps(Steps = 0.5, Min = 2, Max = 20), ES3NonSerializable]
+        public float PunchChestFrontWindow { get => OnePunch.ChestFrontWindow; set => OnePunch.ChestFrontWindow = value; }
+        [DebugOrder(-598), Description("Punch: Hand-Scale Speed (growth per s)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 5), ES3NonSerializable]
+        public float PunchHandScaleSpeed { get => OnePunch.HandScaleSpeed; set => OnePunch.HandScaleSpeed = value; }
+        [DebugOrder(-597), Description("Punch: Side-Slash Rejection (length change / side travel)"), NumericSteps(Steps = 0.05, Min = 0, Max = 1), ES3NonSerializable]
+        public float PunchSideSlashRatio { get => OnePunch.SideSlashLengthRatio; set => OnePunch.SideSlashLengthRatio = value; }
+        [DebugOrder(-596), Description("Punch: Punch Cooldown (s)"), NumericSteps(Steps = 0.05, Min = 0, Max = 1.5), ES3NonSerializable]
+        public float PunchCooldown { get => OnePunch.PunchCooldownSeconds; set => OnePunch.PunchCooldownSeconds = value; }
+        [DebugOrder(-595), Description("Punch: Monster Speed (m/s)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 10), ES3NonSerializable]
+        public float PunchMonsterSpeed { get => OnePunch.MonsterSpeed; set => OnePunch.MonsterSpeed = value; }
+        [DebugOrder(-594), Description("Punch: Grab Range (m)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 5), ES3NonSerializable]
+        public float PunchGrabRange { get => OnePunch.GrabRange; set => OnePunch.GrabRange = value; }
+        [DebugOrder(-593), Description("Punch: Wiggle Path Length (in)"), NumericSteps(Steps = 0.5, Min = 1, Max = 40), ES3NonSerializable]
+        public float PunchWigglePath { get => OnePunch.WigglePathInches; set => OnePunch.WigglePathInches = value; }
+        [DebugOrder(-592), Description("Punch: Wiggle Radius (in)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
+        public float PunchWiggleRadius { get => OnePunch.WiggleRadiusInches; set => OnePunch.WiggleRadiusInches = value; }
+        [DebugOrder(-591), Description("Punch: Wiggle Window (s)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 1.5), ES3NonSerializable]
+        public float PunchWiggleWindow { get => OnePunch.WiggleWindowSeconds; set => OnePunch.WiggleWindowSeconds = value; }
+        [DebugOrder(-590), Description("Punch: Health Drain (per s)"), NumericSteps(Steps = 0.1, Min = 0.1, Max = 5), ES3NonSerializable]
+        public float PunchDrain { get => OnePunch.DrainPerSecond; set => OnePunch.DrainPerSecond = value; }
+        [DebugOrder(-589), Description("Punch: Starting Health"), NumericSteps(Steps = 0.5, Min = 1, Max = 30), ES3NonSerializable]
+        public float PunchStartingHealth { get => OnePunch.StartingHealth; set => OnePunch.StartingHealth = value; }
+
         // Crouch Run: the config asset is edited live, like the rows below.
         [DebugOrder(-400), Description("Crouch: Crouch Threshold (in below standing)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
         public float CrouchThreshold { get => CrouchRun.CrouchDropInches; set => CrouchRun.CrouchDropInches = value; }
@@ -331,6 +357,7 @@ namespace Nex
         static MechaFightConfig MechaFight => GameConfigsManager.Instance.MechaFightConfig;
         static CrouchRunConfig CrouchRun => GameConfigsManager.Instance.CrouchRunConfig;
         static ThreeWeaponsConfig ThreeWeapons => GameConfigsManager.Instance.ThreeWeaponsConfig;
+        static OnePunchConfig OnePunch => GameConfigsManager.Instance.OnePunchConfig;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

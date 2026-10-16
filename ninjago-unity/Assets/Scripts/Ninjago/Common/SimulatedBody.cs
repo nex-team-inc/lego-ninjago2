@@ -16,6 +16,7 @@ namespace Nex.Ninjago
         static readonly bool[] storming = new bool[MaxPlayers];
         static readonly Vector2?[] handScreenPositions = new Vector2?[MaxPlayers * 2];
         static readonly int[] kneePulses = new int[MaxPlayers];
+        static readonly int[] punchPulses = new int[MaxPlayers * 2];
 
         public static bool IsEnabled
         {
@@ -65,6 +66,12 @@ namespace Nex.Ninjago
 
         /// <summary>Knee pulses since start; readers compare against the count they last saw.</summary>
         public static int GetKneePulses(int playerIndex) => kneePulses[playerIndex];
+
+        /// <summary>One punch with that player's hand (0 = left, 1 = right).</summary>
+        public static void PulsePunch(int playerIndex, int hand) => punchPulses[playerIndex * 2 + hand]++;
+
+        /// <summary>Punches since start; readers compare against the count they last saw.</summary>
+        public static int GetPunchPulses(int playerIndex, int hand) => punchPulses[playerIndex * 2 + hand];
 
         #endregion
     }

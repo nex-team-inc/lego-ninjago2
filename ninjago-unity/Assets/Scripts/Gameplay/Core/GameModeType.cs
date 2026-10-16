@@ -11,5 +11,6 @@ namespace Nex
         RobotMecha = 6,
         CrouchRun = 7,
         ThreeWeapons = 8,
+        OnePunch = 9,
     }
 }

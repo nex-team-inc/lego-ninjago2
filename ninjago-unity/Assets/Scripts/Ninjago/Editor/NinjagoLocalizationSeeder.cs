@@ -175,6 +175,22 @@ namespace Nex.Ninjago.Editor
             ("ninjago.result.call_calm_finish", "A child could finish without wild movement: yes", false),
             ("ninjago.result.call_not_calm_finish", "A child could finish without wild movement: not this time", false),
             ("ninjago.result.call_best", "Fewest goblin piles {piles}", true),
+            ("ninjago.mode.build", "Build", false),
+            ("ninjago.build.status", "Bricks {placed}/{total}    {seconds} s", true),
+            ("ninjago.build.intro", "Build a bridge!", false),
+            ("ninjago.build.hint", "Clap your hands to click a brick on!", false),
+            ("ninjago.build.open", "The way is open!", false),
+            ("ninjago.build.time_up", "Almost there! Try again!", false),
+            ("ninjago.build.count", "Bricks {count}", true),
+            ("ninjago.build.counted", "Click!", false),
+            ("ninjago.build.near", "Closer!", false),
+            ("ninjago.result.build_open", "The way is open!", false),
+            ("ninjago.result.build_shut", "Almost there!", false),
+            ("ninjago.result.build_claps", "P{player}    Claps counted {counted}    Near claps not counted {near}", true),
+            ("ninjago.result.build_open_line", "Bricks {placed}/{total}    Time {time} s    Way open: yes", true),
+            ("ninjago.result.build_shut_line", "Bricks {placed}/{total}    Time {time} s    Way open: not yet", true),
+            ("ninjago.result.build_reading", "The reading kept up with {percent}% of clap tries    {perMinute} bricks per minute", true),
+            ("ninjago.result.build_best", "Fastest bridge {time} s", true),
         };
 
         #region Entry Point

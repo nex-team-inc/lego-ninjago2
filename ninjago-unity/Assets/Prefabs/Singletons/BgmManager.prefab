@@ -78,6 +78,12 @@ MonoBehaviour:
       value: {fileID: 8300000, guid: 35db00ede8f9c420cadfcd8bcd92052d, type: 3}
     - key: 47
       value: {fileID: 8300000, guid: 22aa08bae858d4e39b9ee1b250a943a9, type: 3}
+    - key: 48
+      value: {fileID: 8300000, guid: 4e01bb534b42b4f1ebd081b41d2d6f86, type: 3}
+    - key: 49
+      value: {fileID: 8300000, guid: 206f29c32cd894fe98af8fe98221cb64, type: 3}
+    - key: 50
+      value: {fileID: 8300000, guid: 024df251436bc47cbb1cb4e02761c34b, type: 3}
   secondarySource: {fileID: 0}
   stingerSource: {fileID: 0}
   stingerDict:

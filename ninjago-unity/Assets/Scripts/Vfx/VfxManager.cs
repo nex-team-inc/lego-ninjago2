@@ -75,7 +75,6 @@ namespace Nex
             CallBeam = 190,
             SlamShockwave = 191,
             BrickSnapPop = 200,
-            Confetti = 201,
         }
 
         #region Pool

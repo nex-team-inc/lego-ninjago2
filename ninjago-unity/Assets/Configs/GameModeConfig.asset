@@ -236,13 +236,13 @@ MonoBehaviour:
           m_TableReference:
             m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
           m_TableEntryReference:
-            m_KeyId: 198855069824704512
+            m_KeyId: 198912451598606336
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
         gamePrefab:
-          m_AssetGUID: c5c38e015e13b4fd194654c90d275eb2
+          m_AssetGUID: 90351f61fd171460389b5fd7d94bbc8d
           m_SubObjectName: 
           m_SubObjectType: 
           m_SubObjectGUID: 

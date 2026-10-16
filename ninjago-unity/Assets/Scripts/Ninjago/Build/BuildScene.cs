@@ -131,7 +131,7 @@ namespace Nex.Ninjago
             }
 
             gate.Open();
-            VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.Confetti, gate.transform.position + Vector3.up * 2.5f);
+            VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.GateCleared, gate.transform.position + Vector3.up * 2.5f);
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.WayOpen);
             hud.ShowBanner(openBanner, float.PositiveInfinity);
             await WaitAsync(config.CelebrateSeconds, cancellationToken);

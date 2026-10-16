@@ -1635,6 +1635,70 @@ MonoBehaviour:
     m_Key: ninjago.result.call_best
     m_Metadata:
       m_Items: []
+  - m_Id: 198912451598606336
+    m_Key: ninjago.mode.build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994944
+    m_Key: ninjago.build.status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994945
+    m_Key: ninjago.build.intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994946
+    m_Key: ninjago.build.hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994947
+    m_Key: ninjago.build.open
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994948
+    m_Key: ninjago.build.time_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994949
+    m_Key: ninjago.build.count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994950
+    m_Key: ninjago.build.counted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994951
+    m_Key: ninjago.build.near
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994952
+    m_Key: ninjago.result.build_open
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994953
+    m_Key: ninjago.result.build_shut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994954
+    m_Key: ninjago.result.build_claps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994955
+    m_Key: ninjago.result.build_open_line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994956
+    m_Key: ninjago.result.build_shut_line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994957
+    m_Key: ninjago.result.build_reading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994958
+    m_Key: ninjago.result.build_best
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

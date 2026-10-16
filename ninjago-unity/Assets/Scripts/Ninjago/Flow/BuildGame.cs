@@ -79,7 +79,7 @@ namespace Nex.Ninjago
             lines.Add(new ResultLine.Data(scene.IsOpen ? openLine : shutLine, Color.white, ("placed", scene.Placed), ("total", scene.Total), ("time", time)));
             var percent = counted + near > 0 ? Mathf.RoundToInt(100f * counted / (counted + near)) : 0;
             var perMinute = scene.Elapsed > 0f ? Mathf.RoundToInt(counted * 60f / scene.Elapsed) : 0;
-            lines.Add(new ResultLine.Data(readingLine, Color.white, ("percent", percent), ("perMinute", perMinute)));
+            if (counted + near > 0) lines.Add(new ResultLine.Data(readingLine, Color.white, ("percent", percent), ("perMinute", perMinute)));
             details["placed"] = scene.Placed;
             details["total"] = scene.Total;
             details["elapsed_s"] = time;

@@ -372,6 +372,43 @@ MonoBehaviour:
       value:
         clips:
         - {fileID: 8300000, guid: 33b2211429f544d599f4edec8a9646da, type: 3}
+    - key: 760
+      value:
+        clips:
+        - {fileID: 8300000, guid: 82fc790b77b9042068dd0ff267ceae96, type: 3}
+        - {fileID: 8300000, guid: 4d2eefde85d5143ffa2056e0fbef3008, type: 3}
+    - key: 761
+      value:
+        clips:
+        - {fileID: 8300000, guid: ad4c6a14b77dd4846a44e9c288e42982, type: 3}
+        - {fileID: 8300000, guid: 6f1a7f090aa7147ecb7cc1614d0c8b8b, type: 3}
+    - key: 762
+      value:
+        clips:
+        - {fileID: 8300000, guid: 6944964baa70b42b7894425b2b069825, type: 3}
+    - key: 770
+      value:
+        clips:
+        - {fileID: 8300000, guid: e1797e136687149f581750a1c3851e14, type: 3}
+    - key: 771
+      value:
+        clips:
+        - {fileID: 8300000, guid: d580c8b5474434fa2a3e7c7859e4f91a, type: 3}
+        - {fileID: 8300000, guid: 9657ce755675d4155a7147919eace3ed, type: 3}
+    - key: 772
+      value:
+        clips:
+        - {fileID: 8300000, guid: d1866f9d68f5d48399f4cd17052a6bd7, type: 3}
+    - key: 780
+      value:
+        clips:
+        - {fileID: 8300000, guid: c56def9466f4e437685f2487e5454ea5, type: 3}
+        - {fileID: 8300000, guid: 6b1335b0536114809aa9c9e0cc68c7b0, type: 3}
+        - {fileID: 8300000, guid: b4eb2533f25f44c73bd4ddd68f53e298, type: 3}
+    - key: 781
+      value:
+        clips:
+        - {fileID: 8300000, guid: 73f43ecfafe584ba5ac40f09b9690a02, type: 3}
 --- !u!82 &3197796902356267032
 AudioSource:
   m_ObjectHideFlags: 0

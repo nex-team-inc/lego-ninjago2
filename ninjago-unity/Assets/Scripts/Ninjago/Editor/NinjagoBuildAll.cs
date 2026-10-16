@@ -34,6 +34,9 @@ namespace Nex.Ninjago.Editor
             CrouchRunBuilder.Build();
             ThreeWeaponsBuilder.Build();
             OnePunchBuilder.Build();
+            GuardBuilder.Build();
+            CallBuilder.Build();
+            BuildBuilder.Build();
             AssetDatabase.SaveAssets();
             return $"[NinjagoBuildAll] done ({localization})";
         }

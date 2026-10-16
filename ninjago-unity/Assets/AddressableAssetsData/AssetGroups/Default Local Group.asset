@@ -55,6 +55,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90351f61fd171460389b5fd7d94bbc8d
+    m_Address: BuildGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a8b914fb07f474d7a86c12c5740c7961
     m_Address: CrouchRunGame
     m_ReadOnly: 0

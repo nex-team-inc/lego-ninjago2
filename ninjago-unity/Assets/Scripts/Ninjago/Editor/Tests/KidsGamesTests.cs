@@ -86,9 +86,16 @@ namespace Nex.Ninjago.Editor.Tests
             for (var seed = 0; seed < 20; seed++)
             {
                 // Hands stop 8 in apart (0.57 shoulder widths): closer than near, not together.
-                var events = Read(t => new Vector2(-8f + 4f * Pulse(t, 1f), -4f), t => new Vector2(8f - 4f * Pulse(t, 1f), -4f), 4.3f, seed);
-                Assert.AreEqual(0, events.FindAll(e => e == ClapReader.Event.Clap).Count, $"seed {seed}");
-                Assert.AreEqual(4, events.FindAll(e => e == ClapReader.Event.NearClap).Count, $"seed {seed}");
+                var timed = new List<(ClapReader.Event e, float t)>();
+                var reader = new ClapReader();
+                KidsPoses.Run(t => new Vector2(-8f + 4f * Pulse(t, 1f), -4f), t => new Vector2(8f - 4f * Pulse(t, 1f), -4f), 4.3f, seed, (pose, t) =>
+                {
+                    var e = reader.Update(pose, t, settings);
+                    if (e != ClapReader.Event.None) timed.Add((e, t));
+                });
+                var trace = string.Join(", ", timed.ConvertAll(x => $"{x.e}@{x.t:0.00}"));
+                Assert.AreEqual(0, timed.FindAll(x => x.e == ClapReader.Event.Clap).Count, $"seed {seed}: {trace}");
+                Assert.AreEqual(4, timed.FindAll(x => x.e == ClapReader.Event.NearClap).Count, $"seed {seed}: {trace}");
             }
         }
 

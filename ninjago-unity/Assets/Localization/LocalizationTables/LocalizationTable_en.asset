@@ -1759,6 +1759,78 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 198912451598606336
+    m_Localized: Build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994944
+    m_Localized: Bricks {placed}/{total}    {seconds} s
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198912451606994945
+    m_Localized: Build a bridge!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994946
+    m_Localized: Clap your hands to click a brick on!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994947
+    m_Localized: The way is open!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994948
+    m_Localized: Almost there! Try again!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994949
+    m_Localized: Bricks {count}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198912451606994950
+    m_Localized: Click!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994951
+    m_Localized: Closer!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994952
+    m_Localized: The way is open!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994953
+    m_Localized: Almost there!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198912451606994954
+    m_Localized: P{player}    Claps counted {counted}    Near claps not counted {near}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198912451606994955
+    m_Localized: 'Bricks {placed}/{total}    Time {time} s    Way open: yes'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198912451606994956
+    m_Localized: 'Bricks {placed}/{total}    Time {time} s    Way open: not yet'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198912451606994957
+    m_Localized: The reading kept up with {percent}% of clap tries    {perMinute}
+      bricks per minute
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198912451606994958
+    m_Localized: Fastest bridge {time} s
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1860,3 +1932,10 @@ MonoBehaviour:
         - id: 198909985498849296
         - id: 198909985498849297
         - id: 198909985498849300
+        - id: 198912451606994944
+        - id: 198912451606994949
+        - id: 198912451606994954
+        - id: 198912451606994955
+        - id: 198912451606994956
+        - id: 198912451606994957
+        - id: 198912451606994958

@@ -61,3 +61,4 @@ MonoBehaviour:
   onePunchConfig: {fileID: 11400000, guid: 3c9f45fd0021741a5a5e0df83b4fac31, type: 2}
   guardConfig: {fileID: 11400000, guid: af73a6a7b82db4a9a973b2378799266b, type: 2}
   callConfig: {fileID: 11400000, guid: 3d25e629e581c46baa533d963d2b8d14, type: 2}
+  buildConfig: {fileID: 11400000, guid: 2b3b83c55372e439ab9d35020f813089, type: 2}

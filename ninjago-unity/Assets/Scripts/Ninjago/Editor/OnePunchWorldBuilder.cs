@@ -217,6 +217,7 @@ namespace Nex.Ninjago.Editor
             var rightArm = Limb(body, "RightArm", new Vector3(0.66f, 1.6f, 0f), new Vector3(0.26f, 0.72f, 0.3f), tint);
             tinted.Add(leftArm.GetChild(0).GetComponent<MeshRenderer>());
             tinted.Add(rightArm.GetChild(0).GetComponent<MeshRenderer>());
+            Set(monster, "top", Empty("Top", body, new Vector3(0f, 2.38f, 0f)));
             Set(monster, "body", body);
             Set(monster, "leftLeg", leftLeg);
             Set(monster, "rightLeg", rightLeg);

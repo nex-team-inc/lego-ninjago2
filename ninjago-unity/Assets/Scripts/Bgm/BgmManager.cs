@@ -28,6 +28,9 @@ namespace Nex
             CrouchRun = 45,
             ThreeWeapons = 46,
             OnePunch = 47,
+            Guard = 48,
+            Call = 49,
+            Build = 50,
         }
 
         public enum StingerType

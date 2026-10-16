@@ -12,5 +12,8 @@ namespace Nex
         CrouchRun = 7,
         ThreeWeapons = 8,
         OnePunch = 9,
+        Guard = 10,
+        Call = 11,
+        Build = 12,
     }
 }

@@ -69,6 +69,13 @@ namespace Nex
             BrickTrail = 171,
             BrickBurst = 172,
             PinSlam = 173,
+            ShieldBurst = 180,
+            DizzyStars = 181,
+            Hearts = 182,
+            CallBeam = 190,
+            SlamShockwave = 191,
+            BrickSnapPop = 200,
+            Confetti = 201,
         }
 
         #region Pool

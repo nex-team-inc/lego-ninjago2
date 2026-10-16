@@ -247,6 +247,20 @@ namespace Nex
         [DebugOrder(-589), Description("Punch: Starting Health"), NumericSteps(Steps = 0.5, Min = 1, Max = 30), ES3NonSerializable]
         public float PunchStartingHealth { get => OnePunch.StartingHealth; set => OnePunch.StartingHealth = value; }
 
+        // Guard: the config asset is edited live, like the rows below.
+        [DebugOrder(-700), Description("Guard: Hands Above Shoulders (in)"), NumericSteps(Steps = 0.5, Min = -6, Max = 12), ES3NonSerializable]
+        public float GuardAboveShoulder { get => Guard.MinAboveShoulder; set => Guard.MinAboveShoulder = value; }
+        [DebugOrder(-699), Description("Guard: Hands Past Shoulders (in)"), NumericSteps(Steps = 0.5, Min = 0, Max = 12), ES3NonSerializable]
+        public float GuardOutsideShoulder { get => Guard.MaxOutsideShoulder; set => Guard.MaxOutsideShoulder = value; }
+        [DebugOrder(-698), Description("Guard: Guard Lasts (s)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 5), ES3NonSerializable]
+        public float GuardFresh { get => Guard.FreshSeconds; set => Guard.FreshSeconds = value; }
+        [DebugOrder(-697), Description("Guard: Wind-Up (s)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 4), ES3NonSerializable]
+        public float GuardWindUp { get => Guard.WindUpSeconds; set => Guard.WindUpSeconds = value; }
+        [DebugOrder(-696), Description("Guard: Brick Flight (s)"), NumericSteps(Steps = 0.1, Min = 0.4, Max = 4), ES3NonSerializable]
+        public float GuardFlight { get => Guard.FlightSeconds; set => Guard.FlightSeconds = value; }
+        [DebugOrder(-695), Description("Guard: Throws Per Player"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 30), ES3NonSerializable]
+        public int GuardThrows { get => Guard.ThrowsPerPlayer; set => Guard.ThrowsPerPlayer = value; }
+
         // Crouch Run: the config asset is edited live, like the rows below.
         [DebugOrder(-400), Description("Crouch: Crouch Threshold (in below standing)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
         public float CrouchThreshold { get => CrouchRun.CrouchDropInches; set => CrouchRun.CrouchDropInches = value; }
@@ -358,6 +372,7 @@ namespace Nex
         static CrouchRunConfig CrouchRun => GameConfigsManager.Instance.CrouchRunConfig;
         static ThreeWeaponsConfig ThreeWeapons => GameConfigsManager.Instance.ThreeWeaponsConfig;
         static OnePunchConfig OnePunch => GameConfigsManager.Instance.OnePunchConfig;
+        static GuardConfig Guard => GameConfigsManager.Instance.GuardConfig;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

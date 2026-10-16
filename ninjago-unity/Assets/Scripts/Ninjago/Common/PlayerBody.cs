@@ -194,6 +194,24 @@ namespace Nex.Ninjago
             return true;
         }
 
+        /// <summary>
+        /// This frame's shoulders, wrists and head against the chest; false while the chest, a shoulder or a wrist is
+        /// hidden. A hidden head is placed a typical 9 inches above the shoulders.
+        /// </summary>
+        public bool TrySampleUpperBody(out UpperBody upper)
+        {
+            upper = default;
+            if (!TryGetArmInches(true, out var leftShoulder, out var rightShoulder, out var leftWrist) ||
+                !TryGetArmInches(false, out _, out _, out var rightWrist))
+            {
+                return false;
+            }
+
+            var head = TryGetHeadInches(out var headInches) ? headInches : new Vector2(0f, (leftShoulder.y + rightShoulder.y) * 0.5f + 9f);
+            upper = new UpperBody(leftShoulder, rightShoulder, leftWrist, rightWrist, head);
+            return true;
+        }
+
         /// <summary>This frame's shoulders, wrists and hip center against the chest; false while any of them or the chest is hidden.</summary>
         public bool TrySampleRestJoints(out RestJoints joints)
         {

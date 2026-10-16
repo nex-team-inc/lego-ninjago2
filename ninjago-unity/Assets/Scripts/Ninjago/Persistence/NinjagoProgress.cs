@@ -59,5 +59,17 @@ namespace Nex.Ninjago
         public int onePunchTowardCameraTries;
         public int onePunchSideSlashTries;
         public int onePunchNothingTries;
+
+        public int guardRuns;
+        // Most throws blocked in one run.
+        public int guardBestSaves;
+
+        public int callRuns;
+        // Fewest goblin piles in a finished run; -1 until the first finish.
+        public int callFewestPiles = -1;
+
+        public int buildRuns;
+        // Fastest bridge in seconds; -1 until the way first opens.
+        public float buildBestSeconds = -1f;
     }
 }

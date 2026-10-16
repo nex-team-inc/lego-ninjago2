@@ -96,6 +96,14 @@ namespace Nex
             Punch = 750,
             FlyAway = 751,
             Pin = 752,
+            GuardBlock = 760,
+            Bonk = 761,
+            Cheer = 762,
+            CallSignal = 770,
+            TeammateSlam = 771,
+            GoblinPile = 772,
+            BrickSnap = 780,
+            WayOpen = 781,
         }
 
         [SerializeField] AudioSource audioSource = null!;

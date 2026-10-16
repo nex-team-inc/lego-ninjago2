@@ -60,6 +60,9 @@ namespace Nex
             CrouchRun,
             ThreeWeapons,
             OnePunch,
+            GuardPlay,
+            CallPlay,
+            BuildPlay,
         }
 
         /// <summary>

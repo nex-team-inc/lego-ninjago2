@@ -48,6 +48,9 @@ namespace Nex.Ninjago
         [Header("Trail Offset")]
         [Tooltip("Where the brick trail and the burst play, from the monster's root.")]
         [SerializeField] Vector3 centerOffset = new(0f, 1f, 0f);
+        [Header("Top")]
+        [Tooltip("On top of the head, where the next monster of a pile sits.")]
+        [SerializeField] Transform top = null!;
 
         State state;
         Color color;
@@ -63,6 +66,7 @@ namespace Nex.Ninjago
         float spinDegrees;
         float flightElapsed;
         float flightSeconds;
+        float launchScale = 1f;
         ParticleSystem? trail;
 
         public event Action<Component>? OnRelease;
@@ -73,11 +77,13 @@ namespace Nex.Ninjago
         public int TargetSlot { get; private set; }
         public bool IsWalking => state == State.Walking;
         public Vector3 LocalPosition => transform.localPosition;
+        public Transform Top => top;
 
         #region Public API
 
         /// <param name="aHome">Its parent in street space; it returns there after a pin.</param>
-        public void Spawn(Transform aHome, int number, int targetSlot, Vector3 localPosition, Color aColor)
+        /// <param name="scale">Size against the prefab, e.g. smaller goblins.</param>
+        public void Spawn(Transform aHome, int number, int targetSlot, Vector3 localPosition, Color aColor, float scale = 1f)
         {
             home = aHome;
             Number = number;
@@ -87,7 +93,7 @@ namespace Nex.Ninjago
             cycle = 0f;
             transform.SetParent(home, false);
             transform.SetLocalPositionAndRotation(localPosition, Quaternion.Euler(0f, 180f, 0f));
-            transform.localScale = Vector3.one;
+            transform.localScale = Vector3.one * scale;
             body.localRotation = Quaternion.identity;
             body.localPosition = Vector3.zero;
             SetFrozen(false);
@@ -134,6 +140,7 @@ namespace Nex.Ninjago
         public void Launch(Vector3 aVelocity, float aGravity, float aSpinDegrees, float seconds)
         {
             transform.SetParent(home, true);
+            launchScale = transform.localScale.x;
             state = State.Flying;
             velocity = aVelocity;
             gravity = aGravity;
@@ -174,8 +181,10 @@ namespace Nex.Ninjago
             transform.position = position;
             if (t < 1f) return;
             state = State.Pinning;
-            transform.SetParent(seat, false);
-            transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
+            // World scale kept and facing back up the street, also when the seat is another (smaller) monster's top.
+            transform.SetParent(seat, true);
+            transform.localPosition = Vector3.zero;
+            transform.rotation = home.rotation * Quaternion.Euler(0f, 180f, 0f);
         }
 
         void UpdateFlight()
@@ -185,7 +194,7 @@ namespace Nex.Ninjago
             velocity.y -= gravity * deltaTime;
             transform.localPosition += velocity * deltaTime;
             transform.localRotation = Quaternion.AngleAxis(spinDegrees * deltaTime, spinAxis) * transform.localRotation;
-            transform.localScale = Vector3.one * Mathf.Lerp(1f, flightScale, flightElapsed / flightSeconds);
+            transform.localScale = Vector3.one * (launchScale * Mathf.Lerp(1f, flightScale, flightElapsed / flightSeconds));
             if (trail != null) trail.transform.position = Center;
             if (flightElapsed < flightSeconds) return;
             Burst();

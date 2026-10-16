@@ -224,11 +224,11 @@ namespace Nex
         // One Punch: the config asset is edited live, like the rows below.
         [DebugOrder(-600), Description("Punch: Extension Speed (in/s)"), NumericSteps(Steps = 1, Min = 5, Max = 200), ES3NonSerializable]
         public float PunchExtensionSpeed { get => OnePunch.ExtensionSpeed; set => OnePunch.ExtensionSpeed = value; }
-        [DebugOrder(-599), Description("Punch: Chest-Front Window (in above/below chest)"), NumericSteps(Steps = 0.5, Min = 2, Max = 20), ES3NonSerializable]
+        [DebugOrder(-599), Description("Punch: Chest-Front Window (in)"), NumericSteps(Steps = 0.5, Min = 2, Max = 20), ES3NonSerializable]
         public float PunchChestFrontWindow { get => OnePunch.ChestFrontWindow; set => OnePunch.ChestFrontWindow = value; }
-        [DebugOrder(-598), Description("Punch: Hand-Scale Speed (growth per s)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 5), ES3NonSerializable]
+        [DebugOrder(-598), Description("Punch: Hand-Scale Speed (per s)"), NumericSteps(Steps = 0.05, Min = 0.1, Max = 5), ES3NonSerializable]
         public float PunchHandScaleSpeed { get => OnePunch.HandScaleSpeed; set => OnePunch.HandScaleSpeed = value; }
-        [DebugOrder(-597), Description("Punch: Side-Slash Rejection (length change / side travel)"), NumericSteps(Steps = 0.05, Min = 0, Max = 1), ES3NonSerializable]
+        [DebugOrder(-597), Description("Punch: Side-Slash Rejection (ratio)"), NumericSteps(Steps = 0.05, Min = 0, Max = 1), ES3NonSerializable]
         public float PunchSideSlashRatio { get => OnePunch.SideSlashLengthRatio; set => OnePunch.SideSlashLengthRatio = value; }
         [DebugOrder(-596), Description("Punch: Punch Cooldown (s)"), NumericSteps(Steps = 0.05, Min = 0, Max = 1.5), ES3NonSerializable]
         public float PunchCooldown { get => OnePunch.PunchCooldownSeconds; set => OnePunch.PunchCooldownSeconds = value; }

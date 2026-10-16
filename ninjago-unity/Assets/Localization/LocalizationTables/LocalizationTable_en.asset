@@ -1661,6 +1661,104 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 198909985490460672
+    m_Localized: Call
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849280
+    m_Localized: Wave {current}/{total}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198909985498849281
+    m_Localized: Call your teammate!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849282
+    m_Localized: Raise a hand up high to call for help!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849283
+    m_Localized: CALL!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849284
+    m_Localized: TEAM CALL!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849285
+    m_Localized: Wave cleared!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849286
+    m_Localized: Goblin pile! Try again!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849287
+    m_Localized: Here I come!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849288
+    m_Localized: The street is safe!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849289
+    m_Localized: Calls {count}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198909985498849290
+    m_Localized: Help is coming!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849291
+    m_Localized: Coming next!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849292
+    m_Localized: Higher!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849293
+    m_Localized: Thanks, teammate!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849294
+    m_Localized: P{player}    Calls understood {understood}    Calls missed {missed}   
+      Team calls {team}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198909985498849295
+    m_Localized: 'P{player}    Hands moved {speed} in per second on average: calm'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198909985498849296
+    m_Localized: 'P{player}    Hands moved {speed} in per second on average: lots
+      of movement'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198909985498849297
+    m_Localized: Waves cleared {waves}/{total}    Goblin piles {piles}    Teammate
+      came by itself {auto}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198909985498849298
+    m_Localized: 'A child could finish without wild movement: yes'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849299
+    m_Localized: 'A child could finish without wild movement: not this time'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849300
+    m_Localized: Fewest goblin piles {piles}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1755,3 +1853,10 @@ MonoBehaviour:
         - id: 198907194311172111
         - id: 198907194311172112
         - id: 198907194311172113
+        - id: 198909985498849280
+        - id: 198909985498849289
+        - id: 198909985498849294
+        - id: 198909985498849295
+        - id: 198909985498849296
+        - id: 198909985498849297
+        - id: 198909985498849300

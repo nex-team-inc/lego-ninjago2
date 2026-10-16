@@ -1547,6 +1547,94 @@ MonoBehaviour:
     m_Key: ninjago.result.guard_best
     m_Metadata:
       m_Items: []
+  - m_Id: 198909985490460672
+    m_Key: ninjago.mode.call
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849280
+    m_Key: ninjago.call.status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849281
+    m_Key: ninjago.call.intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849282
+    m_Key: ninjago.call.hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849283
+    m_Key: ninjago.call.prompt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849284
+    m_Key: ninjago.call.team
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849285
+    m_Key: ninjago.call.cleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849286
+    m_Key: ninjago.call.pile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849287
+    m_Key: ninjago.call.help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849288
+    m_Key: ninjago.call.end
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849289
+    m_Key: ninjago.call.count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849290
+    m_Key: ninjago.call.understood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849291
+    m_Key: ninjago.call.queued
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849292
+    m_Key: ninjago.call.missed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849293
+    m_Key: ninjago.result.call_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849294
+    m_Key: ninjago.result.call_calls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849295
+    m_Key: ninjago.result.call_calm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849296
+    m_Key: ninjago.result.call_busy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849297
+    m_Key: ninjago.result.call_waves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849298
+    m_Key: ninjago.result.call_calm_finish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849299
+    m_Key: ninjago.result.call_not_calm_finish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198909985498849300
+    m_Key: ninjago.result.call_best
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

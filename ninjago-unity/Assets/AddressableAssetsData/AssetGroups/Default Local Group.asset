@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5986e24a8ed004f54b44c87167a47569
+    m_Address: CallGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 67aae64b32e144c8b91c503eb4041dca
     m_Address: Assets/Prefabs/Singletons/StartUpSingletons.prefab
     m_ReadOnly: 0

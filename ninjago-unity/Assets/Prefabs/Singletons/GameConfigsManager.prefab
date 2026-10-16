@@ -60,3 +60,4 @@ MonoBehaviour:
   threeWeaponsConfig: {fileID: 11400000, guid: b26f449b5477c4e3792ac3502696aa93, type: 2}
   onePunchConfig: {fileID: 11400000, guid: 3c9f45fd0021741a5a5e0df83b4fac31, type: 2}
   guardConfig: {fileID: 11400000, guid: af73a6a7b82db4a9a973b2378799266b, type: 2}
+  callConfig: {fileID: 11400000, guid: 3d25e629e581c46baa533d963d2b8d14, type: 2}

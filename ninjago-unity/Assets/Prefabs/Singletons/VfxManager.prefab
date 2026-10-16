@@ -318,14 +318,14 @@ MonoBehaviour:
         maxPoolSize: 4
     - key: 190
       value:
-        prefab: {fileID: 8278103704445711835, guid: 56aef28e0cb2c4e69b8a8cc7b080e714, type: 3}
+        prefab: {fileID: 2560318427581137008, guid: 8c1e6a17d0f78446982ac7607558f078, type: 3}
         defaultPoolSize: 2
         maxPoolSize: 4
     - key: 191
       value:
-        prefab: {fileID: 8278103704445711835, guid: 56aef28e0cb2c4e69b8a8cc7b080e714, type: 3}
-        defaultPoolSize: 2
-        maxPoolSize: 4
+        prefab: {fileID: 1425808640673128420, guid: 1ffbf3a96d0344410acb9f915167df99, type: 3}
+        defaultPoolSize: 1
+        maxPoolSize: 2
     - key: 200
       value:
         prefab: {fileID: 5104386926121427066, guid: f374772a407ff42e39273ee86bdd3106, type: 3}

@@ -204,7 +204,7 @@ namespace Nex.Ninjago
         {
             if (trail != null) trail.Stop();
             trail = null;
-            VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.BrickBurst, Center);
+            VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.BrickBurst, Center, Quaternion.identity, launchScale);
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.EnemyExplosion);
             state = State.Walking;
             OnRelease?.Invoke(this);

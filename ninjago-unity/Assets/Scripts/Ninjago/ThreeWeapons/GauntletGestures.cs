@@ -8,7 +8,7 @@ namespace Nex.Ninjago
     /// Reads one player's weapon gesture each frame. Hands are that player's team.nex.mdk.hand cursors (body inches from
     /// the chest); shoulders and head come from that player's body nodes, or from the setup snapshot while hidden (a
     /// whirling hand often covers the face). Sword and shuriken use each shoulder's x against that hand; the nunchuck
-    /// areas use the head, the chest and the hands.
+    /// areas use the shoulders' side and the head's height.
     /// </summary>
     public sealed class GauntletGestures
     {
@@ -63,12 +63,18 @@ namespace Nex.Ninjago
             return false;
         }
 
-        /// <summary>The called nunchuck spot in body inches from the chest: that side's shoulder x, at head or chest height.</summary>
-        public Vector2 AreaCenter(SpinArea area)
+        /// <summary>
+        /// Whether a burst's middle (body inches from the chest) is in the called nunchuck area: out from the body's middle
+        /// toward that side's shoulder, and above (head) or below (body) a line just under the head. Only the side and
+        /// the height band matter, so a hand spinning close in and one on an outstretched arm, as the ninja shows it,
+        /// both count.
+        /// </summary>
+        public static bool IsInArea(Vector2 point, SpinArea area, Vector2 shoulder, Vector2 head, float sideInches, float headLineDropInches)
         {
-            var left = area is SpinArea.LeftHead or SpinArea.LeftBody;
-            var head = area is SpinArea.LeftHead or SpinArea.RightHead;
-            return new Vector2(Shoulder(left ? 0 : 1).x, head ? Head().y : 0f);
+            var outward = shoulder.x >= 0f ? point.x : -point.x;
+            if (outward < sideInches) return false;
+            var aboveLine = point.y >= head.y - headLineDropInches;
+            return area is SpinArea.LeftHead or SpinArea.RightHead ? aboveLine : !aboveLine;
         }
 
         #endregion
@@ -83,7 +89,9 @@ namespace Nex.Ninjago
                     return saws[hand].Update(inches.x, Shoulder(hand).x, time, config.SlashSpeed, config.SlashCooldownSeconds);
                 case WeaponType.Nunchucks:
                     spins[hand].Add(inches, time, config.SpinWindowSeconds);
-                    if (time < spinReadyTime || !spins[hand].TryBurst(AreaCenter(area), config.SpinAreaRadiusInches, config.SpinPathInches, config.SpinRadiusInches))
+                    if (time < spinReadyTime || !spins[hand].IsBurst(config.SpinPathInches, config.SpinRadiusInches, out var middle) ||
+                        !IsInArea(middle, area, Shoulder(area is SpinArea.LeftHead or SpinArea.LeftBody ? 0 : 1), Head(), config.SpinSideInches,
+                            config.SpinHeadLineDropInches))
                     {
                         return false;
                     }

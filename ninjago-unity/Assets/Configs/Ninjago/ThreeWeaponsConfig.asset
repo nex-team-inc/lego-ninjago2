@@ -86,10 +86,11 @@ MonoBehaviour:
   holdSeconds: 0.6
   slashSpeed: 30
   slashCooldownSeconds: 0.08
-  spinWindowSeconds: 0.35
-  spinPathInches: 18
-  spinRadiusInches: 7
-  spinAreaRadiusInches: 8
+  spinWindowSeconds: 0.5
+  spinPathInches: 10
+  spinRadiusInches: 14
+  spinSideInches: 3
+  spinHeadLineDropInches: 2
   spinCooldownSeconds: 0.5
   throwSpeed: 40
   cockOutsideInches: 5

@@ -44,13 +44,15 @@ namespace Nex.Ninjago
 
         [Header("Nunchucks")]
         [Tooltip("Seconds of hand motion one burst looks back over.")]
-        [SerializeField, Range(0.1f, 1.5f)] float spinWindowSeconds = 0.35f;
-        [Tooltip("Body inches the hand must travel inside that window.")]
-        [SerializeField, Range(4f, 80f)] float spinPathInches = 18f;
-        [Tooltip("Body inches every point of that path must stay within, around the path's middle.")]
-        [SerializeField, Range(1f, 20f)] float spinRadiusInches = 7f;
-        [Tooltip("Body inches the path's middle may sit from the called spot (beside the head or the chest, at that shoulder's side).")]
-        [SerializeField, Range(2f, 20f)] float spinAreaRadiusInches = 8f;
+        [SerializeField, Range(0.1f, 1.5f)] float spinWindowSeconds = 0.5f;
+        [Tooltip("Body inches the hand must travel inside that window, as the smoothed cursor measures it (a fast twirl reads smaller than it is).")]
+        [SerializeField, Range(4f, 80f)] float spinPathInches = 10f;
+        [Tooltip("Body inches every point of that path must stay within, around the path's middle; big arm circles need room.")]
+        [SerializeField, Range(1f, 20f)] float spinRadiusInches = 14f;
+        [Tooltip("Body inches out from the body's middle, toward the called side, the path's middle must be.")]
+        [SerializeField, Range(0f, 15f)] float spinSideInches = 3f;
+        [Tooltip("Body inches below the head where head spins end and body spins begin.")]
+        [SerializeField, Range(-10f, 15f)] float spinHeadLineDropInches = 2f;
         [Tooltip("Seconds after a burst before the next one can count.")]
         [SerializeField, Range(0f, 2f)] float spinCooldownSeconds = 0.5f;
 
@@ -85,7 +87,8 @@ namespace Nex.Ninjago
         public float SpinWindowSeconds { get => spinWindowSeconds; set => spinWindowSeconds = Mathf.Max(0.05f, value); }
         public float SpinPathInches { get => spinPathInches; set => spinPathInches = Mathf.Max(1f, value); }
         public float SpinRadiusInches { get => spinRadiusInches; set => spinRadiusInches = Mathf.Max(0.5f, value); }
-        public float SpinAreaRadiusInches => spinAreaRadiusInches;
+        public float SpinSideInches => spinSideInches;
+        public float SpinHeadLineDropInches => spinHeadLineDropInches;
         public float SpinCooldownSeconds => spinCooldownSeconds;
         public float ThrowSpeed => throwSpeed;
         public float CockOutsideInches => cockOutsideInches;

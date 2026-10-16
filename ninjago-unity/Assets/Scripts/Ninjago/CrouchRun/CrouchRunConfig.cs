@@ -18,11 +18,9 @@ namespace Nex.Ninjago
         [Serializable]
         public class ZoneLook
         {
-            [Tooltip("First banner line, e.g. CLEAR or TALKING.")]
-            public LocalizedString title = new();
-            [Tooltip("Second banner line, e.g. STAND TO RUN or CROUCH.")]
-            public LocalizedString instruction = new();
-            [Tooltip("Banner and path tint for this state.")]
+            [Tooltip("The one-word banner while inside a zone of this state, e.g. CROUCH. Leave empty for no banner.")]
+            public LocalizedString prompt = new();
+            [Tooltip("Banner color for this state.")]
             public Color color = Color.white;
         }
 
@@ -90,7 +88,7 @@ namespace Nex.Ninjago
         [SerializeField, Range(0f, 1f)] float speedChangeSeconds = 0.15f;
 
         [Header("Heard")]
-        [Tooltip("Seconds of running inside a talking zone before the monsters hear it.")]
+        [Tooltip("Seconds of running past the windows before the monsters outside see it.")]
         [SerializeField, Range(0f, 2f)] float heardGraceSeconds = 0.35f;
         [Tooltip("Seconds taken off the clock when heard.")]
         [SerializeField, Range(0f, 15f)] float heardPenaltySeconds = 3f;

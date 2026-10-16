@@ -56,7 +56,7 @@ namespace Nex.Ninjago.Editor
 
         #region HUD
 
-        // The banner is the rule, so it is the biggest thing on screen after HEARD: top center, in the zone's color.
+        // CROUCH is the rule by the windows, so it is the biggest thing on screen after the !: top center, in the zone's color.
         static CrouchHud BuildHud()
         {
             var outline = OutlineTextMaterial();
@@ -68,11 +68,9 @@ namespace Nex.Ninjago.Editor
 
             var panel = NewImage(root, "Banner", GetSprite("Panel"), Color.white);
             panel.type = Image.Type.Sliced;
-            Place(panel.rectTransform, topCenter, topCenter, topCenter, new Vector2(0f, -12f), new Vector2(980f, 196f));
-            var title = Label(panel.rectTransform, "Title", null, "CLEAR", 116f, Color.white, outline);
-            Place((RectTransform)title.transform, topCenter, topCenter, topCenter, new Vector2(0f, -4f), new Vector2(960f, 120f));
-            var instruction = Label(panel.rectTransform, "Instruction", null, "STAND TO RUN", 62f, Color.white, outline);
-            Place((RectTransform)instruction.transform, topCenter, topCenter, topCenter, new Vector2(0f, -116f), new Vector2(960f, 76f));
+            Place(panel.rectTransform, topCenter, topCenter, topCenter, new Vector2(0f, -12f), new Vector2(700f, 160f));
+            var banner = Label(panel.rectTransform, "Label", "ninjago.crouch.crouch", "CROUCH", 124f, Color.white, outline);
+            Stretch((RectTransform)banner.transform);
 
             var tag = NinjagoWorldBuilder.BuildPlayerTag(root, Vector2.zero, 72f);
             Place((RectTransform)tag.transform, topRight, topRight, topRight, new Vector2(-300f, -28f), new Vector2(150f, 90f));
@@ -80,18 +78,17 @@ namespace Nex.Ninjago.Editor
             Place((RectTransform)clock.transform, topRight, topRight, topRight, new Vector2(-30f, -10f), new Vector2(260f, 130f));
             var level = Label(root, "Level", null, "LEVEL 1", 52f, Color.white, outline, TextAlignmentOptions.Right);
             Place((RectTransform)level.transform, topRight, topRight, topRight, new Vector2(-30f, -138f), new Vector2(360f, 64f));
-            var heardCount = Label(root, "HeardCount", null, "Heard 0", 48f, new Color(1f, 0.6f, 0.55f), outline, TextAlignmentOptions.Right);
+            var heardCount = Label(root, "HeardCount", null, "Seen 0", 48f, new Color(1f, 0.6f, 0.55f), outline, TextAlignmentOptions.Right);
             Place((RectTransform)heardCount.transform, topRight, topRight, topRight, new Vector2(-30f, -196f), new Vector2(360f, 60f));
 
-            var heard = Label(root, "Heard", "ninjago.crouch.heard", "HEARD", 210f, warnRed, outline);
-            Place((RectTransform)heard.transform, center, center, center, new Vector2(0f, 60f), new Vector2(1400f, 260f));
+            var heard = Label(root, "Heard", "ninjago.crouch.heard", "!", 360f, warnRed, outline);
+            Place((RectTransform)heard.transform, center, center, center, new Vector2(0f, 60f), new Vector2(600f, 420f));
             var centerBanner = Label(root, "CenterBanner", null, "LEVEL 1", 140f, Color.white, outline);
             Place((RectTransform)centerBanner.transform, center, center, center, new Vector2(0f, -30f), new Vector2(1400f, 180f));
 
             Set(hud, "playerTag", tag);
             Set(hud, "bannerPanel", panel);
-            Set(hud, "bannerTitle", title);
-            Set(hud, "bannerInstruction", instruction);
+            Set(hud, "bannerLabel", banner);
             Set(hud, "clockLabel", clock);
             Set(hud, "clockText", clock.GetComponent<TextMeshProUGUI>());
             SetLocalized(hud, "clockString", "ninjago.crouch.clock");

@@ -89,6 +89,7 @@ namespace Nex
             EnemyExplosion = 722,
             RunStep = 730,
             SneakStep = 731,
+            Spotted = 732,
             WeaponSlash = 740,
             WeaponSpin = 741,
             WeaponThrow = 742,

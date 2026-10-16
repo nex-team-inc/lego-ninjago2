@@ -5,38 +5,63 @@ using UnityEngine;
 namespace Nex.Ninjago
 {
     /// <summary>
-    /// Lays out one level from the config at runtime, so designers change zone lists without touching prefabs: a tinted
-    /// path piece per zone, talking monsters behind each talking zone, the gate at the end, and layered scenery (hedge,
-    /// trees, houses, hills) running the whole length so it reads as a side-scroller.
+    /// Lays out one level from the config at runtime, so designers change zone lists without touching prefabs. The
+    /// ninja runs along a wooden floor beside a tall indoor wall: clear zones are plain wall with pillars and scrolls,
+    /// talking zones are a row of windows (sunlight on the floor, monsters outside looking in) whose sill a crouched
+    /// ninja stays below. The garden behind the wall shows through the windows; the gate stands at the end.
     /// </summary>
     public class CrouchLevelBuilder : MonoBehaviour
     {
         [Header("Level Root")]
         [Tooltip("Cleared and refilled for every level.")]
         [SerializeField] Transform levelRoot = null!;
-        [Header("Path Piece Prefab")]
-        [Tooltip("Unit cube along +X; scaled to each zone's length and tinted with its state color.")]
-        [SerializeField] Renderer pathPiecePrefab = null!;
-        [Header("Path Depth")]
-        [SerializeField] float pathDepth = 3f;
+        [Header("Floor Prefab")]
+        [Tooltip("Unit length along +X, stretched under the whole level.")]
+        [SerializeField] Transform floorPrefab = null!;
+        [Header("Floor Seam Prefab")]
+        [SerializeField] Transform floorSeamPrefab = null!;
+        [Header("Floor Seam Spacing")]
+        [Tooltip("Meters between plank seams; they show the speed.")]
+        [SerializeField] float floorSeamSpacing = 1.6f;
+        [Header("Wall Prefab")]
+        [Tooltip("Unit length along +X, stretched over each clear zone.")]
+        [SerializeField] Transform wallPrefab = null!;
+        [Header("Window Wall Prefab")]
+        [Tooltip("Unit length along +X with the window opening, stretched over each talking zone.")]
+        [SerializeField] Transform windowWallPrefab = null!;
+        [Header("Window Post Prefab")]
+        [SerializeField] Transform windowPostPrefab = null!;
+        [Header("Window Pane Width")]
+        [Tooltip("About this many meters between window posts.")]
+        [SerializeField] float paneWidth = 2.4f;
+        [Header("Sunlight Prefab")]
+        [Tooltip("Unit length along +X, stretched over the floor of each talking zone.")]
+        [SerializeField] Transform sunlightPrefab = null!;
+        [Header("Pillar Prefab")]
+        [SerializeField] Transform pillarPrefab = null!;
+        [Header("Pillar Spacing")]
+        [Tooltip("About this many meters between pillars along plain wall; every zone edge has one.")]
+        [SerializeField] float pillarSpacing = 6f;
+        [Header("Scroll Prefab")]
+        [SerializeField] Transform scrollPrefab = null!;
+        [Header("Scroll Chance")]
+        [Tooltip("Chance that a bay of plain wall between two pillars has a hanging scroll.")]
+        [SerializeField, Range(0f, 1f)] float scrollChance = 0.5f;
         [Header("Monster Prefab")]
         [SerializeField] CrouchMonster monsterPrefab = null!;
         [Header("Monster Spacing")]
-        [Tooltip("Meters between monsters in a talking zone.")]
+        [Tooltip("Meters between monsters along a row of windows.")]
         [SerializeField] float monsterSpacing = 5f;
         [Header("Monster Depth")]
-        [Tooltip("Meters behind the path where the monsters stand.")]
-        [SerializeField] float monsterDepth = 3.2f;
+        [Tooltip("Meters behind the path where the monsters stand, outside the wall.")]
+        [SerializeField] float monsterDepth = 3.4f;
         [Header("Monster Colors")]
         [SerializeField] Color[] monsterColors = { new(0.45f, 0.75f, 0.3f), new(0.85f, 0.45f, 0.75f), new(0.35f, 0.55f, 0.95f), new(0.95f, 0.65f, 0.2f) };
         [Header("Gate Prefab")]
         [SerializeField] Transform gatePrefab = null!;
         [Header("Ground Prefab")]
-        [Tooltip("Unit length along +X, stretched under the whole level from in front of the path to the hills.")]
+        [Tooltip("The garden ground behind the wall; unit length along +X.")]
         [SerializeField] Transform groundPrefab = null!;
-        [Header("Hedge Prefab")]
-        [Tooltip("Unit cube along +X, stretched over the whole level just behind the path.")]
-        [SerializeField] Transform hedgePrefab = null!;
         [Header("Tree Prefab")]
         [SerializeField] Transform treePrefab = null!;
         [Header("House Prefab")]
@@ -56,22 +81,23 @@ namespace Nex.Ninjago
             var level = config.GetLevel(levelIndex);
             // The same scenery on every retry of a level.
             var random = new System.Random(levelIndex * 7919 + 17);
+            var end = level.Length;
             var start = 0f;
-            for (var zoneIndex = 0; zoneIndex < level.zones.Count; zoneIndex++)
+            foreach (var zone in level.zones)
             {
-                var zone = level.zones[zoneIndex];
-                var look = config.GetLook(zone.state);
-                var piece = Instantiate(pathPiecePrefab, levelRoot);
-                piece.transform.localPosition = new Vector3(start + zone.length * 0.5f, -0.25f, 0f);
-                piece.transform.localScale = new Vector3(zone.length, 0.5f, pathDepth);
-                piece.material.color = Color.Lerp(look.color, Color.white, 0.35f);
-                if (zone.state == CrouchZoneState.Talking) PlaceMonsters(look, start, zone.length, random);
+                if (zone.state == CrouchZoneState.Talking) WindowWall(start, start + zone.length, random);
+                else PlainWall(start, start + zone.length, random);
+                PlaceAt(pillarPrefab, start);
                 start += zone.length;
             }
 
-            var gate = Instantiate(gatePrefab, levelRoot);
-            gate.localPosition = new Vector3(start, 0f, 0f);
-            PlaceScenery(-sceneryMargin, start + sceneryMargin, random);
+            PlaceAt(pillarPrefab, end);
+            PlainWall(-sceneryMargin, 0f, random);
+            PlainWall(end, end + sceneryMargin, random);
+            Stretch(floorPrefab, -sceneryMargin, end + sceneryMargin);
+            for (var x = -sceneryMargin; x < end + sceneryMargin; x += floorSeamSpacing) PlaceAt(floorSeamPrefab, x);
+            var gate = PlaceAt(gatePrefab, end);
+            PlaceGarden(-sceneryMargin, end + sceneryMargin, random);
             return gate.localPosition;
         }
 
@@ -79,32 +105,56 @@ namespace Nex.Ninjago
 
         #region Helpers
 
-        void PlaceMonsters(CrouchRunConfig.ZoneLook look, float zoneStart, float zoneLength, System.Random random)
+        void PlainWall(float from, float to, System.Random random)
         {
-            var count = Mathf.Max(1, Mathf.FloorToInt(zoneLength / monsterSpacing));
-            var step = zoneLength / count;
-            for (var i = 0; i < count; i++)
+            Stretch(wallPrefab, from, to);
+            var bays = Mathf.Max(1, Mathf.RoundToInt((to - from) / pillarSpacing));
+            var bay = (to - from) / bays;
+            for (var i = 0; i < bays; i++)
             {
-                var monster = Instantiate(monsterPrefab, levelRoot);
-                monster.transform.localPosition = new Vector3(zoneStart + step * (i + 0.5f), 0f, monsterDepth + (float)random.NextDouble() * 0.8f);
-                monster.Initialize(look.title, look.instruction, look.color, monsterColors[random.Next(monsterColors.Length)], (float)random.NextDouble() * 6f,
-                    i % 2 == 0);
+                if (i > 0) PlaceAt(pillarPrefab, from + bay * i);
+                if (random.NextDouble() < scrollChance) PlaceAt(scrollPrefab, from + bay * (i + 0.5f));
             }
         }
 
-        void PlaceScenery(float from, float to, System.Random random)
+        void WindowWall(float from, float to, System.Random random)
         {
-            Stretch(groundPrefab, from, to, 0f);
-            Stretch(hedgePrefab, from, to, 2.2f);
+            Stretch(windowWallPrefab, from, to);
+            Stretch(sunlightPrefab, from, to);
+            var panes = Mathf.Max(1, Mathf.RoundToInt((to - from) / paneWidth));
+            var pane = (to - from) / panes;
+            for (var i = 1; i < panes; i++) PlaceAt(windowPostPrefab, from + pane * i);
+            var count = Mathf.Max(1, Mathf.FloorToInt((to - from) / monsterSpacing));
+            var step = (to - from) / count;
+            for (var i = 0; i < count; i++)
+            {
+                var monster = Instantiate(monsterPrefab, levelRoot);
+                monster.transform.localPosition = new Vector3(from + step * (i + 0.5f), 0f, monsterDepth + (float)random.NextDouble() * 0.6f);
+                // Faces the corridor (-Z), looking in through the window.
+                monster.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                monster.Initialize(monsterColors[random.Next(monsterColors.Length)], (float)random.NextDouble() * 6f);
+            }
+        }
+
+        void PlaceGarden(float from, float to, System.Random random)
+        {
+            Stretch(groundPrefab, from, to);
             Scatter(treePrefab, from, to, 6f, 9f, 0.9f, 1.3f, random);
             Scatter(housePrefab, from, to, 16f, 18f, 0.9f, 1.2f, random);
             Scatter(hillPrefab, from, to, 32f, 40f, 0.8f, 1.4f, random);
         }
 
-        void Stretch(Transform prefab, float from, float to, float depth)
+        Transform PlaceAt(Transform prefab, float x)
         {
             var piece = Instantiate(prefab, levelRoot);
-            piece.localPosition = new Vector3((from + to) * 0.5f, 0f, depth);
+            piece.localPosition = new Vector3(x, 0f, 0f);
+            return piece;
+        }
+
+        void Stretch(Transform prefab, float from, float to)
+        {
+            var piece = Instantiate(prefab, levelRoot);
+            piece.localPosition = new Vector3((from + to) * 0.5f, 0f, 0f);
             piece.localScale = new Vector3(to - from, 1f, 1f);
         }
 

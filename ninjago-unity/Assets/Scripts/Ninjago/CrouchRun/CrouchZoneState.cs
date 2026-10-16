@@ -4,6 +4,7 @@ namespace Nex.Ninjago
     public enum CrouchZoneState
     {
         Clear = 0,
+        // A stretch of windows: the monsters outside see a standing ninja.
         Talking = 1,
     }
 }

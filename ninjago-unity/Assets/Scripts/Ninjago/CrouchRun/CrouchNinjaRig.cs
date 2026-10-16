@@ -26,11 +26,11 @@ namespace Nex.Ninjago
         [Header("Player Marker")]
         [SerializeField] PlayerTagLabel marker = null!;
         [Header("Head Point")]
-        [Tooltip("Where the HEARD effect plays.")]
+        [Tooltip("Where the seen effect plays.")]
         [SerializeField] Transform headPoint = null!;
         [Header("Crouch Sink")]
-        [Tooltip("Meters the hips sink when crouched.")]
-        [SerializeField] float crouchSink = 0.32f;
+        [Tooltip("Meters the hips sink when crouched; deep enough that the crouched ninja reads below the window sill.")]
+        [SerializeField] float crouchSink = 0.4f;
         [Header("Crouch Lean Degrees")]
         [SerializeField] float crouchLeanDegrees = 28f;
         [Header("Crouch Blend Seconds")]

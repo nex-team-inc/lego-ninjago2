@@ -10,8 +10,9 @@ namespace Nex.Ninjago
 {
     /// <summary>
     /// One player's Crouch Run: that player's copy of the levels, a ninja that always moves right, and a side camera
-    /// that scrolls with it into that player's screen region. Standing runs, crouching walks; running inside a talking
-    /// zone is heard (back to the zone start, time off the clock). Plays levels in order until one fails or all clear.
+    /// that scrolls with it into that player's screen region. Standing runs, crouching walks; running past the windows of
+    /// a talking zone gets the ninja seen (back to the zone start, time off the clock). Plays levels in order until one
+    /// fails or all clear.
     /// </summary>
     public class CrouchLane : MonoBehaviour
     {
@@ -194,7 +195,7 @@ namespace Nex.Ninjago
         void OnHeard(int levelIndex, int zone, int timesHeard, float timeLeft, float zoneStart)
         {
             VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.Heard, ninja.HeadPosition);
-            SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.NinjaHit);
+            SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.Spotted);
             hud.FlashHeard();
             hud.SetHeardCount(timesHeard);
             ninja.PlayHeard();

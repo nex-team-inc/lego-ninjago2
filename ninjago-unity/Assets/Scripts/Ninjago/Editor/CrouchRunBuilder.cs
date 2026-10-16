@@ -59,8 +59,8 @@ namespace Nex.Ninjago.Editor
             var config = LoadOrCreate<CrouchRunConfig>(ConfigPath);
             var serialized = new SerializedObject(config);
             var looks = serialized.FindProperty("looks");
-            Look(looks, CrouchZoneState.Clear, "ninjago.crouch.clear", "ninjago.crouch.stand_to_run", new Color(0.25f, 0.8f, 0.3f));
-            Look(looks, CrouchZoneState.Talking, "ninjago.crouch.talking", "ninjago.crouch.crouch", new Color(0.95f, 0.28f, 0.3f));
+            Look(looks, CrouchZoneState.Clear, null, new Color(0.25f, 0.8f, 0.3f));
+            Look(looks, CrouchZoneState.Talking, "ninjago.crouch.crouch", new Color(0.95f, 0.28f, 0.3f));
             // Rebuilds keep a designer's levels; only a new asset gets the starting ones.
             if (isNew) WriteStartingLevels(serialized.FindProperty("levels"));
             serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -79,11 +79,22 @@ namespace Nex.Ninjago.Editor
             }
         }
 
-        static void Look(SerializedProperty looks, CrouchZoneState state, string titleKey, string instructionKey, Color color)
+        /// <param name="promptKey">Null for no banner.</param>
+        static void Look(SerializedProperty looks, CrouchZoneState state, string? promptKey, Color color)
         {
             var look = EnumDictionaryEditorUtils.GetValueProperty(looks, (int)state);
-            WriteLocalized(look.FindPropertyRelative("title"), titleKey);
-            WriteLocalized(look.FindPropertyRelative("instruction"), instructionKey);
+            var prompt = look.FindPropertyRelative("prompt");
+            if (promptKey != null)
+            {
+                WriteLocalized(prompt, promptKey);
+            }
+            else
+            {
+                prompt.FindPropertyRelative("m_TableReference.m_TableCollectionName").stringValue = string.Empty;
+                prompt.FindPropertyRelative("m_TableEntryReference.m_KeyId").longValue = 0;
+                prompt.FindPropertyRelative("m_TableEntryReference.m_Key").stringValue = string.Empty;
+            }
+
             look.FindPropertyRelative("color").colorValue = color;
         }
 
@@ -124,7 +135,7 @@ namespace Nex.Ninjago.Editor
         static void BuildAudioRegistry()
         {
             foreach (var path in new[] { $"{SfxRoot}/RunStep_1.wav", $"{SfxRoot}/RunStep_2.wav", $"{SfxRoot}/SneakStep_1.wav", $"{SfxRoot}/SneakStep_2.wav",
-                         $"{BgmRoot}/CrouchRun.ogg" })
+                         $"{SfxRoot}/Spotted_1.wav", $"{BgmRoot}/CrouchRun.ogg" })
             {
                 var importer = (AudioImporter)AssetImporter.GetAtPath(path);
                 var isMusic = path.StartsWith(BgmRoot, StringComparison.Ordinal);
@@ -140,6 +151,7 @@ namespace Nex.Ninjago.Editor
             {
                 NinjagoAssetsBuilder.Clips(dict, SfxManager.SoundEffect.RunStep, SfxRoot, "RunStep_1", "RunStep_2");
                 NinjagoAssetsBuilder.Clips(dict, SfxManager.SoundEffect.SneakStep, SfxRoot, "SneakStep_1", "SneakStep_2");
+                NinjagoAssetsBuilder.Clips(dict, SfxManager.SoundEffect.Spotted, SfxRoot, "Spotted_1");
             });
             NinjagoAssetsBuilder.EditPrefab<BgmManager>("Assets/Prefabs/Singletons/BgmManager.prefab", "bgmDict", dict =>
             {

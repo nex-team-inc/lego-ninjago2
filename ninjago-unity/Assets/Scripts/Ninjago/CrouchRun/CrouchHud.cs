@@ -8,8 +8,8 @@ using UnityEngine.UI;
 namespace Nex.Ninjago
 {
     /// <summary>
-    /// One player's half of the Crouch Run HUD: the big two-line zone banner, the clock, the level, times heard, the
-    /// HEARD flash and the LEVEL / CLEARED / TIME UP center banner.
+    /// One player's half of the Crouch Run HUD: the one-word zone banner (CROUCH by the windows, nothing elsewhere), the
+    /// clock, the level, times seen, the ! flash and the LEVEL / CLEARED / TIME UP center banner.
     /// </summary>
     public class CrouchHud : MonoBehaviour
     {
@@ -17,10 +17,8 @@ namespace Nex.Ninjago
         [SerializeField] PlayerTagLabel playerTag = null!;
         [Header("Banner Panel")]
         [SerializeField] Image bannerPanel = null!;
-        [Header("Banner Title")]
-        [SerializeField] NexLocalizedString bannerTitle = null!;
-        [Header("Banner Instruction")]
-        [SerializeField] NexLocalizedString bannerInstruction = null!;
+        [Header("Banner Label")]
+        [SerializeField] NexLocalizedString bannerLabel = null!;
         [Header("Clock Label")]
         [SerializeField] NexLocalizedString clockLabel = null!;
         [Header("Clock Text Component")]
@@ -44,7 +42,7 @@ namespace Nex.Ninjago
         [Tooltip("Smart string with {count}.")]
         [SerializeField] LocalizedString heardCountString = new();
         [Header("Heard Flash")]
-        [Tooltip("The big HEARD word.")]
+        [Tooltip("The big ! when the monsters see a standing ninja.")]
         [SerializeField] RectTransform heardFlash = null!;
         [Header("Heard Flash Seconds")]
         [SerializeField] float heardFlashSeconds = 1.1f;
@@ -100,9 +98,14 @@ namespace Nex.Ninjago
 
         public void ShowZone(CrouchRunConfig.ZoneLook look)
         {
+            if (look.prompt.IsEmpty)
+            {
+                HideZone();
+                return;
+            }
+
             bannerPanel.gameObject.SetActive(true);
-            bannerTitle.StringReference = look.title;
-            bannerInstruction.StringReference = look.instruction;
+            bannerLabel.StringReference = look.prompt;
             bannerPanel.color = look.color;
         }
 

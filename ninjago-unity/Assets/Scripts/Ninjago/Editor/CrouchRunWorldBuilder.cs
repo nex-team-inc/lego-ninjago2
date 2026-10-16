@@ -2,57 +2,67 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using static Nex.Ninjago.Editor.NinjagoAssetsBuilder;
 using static Nex.Ninjago.Editor.NinjagoEditorUtils;
 
 namespace Nex.Ninjago.Editor
 {
-    /// <summary>The Crouch Run 3D prefabs, all from primitives: the lane with its profile ninja and side camera, and the level pieces.</summary>
+    /// <summary>
+    /// The Crouch Run 3D prefabs, all from primitives: the lane with its profile ninja and side camera, and the level
+    /// pieces. The corridor wall's front face is at z = WallFront; everything outside it is the garden seen through the
+    /// windows.
+    /// </summary>
     public static class CrouchRunWorldBuilder
     {
         public const string LanePath = PrefabsRoot + "/CrouchRun/CrouchLane.prefab";
         const string Root = PrefabsRoot + "/CrouchRun";
+        const float WallFront = 2f;
+        const float WallThickness = 0.3f;
+        const float WallHeight = 6.6f;
+        // Seen from the lane camera, a crouched ninja stays below this line and a standing one's head rises above it.
+        const float SillTop = 1.42f;
+        const float LintelBottom = 3.6f;
         static readonly Color skyColor = new(0.5f, 0.8f, 1f);
 
         #region Entry Point
 
         public static void Build()
         {
-            var path = BuildPathPiece();
             var monster = BuildMonster();
             var gate = BuildGate();
-            var ground = BuildGround();
-            var hedge = BuildHedge();
             var tree = BuildTree();
             var house = BuildHouse();
             var hill = BuildHill();
-            BuildLane(path, monster, gate, ground, hedge, tree, house, hill);
+            var root = new GameObject("CrouchLane");
+            var lane = root.AddComponent<CrouchLane>();
+            var ninja = BuildNinja(root.transform);
+            var levelHost = Empty("Level", root.transform, Vector3.zero);
+            var builder = levelHost.gameObject.AddComponent<CrouchLevelBuilder>();
+            Set(builder, "levelRoot", Empty("Pieces", levelHost, Vector3.zero));
+            Set(builder, "floorPrefab", BuildFloor());
+            Set(builder, "floorSeamPrefab", BuildFloorSeam());
+            Set(builder, "wallPrefab", BuildWall());
+            Set(builder, "windowWallPrefab", BuildWindowWall());
+            Set(builder, "windowPostPrefab", BuildWindowPost());
+            Set(builder, "sunlightPrefab", BuildSunlight());
+            Set(builder, "pillarPrefab", BuildPillar());
+            Set(builder, "scrollPrefab", BuildScroll());
+            Set(builder, "monsterPrefab", monster);
+            Set(builder, "gatePrefab", gate);
+            Set(builder, "groundPrefab", BuildGround());
+            Set(builder, "treePrefab", tree);
+            Set(builder, "housePrefab", house);
+            Set(builder, "hillPrefab", hill);
+            BuildLane(root, lane, ninja, builder);
         }
 
         #endregion
 
         #region Lane
 
-        static void BuildLane(Renderer path, CrouchMonster monster, Transform gate, Transform ground, Transform hedge, Transform tree, Transform house,
-            Transform hill)
+        static void BuildLane(GameObject root, CrouchLane lane, CrouchNinjaRig ninja, CrouchLevelBuilder builder)
         {
-            var root = new GameObject("CrouchLane");
-            var lane = root.AddComponent<CrouchLane>();
-            var ninja = BuildNinja(root.transform);
-            var levelHost = Empty("Level", root.transform, Vector3.zero);
-            var builder = levelHost.gameObject.AddComponent<CrouchLevelBuilder>();
-            var pieces = Empty("Pieces", levelHost, Vector3.zero);
-            Set(builder, "levelRoot", pieces);
-            Set(builder, "pathPiecePrefab", path);
-            Set(builder, "monsterPrefab", monster);
-            Set(builder, "gatePrefab", gate);
-            Set(builder, "groundPrefab", ground);
-            Set(builder, "hedgePrefab", hedge);
-            Set(builder, "treePrefab", tree);
-            Set(builder, "housePrefab", house);
-            Set(builder, "hillPrefab", hill);
-            // Locked to the side: looks along +Z at the path, level, so the path sits low and the monsters have room above; CrouchLane moves it along X with the ninja.
+            // Locked to the side: looks along +Z at the path, level, so the floor sits low and the wall fills the rest; CrouchLane moves it along X with the ninja.
             var camera = NinjagoWorldBuilder.NewCamera(root.transform, new Vector3(4f, 2.2f, -11.5f), Vector3.zero, 34f);
             camera.backgroundColor = skyColor;
             camera.farClipPlane = 120f;
@@ -115,16 +125,107 @@ namespace Nex.Ninjago.Editor
 
         #region Level Pieces
 
-        static Renderer BuildPathPiece()
+        // Wooden floor from in front of the camera's view to the wall.
+        static Transform BuildFloor()
         {
-            var root = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            root.name = "PathPiece";
-            Object.DestroyImmediate(root.GetComponent<Collider>());
-            root.GetComponent<MeshRenderer>().sharedMaterial = Lit("Crouch Path", Color.white, 0.1f);
-            return SavePrefab(root, $"{Root}/PathPiece.prefab").GetComponent<Renderer>();
+            var root = new GameObject("Floor");
+            Block(PrimitiveType.Cube, "Boards", root.transform, new Vector3(0f, -0.25f, -3f), new Vector3(1f, 0.5f, 10f), Lit("Crouch Floor", new Color(0.86f, 0.6f, 0.34f), 0.2f));
+            return SavePrefab(root, $"{Root}/Floor.prefab").transform;
         }
 
-        // A blocky person, bigger than the ninja, nodding as it talks; the bubble above repeats the banner.
+        static Transform BuildFloorSeam()
+        {
+            var root = new GameObject("FloorSeam");
+            Block(PrimitiveType.Cube, "Seam", root.transform, new Vector3(0f, 0.002f, -3f), new Vector3(0.05f, 0.004f, 10f), Lit("Crouch Floor Seam", new Color(0.55f, 0.35f, 0.18f)));
+            return SavePrefab(NoShadows(root), $"{Root}/FloorSeam.prefab").transform;
+        }
+
+        // Teal panelling up to the rail at sill height, cream plaster above, a dark cornice on top.
+        static Transform BuildWall()
+        {
+            var root = new GameObject("Wall");
+            AddPanelling(root.transform);
+            Plaster(root.transform, SillTop, WallHeight - 0.4f);
+            Block(PrimitiveType.Cube, "Rail", root.transform, new Vector3(0f, SillTop - 0.05f, WallFront - 0.03f), new Vector3(1f, 0.1f, 0.12f), DarkWood());
+            return SavePrefab(NoShadows(root), $"{Root}/Wall.prefab").transform;
+        }
+
+        // The same panelling and rail, but open from the sill to the lintel: the garden and the monsters show through.
+        static Transform BuildWindowWall()
+        {
+            var root = new GameObject("WindowWall");
+            AddPanelling(root.transform);
+            Plaster(root.transform, LintelBottom + 0.16f, WallHeight - 0.4f);
+            Block(PrimitiveType.Cube, "Sill", root.transform, new Vector3(0f, SillTop - 0.06f, WallFront + 0.1f), new Vector3(1f, 0.12f, 0.5f), DarkWood());
+            Block(PrimitiveType.Cube, "Lintel", root.transform, new Vector3(0f, LintelBottom + 0.08f, WallFront + 0.12f), new Vector3(1f, 0.16f, 0.4f), DarkWood());
+            return SavePrefab(NoShadows(root), $"{Root}/WindowWall.prefab").transform;
+        }
+
+        static Transform BuildWindowPost()
+        {
+            var root = new GameObject("WindowPost");
+            var height = LintelBottom - SillTop;
+            Block(PrimitiveType.Cube, "Post", root.transform, new Vector3(0f, SillTop + height * 0.5f, WallFront + WallThickness * 0.5f), new Vector3(0.14f, height, 0.22f), DarkWood());
+            return SavePrefab(NoShadows(root), $"{Root}/WindowPost.prefab").transform;
+        }
+
+        // A warm patch on the floor under the windows: where the light comes in, the ninja stays low.
+        static Transform BuildSunlight()
+        {
+            var root = new GameObject("Sunlight");
+            Block(PrimitiveType.Cube, "Patch", root.transform, new Vector3(0f, 0.004f, -0.25f), new Vector3(1f, 0.004f, 4.5f),
+                Lit("Crouch Sunlight", new Color(1f, 0.93f, 0.62f), 0.1f, new Color(0.35f, 0.3f, 0.12f)));
+            return SavePrefab(NoShadows(root), $"{Root}/Sunlight.prefab").transform;
+        }
+
+        static Transform BuildPillar()
+        {
+            var root = new GameObject("Pillar");
+            Block(PrimitiveType.Cube, "Post", root.transform, new Vector3(0f, WallHeight * 0.5f, WallFront), new Vector3(0.42f, WallHeight, 0.42f), DarkWood());
+            return SavePrefab(NoShadows(root), $"{Root}/Pillar.prefab").transform;
+        }
+
+        // A hanging scroll on the plaster: a red sun over two brush strokes.
+        static Transform BuildScroll()
+        {
+            var root = new GameObject("Scroll");
+            var face = WallFront - 0.03f;
+            Block(PrimitiveType.Cube, "Paper", root.transform, new Vector3(0f, 3.35f, face), new Vector3(0.9f, 1.8f, 0.03f), Lit("Crouch Scroll Paper", new Color(0.97f, 0.95f, 0.88f)));
+            Block(PrimitiveType.Cube, "TopRod", root.transform, new Vector3(0f, 4.27f, face - 0.03f), new Vector3(1.1f, 0.08f, 0.08f), DarkWood());
+            Block(PrimitiveType.Cube, "BottomRod", root.transform, new Vector3(0f, 2.43f, face - 0.03f), new Vector3(1f, 0.08f, 0.08f), DarkWood());
+            Block(PrimitiveType.Cylinder, "Sun", root.transform, new Vector3(0f, 3.6f, face - 0.03f), new Vector3(0.55f, 0.01f, 0.55f),
+                Lit("Crouch Gate Red", new Color(0.92f, 0.18f, 0.15f), 0.3f), new Vector3(90f, 0f, 0f));
+            var ink = Lit("Ninja Dark", new Color(0.12f, 0.12f, 0.15f));
+            Block(PrimitiveType.Cube, "Stroke", root.transform, new Vector3(0f, 2.95f, face - 0.025f), new Vector3(0.5f, 0.07f, 0.01f), ink);
+            Block(PrimitiveType.Cube, "Stroke", root.transform, new Vector3(0.05f, 2.75f, face - 0.025f), new Vector3(0.36f, 0.07f, 0.01f), ink);
+            return SavePrefab(NoShadows(root), $"{Root}/Scroll.prefab").transform;
+        }
+
+        static void AddPanelling(Transform root)
+        {
+            var center = WallFront + WallThickness * 0.5f;
+            Block(PrimitiveType.Cube, "Panelling", root, new Vector3(0f, SillTop * 0.5f, center), new Vector3(1f, SillTop, WallThickness),
+                Lit("Crouch Wall Panel", new Color(0.16f, 0.52f, 0.5f), 0.2f));
+            Block(PrimitiveType.Cube, "Baseboard", root, new Vector3(0f, 0.09f, WallFront - 0.03f), new Vector3(1f, 0.18f, 0.1f), DarkWood());
+            Block(PrimitiveType.Cube, "Cornice", root, new Vector3(0f, WallHeight - 0.2f, WallFront + 0.05f), new Vector3(1f, 0.4f, 0.5f), DarkWood());
+        }
+
+        static void Plaster(Transform root, float bottom, float top)
+        {
+            Block(PrimitiveType.Cube, "Plaster", root, new Vector3(0f, (bottom + top) * 0.5f, WallFront + WallThickness * 0.5f), new Vector3(1f, top - bottom, WallThickness),
+                Lit("Crouch House Wall", new Color(0.98f, 0.9f, 0.72f)));
+        }
+
+        static Material DarkWood() => Lit("Courtyard Post", new Color(0.35f, 0.2f, 0.12f));
+
+        // The wall would shade the garden and the monsters seen through the windows.
+        static GameObject NoShadows(GameObject root)
+        {
+            foreach (var meshRenderer in root.GetComponentsInChildren<MeshRenderer>()) meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            return root;
+        }
+
+        // A blocky monster, bigger than the ninja, standing outside a window and looking in.
         static CrouchMonster BuildMonster()
         {
             var root = new GameObject("CrouchMonster");
@@ -152,22 +253,9 @@ namespace Nex.Ninjago.Editor
             }
 
             Block(PrimitiveType.Cube, "Mouth", head, new Vector3(0f, 0.12f, 0.31f), new Vector3(0.3f, 0.08f, 0.03f), dark);
-            var canvas = NinjagoWorldBuilder.WorldCanvas(root.transform, "Bubble", new Vector3(0f, 3.25f, 0f), 0.009f, new Vector2(320f, 150f));
-            var bubble = NewImage(canvas.transform, "Background", GetSprite("Panel"), Color.white);
-            bubble.type = Image.Type.Sliced;
-            Stretch(bubble.rectTransform);
-            var outline = OutlineTextMaterial();
-            var title = Label(canvas.transform, "Title", "ninjago.crouch.talking", "TALKING", 64f, Color.white, outline);
-            Place((RectTransform)title.transform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 26f), new Vector2(320f, 74f));
-            var instruction = Label(canvas.transform, "Instruction", "ninjago.crouch.crouch", "CROUCH", 44f, Color.white, outline);
-            Place((RectTransform)instruction.transform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -36f),
-                new Vector2(320f, 56f));
             Set(monster, "body", bodyRoot);
             Set(monster, "head", head);
             SetArray(monster, "tintRenderers", tinted);
-            Set(monster, "bubble", bubble);
-            Set(monster, "bubbleTitle", title);
-            Set(monster, "bubbleInstruction", instruction);
             return SavePrefab(root, $"{Root}/CrouchMonster.prefab").GetComponent<CrouchMonster>();
         }
 
@@ -187,19 +275,12 @@ namespace Nex.Ninjago.Editor
             return SavePrefab(root, $"{Root}/Gate.prefab").transform;
         }
 
-        // Grass from in front of the path back to the hills, just below the raised path.
+        // The garden outside: grass from the wall back to the hills.
         static Transform BuildGround()
         {
             var root = new GameObject("Ground");
-            Block(PrimitiveType.Cube, "Grass", root.transform, new Vector3(0f, -0.6f, 30f), new Vector3(1f, 1f, 100f), Lit("Crouch Grass", new Color(0.45f, 0.8f, 0.32f)));
+            Block(PrimitiveType.Cube, "Grass", root.transform, new Vector3(0f, -0.6f, WallFront + 39f), new Vector3(1f, 1f, 78f), Lit("Crouch Grass", new Color(0.45f, 0.8f, 0.32f)));
             return SavePrefab(root, $"{Root}/Ground.prefab").transform;
-        }
-
-        static Transform BuildHedge()
-        {
-            var root = new GameObject("Hedge");
-            Block(PrimitiveType.Cube, "Bush", root.transform, new Vector3(0f, 0.4f, 0f), new Vector3(1f, 0.8f, 0.8f), Lit("Crouch Hedge", new Color(0.18f, 0.6f, 0.25f)));
-            return SavePrefab(root, $"{Root}/Hedge.prefab").transform;
         }
 
         static Transform BuildTree()

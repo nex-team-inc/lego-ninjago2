@@ -1279,18 +1279,6 @@ MonoBehaviour:
     m_Key: ninjago.mode.crouch_run
     m_Metadata:
       m_Items: []
-  - m_Id: 198540774461136896
-    m_Key: ninjago.crouch.clear
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198540774461136897
-    m_Key: ninjago.crouch.stand_to_run
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198540774461136898
-    m_Key: ninjago.crouch.talking
-    m_Metadata:
-      m_Items: []
   - m_Id: 198540774461136899
     m_Key: ninjago.crouch.crouch
     m_Metadata:

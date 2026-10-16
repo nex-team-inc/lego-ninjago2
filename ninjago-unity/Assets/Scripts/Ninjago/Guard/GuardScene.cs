@@ -182,7 +182,7 @@ namespace Nex.Ninjago
             var settings = config.ReaderSettings;
             if (player.Reader.IsFresh(time, settings))
             {
-                brick.Burst(1.4f);
+                brick.Burst(0.9f);
                 Block(player, time, false);
                 CheerFriend();
                 return;
@@ -198,7 +198,7 @@ namespace Nex.Ninjago
             var settings = config.ReaderSettings;
             var saved = true;
             foreach (var player in players) saved &= player.Reader.IsFresh(time, settings);
-            brick.Burst(2.6f);
+            brick.Burst(1.6f);
             BigThrows++;
             if (saved) BigSaves++;
             foreach (var player in players)

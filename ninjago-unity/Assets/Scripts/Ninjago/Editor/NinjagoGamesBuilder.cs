@@ -114,19 +114,27 @@ namespace Nex.Ninjago.Editor
 
         // The menu shows the Ninjago mini-games; the PressButtonToWin test entry stays defined but unlisted. The
         // StoneKick and EarthSeal definitions come from CursorGamesBuilder, RobotMecha from RobotMechaBuilder, CrouchRun from
-        // CrouchRunBuilder, ThreeWeapons from ThreeWeaponsBuilder, OnePunch from OnePunchBuilder.
+        // CrouchRunBuilder, ThreeWeapons from ThreeWeaponsBuilder, OnePunch from OnePunchBuilder, Guard, Call and Build from their builders.
+        // A mode whose builder has not run yet has no game prefab and stays out of the menu.
         internal static void WriteMenuOrder()
         {
             var config = Load<GameModeConfig>(GameModeConfigPath);
             var serialized = new SerializedObject(config);
             var order = serialized.FindProperty("modeOrders");
-            var listed = new[]
+            var modes = serialized.FindProperty("modes");
+            var listed = new List<GameModeType>();
+            foreach (var mode in new[]
+                     {
+                         GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal, GameModeType.RobotMecha,
+                         GameModeType.CrouchRun, GameModeType.ThreeWeapons, GameModeType.OnePunch, GameModeType.Guard, GameModeType.Call, GameModeType.Build,
+                     })
             {
-                GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal, GameModeType.RobotMecha,
-                GameModeType.CrouchRun, GameModeType.ThreeWeapons, GameModeType.OnePunch,
-            };
-            order.arraySize = listed.Length;
-            for (var i = 0; i < listed.Length; i++) order.GetArrayElementAtIndex(i).intValue = (int)listed[i];
+                var prefab = EnumDictionaryEditorUtils.GetValueProperty(modes, (int)mode).FindPropertyRelative("gamePrefab.m_AssetGUID").stringValue;
+                if (!string.IsNullOrEmpty(prefab)) listed.Add(mode);
+            }
+
+            order.arraySize = listed.Count;
+            for (var i = 0; i < listed.Count; i++) order.GetArrayElementAtIndex(i).intValue = (int)listed[i];
             serialized.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(config);
         }

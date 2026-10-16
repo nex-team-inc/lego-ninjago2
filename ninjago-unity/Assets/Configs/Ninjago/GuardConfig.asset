@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c8495cc87ea40988180a1920ea4564, type: 3}
+  m_Name: GuardConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.GuardConfig
+  minAboveShoulder: 0
+  maxOutsideShoulder: 4
+  lowerBelowShoulder: 4
+  freshSeconds: 1.5
+  throwsPerPlayer: 10
+  bigThrows: 3
+  windUpSeconds: 1.1
+  flightSeconds: 1.3
+  gapSeconds: 1.4
+  arcHeight: 3
+  lateWindowSeconds: 0.6
+  halfWindowSeconds: 1.2
+  dizzySeconds: 1.2
+  hatSeconds: 1.6
+  shoveMeters: 0.35
+  introSeconds: 3
+  endHoldSeconds: 3
+  flashSeconds: 1.4
+  looks:
+    pairs:
+    - key: 0
+      value:
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198907194311172103
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 0.35, g: 1, b: 0.4, a: 1}
+    - key: 1
+      value:
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198907194311172104
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 1, g: 0.65, b: 0.25, a: 1}
+    - key: 2
+      value:
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198907194311172105
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 1, g: 0.9, b: 0.3, a: 1}
+    - key: 3
+      value:
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198907194311172106
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 1, g: 0.9, b: 0.3, a: 1}
+    - key: 4
+      value:
+        label:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198907194311172107
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        color: {r: 1, g: 0.55, b: 0.8, a: 1}
+  references:
+    version: 2
+    RefIds: []

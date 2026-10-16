@@ -1573,6 +1573,94 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 198907194302783488
+    m_Localized: Guard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194306977792
+    m_Localized: Throw {current}/{total}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198907194311172096
+    m_Localized: Keep your friend safe!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172097
+    m_Localized: Both hands up, like a shield!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172098
+    m_Localized: BLOCK!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172099
+    m_Localized: BLOCK TOGETHER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172100
+    m_Localized: TEAM BLOCK!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172101
+    m_Localized: Your friend is safe!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172102
+    m_Localized: Blocks {count}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198907194311172103
+    m_Localized: BLOCKED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172104
+    m_Localized: Too late!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172105
+    m_Localized: Down, then up again!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172106
+    m_Localized: Both hands!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172107
+    m_Localized: Bonk!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172108
+    m_Localized: Great guarding!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172109
+    m_Localized: Let's guard again!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172110
+    m_Localized: P{player}    Blocked {saved}    Too late {late}    Held too long
+      {held}    One hand {half}    Bonked {missed}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198907194311172111
+    m_Localized: P{player}    Guard read on time {matched} of {tries} tries    Read
+      with nothing coming {alone}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198907194311172112
+    m_Localized: Giant bricks blocked {saved}/{total}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198907194311172113
+    m_Localized: Best {saves} blocks
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1661,3 +1749,9 @@ MonoBehaviour:
         - id: 198855069828898825
         - id: 198855069828898826
         - id: 198855069828898827
+        - id: 198907194306977792
+        - id: 198907194311172102
+        - id: 198907194311172110
+        - id: 198907194311172111
+        - id: 198907194311172112
+        - id: 198907194311172113

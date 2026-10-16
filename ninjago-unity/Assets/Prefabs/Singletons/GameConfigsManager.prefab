@@ -59,3 +59,4 @@ MonoBehaviour:
   crouchRunConfig: {fileID: 11400000, guid: b88be8b677ea346b08e14e9c8612085a, type: 2}
   threeWeaponsConfig: {fileID: 11400000, guid: b26f449b5477c4e3792ac3502696aa93, type: 2}
   onePunchConfig: {fileID: 11400000, guid: 3c9f45fd0021741a5a5e0df83b4fac31, type: 2}
+  guardConfig: {fileID: 11400000, guid: af73a6a7b82db4a9a973b2378799266b, type: 2}

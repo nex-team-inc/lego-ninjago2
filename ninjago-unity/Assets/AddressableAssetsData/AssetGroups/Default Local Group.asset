@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77bbffa001fa94c73abb543707359491
+    m_Address: GuardGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7d131650af90f4b52a0de40ce3d7b71f
     m_Address: Assets/Prefabs/Coordinators/MainCoordinator.prefab
     m_ReadOnly: 0

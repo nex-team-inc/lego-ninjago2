@@ -17,7 +17,7 @@ namespace Nex.Ninjago.Editor
     {
         public const string ViewPath = NinjagoViewsBuilder.ViewsRoot + "/OnePunchView.prefab";
         public const string ResultViewPath = NinjagoViewsBuilder.ViewsRoot + "/OnePunchResultView.prefab";
-        const string ResultLinePath = NinjagoViewsBuilder.WidgetsRoot + "/OnePunchResultLine.prefab";
+        internal const string ResultLinePath = NinjagoViewsBuilder.WidgetsRoot + "/OnePunchResultLine.prefab";
         static readonly Color panelDark = new(0.08f, 0.08f, 0.1f, 0.85f);
         static readonly Color hintYellow = new(1f, 0.9f, 0.3f);
 

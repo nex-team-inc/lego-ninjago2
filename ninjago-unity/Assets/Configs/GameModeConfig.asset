@@ -194,7 +194,61 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         maxPlayers: 2
-  modeOrders: 0200000003000000040000000500000006000000070000000800000009000000
+    - key: 10
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198907194302783488
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        gamePrefab:
+          m_AssetGUID: 77bbffa001fa94c73abb543707359491
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        maxPlayers: 2
+    - key: 11
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198855069824704512
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        gamePrefab:
+          m_AssetGUID: c5c38e015e13b4fd194654c90d275eb2
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        maxPlayers: 2
+    - key: 12
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 198855069824704512
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        gamePrefab:
+          m_AssetGUID: c5c38e015e13b4fd194654c90d275eb2
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        maxPlayers: 2
+  modeOrders: 02000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
   references:
     version: 2
     RefIds: []

@@ -1467,6 +1467,86 @@ MonoBehaviour:
     m_Key: ninjago.result.punch_best
     m_Metadata:
       m_Items: []
+  - m_Id: 198907194302783488
+    m_Key: ninjago.mode.guard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194306977792
+    m_Key: ninjago.guard.status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172096
+    m_Key: ninjago.guard.intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172097
+    m_Key: ninjago.guard.hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172098
+    m_Key: ninjago.guard.block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172099
+    m_Key: ninjago.guard.team_block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172100
+    m_Key: ninjago.guard.team_banner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172101
+    m_Key: ninjago.guard.end
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172102
+    m_Key: ninjago.guard.count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172103
+    m_Key: ninjago.guard.saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172104
+    m_Key: ninjago.guard.late
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172105
+    m_Key: ninjago.guard.held
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172106
+    m_Key: ninjago.guard.half
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172107
+    m_Key: ninjago.guard.missed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172108
+    m_Key: ninjago.result.guard_good
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172109
+    m_Key: ninjago.result.guard_again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172110
+    m_Key: ninjago.result.guard_outcomes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172111
+    m_Key: ninjago.result.guard_reading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172112
+    m_Key: ninjago.result.guard_big
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198907194311172113
+    m_Key: ninjago.result.guard_best
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

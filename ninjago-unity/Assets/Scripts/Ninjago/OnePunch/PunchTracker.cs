@@ -109,13 +109,18 @@ namespace Nex.Ninjago
 
         void AddScale(int playerIndex, int hand, HandPose? pose, float frameHeight, float now, in PunchDetector.Settings settings)
         {
-            var bodyPpi = bodies[playerIndex].RawPpi;
-            if (pose == null || SimulatedBody.IsEnabled || bodyPpi <= 0f) return;
+            var body = bodies[playerIndex];
+            var bodyPpi = body.RawPpi;
+            if (pose == null || SimulatedBody.IsEnabled || bodyPpi <= 0f || !body.TryGetChest(out var chest)) return;
             var scale = pose.CalculatePpi() / frameHeight / bodyPpi;
             if (float.IsNaN(scale) || float.IsInfinity(scale) || scale <= 0f) return;
             HandScaleSamples++;
             LastHandScales[playerIndex * 2 + hand] = scale;
-            if (listening[playerIndex]) Emit(playerIndex, hand, detectors[playerIndex * 2 + hand].AddHandScale(now, scale, settings));
+            if (!listening[playerIndex]) return;
+            // Hand landmarks are raw frame pixels (y down); aspect-normalized space is frame heights with y up.
+            var pixels = pose.Center2D();
+            var handInches = (new Vector2(pixels.x / frameHeight, 1f - pixels.y / frameHeight) - chest) / bodyPpi;
+            Emit(playerIndex, hand, detectors[playerIndex * 2 + hand].AddHandScale(now, scale, handInches, settings));
         }
 
         void Update()

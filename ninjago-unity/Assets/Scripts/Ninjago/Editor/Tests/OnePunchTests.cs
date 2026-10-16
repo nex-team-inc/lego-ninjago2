@@ -88,10 +88,76 @@ namespace Nex.Ninjago.Editor.Tests
         public void AHandFoundAgainAfterAGapIsNotAPunch()
         {
             var detector = new PunchDetector();
+            for (var t = 0f; t < 0.3f; t += 1f / bodyHz) detector.AddArm(t, rightShoulder, leftShoulder, guard, settings);
             var time = 0f;
-            for (; time < 1f; time += 1f / handHz) Assert.IsNull(detector.AddHandScale(time, 1f, settings));
-            // Missed for half a second, then seen again much bigger (raised in front of the body).
-            for (time += 0.5f; time < 2f; time += 1f / handHz) Assert.IsNull(detector.AddHandScale(time, 1.5f, settings), $"t {time:0.00}");
+            for (; time < 1f; time += 1f / handHz) Assert.IsNull(detector.AddHandScale(time, 1f, guard, settings));
+            // Missed for half a second, then seen again much bigger.
+            for (time += 0.5f; time < 2f; time += 1f / handHz) Assert.IsNull(detector.AddHandScale(time, 1.5f, guard, settings), $"t {time:0.00}");
+        }
+
+        // A still player, arms hanging: the hand detector's scale for a hand by the hip swings wildly (seen up to 4x in a real run).
+        [Test]
+        public void HandScaleNoiseFromHangingHandsIsNotAPunch()
+        {
+            var hanging = new Vector2(8f, -20f);
+            for (var seed = 0; seed < 25; seed++)
+            {
+                var noise = new System.Random(seed + 100);
+                var tries = RunRightHand(_ => hanging, 8f, seed, _ => 1f + (float)noise.NextDouble() * 3f);
+                CollectionAssert.IsEmpty(tries, $"seed {seed}: {Describe(tries)}");
+            }
+        }
+
+        [Test]
+        public void HandScaleNoiseOnAStillGuardIsNotAPunch()
+        {
+            for (var seed = 0; seed < 25; seed++)
+            {
+                var noise = new System.Random(seed + 200);
+                var tries = RunRightHand(_ => guard, 8f, seed, _ => 1f + ((float)noise.NextDouble() * 2f - 1f) * 0.08f);
+                CollectionAssert.IsEmpty(tries, $"seed {seed}: {Describe(tries)}");
+            }
+        }
+
+        // A real run logged a 2.8 in arm length jump between two body frames 8 ms apart, read as a 324 in/s punch.
+        [Test]
+        public void OneJitteryFrameIsNotAPunch()
+        {
+            var detector = new PunchDetector();
+            var tries = new List<PunchDetector.Try>();
+            var random = new System.Random(5);
+            for (var frame = 0; frame < 90; frame++)
+            {
+                var t = frame / bodyHz;
+                Add(t, guard + Jitter(random, jointJitter));
+                if (frame % 10 != 5) continue;
+                // A second frame right behind it, with the wrist thrown 3 in further from the shoulder.
+                Add(t + 0.008f, guard + new Vector2(-2.2f, 2.2f));
+            }
+
+            CollectionAssert.IsEmpty(tries, Describe(tries));
+
+            void Add(float t, Vector2 wrist)
+            {
+                var result = detector.AddArm(t, rightShoulder, leftShoulder, wrist, settings);
+                if (result.HasValue) tries.Add(result.Value);
+            }
+        }
+
+        // Standing still, a wrist can swap sides or be guessed off the bottom of the frame for a few frames.
+        [Test]
+        public void AWristGlitchIsNotATry()
+        {
+            for (var seed = 0; seed < 25; seed++)
+            {
+                var swap = RunRightHand(t => t > 1f && t < 1.25f ? new Vector2(-8f, 4f) : guard, 3f, seed);
+                CollectionAssert.IsEmpty(swap, $"swap, seed {seed}: {Describe(swap)}");
+                var offFrame = RunRightHand(t => t > 1f && t < 1.2f ? new Vector2(20f, -15f) : guard, 3f, seed);
+                CollectionAssert.IsEmpty(offFrame, $"off frame, seed {seed}: {Describe(offFrame)}");
+                var hangingJitter = new System.Random(seed + 300);
+                var hanging = RunRightHand(_ => new Vector2(8f, -20f) + Jitter(hangingJitter, 4f), 6f, seed);
+                CollectionAssert.IsEmpty(hanging, $"hanging, seed {seed}: {Describe(hanging)}");
+            }
         }
 
         [Test]
@@ -164,9 +230,9 @@ namespace Nex.Ninjago.Editor.Tests
                 // A forward punch from a hanging arm: in 2D the arm only gets shorter, and there is no hand scale here.
                 var hanging = RunRightHand(Move(new Vector2(8f, -20f), new Vector2(1f, 3f), 0.5f, 0.2f), 2f, seed);
                 AssertSingle(hanging, PunchSignal.None, seed);
-                // The same punch with the hand growing toward the lens counts.
-                var withScale = RunRightHand(Move(new Vector2(8f, -20f), new Vector2(1f, 3f), 0.5f, 0.2f), 2f, seed, Grow(1f, 1.3f, 0.5f, 0.2f));
-                AssertSingle(withScale, PunchSignal.TowardCamera, seed);
+                // Scale growth while the hand is still rising from the hip (not yet in front) does not count either.
+                var risingScale = RunRightHand(Move(new Vector2(8f, -20f), new Vector2(1f, 3f), 0.5f, 0.2f), 2f, seed, Grow(1f, 1.3f, 0.5f, 0.1f));
+                AssertSingle(risingScale, PunchSignal.None, seed);
             }
         }
 
@@ -234,7 +300,11 @@ namespace Nex.Ninjago.Editor.Tests
                 else
                 {
                     var t = nextHand;
-                    if (scale != null) result = detector.AddHandScale(t, scale(t) * (1f + (float)(random.NextDouble() * 2.0 - 1.0) * scaleJitter), settings);
+                    if (scale != null)
+                    {
+                        result = detector.AddHandScale(t, scale(t) * (1f + (float)(random.NextDouble() * 2.0 - 1.0) * scaleJitter),
+                            wrist(t) + Jitter(random, jointJitter), settings);
+                    }
                     nextHand += 1f / handHz;
                 }
 

@@ -44,9 +44,9 @@ namespace Nex.Ninjago
 
         [Header("Toward Camera Signal")]
         [Tooltip("Hand scale growth per second that counts as a punch (1 = the hand doubles in size in a second).")]
-        [SerializeField, Range(0.1f, 5f)] float handScaleSpeed = 0.8f;
-        [Tooltip("Hand scale growth the punch needs at least (0.15 = 15% bigger).")]
-        [SerializeField, Range(0.03f, 1f)] float handScaleMinGrowth = 0.15f;
+        [SerializeField, Range(0.1f, 5f)] float handScaleSpeed = 1f;
+        [Tooltip("Hand scale growth the punch needs at least (0.2 = 20% bigger).")]
+        [SerializeField, Range(0.03f, 1f)] float handScaleMinGrowth = 0.2f;
 
         [Header("Side Slash Rejection")]
         [Tooltip("A try is a side slash when the arm length changes by at most this share of the sideways wrist travel.")]

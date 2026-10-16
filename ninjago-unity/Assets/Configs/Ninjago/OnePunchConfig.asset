@@ -20,8 +20,8 @@ MonoBehaviour:
   extensionMinGrowth: 2.5
   chestFrontWindow: 9
   chestFrontMargin: 2
-  handScaleSpeed: 0.8
-  handScaleMinGrowth: 0.15
+  handScaleSpeed: 1
+  handScaleMinGrowth: 0.2
   sideSlashLengthRatio: 0.35
   sideSlashMinTravel: 8
   signalLooks:

@@ -1477,6 +1477,102 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 198855069820510208
+    m_Localized: 'Step back: show both hands and your hips'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704512
+    m_Localized: One Punch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704513
+    m_Localized: Wave {current}/{total}    {left} left
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198855069824704514
+    m_Localized: WAVE {wave}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198855069824704515
+    m_Localized: WAVE CLEARED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704516
+    m_Localized: STREET CLEARED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704517
+    m_Localized: PINNED DOWN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704518
+    m_Localized: Short punch forward!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704519
+    m_Localized: WIGGLE YOUR HIPS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898816
+    m_Localized: Ext {ext}   Cam {cam}   Slash {slash}   None {none}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198855069828898817
+    m_Localized: EXTENSION!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898818
+    m_Localized: TOWARD CAMERA!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898819
+    m_Localized: SIDE SLASH - NO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898820
+    m_Localized: NOTHING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898821
+    m_Localized: Street cleared!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898822
+    m_Localized: Pinned down!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898823
+    m_Localized: P{player}    Extension {ext}    Toward camera {cam}    Side slash
+      rejected {slash}    Nothing {none}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198855069828898824
+    m_Localized: P{player}    Thrown {thrown}    Pinned {pinned}    Wiggled free
+      {wiggles}    Health {health}/{max}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198855069828898825
+    m_Localized: 'Waves cleared {waves}/{total}    Toward-camera cue: hand scale'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198855069828898826
+    m_Localized: 'Waves cleared {waves}/{total}    Toward-camera cue: none (no depth
+      cue)'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 198855069828898827
+    m_Localized: 'Best {waves} waves    All runs: Extension {ext}   Toward camera
+      {cam}   Side slash {slash}   Nothing {none}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1557,3 +1653,11 @@ MonoBehaviour:
         - id: 198544201094258698
         - id: 198544201094258699
         - id: 198544201094258700
+        - id: 198855069824704513
+        - id: 198855069824704514
+        - id: 198855069828898816
+        - id: 198855069828898823
+        - id: 198855069828898824
+        - id: 198855069828898825
+        - id: 198855069828898826
+        - id: 198855069828898827

@@ -58,3 +58,4 @@ MonoBehaviour:
   mechaFightConfig: {fileID: 11400000, guid: 7d23b8068a18344f3880df7d2ac42e71, type: 2}
   crouchRunConfig: {fileID: 11400000, guid: b88be8b677ea346b08e14e9c8612085a, type: 2}
   threeWeaponsConfig: {fileID: 11400000, guid: b26f449b5477c4e3792ac3502696aa93, type: 2}
+  onePunchConfig: {fileID: 11400000, guid: 3c9f45fd0021741a5a5e0df83b4fac31, type: 2}

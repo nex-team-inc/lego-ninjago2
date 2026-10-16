@@ -195,7 +195,7 @@ namespace Nex.Ninjago.Editor
             Set(view, "keyResponder", BackProxy(ui));
         }
 
-        static void BuildResult(NinjagoResultView view, RectTransform ui, ResultLine linePrefab)
+        internal static void BuildResult(NinjagoResultView view, RectTransform ui, ResultLine linePrefab)
         {
             var title = Title(ui, "ninjago.result.victory", "Victory!", new Vector2(0f, 330f));
             var lines = NewRect("Lines", ui);

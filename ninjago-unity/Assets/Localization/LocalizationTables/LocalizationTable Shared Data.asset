@@ -1383,6 +1383,90 @@ MonoBehaviour:
     m_Key: ninjago.result.weapons_best
     m_Metadata:
       m_Items: []
+  - m_Id: 198855069820510208
+    m_Key: ninjago.setup.joints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704512
+    m_Key: ninjago.mode.one_punch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704513
+    m_Key: ninjago.punch.wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704514
+    m_Key: ninjago.punch.wave_banner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704515
+    m_Key: ninjago.punch.wave_cleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704516
+    m_Key: ninjago.punch.street_cleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704517
+    m_Key: ninjago.punch.down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704518
+    m_Key: ninjago.punch.hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069824704519
+    m_Key: ninjago.punch.wiggle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898816
+    m_Key: ninjago.punch.counts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898817
+    m_Key: ninjago.punch.signal_extension
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898818
+    m_Key: ninjago.punch.signal_toward_camera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898819
+    m_Key: ninjago.punch.signal_side_slash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898820
+    m_Key: ninjago.punch.signal_none
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898821
+    m_Key: ninjago.result.punch_cleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898822
+    m_Key: ninjago.result.punch_down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898823
+    m_Key: ninjago.result.punch_tries
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898824
+    m_Key: ninjago.result.punch_player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898825
+    m_Key: ninjago.result.punch_waves_cue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898826
+    m_Key: ninjago.result.punch_waves_no_cue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198855069828898827
+    m_Key: ninjago.result.punch_best
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

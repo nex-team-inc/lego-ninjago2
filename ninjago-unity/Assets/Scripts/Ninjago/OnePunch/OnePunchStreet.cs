@@ -83,6 +83,11 @@ namespace Nex.Ninjago
             waveThrows = new int[players.Count];
             monsterPool.Initialize(monsterPrefab, config.MonstersPerWave + 1);
             monsterPool.Prewarm(config.MonstersPerWave + 1);
+            // The first throw would otherwise instantiate its effects mid-fight and hitch.
+            VfxManager.Instance.Prewarm(VfxManager.VisualEffect.PunchImpact, 4);
+            VfxManager.Instance.Prewarm(VfxManager.VisualEffect.BrickTrail, 3);
+            VfxManager.Instance.Prewarm(VfxManager.VisualEffect.BrickBurst, 3);
+            VfxManager.Instance.Prewarm(VfxManager.VisualEffect.PinSlam, 1);
             hud.Initialize(config, players);
             tracker.Tried += HandleTry;
         }
@@ -344,9 +349,11 @@ namespace Nex.Ninjago
             if (!PlayerDataManager.Instance.DebugSettings.enableDebugPrinter) return;
             foreach (var player in players)
             {
+                var scales = tracker.LastHandScales;
                 DebugPrinter.Instance.Print($"Punch P{player.PlayerIndex + 1}",
                     $"ext {player.Tries(PunchSignal.Extension)} cam {player.Tries(PunchSignal.TowardCamera)} slash {player.Tries(PunchSignal.SideSlash)} " +
-                    $"none {player.Tries(PunchSignal.None)} health {player.Health:0.0} wiggle {player.Meter.Fill:0.00}{(player.Meter.IsWiggling ? " *" : "")}");
+                    $"none {player.Tries(PunchSignal.None)} health {player.Health:0.0} wiggle {player.Meter.Fill:0.00}{(player.Meter.IsWiggling ? " *" : "")} " +
+                    $"hand scale {scales[player.PlayerIndex * 2]:0.00}/{scales[player.PlayerIndex * 2 + 1]:0.00}");
             }
 
             DebugPrinter.Instance.Print("Punch Street", $"wave {Wave} left {remaining} hand scale samples {tracker.HandScaleSamples}");

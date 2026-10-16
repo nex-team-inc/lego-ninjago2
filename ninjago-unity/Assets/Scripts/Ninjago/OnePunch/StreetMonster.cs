@@ -42,6 +42,9 @@ namespace Nex.Ninjago
         [SerializeField] float strideMeters = 1.1f;
         [Header("Jump Height")]
         [SerializeField] float jumpHeight = 1.4f;
+        [Header("Flight Scale")]
+        [Tooltip("Size the monster grows to by the end of its flight, so the arc still reads as it gets further away.")]
+        [SerializeField] float flightScale = 1.5f;
         [Header("Trail Offset")]
         [Tooltip("Where the brick trail and the burst play, from the monster's root.")]
         [SerializeField] Vector3 centerOffset = new(0f, 1f, 0f);
@@ -182,6 +185,7 @@ namespace Nex.Ninjago
             velocity.y -= gravity * deltaTime;
             transform.localPosition += velocity * deltaTime;
             transform.localRotation = Quaternion.AngleAxis(spinDegrees * deltaTime, spinAxis) * transform.localRotation;
+            transform.localScale = Vector3.one * Mathf.Lerp(1f, flightScale, flightElapsed / flightSeconds);
             if (trail != null) trail.transform.position = Center;
             if (flightElapsed < flightSeconds) return;
             Burst();

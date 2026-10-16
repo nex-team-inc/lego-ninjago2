@@ -28,7 +28,8 @@ namespace Nex.Ninjago.Editor
             var street = root.AddComponent<OnePunchStreet>();
             BuildRoad(root.transform);
             BuildBuildings(root.transform);
-            var camera = NinjagoWorldBuilder.NewCamera(root.transform, new Vector3(0f, 3.4f, -6.8f), new Vector3(11f, 0f, 0f), 50f);
+            // Tilted only a little down, so a thrown monster's arc stays under the top of the screen.
+            var camera = NinjagoWorldBuilder.NewCamera(root.transform, new Vector3(0f, 3.4f, -6.8f), new Vector3(8f, 0f, 0f), 50f);
             camera.backgroundColor = skyColor;
             camera.farClipPlane = 140f;
             var ninjas = new List<Object> { BuildNinja(root.transform, "NinjaLeft"), BuildNinja(root.transform, "NinjaRight") };
@@ -68,7 +69,8 @@ namespace Nex.Ninjago.Editor
                 Block(PrimitiveType.Cube, "Curb", root, new Vector3(side * (RoadHalfWidth + 0.08f), 0.02f, center), new Vector3(0.16f, 0.2f, StreetLength), curb);
             }
 
-            for (var z = -4f; z < StreetLength - 8f; z += 5f)
+            // From in front of the ninjas, so no dash shows between a ninja's legs.
+            for (var z = 3f; z < StreetLength - 8f; z += 5f)
             {
                 Block(PrimitiveType.Cube, "Dash", root, new Vector3(0f, 0.005f, z), new Vector3(0.18f, 0.01f, 2.2f), paint);
             }
@@ -162,7 +164,7 @@ namespace Nex.Ninjago.Editor
             }
 
             var seat = Empty("Seat", body, new Vector3(0f, 0.72f, 0.05f));
-            var marker = NinjagoWorldBuilder.BuildPlayerTagCanvas(ninjaRoot, "Marker", new Vector3(0f, 2.55f, 0f), 0.012f, 64f, true);
+            var marker = NinjagoWorldBuilder.BuildPlayerTagCanvas(ninjaRoot, "Marker", new Vector3(0f, 2.25f, 0f), 0.006f, 64f, true);
             Set(rig, "body", body);
             Set(rig, "leftArm", leftArm);
             Set(rig, "rightArm", rightArm);

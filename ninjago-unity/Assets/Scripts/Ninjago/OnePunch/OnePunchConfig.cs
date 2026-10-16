@@ -75,9 +75,9 @@ namespace Nex.Ninjago
 
         [Header("Fly-Away")]
         [Tooltip("Seconds from the punch to the monster bursting into bricks.")]
-        [SerializeField, Range(0.3f, 4f)] float flightSeconds = 1.15f;
+        [SerializeField, Range(0.3f, 4f)] float flightSeconds = 1.1f;
         [Tooltip("Launch velocity in meters per second: x away from the street's middle, y up, z down the street.")]
-        [SerializeField] Vector3 launchVelocity = new(7f, 15f, 9f);
+        [SerializeField] Vector3 launchVelocity = new(6f, 14f, 7f);
         [Tooltip("Meters per second squared pulling the flying monster down.")]
         [SerializeField, Range(0f, 40f)] float flightGravity = 12f;
         [Tooltip("Degrees per second the flying monster spins.")]

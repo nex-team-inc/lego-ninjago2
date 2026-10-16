@@ -62,6 +62,8 @@ namespace Nex.Ninjago
                 if (used) panels[slot].Initialize(players[slot], config.SignalFlashSeconds);
             }
 
+            // A smart-string label with an empty reference throws when it starts, so it gets its text before then.
+            SetWave(1, config.WaveCount, config.MonstersPerWave);
             centerBanner.gameObject.SetActive(false);
             punchHint.SetActive(false);
             HidePin();

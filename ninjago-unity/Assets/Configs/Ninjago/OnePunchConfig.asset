@@ -82,8 +82,8 @@ MonoBehaviour:
   spawnHalfWidth: 2.6
   monsterSpeed: 2.4
   grabRange: 1.3
-  flightSeconds: 1.15
-  launchVelocity: {x: 7, y: 15, z: 9}
+  flightSeconds: 1.1
+  launchVelocity: {x: 6, y: 14, z: 7}
   flightGravity: 12
   flightSpinDegrees: 900
   startingHealth: 8

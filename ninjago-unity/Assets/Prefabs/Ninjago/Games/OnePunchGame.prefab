@@ -179,11 +179,11 @@ MonoBehaviour:
   detectionEnginePrefab: {fileID: 2637131507758446840, guid: f7d14f6559fa04af390078e069985146, type: 3}
   enginesRoot: {fileID: 8881483016237774658}
   setupViewPrefab: {fileID: 7869860828024023686, guid: 3e75ad53e571f4206832f1922e6e1b32, type: 3}
-  resultViewPrefab: {fileID: 1879722958291732563, guid: dea359a5537e44609b1954cb84659127, type: 3}
+  resultViewPrefab: {fileID: 2635624615446640634, guid: dea359a5537e44609b1954cb84659127, type: 3}
   playersConfig: {fileID: 11400000, guid: 859a766aa9a0849278e666db4e6d1a95, type: 2}
   tracker: {fileID: 3396018352236115668}
   config: {fileID: 11400000, guid: 3c9f45fd0021741a5a5e0df83b4fac31, type: 2}
-  viewPrefab: {fileID: 4941856738708332686, guid: e70d2a3a09387404ab81d4edf804ae02, type: 3}
+  viewPrefab: {fileID: 6046988802148880338, guid: e70d2a3a09387404ab81d4edf804ae02, type: 3}
   clearedTitle:
     m_TableReference:
       m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6

@@ -37,7 +37,8 @@ namespace Nex.Ninjago
         [Tooltip("Left arm at rest; the right arm mirrors it.")]
         [SerializeField] Vector3 restArmEuler = new(-14f, 0f, -7f);
         [Header("Punch Arm Euler")]
-        [SerializeField] Vector3 punchArmEuler = new(-90f, 0f, 4f);
+        [Tooltip("Left arm at full punch: forward, out to its side and a little up, so from behind the glove clears the body.")]
+        [SerializeField] Vector3 punchArmEuler = new(-105f, 0f, -24f);
         [Header("Punch Arm Stretch")]
         [Tooltip("Arm length multiplier at full punch, so the strike reads from behind.")]
         [SerializeField] float punchStretch = 1.6f;

@@ -76,6 +76,25 @@ namespace Nex.Ninjago.Editor.Tests
         }
 
         [Test]
+        public void AOneFrameHandScaleSpikeIsNotAPunch()
+        {
+            for (var seed = 0; seed < 25; seed++)
+            {
+                CollectionAssert.IsEmpty(RunRightHand(_ => guard, 2f, seed, t => t > 0.95f && t < 1.0f ? 1.5f : 1f), $"seed {seed}");
+            }
+        }
+
+        [Test]
+        public void AHandFoundAgainAfterAGapIsNotAPunch()
+        {
+            var detector = new PunchDetector();
+            var time = 0f;
+            for (; time < 1f; time += 1f / handHz) Assert.IsNull(detector.AddHandScale(time, 1f, settings));
+            // Missed for half a second, then seen again much bigger (raised in front of the body).
+            for (time += 0.5f; time < 2f; time += 1f / handHz) Assert.IsNull(detector.AddHandScale(time, 1.5f, settings), $"t {time:0.00}");
+        }
+
+        [Test]
         public void ASlashAcrossTheShoulderIsRejected()
         {
             var sweeps = new[]
@@ -254,6 +273,38 @@ namespace Nex.Ninjago.Editor.Tests
         }
 
         #endregion
+    }
+
+    // The tuned asset (rebuilt by Nex > Ninjago > Build One Punch) against the brief's numbers.
+    public class OnePunchContentTests
+    {
+        static OnePunchConfig Config => UnityEditor.AssetDatabase.LoadAssetAtPath<OnePunchConfig>("Assets/Configs/Ninjago/OnePunchConfig.asset");
+
+        [Test]
+        public void TheRunMatchesTheBrief()
+        {
+            var config = Config;
+            Assert.AreEqual(5, config.WaveCount);
+            Assert.AreEqual(5, config.MonstersPerWave);
+            Assert.AreEqual(2f, config.SecondsBetweenWaves, 0.5f);
+            Assert.AreEqual(8f, config.StartingHealth);
+            Assert.AreEqual(1f, config.DrainPerSecond);
+            Assert.AreEqual(0.4f, config.WiggleWindowSeconds, 0.05f);
+        }
+
+        [Test]
+        public void MonstersNeverReachTheNinjasOnTheSameFrame()
+        {
+            var config = Config;
+            Assert.Greater(config.MonsterSpacing / config.MonsterSpeed, 0.5f, "seconds between arrivals");
+            Assert.Greater(config.FirstMonsterDistance, config.GrabRange + 3f);
+        }
+
+        [Test]
+        public void EverySignalHasAWord()
+        {
+            foreach (PunchSignal signal in Enum.GetValues(typeof(PunchSignal))) Assert.IsFalse(Config.GetLook(signal).label.IsEmpty, signal.ToString());
+        }
     }
 
     // Hip center at 15 Hz with +-0.3 in jitter; the meter ticks at 60 Hz.

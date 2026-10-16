@@ -9,9 +9,9 @@ namespace Nex.Ninjago
     /// One hand's punch reader, from flat 2D joints. Any fast wrist move (against the chest) opens a try. The try is a
     /// punch the moment either signal fires, unless it is a side slash; otherwise it closes after the try window as a
     /// side slash or nothing. Extension: the shoulder-to-wrist distance grows fast and the wrist ends in front of the
-    /// chest, between the shoulders. Toward camera: the hand's scale (its pixels per inch from the hand detector) grows
-    /// fast. Side slash: the wrist races sideways with almost no change in that distance. Each try rests the hand for
-    /// the cooldown.
+    /// chest, between the shoulders. Toward camera: the hand's scale against the body's (median of three hand frames)
+    /// grows fast. Side slash: the wrist races sideways with almost no change in that distance. Each try rests the hand
+    /// for the cooldown.
     /// </summary>
     public sealed class PunchDetector
     {
@@ -19,6 +19,8 @@ namespace Nex.Ninjago
         const float speedSpanSeconds = 0.1f;
         // Lowering the hand also lengthens the arm: during an extension the wrist may drop at most this much per inch sideways.
         const float maxDropPerSideInch = 1.5f;
+        // Growth is only read across consecutive frames: a joint or hand found again after a gap may simply have been missed while it moved.
+        const float maxGapSeconds = 0.25f;
 
         public readonly struct Settings
         {
@@ -94,6 +96,10 @@ namespace Nex.Ninjago
 
         readonly List<ArmSample> arms = new();
         readonly List<ScaleSample> scales = new();
+        // The last three raw hand scales; their median is what the signal reads, so a one-frame spike does not count.
+        readonly float[] recentScales = new float[3];
+        int recentScaleCount;
+        float lastScaleTime = float.NegativeInfinity;
         bool tryOpen;
         float tryStart;
         Vector2 tryStartWrist;
@@ -110,6 +116,7 @@ namespace Nex.Ninjago
         public Try? AddArm(float time, Vector2 shoulder, Vector2 otherShoulder, Vector2 wrist, in Settings settings)
         {
             var length = (wrist - shoulder).magnitude;
+            if (arms.Count > 0 && time - arms[^1].time > maxGapSeconds) arms.Clear();
             arms.Add(new ArmSample { time = time, wrist = wrist, length = length });
             TrimArms(time - Mathf.Max(settings.signalWindowSeconds, speedSpanSeconds * 2f));
             if (time < restUntil) return null;
@@ -127,10 +134,21 @@ namespace Nex.Ninjago
             return Expire(time, settings);
         }
 
-        /// <summary>One hand detector frame of this hand: its scale in frame heights per inch (bigger = closer to the lens).</summary>
+        /// <summary>One hand detector frame of this hand: its scale against the body's (bigger = closer to the lens than the body).</summary>
         /// <returns>The try this sample closed, if any.</returns>
-        public Try? AddHandScale(float time, float scale, in Settings settings)
+        public Try? AddHandScale(float time, float rawScale, in Settings settings)
         {
+            if (time - lastScaleTime > maxGapSeconds)
+            {
+                scales.Clear();
+                recentScaleCount = 0;
+            }
+
+            lastScaleTime = time;
+            recentScales[recentScaleCount % 3] = rawScale;
+            recentScaleCount++;
+            if (recentScaleCount < 3) return null;
+            var scale = Median(recentScales[0], recentScales[1], recentScales[2]);
             scales.Add(new ScaleSample { time = time, scale = scale });
             var cutoff = time - settings.signalWindowSeconds;
             var drop = 0;
@@ -153,6 +171,8 @@ namespace Nex.Ninjago
         {
             arms.Clear();
             scales.Clear();
+            recentScaleCount = 0;
+            lastScaleTime = float.NegativeInfinity;
             tryOpen = false;
             slashSeen = false;
             racingSideways = false;
@@ -254,6 +274,8 @@ namespace Nex.Ninjago
             restUntil = time + settings.cooldownSeconds;
             return new Try(signal, time, growth, speed, scaleGrowth, sideTravel);
         }
+
+        static float Median(float a, float b, float c) => Mathf.Max(Mathf.Min(a, b), Mathf.Min(Mathf.Max(a, b), c));
 
         void TrimArms(float cutoff)
         {

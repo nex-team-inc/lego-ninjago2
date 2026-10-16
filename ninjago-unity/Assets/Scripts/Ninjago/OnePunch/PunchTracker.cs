@@ -10,8 +10,9 @@ namespace Nex.Ninjago
     /// <summary>
     /// Reads every listening player's two punch detectors. Arms come from that player's body nodes on each new body
     /// frame; the hand scale comes from the team.nex.mdk.hand detector (playerHands[playerIndex] only, so one player's
-    /// hands never punch for another). The hand scale is HandPose.CalculatePpi in frame heights: it grows as the hand
-    /// nears the lens. The simulated body punches with its punch keys.
+    /// hands never punch for another). The hand scale is HandPose.CalculatePpi over that player's body ppi: it grows as
+    /// the hand nears the lens, but not when the whole player walks closer. The simulated body punches with its punch
+    /// keys and ignores the hand detector.
     /// </summary>
     // Before gameplay Updates, so the street reads this frame's punches.
     [DefaultExecutionOrder(-100)]
@@ -34,6 +35,9 @@ namespace Nex.Ninjago
         /// <summary>Hand scale samples received since start; none means the toward-camera cue never existed.</summary>
         public int HandScaleSamples { get; private set; }
 
+        /// <summary>Latest hand scale against the body per player and hand (index playerIndex * 2 + hand), for the debug readout.</summary>
+        public float[] LastHandScales { get; private set; } = null!;
+
         #region Initialization
 
         public void Initialize(DetectionManager detection, OnePunchConfig aConfig, IReadOnlyList<PlayerBody> aBodies)
@@ -45,6 +49,7 @@ namespace Nex.Ninjago
             listening = new bool[bodies.Count];
             lastBodyFrames = new double[bodies.Count];
             seenSimulatedPunches = new int[bodies.Count * 2];
+            LastHandScales = new float[bodies.Count * 2];
             var trackHands = new List<ShouldTrackHands>(bodies.Count);
             for (var playerIndex = 0; playerIndex < bodies.Count; playerIndex++) trackHands.Add(new ShouldTrackHands(true, true));
 
@@ -104,10 +109,12 @@ namespace Nex.Ninjago
 
         void AddScale(int playerIndex, int hand, HandPose? pose, float frameHeight, float now, in PunchDetector.Settings settings)
         {
-            if (pose == null) return;
-            var scale = pose.CalculatePpi() / frameHeight;
+            var bodyPpi = bodies[playerIndex].RawPpi;
+            if (pose == null || SimulatedBody.IsEnabled || bodyPpi <= 0f) return;
+            var scale = pose.CalculatePpi() / frameHeight / bodyPpi;
             if (float.IsNaN(scale) || float.IsInfinity(scale) || scale <= 0f) return;
             HandScaleSamples++;
+            LastHandScales[playerIndex * 2 + hand] = scale;
             if (listening[playerIndex]) Emit(playerIndex, hand, detectors[playerIndex * 2 + hand].AddHandScale(now, scale, settings));
         }
 

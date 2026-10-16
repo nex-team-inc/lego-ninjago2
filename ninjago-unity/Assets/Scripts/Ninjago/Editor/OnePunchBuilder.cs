@@ -179,7 +179,7 @@ namespace Nex.Ninjago.Editor
             var main = system.main;
             main.startLifetime = new ParticleSystem.MinMaxCurve(0.5f, 0.8f);
             main.startSpeed = new ParticleSystem.MinMaxCurve(0.5f, 2f);
-            main.startSize = new ParticleSystem.MinMaxCurve(0.14f, 0.26f);
+            main.startSize = new ParticleSystem.MinMaxCurve(0.22f, 0.4f);
             main.startColor = new ParticleSystem.MinMaxGradient(new Color(1f, 0.85f, 0.2f), new Color(1f, 0.4f, 0.3f));
             main.gravityModifier = 0.8f;
             main.startRotation3D = true;
@@ -197,18 +197,18 @@ namespace Nex.Ninjago.Editor
         // The monster bursts into a big shower of colored bricks that rain down.
         static ParticleSystem BuildBurst(Material material, Mesh cube)
         {
-            var system = NewSystem("Vfx_BrickBurst", material, 2f, false, 60);
+            var system = NewSystem("Vfx_BrickBurst", material, 2f, false, 80);
             var main = system.main;
             main.startLifetime = new ParticleSystem.MinMaxCurve(1.2f, 1.8f);
             main.startSpeed = new ParticleSystem.MinMaxCurve(5f, 11f);
-            main.startSize = new ParticleSystem.MinMaxCurve(0.25f, 0.5f);
+            main.startSize = new ParticleSystem.MinMaxCurve(0.4f, 0.8f);
             main.startColor = new ParticleSystem.MinMaxGradient(new Color(0.6f, 0.3f, 0.95f), new Color(1f, 0.6f, 0.15f));
             main.gravityModifier = 1.3f;
             main.startRotation3D = true;
             main.startRotationX = new ParticleSystem.MinMaxCurve(0f, Mathf.PI * 2f);
             main.startRotationY = new ParticleSystem.MinMaxCurve(0f, Mathf.PI * 2f);
             main.startRotationZ = new ParticleSystem.MinMaxCurve(0f, Mathf.PI * 2f);
-            Burst(system, 48);
+            Burst(system, 64);
             var shape = system.shape;
             shape.shapeType = ParticleSystemShapeType.Sphere;
             shape.radius = 0.6f;

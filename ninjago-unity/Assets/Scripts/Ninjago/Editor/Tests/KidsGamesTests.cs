@@ -45,6 +45,82 @@ namespace Nex.Ninjago.Editor.Tests
             new((float)(random.NextDouble() * 2.0 - 1.0) * amount, (float)(random.NextDouble() * 2.0 - 1.0) * amount);
     }
 
+    public class CallReaderTests
+    {
+        CallReader.Settings settings;
+
+        [SetUp]
+        public void SetUp()
+        {
+            var config = ScriptableObject.CreateInstance<CallConfig>();
+            settings = config.ReaderSettings;
+            Object.DestroyImmediate(config);
+        }
+
+        [Test]
+        public void AHandRaisedHighIsOneCallWhicheverHand()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                var right = Read(_ => KidsPoses.LeftHanging, KidsPoses.Move(KidsPoses.RightHanging, new Vector2(6f, 16f), 0.5f, 0.4f), 3f, seed);
+                Assert.AreEqual(1, right.FindAll(e => e == CallReader.Event.Call).Count, $"right, seed {seed}");
+                var left = Read(KidsPoses.Move(KidsPoses.LeftHanging, new Vector2(-6f, 16f), 0.5f, 0.4f), _ => KidsPoses.RightHanging, 3f, seed);
+                Assert.AreEqual(1, left.FindAll(e => e == CallReader.Event.Call).Count, $"left, seed {seed}");
+                var both = Read(KidsPoses.Move(KidsPoses.LeftHanging, new Vector2(-6f, 16f), 0.5f, 0.4f),
+                    KidsPoses.Move(KidsPoses.RightHanging, new Vector2(6f, 16f), 0.55f, 0.4f), 3f, seed);
+                Assert.AreEqual(1, both.FindAll(e => e == CallReader.Event.Call).Count, $"both hands, seed {seed}");
+            }
+        }
+
+        [Test]
+        public void HoldingTheHandUpIsStillOneCallAndLoweringItReArms()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                var up = KidsPoses.Move(KidsPoses.RightHanging, new Vector2(6f, 16f), 0.5f, 0.4f);
+                var down = KidsPoses.Move(new Vector2(6f, 16f), KidsPoses.RightHanging, 3f, 0.4f);
+                var again = KidsPoses.Move(KidsPoses.RightHanging, new Vector2(6f, 16f), 4.5f, 0.4f);
+                var events = Read(_ => KidsPoses.LeftHanging, t => t < 3f ? up(t) : t < 4.5f ? down(t) : again(t), 6f, seed, 1f);
+                Assert.AreEqual(2, events.FindAll(e => e == CallReader.Event.Call).Count, $"seed {seed}");
+            }
+        }
+
+        [Test]
+        public void AHandThatStopsAtTheChinIsAMissedCall()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                var up = KidsPoses.Move(KidsPoses.RightHanging, new Vector2(5f, 9f), 0.5f, 0.4f);
+                var down = KidsPoses.Move(new Vector2(5f, 9f), KidsPoses.RightHanging, 1.5f, 0.4f);
+                var events = Read(_ => KidsPoses.LeftHanging, t => t < 1.5f ? up(t) : down(t), 3f, seed);
+                CollectionAssert.AreEqual(new[] { CallReader.Event.Missed }, events, $"seed {seed}");
+            }
+        }
+
+        [Test]
+        public void StandingStillOrWavingAtTheChestIsNoCall()
+        {
+            for (var seed = 0; seed < 20; seed++)
+            {
+                CollectionAssert.IsEmpty(Read(_ => KidsPoses.LeftHanging, _ => KidsPoses.RightHanging, 6f, seed, 1f), $"still, seed {seed}");
+                var wave = Read(_ => KidsPoses.LeftHanging, t => new Vector2(6f + 5f * Mathf.Sin(t * 6f), 0f), 6f, seed);
+                CollectionAssert.IsEmpty(wave, $"chest wave, seed {seed}");
+            }
+        }
+
+        List<CallReader.Event> Read(Func<float, Vector2> left, Func<float, Vector2> right, float seconds, int seed, float jitter = 0.4f)
+        {
+            var reader = new CallReader();
+            var events = new List<CallReader.Event>();
+            KidsPoses.Run(left, right, seconds, seed, (pose, _) =>
+            {
+                var e = reader.Update(pose, settings);
+                if (e != CallReader.Event.None) events.Add(e);
+            }, jitter);
+            return events;
+        }
+    }
+
     public class GuardReaderTests
     {
         GuardReader.Settings settings;

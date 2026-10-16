@@ -261,6 +261,22 @@ namespace Nex
         [DebugOrder(-695), Description("Guard: Throws Per Player"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 30), ES3NonSerializable]
         public int GuardThrows { get => Guard.ThrowsPerPlayer; set => Guard.ThrowsPerPlayer = value; }
 
+        // Call: the config asset is edited live, like the rows below.
+        [DebugOrder(-800), Description("Call: Hand Above Head (in)"), NumericSteps(Steps = 0.5, Min = -6, Max = 12), ES3NonSerializable]
+        public float CallAboveHead { get => Call.AboveHead; set => Call.AboveHead = value; }
+        [DebugOrder(-799), Description("Call: Try Line Above Shoulders (in)"), NumericSteps(Steps = 0.5, Min = 0, Max = 12), ES3NonSerializable]
+        public float CallTryLine { get => Call.TryAboveShoulder; set => Call.TryAboveShoulder = value; }
+        [DebugOrder(-798), Description("Call: Teammate Cooldown (s)"), NumericSteps(Steps = 0.25, Min = 0, Max = 8), ES3NonSerializable]
+        public float CallCooldown { get => Call.CooldownSeconds; set => Call.CooldownSeconds = value; }
+        [DebugOrder(-797), Description("Call: Slam Radius (m)"), NumericSteps(Steps = 0.25, Min = 0.5, Max = 12), ES3NonSerializable]
+        public float CallSlamRadius { get => Call.SlamRadius; set => Call.SlamRadius = value; }
+        [DebugOrder(-796), Description("Call: Goblin Speed (m/s)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 6), ES3NonSerializable]
+        public float CallGoblinSpeed { get => Call.GoblinSpeed; set => Call.GoblinSpeed = value; }
+        [DebugOrder(-795), Description("Call: Goblins In A Pile"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 8), ES3NonSerializable]
+        public int CallPileSize { get => Call.PileSize; set => Call.PileSize = value; }
+        [DebugOrder(-794), Description("Call: Calm Hand Speed (in/s)"), NumericSteps(Steps = 1, Min = 2, Max = 80), ES3NonSerializable]
+        public float CallCalmSpeed { get => Call.CalmHandSpeed; set => Call.CalmHandSpeed = value; }
+
         // Crouch Run: the config asset is edited live, like the rows below.
         [DebugOrder(-400), Description("Crouch: Crouch Threshold (in below standing)"), NumericSteps(Steps = 0.5, Min = 1, Max = 20), ES3NonSerializable]
         public float CrouchThreshold { get => CrouchRun.CrouchDropInches; set => CrouchRun.CrouchDropInches = value; }
@@ -373,6 +389,7 @@ namespace Nex
         static ThreeWeaponsConfig ThreeWeapons => GameConfigsManager.Instance.ThreeWeaponsConfig;
         static OnePunchConfig OnePunch => GameConfigsManager.Instance.OnePunchConfig;
         static GuardConfig Guard => GameConfigsManager.Instance.GuardConfig;
+        static CallConfig Call => GameConfigsManager.Instance.CallConfig;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

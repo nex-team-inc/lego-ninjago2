@@ -2543,6 +2543,10 @@ MonoBehaviour:
     m_Localized: Name
     m_Metadata:
       m_Items: []
+  - m_Id: 200341789569179648
+    m_Localized: Cliff Night Raid #2026
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

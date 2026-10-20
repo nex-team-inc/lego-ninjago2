@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05ea565ba6f347e996e690f3ef85b85, type: 3}
+  m_Name: BossRush_Level1
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.LevelDefinition
+  level:
+    theme: 3
+    music: 44
+    hearts: 5
+    blocks:
+    - type: 2
+      mix: 
+      pattern: 
+      overrideTheme: 0
+      theme: 0
+      preset: 2
+      difficulty:
+        windowScale: 0.75
+        speedScale: 1.2
+        count: 8
+        zoneLength: 0
+        overlapEvery: 0
+      targetSeconds: 70
+      ride: 0
+      hints: 2
+      boss: 1
+    - type: 3
+      mix: 
+      pattern: 
+      overrideTheme: 0
+      theme: 0
+      preset: 2
+      difficulty:
+        windowScale: 0.75
+        speedScale: 1.2
+        count: 10
+        zoneLength: 0
+        overlapEvery: 0
+      targetSeconds: 65
+      ride: 0
+      hints: 2
+      boss: 1
+    - type: 2
+      mix: 03000000
+      pattern: K S K S K+S S K K+S S+K K S
+      overrideTheme: 0
+      theme: 0
+      preset: 2
+      difficulty:
+        windowScale: 0.7
+        speedScale: 1.25
+        count: 12
+        zoneLength: 0
+        overlapEvery: 0
+      targetSeconds: 90
+      ride: 0
+      hints: 2
+      boss: 1
+    - type: 1
+      mix: 
+      pattern: 
+      overrideTheme: 0
+      theme: 0
+      preset: 2
+      difficulty:
+        windowScale: 1
+        speedScale: 1.15
+        count: 6
+        zoneLength: 0
+        overlapEvery: 0
+      targetSeconds: 60
+      ride: 2
+      hints: 2
+      boss: 1
+    links:
+    - auto: 1
+      state: 256
+      moment: 1
+      cameraMove: 3
+      storyKey: chapter.story.boss_phase
+      stinger: 1
+    - auto: 1
+      state: 256
+      moment: 1
+      cameraMove: 3
+      storyKey: chapter.story.boss_phase_2
+      stinger: 1
+    - auto: 1
+      state: 512
+      moment: 3
+      cameraMove: 4
+      storyKey: chapter.story.boss_broken
+      stinger: 1

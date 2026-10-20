@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ChapterModeLibrary
   modes:
   - {fileID: 11400000, guid: 249f79d5b5f494a0d84541531d5b90c6, type: 2}
+  - {fileID: 11400000, guid: bae49bb9e3a0b4df9b93628dec069901, type: 2}
+  - {fileID: 11400000, guid: 0620a921ddedc4bd5945b8bb6fec348e, type: 2}
+  - {fileID: 11400000, guid: d9929e357d2654e1b998a05d41138e6c, type: 2}

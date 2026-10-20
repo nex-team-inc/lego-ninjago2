@@ -27,6 +27,18 @@ namespace Nex.Ninjago.Editor.Tests
         }
 
         [Test]
+        public void EveryBuiltInModeIsDataThatPassesTheRules()
+        {
+            var library = AssetDatabase.LoadAssetAtPath<ChapterModeLibrary>(ChapterModesBuilder.LibraryPath);
+            Assert.GreaterOrEqual(library.Modes.Count, 4, "Ninja Chapter Proof and the three examples");
+            foreach (var definition in library.Modes)
+            {
+                var problems = ChapterValidator.Validate(definition.ToModeData().chapter, catalog, linkSeconds);
+                Assert.IsFalse(ChapterValidator.HasErrors(problems), $"{definition.Id}: {Describe(problems)}");
+            }
+        }
+
+        [Test]
         public void ProofLinksAreNaturalWhereTheStoryFits()
         {
             var levels = Proof().chapter.levels;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4738655377a742eca839479926b7e77, type: 3}
+  m_Name: Surprise2026_Chapter
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ChapterDefinition
+  levels:
+  - {fileID: 11400000, guid: cb1aeb7c7e37a4f859ee1176bf570079, type: 2}
+  - {fileID: 11400000, guid: c4c885044564b470b80c60064c2a8d99, type: 2}
+  - {fileID: 11400000, guid: ed267f37326914ba19043714d55b7201, type: 2}
+  stars:
+    starForFinish: 1
+    heartsShareForStar: 0.6
+    starForNoRetry: 1
+  rest:
+    checkTracking: 1
+    trackingCheckSeconds: 1.5

@@ -27,6 +27,7 @@ namespace Nex.Ninjago.Editor
             ChapterWorldBuilder.Build();
             ChapterAssetsBuilder.Build();
             ChapterModesBuilder.Build();
+            ForgeExamplesBuilder.Build();
             ChapterVfxBuilder.Build();
             ChapterViewsBuilder.Build();
             ChapterGamesBuilder.Build();

@@ -2387,6 +2387,10 @@ MonoBehaviour:
     m_Key: forge.control.name
     m_Metadata:
       m_Items: []
+  - m_Id: 200341789569179648
+    m_Key: chapter.mode.surprise_2026
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

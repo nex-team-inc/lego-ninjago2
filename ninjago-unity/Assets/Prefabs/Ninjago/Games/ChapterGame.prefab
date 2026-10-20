@@ -134,10 +134,10 @@ MonoBehaviour:
   stagePrefab: {fileID: 3748463800086465029, guid: f04299618719e404a94ad915836b42c9, type: 3}
   storms: {fileID: 6823714572726184526}
   fightConfig: {fileID: 11400000, guid: fbf112eee8e904a8ca34efb325f17da3, type: 2}
-  startViewPrefab: {fileID: 8357075497467778032, guid: 9ba199f0beece4be4957841e6f407d72, type: 3}
-  blockViewPrefab: {fileID: 3352921273472539772, guid: c370d99a067554909be4582ca9ea2c6b, type: 3}
-  restViewPrefab: {fileID: 4747301683978962519, guid: d82fb9b4816bd404690e433694a3790e, type: 3}
-  endingViewPrefab: {fileID: 8873806350216334639, guid: 2874e8a2820fe48e1ae09359d6f5b5b5, type: 3}
+  startViewPrefab: {fileID: 719487011963122152, guid: 9ba199f0beece4be4957841e6f407d72, type: 3}
+  blockViewPrefab: {fileID: 4039531780916906383, guid: c370d99a067554909be4582ca9ea2c6b, type: 3}
+  restViewPrefab: {fileID: 2891826429947021524, guid: d82fb9b4816bd404690e433694a3790e, type: 3}
+  endingViewPrefab: {fileID: 8411001374739536283, guid: 2874e8a2820fe48e1ae09359d6f5b5b5, type: 3}
   nextLevelText:
     m_TableReference:
       m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6

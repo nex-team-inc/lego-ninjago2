@@ -171,7 +171,7 @@ namespace Nex.Ninjago
             PlayTinted(VfxManager.VisualEffect.SpinjitzuBurst, lane.Ninja.FeetPosition, lane.Color);
             VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.BruteBrickSpray, lane.Attacker.Center);
             lane.Ninja.Fight.PlaySpin(fight.SpinSeconds);
-            block.OnThreatSuccess(lane, 1f);
+            block.OnThreatSuccess(lane);
             await lane.WaitAsync(fight.SpinSeconds, cancellationToken);
         }
 

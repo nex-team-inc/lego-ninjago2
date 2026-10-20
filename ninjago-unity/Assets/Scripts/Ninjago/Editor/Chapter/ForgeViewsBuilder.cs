@@ -275,10 +275,15 @@ namespace Nex.Ninjago.Editor
             tmp.enableAutoSizing = true;
             tmp.fontSizeMin = 20f;
             tmp.fontSizeMax = 38f;
+            var accent = NewImage(go.transform, "Accent", GetSprite("Panel"), Color.clear);
+            accent.type = Image.Type.Sliced;
+            Place(accent.rectTransform, new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 4f), new Vector2(-24f, 12f));
+            accent.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
             var button = go.AddComponent<ForgeButton>();
             Set(button, "button", go.GetComponent<Button>());
             Set(button, "label", text.GetComponent<NexLocalizedString>());
-            Set(button, "background", go.GetComponent<Image>());
+            Set(button, "text", tmp);
+            Set(button, "accent", accent);
             return button;
         }
 

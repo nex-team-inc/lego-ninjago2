@@ -30,7 +30,6 @@ MonoBehaviour:
   swingTellSeconds: 1.2
   threatGapSeconds: 1.4
   overlapDelaySeconds: 1.6
-  bossHealth: 30
   clearZoneMeters: 14
   sneakSpacing: 1.4
   rideOpeningSeconds: 2

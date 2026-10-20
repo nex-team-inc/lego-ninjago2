@@ -40,7 +40,6 @@ namespace Nex.Ninjago
         readonly Dictionary<VehicleType, ChaseConfig.VehicleSettings> settings = new();
         float bossGap;
         bool riding;
-        int dodges;
         int hits;
 
         /// <summary>How close the ninjas got to the Boss at the end, 0 (start gap) to 1 (as close as it allows).</summary>
@@ -80,7 +79,7 @@ namespace Nex.Ninjago
         public override void Stage()
         {
             riding = false;
-            dodges = hits = 0;
+            hits = 0;
             world.Show(Entry.ride.Vehicles()[0]);
             vehiclePrompt.Hide();
             bossGap = Context.Tuning.BossStartGap;
@@ -177,10 +176,6 @@ namespace Nex.Ninjago
             {
                 hits++;
                 Context.Log.ObstacleHit(vehicle, dominantPlayer);
-            }
-            else
-            {
-                dodges++;
             }
 
             if (!Entry.boss) return;

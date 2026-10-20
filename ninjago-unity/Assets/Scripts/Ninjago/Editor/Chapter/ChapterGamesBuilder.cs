@@ -52,7 +52,7 @@ namespace Nex.Ninjago.Editor
             var hand = (GameObject)PrefabUtility.InstantiatePrefab(Load<GameObject>("Packages/team.nex.mdk.hand/Prefabs/HandPoseDetector.prefab"), stormsRoot);
             hand.SetActive(false);
             Set(storms, "handDetector", hand.GetComponent<Jazz.HandDetectionManager>());
-            Set(game, "stagePrefab", LoadComponent<ChapterStage>(ChapterWorldBuilder.StagePath));
+            Set(game, "stagePrefab", LoadComponent<ChapterStage>(ChapterStageBuilder.StagePath));
             Set(game, "storms", storms);
             Set(game, "fightConfig", Load<FightConfig>(NinjagoAssetsBuilder.FightConfigPath));
             Set(game, "startViewPrefab", LoadComponent<ChapterStartView>(ChapterViewsBuilder.StartViewPath));

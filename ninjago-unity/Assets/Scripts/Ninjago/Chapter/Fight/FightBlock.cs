@@ -83,7 +83,6 @@ namespace Nex.Ninjago
         public FightConfig FightConfig => fightConfig;
         public StoneKickConfig StoneKickConfig => stoneKickConfig;
         public OnePunchConfig OnePunchConfig => onePunchConfig;
-        public float BossDamage { get; private set; }
 
         #region Initialization
 
@@ -135,7 +134,6 @@ namespace Nex.Ninjago
         {
             running = false;
             random = new System.Random(seed);
-            BossDamage = 0f;
             var cameraPose = boss != null ? bossCameraPose : lanes.Count > 1 ? duoCameraPose : soloCameraPose;
             ViewCamera.transform.SetPositionAndRotation(cameraPose.position, cameraPose.rotation);
             for (var slot = 0; slot < attackers.Count; slot++)
@@ -269,11 +267,10 @@ namespace Nex.Ninjago
         }
 
         /// <summary>A result landed: a crowd monster bursts, or the Boss loses bricks.</summary>
-        public void OnThreatSuccess(ChapterFightLane lane, float strength)
+        public void OnThreatSuccess(ChapterFightLane lane)
         {
             if (boss != null)
             {
-                BossDamage += strength;
                 boss.PlayHit();
                 return;
             }

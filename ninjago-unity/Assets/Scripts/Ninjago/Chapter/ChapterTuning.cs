@@ -58,8 +58,6 @@ namespace Nex.Ninjago
         [SerializeField, Range(0.3f, 5f)] float threatGapSeconds = 1.4f;
         [Tooltip("Seconds into a threat that an overlapping next threat starts its tell (times the window scale).")]
         [SerializeField, Range(0.3f, 4f)] float overlapDelaySeconds = 1.6f;
-        [Tooltip("Hits the Boss takes before its bricks fall away in the last fight.")]
-        [SerializeField, Range(1f, 80f)] float bossHealth = 30f;
 
         [Header("Stealth")]
         [Tooltip("Meters of each clear zone between talking zones.")]
@@ -101,7 +99,6 @@ namespace Nex.Ninjago
         public float SwingTellSeconds { get => swingTellSeconds; set => swingTellSeconds = Mathf.Max(0.1f, value); }
         public float ThreatGapSeconds { get => threatGapSeconds; set => threatGapSeconds = Mathf.Max(0f, value); }
         public float OverlapDelaySeconds => overlapDelaySeconds;
-        public float BossHealth => bossHealth;
         public float ClearZoneMeters { get => clearZoneMeters; set => clearZoneMeters = Mathf.Max(1f, value); }
         public float SneakSpacing => sneakSpacing;
         public float RideOpeningSeconds => rideOpeningSeconds;

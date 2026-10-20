@@ -146,7 +146,7 @@ namespace Nex.Ninjago
             {
                 var filled = i < level.blocks.Count;
                 slots[i].Set(filled ? catalog.Block(level.blocks[i].type).displayName : emptySlotText, filled, filled && i == document.Block);
-                if (filled && i != document.Block) slots[i].Tint(Color.Lerp(Color.white, catalog.Block(level.blocks[i].type).color, 0.45f));
+                if (filled && i != document.Block) slots[i].Tint(catalog.Block(level.blocks[i].type).color);
             }
 
             ShowLevelControls(level, catalog);

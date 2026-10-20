@@ -154,7 +154,7 @@ namespace Nex.Ninjago
             if (lane.Pieces.Remaining > 0) lane.Pieces.DropRemaining(cancellationToken);
             var reason = launched == 0 ? "no_kick" : launched < stones ? "few_kicks" : "";
             block.Context.Log.Qte(lane.PlayerIndex, Gesture.Kick, launched == stones, firstKick, reason);
-            if (launched > 0) block.OnThreatSuccess(lane, launched / (float)stones);
+            if (launched > 0) block.OnThreatSuccess(lane);
             await lane.WaitAsync(block.StoneKickConfig.PieceFlySeconds, cancellationToken);
         }
 

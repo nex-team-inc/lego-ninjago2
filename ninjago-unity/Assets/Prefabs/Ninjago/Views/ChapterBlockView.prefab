@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5128898955387022378}
   - component: {fileID: 753512582950345941}
   - component: {fileID: 341799204927326374}
-  - component: {fileID: 7951176113660025479}
+  - component: {fileID: 1599269050668292767}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -58,7 +58,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &7951176113660025479
+--- !u!114 &1599269050668292767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 1785266565460587682}
   - component: {fileID: 7031649363894831909}
   - component: {fileID: 8373395729237520589}
-  - component: {fileID: 4387564515975152574}
+  - component: {fileID: 3352921273472539772}
   m_Layer: 5
   m_Name: ChapterBlockView
   m_TagString: Untagged
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4387564515975152574
+--- !u!114 &3352921273472539772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ChapterBlockView
   entryAnimator: {fileID: 1546533146116038275}
   toBackgroundAnimator: {fileID: 6356237380886920952}
-  keyResponder: {fileID: 7951176113660025479}
+  keyResponder: {fileID: 1599269050668292767}
   disableCanvasOnBackground: 0
 --- !u!1 &3249998648667258211
 GameObject:

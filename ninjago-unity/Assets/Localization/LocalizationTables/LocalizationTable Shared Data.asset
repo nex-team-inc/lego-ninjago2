@@ -2187,6 +2187,206 @@ MonoBehaviour:
     m_Key: forge.rule.mix
     m_Metadata:
       m_Items: []
+  - m_Id: 200340732231278592
+    m_Key: forge.home.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667200
+    m_Key: forge.home.start_from
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667201
+    m_Key: forge.home.your_modes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667202
+    m_Key: forge.home.empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667203
+    m_Key: forge.home.surprise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667204
+    m_Key: forge.home.edit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667205
+    m_Key: forge.home.rename
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667206
+    m_Key: forge.home.copy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667207
+    m_Key: forge.home.delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667208
+    m_Key: forge.home.previous
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667209
+    m_Key: forge.home.next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667210
+    m_Key: forge.home.locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667211
+    m_Key: forge.home.deleted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667212
+    m_Key: forge.dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667213
+    m_Key: forge.field
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667214
+    m_Key: forge.level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667215
+    m_Key: forge.on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667216
+    m_Key: forge.off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667217
+    m_Key: forge.empty_slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667218
+    m_Key: forge.last_block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667219
+    m_Key: forge.ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667220
+    m_Key: forge.more
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667221
+    m_Key: forge.seed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667222
+    m_Key: forge.keep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667223
+    m_Key: forge.saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667224
+    m_Key: forge.fix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667225
+    m_Key: forge.control.previous_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667226
+    m_Key: forge.control.next_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667227
+    m_Key: forge.control.add_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667228
+    m_Key: forge.control.remove_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667229
+    m_Key: forge.control.theme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667230
+    m_Key: forge.control.slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667231
+    m_Key: forge.control.type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667232
+    m_Key: forge.control.ride
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667233
+    m_Key: forge.control.preset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667234
+    m_Key: forge.control.hints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667235
+    m_Key: forge.control.boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667236
+    m_Key: forge.control.mix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667237
+    m_Key: forge.control.window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667238
+    m_Key: forge.control.speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667239
+    m_Key: forge.control.count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667240
+    m_Key: forge.control.zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667241
+    m_Key: forge.control.length
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667242
+    m_Key: forge.control.move_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667243
+    m_Key: forge.control.move_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667244
+    m_Key: forge.control.remove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667245
+    m_Key: forge.control.link
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667246
+    m_Key: forge.control.test
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667247
+    m_Key: forge.control.save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667248
+    m_Key: forge.control.name
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

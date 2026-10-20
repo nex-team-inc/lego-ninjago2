@@ -177,7 +177,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 890722631269045063}
-  - {fileID: 6057658158221777405}
+  - {fileID: 6122168458707682322}
   - {fileID: 8799545615119943440}
   - {fileID: 3594366704753451159}
   - {fileID: 1810055844527532052}
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ChapterHud
   heartsRows:
   - {fileID: 8523773115114717587}
-  - {fileID: 3316863739173473065}
+  - {fileID: 3377895680593761990}
   stripRoot: {fileID: 8799545615119943440}
   stripIconPrefab: {fileID: 1467830810066427129, guid: 381323449f7504e71a7556975a8f1d48, type: 3}
   captionPanel: {fileID: 5789106221281947378}
@@ -1187,7 +1187,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1001 &970679406829233475
+--- !u!1001 &981753940444379308
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1284,10 +1284,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e890d536a1e43dc9bbaa253076d769, type: 3}
---- !u!114 &3316863739173473065 stripped
+--- !u!114 &3377895680593761990 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2557857913483357802, guid: 37e890d536a1e43dc9bbaa253076d769, type: 3}
-  m_PrefabInstance: {fileID: 970679406829233475}
+  m_PrefabInstance: {fileID: 981753940444379308}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -1295,10 +1295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b04dc013462411e87dffb259481143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.HeartsRow
---- !u!224 &6057658158221777405 stripped
+--- !u!224 &6122168458707682322 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6442869613408140478, guid: 37e890d536a1e43dc9bbaa253076d769, type: 3}
-  m_PrefabInstance: {fileID: 970679406829233475}
+  m_PrefabInstance: {fileID: 981753940444379308}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6140042660140347385
 PrefabInstance:

@@ -79,6 +79,9 @@ namespace Nex.Ninjago.Editor
                 var inner = 0.35f + angle * 0.4f;
                 return r >= inner && r <= inner + 0.2f && angle > 0.08f;
             }, Vector4.zero);
+            NinjagoAssetsBuilder.BuildSprite("Check", 128, (u, v) =>
+                (Mathf.Abs(v - (-0.35f - (u + 0.35f))) < 0.16f && u > -0.75f && u < -0.3f) || (Mathf.Abs(v - (-0.65f + (u + 0.3f) * 1.3f)) < 0.16f && u >= -0.4f && u < 0.75f),
+                Vector4.zero);
             NinjagoAssetsBuilder.BuildSprite("Star", 128, (u, v) =>
             {
                 var angle = Mathf.Atan2(v, u) + Mathf.PI / 2f;

@@ -2339,6 +2339,210 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 200340732231278592
+    m_Localized: The Forge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667200
+    m_Localized: Start from
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667201
+    m_Localized: Every mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667202
+    m_Localized: Start empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667203
+    m_Localized: Surprise me
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667204
+    m_Localized: Edit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667205
+    m_Localized: Rename
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667206
+    m_Localized: Copy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667207
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667208
+    m_Localized: <
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667209
+    m_Localized: '>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667210
+    m_Localized: Built-in modes can be copied, not changed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667211
+    m_Localized: Deleted.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667212
+    m_Localized: '-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667213
+    m_Localized: '{name}: {value}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200340732239667214
+    m_Localized: Level {level} of {count} - {theme}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200340732239667215
+    m_Localized: On
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667216
+    m_Localized: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667217
+    m_Localized: + Block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667218
+    m_Localized: Last block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667219
+    m_Localized: Ready to play!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667220
+    m_Localized: +{count} more
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200340732239667221
+    m_Localized: Seed {seed}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200340732239667222
+    m_Localized: Keep it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667223
+    m_Localized: Saved! It is in the main menu.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667224
+    m_Localized: Fix the problems first.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667225
+    m_Localized: < Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667226
+    m_Localized: Level >
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667227
+    m_Localized: + Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667228
+    m_Localized: '- Level'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667229
+    m_Localized: Theme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667230
+    m_Localized: Block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667231
+    m_Localized: Type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667232
+    m_Localized: Ride
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667233
+    m_Localized: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667234
+    m_Localized: Hints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667235
+    m_Localized: Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667236
+    m_Localized: Mix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667237
+    m_Localized: Window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667238
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667239
+    m_Localized: Count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667240
+    m_Localized: Zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667241
+    m_Localized: Seconds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667242
+    m_Localized: < Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667243
+    m_Localized: Move >
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667244
+    m_Localized: Remove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667245
+    m_Localized: Link
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667246
+    m_Localized: Test level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667247
+    m_Localized: Save as mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200340732239667248
+    m_Localized: Name
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -2465,3 +2669,7 @@ MonoBehaviour:
         - id: 200334107252613146
         - id: 200334107252613147
         - id: 200334107252613149
+        - id: 200340732239667213
+        - id: 200340732239667214
+        - id: 200340732239667220
+        - id: 200340732239667221

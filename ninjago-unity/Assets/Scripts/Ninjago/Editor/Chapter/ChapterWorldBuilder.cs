@@ -84,6 +84,8 @@ namespace Nex.Ninjago.Editor
             soloPose.localRotation = Quaternion.Euler(13f, 0f, 0f);
             var duoPose = Spot("DuoCameraPose", new Vector3(0f, 3.4f, 0.6f));
             duoPose.localRotation = Quaternion.Euler(15f, 0f, 0f);
+            var bossPose = Spot("BossCameraPose", new Vector3(0f, 2.3f, 0.2f));
+            bossPose.localRotation = Quaternion.Euler(-3f, 0f, 0f);
             var crowd = new List<Object>();
             foreach (var position in new[]
                      {
@@ -103,6 +105,7 @@ namespace Nex.Ninjago.Editor
             SetArray(block, "duoSpots", duo);
             Set(block, "soloCameraPose", soloPose);
             Set(block, "duoCameraPose", duoPose);
+            Set(block, "bossCameraPose", bossPose);
             Set(block, "soloHang", soloHang);
             SetArray(block, "duoHangs", duoHangs);
             SetArray(block, "crowdSpots", crowd);

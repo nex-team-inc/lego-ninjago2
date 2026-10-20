@@ -24,6 +24,9 @@ namespace Nex.Ninjago
         [SerializeField] Transform soloCameraPose = null!;
         [Header("Duo Camera Pose")]
         [SerializeField] Transform duoCameraPose = null!;
+        [Header("Boss Camera Pose")]
+        [Tooltip("Lower and looking up, so the whole Boss reads from across the arena.")]
+        [SerializeField] Transform bossCameraPose = null!;
         [Header("Attacker Offset")]
         [Tooltip("Where a player's enemy stands, from that player's spot; the staff reaches the ninja from here.")]
         [SerializeField] Vector3 attackerOffset = new(0f, 0f, 4.4f);
@@ -133,7 +136,7 @@ namespace Nex.Ninjago
             running = false;
             random = new System.Random(seed);
             BossDamage = 0f;
-            var cameraPose = lanes.Count > 1 ? duoCameraPose : soloCameraPose;
+            var cameraPose = boss != null ? bossCameraPose : lanes.Count > 1 ? duoCameraPose : soloCameraPose;
             ViewCamera.transform.SetPositionAndRotation(cameraPose.position, cameraPose.rotation);
             for (var slot = 0; slot < attackers.Count; slot++)
             {

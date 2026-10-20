@@ -80,6 +80,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d074ecee8b3e249be833e5a9a2a82d05
+    m_Address: ForgeGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ebd76231c05374090b418ddf8b24abec
     m_Address: RobotMechaGame
     m_ReadOnly: 0

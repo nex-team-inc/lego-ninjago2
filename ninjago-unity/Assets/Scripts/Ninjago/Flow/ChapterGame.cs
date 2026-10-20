@@ -209,6 +209,11 @@ namespace Nex.Ninjago
             return new LevelRunner(stage, new LinkPlayer(stage, Tuning, log), context, Views, blockViewPrefab, tryAgainText);
         }
 
+        protected void HideStage()
+        {
+            if (stage != null) stage.SetVisible(false);
+        }
+
         protected static LocalizedString LevelName(ChapterData chapter, int levelIndex)
         {
             if (chapter.levels[levelIndex].IsBoss) return Names.BossLevelName;

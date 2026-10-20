@@ -151,8 +151,8 @@ namespace Nex.Ninjago.Editor
             Place(highlight.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 0.5f), new Vector2(0f, -70f), new Vector2(160f, 160f));
             var disc = NewImage(root, "Disc", GetSprite("Circle"), Color.white);
             Place(disc.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 0.5f), new Vector2(0f, -70f), new Vector2(120f, 120f));
-            var done = Label(root, "DoneMark", null, "OK", 52f, Color.white, outline);
-            Place((RectTransform)done.transform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 0.5f), new Vector2(0f, -70f), new Vector2(120f, 120f));
+            var done = NewImage(root, "DoneMark", GetSprite("Check"), Color.white);
+            Place(done.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 0.5f), new Vector2(0f, -70f), new Vector2(80f, 80f));
             var label = Label(root, "Label", null, "Level 1", 46f, Color.white, outline);
             Place((RectTransform)label.transform, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 40f), new Vector2(220f, 60f));
             var stars = new List<Object>();

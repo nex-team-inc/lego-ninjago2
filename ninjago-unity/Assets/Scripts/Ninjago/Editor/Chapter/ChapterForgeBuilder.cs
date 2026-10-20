@@ -30,6 +30,7 @@ namespace Nex.Ninjago.Editor
             ChapterVfxBuilder.Build();
             ChapterViewsBuilder.Build();
             ChapterGamesBuilder.Build();
+            ForgeViewsBuilder.Build();
             AssetDatabase.SaveAssets();
             return $"[ChapterForgeBuilder] done ({localization})";
         }

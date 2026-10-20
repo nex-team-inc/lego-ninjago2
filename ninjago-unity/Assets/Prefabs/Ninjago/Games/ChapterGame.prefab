@@ -1,0 +1,262 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3415602039270528293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3940792055419238948}
+  - component: {fileID: 6823714572726184526}
+  m_Layer: 0
+  m_Name: HandStorm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3940792055419238948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3415602039270528293}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2087430981929267104}
+  m_Father: {fileID: 1590057050501403511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6823714572726184526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3415602039270528293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fcc623418c0f42a0ac0801bee70859f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.HandStormSampler
+  handDetector: {fileID: 2218926470467987617}
+  simulatedRadiusInches: 10
+  simulatedHz: 1.6
+--- !u!1 &6162290559793763223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3417034810689179346}
+  m_Layer: 0
+  m_Name: Engines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3417034810689179346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162290559793763223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1590057050501403511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7252331840814959042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1590057050501403511}
+  - component: {fileID: 5547493591447118211}
+  - component: {fileID: 1250512780085295496}
+  m_Layer: 0
+  m_Name: ChapterGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1590057050501403511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7252331840814959042}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3417034810689179346}
+  - {fileID: 3940792055419238948}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5547493591447118211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7252331840814959042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9473224c6c2ba470cbd37b55de673285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ChapterGame
+  detectionEnginePrefab: {fileID: 2637131507758446840, guid: f7d14f6559fa04af390078e069985146, type: 3}
+  enginesRoot: {fileID: 3417034810689179346}
+  setupViewPrefab: {fileID: 7869860828024023686, guid: 3e75ad53e571f4206832f1922e6e1b32, type: 3}
+  resultViewPrefab: {fileID: 2627943057487524080, guid: beeeda81d6ea8435188726ad32657ca3, type: 3}
+  playersConfig: {fileID: 11400000, guid: 859a766aa9a0849278e666db4e6d1a95, type: 2}
+  stagePrefab: {fileID: 3748463800086465029, guid: f04299618719e404a94ad915836b42c9, type: 3}
+  storms: {fileID: 6823714572726184526}
+  fightConfig: {fileID: 11400000, guid: fbf112eee8e904a8ca34efb325f17da3, type: 2}
+  startViewPrefab: {fileID: 9013592571442508096, guid: 9ba199f0beece4be4957841e6f407d72, type: 3}
+  blockViewPrefab: {fileID: 4387564515975152574, guid: c370d99a067554909be4582ca9ea2c6b, type: 3}
+  restViewPrefab: {fileID: 3354761964818878200, guid: d82fb9b4816bd404690e433694a3790e, type: 3}
+  endingViewPrefab: {fileID: 7592156771146079099, guid: 2874e8a2820fe48e1ae09359d6f5b5b5, type: 3}
+  nextLevelText:
+    m_TableReference:
+      m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+    m_TableEntryReference:
+      m_KeyId: 200334107248418864
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  freshStartText:
+    m_TableReference:
+      m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+    m_TableEntryReference:
+      m_KeyId: 200334107248418865
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tryAgainText:
+    m_TableReference:
+      m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+    m_TableEntryReference:
+      m_KeyId: 200334107248418844
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1250512780085295496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7252331840814959042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d6c3790d23246bd80428b856fcd4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.SimulatedBodyKeyboard
+  leanInches: 8
+  riseInches: 6
+  playerTwoCursorSpeed: 1.2
+--- !u!1001 &5516695409520312410
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3940792055419238948}
+    m_Modifications:
+    - target: {fileID: 3545250727905623650, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_Name
+      value: HandPoseDetector
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545250727905623650, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+--- !u!4 &2087430981929267104 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5798162779960864762, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+  m_PrefabInstance: {fileID: 5516695409520312410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2218926470467987617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3295499263315269381, guid: 8059f15ab6d6e47488be02e26948421a, type: 3}
+  m_PrefabInstance: {fileID: 5516695409520312410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1dfb27a95e184e01a0c0560801ff865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

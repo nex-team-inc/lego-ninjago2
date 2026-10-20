@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7339b9837c44be0afd07b2733817dd, type: 3}
+  m_Name: NinjaChapterProof
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ModeDefinition
+  id: ninja_chapter_proof
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+    m_TableEntryReference:
+      m_KeyId: 200334107248418816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  icon: 0
+  chapter: {fileID: 11400000, guid: 94b4bd38b7f9a40deae2fa1f8e99b573, type: 2}
+  references:
+    version: 2
+    RefIds: []

@@ -14,8 +14,8 @@ namespace Nex.Ninjago.Editor
         public const string EnginePath = PrefabsRoot + "/Detection/NinjaDetectionEngine.prefab";
         public const string CourtyardPath = PrefabsRoot + "/Fight/Courtyard.prefab";
         public const string RunnerWorldPath = PrefabsRoot + "/Chase/RunnerWorld.prefab";
-        const string BarrierPath = PrefabsRoot + "/Chase/BrickBarrier.prefab";
-        const string FloatingBlockPath = PrefabsRoot + "/Chase/FloatingBlock.prefab";
+        internal const string BarrierPath = PrefabsRoot + "/Chase/BrickBarrier.prefab";
+        internal const string FloatingBlockPath = PrefabsRoot + "/Chase/FloatingBlock.prefab";
         static readonly Color skyColor = new(0.5f, 0.78f, 1f);
 
         #region Entry Point
@@ -235,7 +235,7 @@ namespace Nex.Ninjago.Editor
             return SavePrefab(root, path).GetComponent<ObstacleBlock>();
         }
 
-        static GameObject BuildRoad(Transform root, out ScrollingStrip strip)
+        internal static GameObject BuildRoad(Transform root, out ScrollingStrip strip)
         {
             var road = Empty("RoadScenery", root, Vector3.zero);
             Block(PrimitiveType.Cube, "Asphalt", road, new Vector3(0f, -0.05f, 55f), new Vector3(6.4f, 0.1f, 140f), Lit("Road", new Color(0.27f, 0.27f, 0.3f)));
@@ -273,7 +273,7 @@ namespace Nex.Ninjago.Editor
             return road.gameObject;
         }
 
-        static GameObject BuildSky(Transform root, out ScrollingStrip strip)
+        internal static GameObject BuildSky(Transform root, out ScrollingStrip strip)
         {
             var sky = Empty("SkyScenery", root, Vector3.zero);
             Block(PrimitiveType.Cube, "GroundFar", sky, new Vector3(0f, -14f, 60f), new Vector3(240f, 0.2f, 240f), Lit("Ground Far", new Color(0.42f, 0.74f, 0.36f)));
@@ -301,7 +301,7 @@ namespace Nex.Ninjago.Editor
             return sky.gameObject;
         }
 
-        static VehicleRig BuildCar(Transform root)
+        internal static VehicleRig BuildCar(Transform root)
         {
             var car = Empty("Car", root, Vector3.zero);
             var rig = car.gameObject.AddComponent<VehicleRig>();
@@ -331,7 +331,7 @@ namespace Nex.Ninjago.Editor
             return rig;
         }
 
-        static VehicleRig BuildSkycraft(Transform root)
+        internal static VehicleRig BuildSkycraft(Transform root)
         {
             var craft = Empty("Skycraft", root, Vector3.zero);
             var rig = craft.gameObject.AddComponent<VehicleRig>();

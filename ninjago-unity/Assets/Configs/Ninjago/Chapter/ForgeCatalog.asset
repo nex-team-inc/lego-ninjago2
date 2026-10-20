@@ -1,0 +1,493 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b018ced85f554e95bdbb80709cf114b, type: 3}
+  m_Name: ForgeCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ForgeCatalog
+  blocks:
+    pairs:
+    - key: 0
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418819
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        icon: {fileID: 21300000, guid: 95ae0850236a440aa9c7da7b62d5240d, type: 3}
+        color: {r: 0.45, g: 0.55, b: 1, a: 1}
+        prefab: {fileID: 4031622992609561583, guid: 5cf78b6be10fc4821b11c929c3ef8bd5, type: 3}
+        startStates: 44
+        endStates: 129
+        bossStartStates: 0
+        bossEndStates: 0
+        isFight: 0
+        patternLetter: 
+        usesVehicle: 0
+        sideView: 1
+        allowedInBossLevel: 0
+        twoPlayers: 2
+        gestures: 00000000
+        defaultSeconds: 60
+        presets:
+          pairs:
+          - key: 0
+            value:
+              windowScale: 1
+              speedScale: 1
+              count: 4
+              zoneLength: 16
+              overlapEvery: 0
+          - key: 1
+            value:
+              windowScale: 1
+              speedScale: 1
+              count: 4
+              zoneLength: 14
+              overlapEvery: 0
+          - key: 2
+            value:
+              windowScale: 1
+              speedScale: 1
+              count: 5
+              zoneLength: 11
+              overlapEvery: 0
+    - key: 1
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418820
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        icon: {fileID: 21300000, guid: 09833dbea1b28413a90b0e4cfbb698ea, type: 3}
+        color: {r: 1, g: 0.68, b: 0.2, a: 1}
+        prefab: {fileID: 6134020760990561911, guid: 564e1f242f71a4dc5936d15dc5ea6472, type: 3}
+        startStates: 18
+        endStates: 44
+        bossStartStates: 512
+        bossEndStates: 0
+        isFight: 0
+        patternLetter: 
+        usesVehicle: 1
+        sideView: 0
+        allowedInBossLevel: 1
+        twoPlayers: 1
+        gestures: 01000000
+        defaultSeconds: 55
+        presets:
+          pairs:
+          - key: 0
+            value:
+              windowScale: 1
+              speedScale: 0.9
+              count: 4
+              zoneLength: 0
+              overlapEvery: 0
+          - key: 1
+            value:
+              windowScale: 1
+              speedScale: 1
+              count: 5
+              zoneLength: 0
+              overlapEvery: 0
+          - key: 2
+            value:
+              windowScale: 1
+              speedScale: 1.15
+              count: 6
+              zoneLength: 0
+              overlapEvery: 0
+    - key: 2
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418821
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        icon: {fileID: 21300000, guid: 599d290bc4e30442bac47b1265ebab11, type: 3}
+        color: {r: 1, g: 0.35, b: 0.3, a: 1}
+        prefab: {fileID: 5245649590539318126, guid: 4d81f4193acf7436d983b1524222dd76, type: 3}
+        startStates: 97
+        endStates: 70
+        bossStartStates: 256
+        bossEndStates: 768
+        isFight: 1
+        patternLetter: K
+        usesVehicle: 0
+        sideView: 0
+        allowedInBossLevel: 1
+        twoPlayers: 0
+        gestures: 0200000003000000
+        defaultSeconds: 60
+        presets:
+          pairs:
+          - key: 0
+            value:
+              windowScale: 1.4
+              speedScale: 0.85
+              count: 6
+              zoneLength: 0
+              overlapEvery: 0
+          - key: 1
+            value:
+              windowScale: 1
+              speedScale: 1
+              count: 7
+              zoneLength: 0
+              overlapEvery: 0
+          - key: 2
+            value:
+              windowScale: 0.8
+              speedScale: 1.15
+              count: 8
+              zoneLength: 0
+              overlapEvery: 0
+    - key: 3
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418822
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        icon: {fileID: 21300000, guid: 708ca9058120449d38450a73442f87ab, type: 3}
+        color: {r: 0.3, g: 0.85, b: 0.5, a: 1}
+        prefab: {fileID: 5245649590539318126, guid: 4d81f4193acf7436d983b1524222dd76, type: 3}
+        startStates: 164
+        endStates: 66
+        bossStartStates: 256
+        bossEndStates: 768
+        isFight: 1
+        patternLetter: S
+        usesVehicle: 0
+        sideView: 0
+        allowedInBossLevel: 1
+        twoPlayers: 0
+        gestures: 0400000005000000
+        defaultSeconds: 55
+        presets:
+          pairs:
+          - key: 0
+            value:
+              windowScale: 1.4
+              speedScale: 0.85
+              count: 8
+              zoneLength: 0
+              overlapEvery: 0
+          - key: 1
+            value:
+              windowScale: 1
+              speedScale: 1
+              count: 9
+              zoneLength: 0
+              overlapEvery: 0
+          - key: 2
+            value:
+              windowScale: 0.8
+              speedScale: 1.15
+              count: 10
+              zoneLength: 0
+              overlapEvery: 0
+  vehicleEndStates:
+    pairs:
+    - key: 0
+      value: 4
+    - key: 1
+      value: 40
+  hintWords:
+    pairs:
+    - key: 0
+      value:
+        m_TableReference:
+          m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+        m_TableEntryReference:
+          m_KeyId: 200334107248418823
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - key: 1
+      value:
+        m_TableReference:
+          m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+        m_TableEntryReference:
+          m_KeyId: 200334107248418824
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - key: 2
+      value:
+        m_TableReference:
+          m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+        m_TableEntryReference:
+          m_KeyId: 200334107248418825
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - key: 3
+      value:
+        m_TableReference:
+          m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+        m_TableEntryReference:
+          m_KeyId: 200334107248418826
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - key: 4
+      value:
+        m_TableReference:
+          m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+        m_TableEntryReference:
+          m_KeyId: 200334107248418827
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - key: 5
+      value:
+        m_TableReference:
+          m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+        m_TableEntryReference:
+          m_KeyId: 200334107248418828
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - key: 6
+      value:
+        m_TableReference:
+          m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+        m_TableEntryReference:
+          m_KeyId: 200334107248418829
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  themes:
+    pairs:
+    - key: 0
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418830
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        music: 40
+        sky: {r: 1, g: 0.62, b: 0.45, a: 1}
+        ground: {r: 0.55, g: 0.62, b: 0.32, a: 1}
+        path: {r: 0.88, g: 0.72, b: 0.52, a: 1}
+        wall: {r: 0.95, g: 0.48, b: 0.3, a: 1}
+        roof: {r: 0.22, g: 0.32, b: 0.6, a: 1}
+        accent: {r: 1, g: 0.78, b: 0.3, a: 1}
+        foliage: {r: 0.3, g: 0.52, b: 0.22, a: 1}
+        fog: {r: 1, g: 0.7, b: 0.55, a: 1}
+        fogDensity: 0.006
+        light: {r: 1, g: 0.75, b: 0.55, a: 1}
+        lightIntensity: 1.25
+        lightAngles: {x: 20, y: -40}
+        ambient: {r: 0.62, g: 0.5, b: 0.55, a: 1}
+        lanternsGlow: 1
+    - key: 1
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418831
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        music: 41
+        sky: {r: 0.07, g: 0.11, b: 0.26, a: 1}
+        ground: {r: 0.14, g: 0.22, b: 0.32, a: 1}
+        path: {r: 0.36, g: 0.34, b: 0.4, a: 1}
+        wall: {r: 0.22, g: 0.34, b: 0.58, a: 1}
+        roof: {r: 0.62, g: 0.18, b: 0.24, a: 1}
+        accent: {r: 1, g: 0.85, b: 0.4, a: 1}
+        foliage: {r: 0.1, g: 0.3, b: 0.32, a: 1}
+        fog: {r: 0.1, g: 0.15, b: 0.3, a: 1}
+        fogDensity: 0.012
+        light: {r: 0.55, g: 0.65, b: 1, a: 1}
+        lightIntensity: 0.75
+        lightAngles: {x: 40, y: 30}
+        ambient: {r: 0.25, g: 0.3, b: 0.48, a: 1}
+        lanternsGlow: 1
+    - key: 2
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418832
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        music: 46
+        sky: {r: 0.5, g: 0.82, b: 1, a: 1}
+        ground: {r: 0.38, g: 0.72, b: 0.32, a: 1}
+        path: {r: 0.94, g: 0.86, b: 0.7, a: 1}
+        wall: {r: 0.97, g: 0.96, b: 0.92, a: 1}
+        roof: {r: 0.88, g: 0.18, b: 0.18, a: 1}
+        accent: {r: 1, g: 0.82, b: 0.18, a: 1}
+        foliage: {r: 0.18, g: 0.66, b: 0.3, a: 1}
+        fog: {r: 0.76, g: 0.88, b: 1, a: 1}
+        fogDensity: 0.005
+        light: {r: 1, g: 0.97, b: 0.9, a: 1}
+        lightIntensity: 1.35
+        lightAngles: {x: 55, y: -25}
+        ambient: {r: 0.62, g: 0.66, b: 0.76, a: 1}
+        lanternsGlow: 0
+    - key: 3
+      value:
+        displayName:
+          m_TableReference:
+            m_TableCollectionName: GUID:19d51c5b557f64038ab34ae2016b2cf6
+          m_TableEntryReference:
+            m_KeyId: 200334107248418833
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        music: 44
+        sky: {r: 0.3, g: 0.24, b: 0.4, a: 1}
+        ground: {r: 0.26, g: 0.22, b: 0.3, a: 1}
+        path: {r: 0.46, g: 0.42, b: 0.5, a: 1}
+        wall: {r: 0.36, g: 0.3, b: 0.45, a: 1}
+        roof: {r: 0.58, g: 0.14, b: 0.62, a: 1}
+        accent: {r: 0.6, g: 1, b: 0.4, a: 1}
+        foliage: {r: 0.2, g: 0.32, b: 0.26, a: 1}
+        fog: {r: 0.32, g: 0.27, b: 0.42, a: 1}
+        fogDensity: 0.014
+        light: {r: 0.78, g: 0.72, b: 1, a: 1}
+        lightIntensity: 0.95
+        lightAngles: {x: 35, y: 60}
+        ambient: {r: 0.36, g: 0.3, b: 0.46, a: 1}
+        lanternsGlow: 1
+  icons:
+    pairs:
+    - key: 0
+      value: {fileID: 21300000, guid: d2aaab05cd9ab4d9cb9d07c2688d1755, type: 3}
+    - key: 1
+      value: {fileID: 21300000, guid: cc65e76c2e6fc4b1ebe5d495b4ff176b, type: 3}
+    - key: 2
+      value: {fileID: 21300000, guid: 250121f098e9d45b5ade504b475a1fa1, type: 3}
+    - key: 3
+      value: {fileID: 21300000, guid: 14ee37e6fb9f242efac139e60dde846b, type: 3}
+    - key: 4
+      value: {fileID: 21300000, guid: 90f38f36cacd74483a337ee4e47fe1f2, type: 3}
+  naturalLinks:
+  - state: 256
+    spec:
+      moment: 1
+      cameraMove: 3
+      storyKeys:
+      - chapter.story.boss_phase
+      - chapter.story.boss_phase_2
+      stinger: 1
+  - state: 512
+    spec:
+      moment: 3
+      cameraMove: 4
+      storyKeys:
+      - chapter.story.boss_broken
+      stinger: 1
+  - state: 1
+    spec:
+      moment: 2
+      cameraMove: 0
+      storyKeys:
+      - chapter.story.ambush
+      - chapter.story.ambush_2
+      stinger: 1
+  - state: 2
+    spec:
+      moment: 8
+      cameraMove: 4
+      storyKeys:
+      - chapter.story.fled
+      - chapter.story.fled_2
+      stinger: 0
+  - state: 128
+    spec:
+      moment: 4
+      cameraMove: 0
+      storyKeys:
+      - chapter.story.guard
+      stinger: 1
+  - state: 64
+    spec:
+      moment: 2
+      cameraMove: 3
+      storyKeys:
+      - chapter.story.crowd
+      stinger: 1
+  - state: 8
+    spec:
+      moment: 6
+      cameraMove: 3
+      storyKeys:
+      - chapter.story.on_roof
+      stinger: 0
+  - state: 4
+    spec:
+      moment: 7
+      cameraMove: 0
+      storyKeys:
+      - chapter.story.at_wall
+      - chapter.story.at_wall_2
+      stinger: 0
+  - state: 32
+    spec:
+      moment: 4
+      cameraMove: 0
+      storyKeys:
+      - chapter.story.landed
+      stinger: 0
+  - state: 16
+    spec:
+      moment: 5
+      cameraMove: 4
+      storyKeys:
+      - chapter.story.airborne
+      stinger: 0
+  brickRebuild:
+    moment: 0
+    cameraMove: 3
+    storyKeys:
+    - chapter.story.rebuild
+    - chapter.story.rebuild_2
+    stinger: 0
+  references:
+    version: 2
+    RefIds: []

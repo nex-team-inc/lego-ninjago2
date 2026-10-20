@@ -1831,6 +1831,514 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3461314759755304034
+  - m_Id: 200334107235835904
+    m_Localized: Forge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418816
+    m_Localized: Ninja Chapter Proof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418817
+    m_Localized: Quick Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418818
+    m_Localized: Boss Rush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418819
+    m_Localized: Stealth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418820
+    m_Localized: Runner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418821
+    m_Localized: Slash and Kick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418822
+    m_Localized: Slip and Spin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418823
+    m_Localized: CROUCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418824
+    m_Localized: LEAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418825
+    m_Localized: SLASH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418826
+    m_Localized: KICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418827
+    m_Localized: SLIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418828
+    m_Localized: SPIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418829
+    m_Localized: WIGGLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418830
+    m_Localized: Town at Dusk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418831
+    m_Localized: Harbor at Night
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418832
+    m_Localized: Mountain Temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418833
+    m_Localized: Storm Citadel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418834
+    m_Localized: CLEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418835
+    m_Localized: STAND TO RUN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418836
+    m_Localized: TALKING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418837
+    m_Localized: CROUCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418838
+    m_Localized: HEARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418839
+    m_Localized: TIME UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418840
+    m_Localized: '{seconds}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418841
+    m_Localized: KICK x{count}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418842
+    m_Localized: WIGGLE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418843
+    m_Localized: IT GOT AWAY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418844
+    m_Localized: TRY AGAIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418845
+    m_Localized: Ambush! Brick monsters!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418846
+    m_Localized: They jumped out! Fight!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418847
+    m_Localized: It's running! Chase it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418848
+    m_Localized: After it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418849
+    m_Localized: Too many! Grab a ride and go!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418850
+    m_Localized: A wall! Slip around the corner.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418851
+    m_Localized: The road ends at the gate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418852
+    m_Localized: Land on the roof. Drop down quietly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418853
+    m_Localized: Down we go!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418854
+    m_Localized: Hop in! Let's fly!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418855
+    m_Localized: Here comes the crowd!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418856
+    m_Localized: A guard blocks the way!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418857
+    m_Localized: The Boss roars!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418858
+    m_Localized: It's getting angry!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418859
+    m_Localized: The Boss is breaking! It's running!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418860
+    m_Localized: The bricks fly together!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418861
+    m_Localized: Bricks snap into something new!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418862
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418863
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418864
+    m_Localized: 'Next: {level}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418865
+    m_Localized: '{count} levels, then the Boss'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418866
+    m_Localized: '{level} cleared!'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418867
+    m_Localized: Hearts left {hearts}/{max}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418868
+    m_Localized: '{count} more before the Boss!'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418869
+    m_Localized: The Boss is next!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418870
+    m_Localized: Next level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418871
+    m_Localized: It got away...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418872
+    m_Localized: Chapter complete!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418873
+    m_Localized: To be continued...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418874
+    m_Localized: Stars {stars}/{max}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418875
+    m_Localized: You got {percent}% of the way to the Boss
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418876
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418877
+    m_Localized: Level {level}
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418878
+    m_Localized: Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418879
+    m_Localized: '{place} {time} {action}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418880
+    m_Localized: '{name} #{seed}'
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107248418881
+    m_Localized: Harbor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418882
+    m_Localized: Temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418883
+    m_Localized: Market
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418884
+    m_Localized: Bamboo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418885
+    m_Localized: Canyon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418886
+    m_Localized: River
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418887
+    m_Localized: Lantern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418888
+    m_Localized: Cliff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418889
+    m_Localized: Village
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418890
+    m_Localized: Bridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418891
+    m_Localized: Night
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418892
+    m_Localized: Dawn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418893
+    m_Localized: Dusk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418894
+    m_Localized: Storm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418895
+    m_Localized: Snow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418896
+    m_Localized: Moon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418897
+    m_Localized: Sun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418898
+    m_Localized: Fog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418899
+    m_Localized: Run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418900
+    m_Localized: Rush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418901
+    m_Localized: Chase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418902
+    m_Localized: Sneak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418903
+    m_Localized: Clash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418904
+    m_Localized: Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418905
+    m_Localized: Quest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107248418906
+    m_Localized: Raid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613120
+    m_Localized: Car
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613121
+    m_Localized: Skycraft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613122
+    m_Localized: Car then Skycraft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613123
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613124
+    m_Localized: Normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613125
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613126
+    m_Localized: First time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613127
+    m_Localized: New only
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613128
+    m_Localized: None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613129
+    m_Localized: Brick rebuild
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613130
+    m_Localized: Boss roar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613131
+    m_Localized: Dust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613132
+    m_Localized: Brick burst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613133
+    m_Localized: Ninja landing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613134
+    m_Localized: Vehicle arrives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613135
+    m_Localized: Drop off the roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613136
+    m_Localized: Around the corner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613137
+    m_Localized: Enemy flees
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613138
+    m_Localized: Level {level} needs 2 to 6 blocks.
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107252613139
+    m_Localized: Level {level} has the same block twice in a row at block {block}.
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107252613140
+    m_Localized: In level {level}, the link after block {block} does not fit. Pick
+      another or the brick rebuild.
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107252613141
+    m_Localized: The chapter needs both a car and a skycraft somewhere.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613142
+    m_Localized: The Boss level must be the last level.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613143
+    m_Localized: The Boss level cannot have stealth.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613144
+    m_Localized: The Boss level can only use gestures the player already knows.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613145
+    m_Localized: The Boss level must end with a chase where the Boss escapes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613146
+    m_Localized: Level {level} is easier than level {other}. Difficulty should not
+      drop.
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107252613147
+    m_Localized: Level {level} lasts about {other} minutes. Aim for 4 to 6.
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200334107252613148
+    m_Localized: The chapter has no levels yet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200334107252613149
+    m_Localized: Level {level}, block {block} mixes in a block that is not a fight.
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
   references:
     version: 2
     RefIds:
@@ -1939,3 +2447,21 @@ MonoBehaviour:
         - id: 198912451606994956
         - id: 198912451606994957
         - id: 198912451606994958
+        - id: 200334107248418840
+        - id: 200334107248418841
+        - id: 200334107248418864
+        - id: 200334107248418865
+        - id: 200334107248418866
+        - id: 200334107248418867
+        - id: 200334107248418868
+        - id: 200334107248418874
+        - id: 200334107248418875
+        - id: 200334107248418877
+        - id: 200334107248418879
+        - id: 200334107248418880
+        - id: 200334107252613138
+        - id: 200334107252613139
+        - id: 200334107252613140
+        - id: 200334107252613146
+        - id: 200334107252613147
+        - id: 200334107252613149

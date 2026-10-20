@@ -43,6 +43,8 @@ namespace Nex.Ninjago
             public float cellHeight = 1.6f;
             [Tooltip("Vehicle half extents used for the hit test (x = half width, y = half height).")]
             public Vector2 vehicleHalfExtents = new(0.7f, 0.3f);
+
+            public VehicleSettings Copy() => (VehicleSettings)MemberwiseClone();
         }
 
         [Header("Vehicles")]

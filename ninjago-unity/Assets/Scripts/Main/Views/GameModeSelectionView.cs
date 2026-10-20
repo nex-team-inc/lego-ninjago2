@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Nex.KeyboardNavigation;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 namespace Nex
@@ -18,7 +19,8 @@ namespace Nex
         [SerializeField] GridKeyResponder gridKeyResponder = null!;
         [SerializeField] GameModeSelectionButton buttonPrefab = null!;
 
-        public event Action<GameModeType>? ModeSelected;
+        /// <summary>The mode, and the chapter mode id for Chapter entries (empty otherwise).</summary>
+        public event Action<GameModeType, string>? ModeSelected;
         public event Action? ExitRequested;
 
         bool modeChosen;
@@ -43,11 +45,21 @@ namespace Nex
         #region Initialization
 
         /// <param name="initialMode">Mode focused first (e.g. the last one played); ignored when not in the menu.</param>
-        public void Initialize(GameModeType initialMode)
+        /// <param name="chapterModes">Every chapter mode, built-in then player-made; each is its own entry before the other modes.</param>
+        /// <param name="chapterNames">The title shown for a chapter mode.</param>
+        public void Initialize(GameModeType initialMode, IReadOnlyList<Ninjago.ModeData> chapterModes, Func<Ninjago.ModeData, LocalizedString> chapterNames)
         {
             gridKeyResponder.NumColumns = gridLayout.constraintCount;
 
-            var responders = new List<KeyResponder>(gameModeConfig.ModeOrders.Count);
+            var responders = new List<KeyResponder>(chapterModes.Count + gameModeConfig.ModeOrders.Count);
+            foreach (var chapterMode in chapterModes)
+            {
+                var button = Instantiate(buttonPrefab, gridLayout.transform);
+                button.Initialize(GameModeType.Chapter, chapterNames(chapterMode), chapterMode.id);
+                button.Clicked += HandleModeClicked;
+                responders.Add(button.KeyResponder);
+            }
+
             foreach (var mode in gameModeConfig.ModeOrders)
             {
                 var button = Instantiate(buttonPrefab, gridLayout.transform);
@@ -58,7 +70,7 @@ namespace Nex
 
             gridKeyResponder.ReinitializeResponders(responders);
             var initialIndex = IndexOf(gameModeConfig.ModeOrders, initialMode);
-            if (initialIndex >= 0) gridKeyResponder.SetInitialActiveIndex(initialIndex);
+            if (initialIndex >= 0) gridKeyResponder.SetInitialActiveIndex(chapterModes.Count + initialIndex);
         }
 
         #endregion
@@ -86,14 +98,14 @@ namespace Nex
 
         #region Unity Events
 
-        void HandleModeClicked(GameModeType mode)
+        void HandleModeClicked(GameModeType mode, string chapterModeId)
         {
             // A second press during the scene transition must not load the game twice.
             if (!IsActive || modeChosen) return;
             modeChosen = true;
 
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.UiSelect);
-            ModeSelected?.Invoke(mode);
+            ModeSelected?.Invoke(mode, chapterModeId);
         }
 
         #endregion

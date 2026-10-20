@@ -15,5 +15,8 @@ namespace Nex
         Guard = 10,
         Call = 11,
         Build = 12,
+        // Every chapter mode, built-in or player-made, runs through this one runtime with a different definition.
+        Chapter = 13,
+        Forge = 14,
     }
 }

@@ -69,19 +69,8 @@ namespace Nex.Ninjago
             var firstRound = true;
             while (true)
             {
-                var setupView = Instantiate(setupViewPrefab);
-                setupView.Initialize(bodies, Detection, playersConfig, SetupCursors, SetupRobotArms, SetupStoresRestJoints);
-                if (firstRound)
-                {
-                    await Views.PushView(setupView);
-                }
-                else
-                {
-                    await Views.ReplaceView(setupView);
-                }
-
+                var activePlayers = await CalibrateAsync(firstRound, cancellationToken);
                 firstRound = false;
-                var activePlayers = await setupView.RunAsync(cancellationToken);
                 var outcome = activePlayers == null ? null : await PlayAsync(activePlayers, cancellationToken);
                 if (outcome == null)
                 {
@@ -102,6 +91,23 @@ namespace Nex.Ninjago
         #endregion
 
         #region Gameplay
+
+        /// <summary>Shows the setup view (pushed, or replacing the current view) and calibrates; null when the player backed out.</summary>
+        protected async UniTask<List<PlayerBody>?> CalibrateAsync(bool push, CancellationToken cancellationToken)
+        {
+            var setupView = Instantiate(setupViewPrefab);
+            setupView.Initialize(bodies, Detection, playersConfig, SetupCursors, SetupRobotArms, SetupStoresRestJoints);
+            if (push)
+            {
+                await Views.PushView(setupView);
+            }
+            else
+            {
+                await Views.ReplaceView(setupView);
+            }
+
+            return await setupView.RunAsync(cancellationToken);
+        }
 
         /// <summary>Replaces the setup view with this game's view and plays it; null when the player backed out.</summary>
         protected abstract UniTask<NinjagoOutcome?> PlayAsync(IReadOnlyList<PlayerBody> activePlayers, CancellationToken cancellationToken);

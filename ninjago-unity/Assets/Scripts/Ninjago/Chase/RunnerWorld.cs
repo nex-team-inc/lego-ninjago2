@@ -73,6 +73,7 @@ namespace Nex.Ninjago
         readonly int[] hits = new int[segments.Length];
         IReadOnlyList<PlayerBody> players = null!;
         ChaseConfig config = null!;
+        Func<VehicleType, ChaseConfig.VehicleSettings> settingsFor = null!;
         VehicleRig vehicle = null!;
         Vector2 vehiclePosition;
         Vector2 vehicleVelocity;
@@ -83,8 +84,13 @@ namespace Nex.Ninjago
         /// <summary>A vehicle appeared (the car at start, the skycraft at the transition).</summary>
         public event Action<VehicleType>? VehicleShown;
         public event Action? CountsChanged;
+        /// <summary>An obstacle reached the vehicle: its vehicle, whether it hit, and who steered harder (-1 = nobody).</summary>
+        public event Action<VehicleType, bool, int>? ObstacleResolved;
 
         public VehicleType CurrentVehicle { get; private set; }
+        public VehicleRig Vehicle => vehicle;
+        /// <summary>1 at cruise; drops on a bump and recovers.</summary>
+        public float SpeedFactor => speedFactor;
         public float TimeLeft { get; private set; }
         public int GetDodges(VehicleType type) => dodges[(int)type];
         public int GetHits(VehicleType type) => hits[(int)type];
@@ -92,10 +98,12 @@ namespace Nex.Ninjago
 
         #region Initialization
 
-        public void Initialize(IReadOnlyList<PlayerBody> activePlayers, ChaseConfig aConfig, RenderTexture target)
+        /// <param name="target">Null when a Cinemachine camera on the world camera's transform shows the ride instead.</param>
+        public void Initialize(IReadOnlyList<PlayerBody> activePlayers, ChaseConfig aConfig, RenderTexture? target)
         {
             players = activePlayers;
             config = aConfig;
+            settingsFor = config.GetVehicle;
             worldCamera.targetTexture = target;
             car.Initialize(activePlayers);
             skycraft.Initialize(activePlayers);
@@ -108,24 +116,36 @@ namespace Nex.Ninjago
 
         #region Run
 
-        public async UniTask RunAsync(CancellationToken cancellationToken)
+        /// <summary>Puts this vehicle on the track at rest, e.g. while a link brings the camera here.</summary>
+        public void Show(VehicleType type) => ShowSegment(type);
+
+        public UniTask RunAsync(CancellationToken cancellationToken)
         {
-            await DriveAsync(config.IntroSeconds, cancellationToken);
-            for (var i = 0; i < segments.Length; i++)
+            return RunAsync(segments, config.GetVehicle, config.IntroSeconds, cancellationToken);
+        }
+
+        /// <summary>Rides each vehicle of the route in turn with the given settings, after introSeconds without obstacles.</summary>
+        public async UniTask RunAsync(IReadOnlyList<VehicleType> route, Func<VehicleType, ChaseConfig.VehicleSettings> aSettingsFor, float introSeconds,
+            CancellationToken cancellationToken)
+        {
+            settingsFor = aSettingsFor;
+            ShowSegment(route[0]);
+            await DriveAsync(introSeconds, cancellationToken);
+            for (var i = 0; i < route.Count; i++)
             {
                 if (i > 0)
                 {
-                    ShowSegment(segments[i]);
+                    ShowSegment(route[i]);
                     await DriveAsync(config.TransitionSeconds, cancellationToken);
                 }
 
-                await RunSegmentAsync(segments[i], cancellationToken);
+                await RunSegmentAsync(route[i], cancellationToken);
             }
         }
 
         async UniTask RunSegmentAsync(VehicleType type, CancellationToken cancellationToken)
         {
-            var settings = config.GetVehicle(type);
+            var settings = settingsFor(type);
             var patterns = new ObstaclePatterns(type);
             NinjagoAnalytics.SegmentStart(type, players.Count);
             var elapsed = 0f;
@@ -153,7 +173,7 @@ namespace Nex.Ninjago
         // Steering and scenery without obstacles: the intro and the car-to-skycraft transition.
         async UniTask DriveAsync(float seconds, CancellationToken cancellationToken)
         {
-            var settings = config.GetVehicle(CurrentVehicle);
+            var settings = settingsFor(CurrentVehicle);
             var elapsed = 0f;
             while (elapsed < seconds)
             {
@@ -252,6 +272,7 @@ namespace Nex.Ninjago
                 dodges[(int)type]++;
                 NinjagoAnalytics.ObstacleDodge(type, row.index, sharedSteer.DominantPlayer, playerOneSteer, playerTwoSteer);
                 CountsChanged?.Invoke();
+                ObstacleResolved?.Invoke(type, false, sharedSteer.DominantPlayer);
                 return;
             }
 
@@ -262,6 +283,7 @@ namespace Nex.Ninjago
             VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.VehicleBump, vehicle.Position + Vector3.forward * 0.8f);
             NinjagoAnalytics.ObstacleHit(type, row.index, sharedSteer.DominantPlayer, playerOneSteer, playerTwoSteer);
             CountsChanged?.Invoke();
+            ObstacleResolved?.Invoke(type, true, sharedSteer.DominantPlayer);
         }
 
         bool Overlaps(VehicleType type, ChaseConfig.VehicleSettings settings, int mask)
@@ -305,7 +327,7 @@ namespace Nex.Ninjago
             car.gameObject.SetActive(isCar);
             skycraft.gameObject.SetActive(!isCar);
             vehicle = isCar ? car : skycraft;
-            var settings = config.GetVehicle(type);
+            var settings = settingsFor(type);
             vehiclePosition = new Vector2(0f, settings.centerHeight);
             vehicleVelocity = Vector2.zero;
             vehicle.SetPose(vehiclePosition, vehicleVelocity);

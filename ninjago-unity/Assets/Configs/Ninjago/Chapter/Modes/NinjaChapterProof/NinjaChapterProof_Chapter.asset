@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4738655377a742eca839479926b7e77, type: 3}
+  m_Name: NinjaChapterProof_Chapter
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.ChapterDefinition
+  levels:
+  - {fileID: 11400000, guid: 6990d174fce6f497eb2adeb34cf8f1be, type: 2}
+  - {fileID: 11400000, guid: 0e6b0388afdab4a29b57503727cd698c, type: 2}
+  - {fileID: 11400000, guid: 70a609724035e4982b578fb5068ef4d1, type: 2}
+  - {fileID: 11400000, guid: 6a1d9153c788f4af6b3b063ec32b23e3, type: 2}
+  stars:
+    starForFinish: 1
+    heartsShareForStar: 0.6
+    starForNoRetry: 1
+  rest:
+    checkTracking: 1
+    trackingCheckSeconds: 1.5

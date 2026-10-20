@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05ea565ba6f347e996e690f3ef85b85, type: 3}
+  m_Name: Level2_HarborNight
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.LevelDefinition
+  level:
+    theme: 1
+    music: 41
+    hearts: 5
+    blocks:
+    - type: 1
+      mix: 
+      pattern: 
+      overrideTheme: 0
+      theme: 0
+      preset: 1
+      difficulty:
+        windowScale: 1
+        speedScale: 1
+        count: 6
+        zoneLength: 0
+        overlapEvery: 0
+      targetSeconds: 55
+      ride: 1
+      hints: 1
+      boss: 0
+    - type: 0
+      mix: 
+      pattern: 
+      overrideTheme: 0
+      theme: 0
+      preset: 1
+      difficulty:
+        windowScale: 1
+        speedScale: 1
+        count: 4
+        zoneLength: 14
+        overlapEvery: 0
+      targetSeconds: 55
+      ride: 0
+      hints: 1
+      boss: 0
+    - type: 3
+      mix: 
+      pattern: 
+      overrideTheme: 0
+      theme: 0
+      preset: 1
+      difficulty:
+        windowScale: 1
+        speedScale: 1
+        count: 9
+        zoneLength: 0
+        overlapEvery: 0
+      targetSeconds: 60
+      ride: 0
+      hints: 1
+      boss: 0
+    - type: 2
+      mix: 
+      pattern: 
+      overrideTheme: 0
+      theme: 0
+      preset: 1
+      difficulty:
+        windowScale: 1
+        speedScale: 1
+        count: 7
+        zoneLength: 0
+        overlapEvery: 0
+      targetSeconds: 60
+      ride: 0
+      hints: 1
+      boss: 0
+    links:
+    - auto: 1
+      state: 8
+      moment: 6
+      cameraMove: 1
+      storyKey: chapter.story.on_roof
+      stinger: 0
+    - auto: 1
+      state: 128
+      moment: 4
+      cameraMove: 2
+      storyKey: chapter.story.guard
+      stinger: 1
+    - auto: 1
+      state: 64
+      moment: 2
+      cameraMove: 3
+      storyKey: chapter.story.crowd
+      stinger: 1

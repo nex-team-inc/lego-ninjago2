@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 325eabafaa35d43f7bdd58b31a311cb4
+    m_Address: ChapterGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5986e24a8ed004f54b44c87167a47569
     m_Address: CallGame
     m_ReadOnly: 0

@@ -389,6 +389,61 @@ namespace Nex
         [DebugOrder(-69), Description("Save: Reset Ninjago Progress"), SaveBeforeInvoking]
         public void ResetNinjagoProgress() => PlayerDataManager.Instance.ResetNinjagoProgress();
 
+        // Chapter Forge: jumps apply when a chapter mode starts (after its start view).
+        [DebugOrder(-1000), Description("Chapter: Jump To Level (-1 = off, 0-based)"), NumericSteps(IntSteps = 1, IntMin = -1, IntMax = 5)]
+        public int chapterJumpLevel = -1;
+        [DebugOrder(-999), Description("Chapter: Jump To Block (0-based, with a level jump)"), NumericSteps(IntSteps = 1, IntMin = 0, IntMax = 5)]
+        public int chapterJumpBlock;
+        [DebugOrder(-998), Description("Chapter: Mode To Play (menu index)"), NumericSteps(IntSteps = 1, IntMin = 0, IntMax = 30)]
+        public int chapterJumpMode;
+
+        [DebugOrder(-997), Description("Chapter: Play Mode (with the jumps above)")]
+        public void PlayChapterMode()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {ChapterDebugHooks.PlayMode(chapterJumpMode)}");
+#endif
+        }
+
+        [DebugOrder(-996), Description("Chapter: Validate Every Mode (log)")]
+        public void ValidateChapterModes()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {ChapterDebugHooks.ValidateAll()}");
+#endif
+        }
+
+        [DebugOrder(-995), Description("Chapter: Current Surprise Seed"), ES3NonSerializable]
+        public int ChapterSeed { get => ChapterDebugHooks.LastSeed; set => ChapterDebugHooks.LastSeed = value; }
+
+        [DebugOrder(-994), Description("Save: Reset Chapter Progress And Player Modes"), SaveBeforeInvoking]
+        public void ResetChapterSave() => PlayerDataManager.Instance.ResetChapterSave();
+
+        [DebugOrder(-990), Description("Chapter: Link (s)"), NumericSteps(Steps = 0.25, Min = 3, Max = 6), ES3NonSerializable]
+        public float ChapterLink { get => Chapter.LinkSeconds; set => Chapter.LinkSeconds = value; }
+        [DebugOrder(-989), Description("Chapter: Rock Hang (s, x window)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 6), ES3NonSerializable]
+        public float ChapterHang { get => Chapter.HangSeconds; set => Chapter.HangSeconds = value; }
+        [DebugOrder(-988), Description("Chapter: Hang Slow-mo Scale"), NumericSteps(Steps = 0.05, Min = 0.05, Max = 1), ES3NonSerializable]
+        public float ChapterHangScale { get => Chapter.HangTimeScale; set => Chapter.HangTimeScale = value; }
+        [DebugOrder(-987), Description("Chapter: Slash Circle (shoulder spans)"), NumericSteps(Steps = 0.05, Min = 0.3, Max = 1.5), ES3NonSerializable]
+        public float ChapterSlashRadius { get => Chapter.SlashRadiusShoulders; set => Chapter.SlashRadiusShoulders = value; }
+        [DebugOrder(-986), Description("Chapter: Stones Per Rock"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 8), ES3NonSerializable]
+        public int ChapterStones { get => Chapter.StonesPerRock; set => Chapter.StonesPerRock = value; }
+        [DebugOrder(-985), Description("Chapter: Kick Window (s, x window)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 6), ES3NonSerializable]
+        public float ChapterKickWindow { get => Chapter.KickWindowSeconds; set => Chapter.KickWindowSeconds = value; }
+        [DebugOrder(-984), Description("Chapter: Throw Tell (s, / speed)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 3), ES3NonSerializable]
+        public float ChapterThrowTell { get => Chapter.ThrowTellSeconds; set => Chapter.ThrowTellSeconds = value; }
+        [DebugOrder(-983), Description("Chapter: Leaping Monster Share"), NumericSteps(Steps = 0.05, Min = 0, Max = 1), ES3NonSerializable]
+        public float ChapterLeapShare { get => Chapter.LeapShare; set => Chapter.LeapShare = value; }
+        [DebugOrder(-982), Description("Chapter: Pin Heart Every (s)"), NumericSteps(Steps = 0.25, Min = 0.5, Max = 6), ES3NonSerializable]
+        public float ChapterPinHeart { get => Chapter.PinHeartSeconds; set => Chapter.PinHeartSeconds = value; }
+        [DebugOrder(-981), Description("Chapter: Swing Tell (s, x window / speed)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 3), ES3NonSerializable]
+        public float ChapterSwingTell { get => Chapter.SwingTellSeconds; set => Chapter.SwingTellSeconds = value; }
+        [DebugOrder(-980), Description("Chapter: Gap Between Threats (s)"), NumericSteps(Steps = 0.1, Min = 0, Max = 5), ES3NonSerializable]
+        public float ChapterThreatGap { get => Chapter.ThreatGapSeconds; set => Chapter.ThreatGapSeconds = value; }
+        [DebugOrder(-979), Description("Chapter: Stealth Clear Zone (m)"), NumericSteps(Steps = 1, Min = 4, Max = 60), ES3NonSerializable]
+        public float ChapterClearZone { get => Chapter.ClearZoneMeters; set => Chapter.ClearZoneMeters = value; }
+
         static FightConfig Fight => GameConfigsManager.Instance.FightConfig;
         static ChaseConfig Chase => GameConfigsManager.Instance.ChaseConfig;
         static ChaseConfig.VehicleSettings Car => Chase.GetVehicle(VehicleType.Car);
@@ -405,6 +460,7 @@ namespace Nex
         static GuardConfig Guard => GameConfigsManager.Instance.GuardConfig;
         static CallConfig Call => GameConfigsManager.Instance.CallConfig;
         static BuildConfig Build => GameConfigsManager.Instance.BuildConfig;
+        static ChapterTuning Chapter => GameConfigsManager.Instance.ChapterTuning;
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

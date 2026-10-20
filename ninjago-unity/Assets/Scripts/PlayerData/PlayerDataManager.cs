@@ -304,6 +304,50 @@ namespace Nex
 
         #endregion
 
+        #region Chapter Save
+
+        const string chapterSaveKey = "chapterSave";
+
+        ChapterSave? chapterSave;
+
+        /// <summary>Player-made modes and chapter progress; loaded lazily, defaults (without overwriting the file) when unreadable.</summary>
+        public ChapterSave ChapterSave => chapterSave ??= LoadChapterSave();
+
+        public void ScopedChapterSaveUpdate(Action<ChapterSave> modifier)
+        {
+            modifier(ChapterSave);
+#if !DISABLE_PERSISTENCE
+            ES3.Save(chapterSaveKey, ChapterSave);
+#endif
+        }
+
+        public void ResetChapterSave()
+        {
+            chapterSave = new ChapterSave();
+#if !DISABLE_PERSISTENCE
+            ES3.Save(chapterSaveKey, chapterSave);
+#endif
+        }
+
+        static ChapterSave LoadChapterSave()
+        {
+#if DISABLE_PERSISTENCE
+            return new ChapterSave();
+#else
+            try
+            {
+                return ES3.Load(chapterSaveKey, new ChapterSave());
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[PlayerDataManager] Chapter save unreadable, using defaults: {e}");
+                return new ChapterSave();
+            }
+#endif
+        }
+
+        #endregion
+
         #region App View State
 
         public class AppViewState : AbstractViewState

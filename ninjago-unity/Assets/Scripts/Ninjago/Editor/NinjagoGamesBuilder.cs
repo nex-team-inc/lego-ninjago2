@@ -123,9 +123,10 @@ namespace Nex.Ninjago.Editor
             var order = serialized.FindProperty("modeOrders");
             var modes = serialized.FindProperty("modes");
             var listed = new List<GameModeType>();
+            // Chapter modes are listed from the mode library before these; the Forge comes first among them.
             foreach (var mode in new[]
                      {
-                         GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal, GameModeType.RobotMecha,
+                         GameModeType.Forge, GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal, GameModeType.RobotMecha,
                          GameModeType.CrouchRun, GameModeType.ThreeWeapons, GameModeType.OnePunch, GameModeType.Guard, GameModeType.Call, GameModeType.Build,
                      })
             {

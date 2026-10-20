@@ -331,3 +331,13 @@ MonoBehaviour:
         prefab: {fileID: 5104386926121427066, guid: f374772a407ff42e39273ee86bdd3106, type: 3}
         defaultPoolSize: 4
         maxPoolSize: 8
+    - key: 210
+      value:
+        prefab: {fileID: 2960660072958802592, guid: 3e308e75dd37c4f18add66d56c6533ef, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 6
+    - key: 211
+      value:
+        prefab: {fileID: 8481336188177455759, guid: 9551d946777404ce6aac8bd546ba3a5a, type: 3}
+        defaultPoolSize: 2
+        maxPoolSize: 4

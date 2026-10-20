@@ -91,6 +91,8 @@ namespace Nex
         }
 
         public View TopView => viewStack.Peek().view;
+        /// <summary>The camera root-level views render with; a canvas between the scene background and the views uses it too.</summary>
+        public Camera RootViewCamera => cameraChains[0].GetCamera();
 
         /// <summary>Adds every view on the stack that is a T to result, top first.</summary>
         public void CollectStackViews<T>(List<T> result) where T : View

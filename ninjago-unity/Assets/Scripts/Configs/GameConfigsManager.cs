@@ -41,6 +41,14 @@ namespace Nex
         [SerializeField] CallConfig callConfig = null!;
         [Header("Ninjago Build Tuning")]
         [SerializeField] BuildConfig buildConfig = null!;
+        [Header("Chapter Built-in Modes")]
+        [SerializeField] ChapterModeLibrary chapterModes = null!;
+        [Header("Chapter Forge Catalog")]
+        [SerializeField] ForgeCatalog forgeCatalog = null!;
+        [Header("Chapter Tuning")]
+        [SerializeField] ChapterTuning chapterTuning = null!;
+        [Header("Chapter Forge Config")]
+        [SerializeField] ForgeConfig forgeConfig = null!;
         public string MainScene => mainScene;
         public string ARGameScene => arGameScene;
         public string NonARGameScene => nonARGameScene;
@@ -59,8 +67,14 @@ namespace Nex
         public GuardConfig GuardConfig => guardConfig;
         public CallConfig CallConfig => callConfig;
         public BuildConfig BuildConfig => buildConfig;
+        public ChapterModeLibrary ChapterModes => chapterModes;
+        public ForgeCatalog ForgeCatalog => forgeCatalog;
+        public ChapterTuning ChapterTuning => chapterTuning;
+        public ForgeConfig ForgeConfig => forgeConfig;
 
         public GameModeType SelectedMode { get; set; }
+        /// <summary>The chapter mode the Chapter game plays (built-in or player-made id).</summary>
+        public string SelectedChapterModeId { get; set; } = "";
 
         protected override GameConfigsManager GetThis()
         {

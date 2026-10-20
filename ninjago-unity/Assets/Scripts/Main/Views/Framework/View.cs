@@ -63,6 +63,14 @@ namespace Nex
             GuardPlay,
             CallPlay,
             BuildPlay,
+
+            // Chapter Forge (append only).
+            ChapterStart,
+            ChapterBlock,
+            ChapterRest,
+            ChapterEnding,
+            ForgeHome,
+            ForgeEditor,
         }
 
         /// <summary>

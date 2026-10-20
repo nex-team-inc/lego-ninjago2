@@ -195,12 +195,15 @@ namespace Nex.Ninjago.Editor
 
         #region Entry Point
 
-        public static string Run()
+        public static string Run() => Upsert(rows);
+
+        /// <summary>Adds or updates these English lines in the LocalizationTable collection.</summary>
+        internal static string Upsert(System.Collections.Generic.IReadOnlyList<(string key, string english, bool smart)> lines)
         {
             var collection = LocalizationEditorSettings.GetStringTableCollection(NinjagoEditorUtils.TableName);
             var shared = collection.SharedData;
             var english = (StringTable)collection.GetTable("en");
-            foreach (var (key, value, smart) in rows)
+            foreach (var (key, value, smart) in lines)
             {
                 var sharedEntry = shared.GetEntry(key) ?? shared.AddKey(key);
                 var entry = english.GetEntry(sharedEntry.Id) ?? english.AddEntry(sharedEntry.Id, value);
@@ -215,7 +218,7 @@ namespace Nex.Ninjago.Editor
             EditorUtility.SetDirty(english);
             LocalizationEditorSettings.EditorEvents.RaiseCollectionModified(null, collection);
             AssetDatabase.SaveAssets();
-            return $"localization {rows.Length} keys";
+            return $"localization {lines.Count} keys";
         }
 
         #endregion

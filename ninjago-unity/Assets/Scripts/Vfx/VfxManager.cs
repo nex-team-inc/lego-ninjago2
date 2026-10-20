@@ -75,6 +75,9 @@ namespace Nex
             CallBeam = 190,
             SlamShockwave = 191,
             BrickSnapPop = 200,
+            // Chapter Forge
+            BrickRebuild = 210,
+            LinkDust = 211,
         }
 
         #region Pool

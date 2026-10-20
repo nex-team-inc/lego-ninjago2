@@ -57,16 +57,19 @@ namespace Nex
         GameModeSelectionView CreateGameModeSelectionView()
         {
             var gameModeSelectionView = Instantiate(gameModeSelectionViewPrefab);
-            gameModeSelectionView.Initialize(PlayerDataManager.Instance.NinjagoProgress.lastMiniGame);
+            var configs = GameConfigsManager.Instance;
+            var chapterModes = ChapterModes.All(configs.ChapterModes, PlayerDataManager.Instance.ChapterSave);
+            gameModeSelectionView.Initialize(PlayerDataManager.Instance.NinjagoProgress.lastMiniGame, chapterModes, mode => configs.ForgeConfig.NameOf(mode.name));
             gameModeSelectionView.ModeSelected += GameModeSelectionOnModeSelected;
             gameModeSelectionView.ExitRequested += GameModeSelectionOnExitRequested;
             return gameModeSelectionView;
         }
 
-        void GameModeSelectionOnModeSelected(GameModeType mode)
+        void GameModeSelectionOnModeSelected(GameModeType mode, string chapterModeId)
         {
             GameConfigsManager.Instance.SelectedMode = mode;
-            NinjagoAnalytics.UiAction(gameModeSelectionViewPrefab.AnalyticsScreenName, mode.ToString());
+            GameConfigsManager.Instance.SelectedChapterModeId = chapterModeId;
+            NinjagoAnalytics.UiAction(gameModeSelectionViewPrefab.AnalyticsScreenName, mode == GameModeType.Chapter ? $"chapter:{chapterModeId}" : mode.ToString());
             if (gameModeConfig.GetMode(mode).maxPlayers > 1)
             {
                 viewManager.PushView(CreatePlayerCountView()).Forget();

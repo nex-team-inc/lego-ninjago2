@@ -77,10 +77,15 @@ namespace Nex.Ninjago
         /// <returns>The gate position (lane-local).</returns>
         public Vector3 Build(CrouchRunConfig config, int levelIndex)
         {
-            for (var i = levelRoot.childCount - 1; i >= 0; i--) Destroy(levelRoot.GetChild(i).gameObject);
-            var level = config.GetLevel(levelIndex);
             // The same scenery on every retry of a level.
-            var random = new System.Random(levelIndex * 7919 + 17);
+            return Build(config.GetLevel(levelIndex), levelIndex * 7919 + 17);
+        }
+
+        /// <returns>The gate position (lane-local).</returns>
+        public Vector3 Build(CrouchRunConfig.Level level, int seed)
+        {
+            for (var i = levelRoot.childCount - 1; i >= 0; i--) Destroy(levelRoot.GetChild(i).gameObject);
+            var random = new System.Random(seed);
             var end = level.Length;
             var start = 0f;
             foreach (var zone in level.zones)

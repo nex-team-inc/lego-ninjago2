@@ -18,17 +18,22 @@ namespace Nex
         [Header("Label")]
         [SerializeField] NexLocalizedString label = null!;
 
-        public event Action<GameModeType>? Clicked;
+        /// <summary>The mode, and the chapter mode id for Chapter entries (empty otherwise).</summary>
+        public event Action<GameModeType, string>? Clicked;
 
         public KeyResponder KeyResponder => keyResponder;
+        public GameModeType Mode => mode;
+        public string ChapterModeId => chapterModeId;
 
         GameModeType mode;
+        string chapterModeId = "";
 
         #region Initialization
 
-        public void Initialize(GameModeType aMode, LocalizedString displayName)
+        public void Initialize(GameModeType aMode, LocalizedString displayName, string aChapterModeId = "")
         {
             mode = aMode;
+            chapterModeId = aChapterModeId;
             label.StringReference = displayName;
             button.onClick.AddListener(HandleClick);
         }
@@ -39,7 +44,7 @@ namespace Nex
 
         void HandleClick()
         {
-            Clicked?.Invoke(mode);
+            Clicked?.Invoke(mode, chapterModeId);
         }
 
         #endregion

@@ -34,6 +34,10 @@ namespace Nex.Ninjago
         BossRig boss = null!;
         StoneKickConfig config = null!;
         int count;
+        int launched;
+
+        /// <summary>Stones still hovering: not launched one by one yet.</summary>
+        public int Remaining => count - launched;
 
         #region Initialization
 
@@ -52,6 +56,7 @@ namespace Nex.Ninjago
         public async UniTask SplitAsync(Vector3 from, int stones, CancellationToken cancellationToken)
         {
             count = stones;
+            launched = 0;
             while (pieces.Count < count) pieces.Add(Instantiate(piecePrefab, transform));
             for (var i = 0; i < pieces.Count; i++)
             {
@@ -69,7 +74,22 @@ namespace Nex.Ninjago
         public void Bob()
         {
             var time = Time.unscaledTime;
-            for (var i = 0; i < count; i++) pieces[i].position = Slot(i) + Vector3.up * (Mathf.Sin(time * 3f + i * 1.7f) * 0.05f);
+            for (var i = launched; i < count; i++) pieces[i].position = Slot(i) + Vector3.up * (Mathf.Sin(time * 3f + i * 1.7f) * 0.05f);
+        }
+
+        /// <summary>One kick: the next hovering stone flies back into the boss. False when none are left.</summary>
+        public bool LaunchNext(CancellationToken cancellationToken)
+        {
+            if (launched >= count) return false;
+            LaunchAsync(pieces[launched++], 0f, cancellationToken).Forget();
+            return true;
+        }
+
+        /// <summary>Stones nobody kicked fall to the ground.</summary>
+        public void DropRemaining(CancellationToken cancellationToken)
+        {
+            for (var i = launched; i < count; i++) DropAsync(pieces[i], cancellationToken).Forget();
+            launched = count;
         }
 
         /// <summary>Every stone flies back into the boss; returns the seconds until the last one lands.</summary>

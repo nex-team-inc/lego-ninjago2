@@ -205,7 +205,7 @@ namespace Nex.Ninjago
             }
 
             stage.SetPlayers(players);
-            var context = new BlockContext(players, stage.Ninjas, hearts, hints, log, Tuning, Catalog, stage.WorldCamera, storms);
+            var context = new BlockContext(players, stage.Ninjas, hearts, hints, log, Tuning, Catalog, stage.WorldCamera, storms, stage.Hud);
             return new LevelRunner(stage, new LinkPlayer(stage, Tuning, log), context, Views, blockViewPrefab, tryAgainText);
         }
 

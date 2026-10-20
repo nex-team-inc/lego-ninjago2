@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Localization;
 
 namespace Nex.Ninjago
 {
@@ -12,7 +11,8 @@ namespace Nex.Ninjago
     /// A fight in an open space along the route, seen from behind the ninjas. Every threat follows tell, window,
     /// gesture, result. The entry's types (Slash and Kick, Slip and Spin, or both with a pattern for Mixed) become a
     /// list of threat steps; each step runs for every player's lane at once with that player's own enemy, while the
-    /// Boss takes the steps in turn so one large enemy stays readable. Results burst the crowd or chip the Boss.
+    /// Boss takes the steps in turn so one large enemy stays readable. Results burst the crowd or chip the Boss. Back to
+    /// back Boss fight entries all play in this one arena: the Boss stays, only the steps change.
     /// </summary>
     public class FightBlock : ChapterBlock
     {
@@ -59,14 +59,12 @@ namespace Nex.Ninjago
         [Header("Stone Kick Config")]
         [Tooltip("Owner of the slash speed and the kick reading.")]
         [SerializeField] StoneKickConfig stoneKickConfig = null!;
-        [Header("One Punch Config")]
-        [Tooltip("Owner of the hip wiggle that breaks a pin.")]
-        [SerializeField] OnePunchConfig onePunchConfig = null!;
-        [Header("Kick Text")]
-        [Tooltip("Smart string with {count}.")]
-        [SerializeField] LocalizedString kickText = new();
-        [Header("Wiggle Text")]
-        [SerializeField] LocalizedString wiggleText = new();
+        [Header("Calls")]
+        [SerializeField] FightCalls calls = null!;
+        [Header("Lane Prompt Prefab")]
+        [SerializeField] WorldPrompt promptPrefab = null!;
+        [Header("Lane Prompt Scale (Solo, Duo)")]
+        [SerializeField] Vector2 promptScale = new(1.3f, 1f);
 
         readonly List<ChapterFightLane> lanes = new();
         readonly List<ChapterEnemy> attackers = new();
@@ -82,7 +80,7 @@ namespace Nex.Ninjago
         public BlockDifficulty Difficulty => Entry.difficulty;
         public FightConfig FightConfig => fightConfig;
         public StoneKickConfig StoneKickConfig => stoneKickConfig;
-        public OnePunchConfig OnePunchConfig => onePunchConfig;
+        public FightCalls Calls => calls;
 
         #region Initialization
 
@@ -92,6 +90,7 @@ namespace Nex.Ninjago
             seed = aSeed;
             threats[BlockType.SlashKick] = new SlashKickThreat(this);
             threats[BlockType.SlipSpin] = new SlipSpinThreat(this);
+            calls.Initialize(context.Hud, context.Hints);
             FightPattern.Build(entry, context.Catalog, steps);
             for (var slot = 0; slot < duoSpots.Length; slot++)
             {
@@ -118,11 +117,14 @@ namespace Nex.Ninjago
                 var hang = context.Players.Count > 1 ? duoHangs[slot] : soloHang;
                 var marker = Instantiate(markerPrefab, transform);
                 var arrow = Instantiate(markerPrefab, transform);
+                var prompt = Instantiate(promptPrefab, transform);
+                prompt.transform.localScale = Vector3.one * (context.Players.Count > 1 ? promptScale.y : promptScale.x);
                 marker.Initialize(context.Camera);
                 arrow.Initialize(context.Camera);
+                prompt.Initialize(context.Camera);
                 var firstSafe = slot == 0 ? fightConfig.FirstSafeSide : fightConfig.FirstSafeSide.Opposite();
                 lanes.Add(new ChapterFightLane(context.Players[slot], context.Ninjas[slot], boss != null ? boss : attackers[slot],
-                    Instantiate(rockPrefab, transform), Instantiate(piecesPrefab, transform), marker, arrow, hang, firstSafe));
+                    Instantiate(rockPrefab, transform), Instantiate(piecesPrefab, transform), marker, arrow, prompt, hang, firstSafe));
             }
         }
 
@@ -130,10 +132,18 @@ namespace Nex.Ninjago
 
         #region Block
 
+        public override bool CanHost(BlockEntry next) => boss != null && next.boss && Context.Catalog.Block(next.type).isFight;
+
+        protected override void OnHosted()
+        {
+            FightPattern.Build(Entry, Context.Catalog, steps);
+        }
+
         public override void Stage()
         {
             running = false;
             random = new System.Random(seed);
+            calls.Begin(Entry.hints);
             var cameraPose = boss != null ? bossCameraPose : lanes.Count > 1 ? duoCameraPose : soloCameraPose;
             ViewCamera.transform.SetPositionAndRotation(cameraPose.position, cameraPose.rotation);
             for (var slot = 0; slot < attackers.Count; slot++)
@@ -168,6 +178,7 @@ namespace Nex.Ninjago
                 lane.Rock.gameObject.SetActive(false);
                 lane.Marker.Hide();
                 lane.Arrow.Hide();
+                lane.Prompt.Hide();
                 lane.Pieces.Initialize(lane.HangPoint, Context.Camera, lane.Attacker.Thrower, stoneKickConfig);
                 lane.Ninja.Fight.ReturnToCenter();
                 lane.Ninja.Fight.ShowSwirl(false);
@@ -182,7 +193,8 @@ namespace Nex.Ninjago
 
         public override async UniTask<bool> RunAsync(CancellationToken cancellationToken)
         {
-            Context.Storms.SetDetecting(UsesType(BlockType.SlipSpin));
+            // Hands are read in every fight: the spin counter and shaking off a pinned monster.
+            Context.Storms.SetDetecting(true);
             running = true;
             try
             {
@@ -212,7 +224,7 @@ namespace Nex.Ninjago
                 {
                     lane.Marker.Hide();
                     lane.Arrow.Hide();
-                    lane.Ninja.Status.Hide();
+                    lane.Prompt.Hide();
                     lane.Clock.EaseTo(1f, 0f);
                 }
             }
@@ -249,10 +261,6 @@ namespace Nex.Ninjago
 
         #region Threat Services
 
-        public LocalizedString KickText(int count) => LocalizedStrings.WithArguments(kickText, ("count", count));
-
-        public LocalizedString WiggleText => wiggleText;
-
         public bool RollLeap() => random.NextDouble() < Context.Tuning.LeapShare;
 
         /// <summary>A crowd monster that leaps at the ninja instead of a rock; null when the crowd is gone.</summary>
@@ -288,6 +296,7 @@ namespace Nex.Ninjago
         public bool LoseHeart(ChapterFightLane lane)
         {
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.NinjaHit);
+            calls.Hit();
             var pop = VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.NinjaBrickPop, lane.Ninja.Center, Quaternion.identity);
             if (pop != null)
             {
@@ -301,10 +310,11 @@ namespace Nex.Ninjago
 
         public bool IsOut(ChapterFightLane lane) => Context.Hearts.IsOut(lane.PlayerIndex);
 
+        /// <summary>Every lane freezes, the pinned one too, so nothing else hits a player who is shaking a monster off.</summary>
         public void BeginPin(ChapterFightLane pinned)
         {
             pinned.Pinned = true;
-            foreach (var lane in lanes) lane.Frozen = lane != pinned;
+            foreach (var lane in lanes) lane.Frozen = true;
         }
 
         public void EndPin(ChapterFightLane freed)
@@ -364,16 +374,6 @@ namespace Nex.Ninjago
             foreach (var lane in lanes)
             {
                 if (IsOut(lane)) return true;
-            }
-
-            return false;
-        }
-
-        bool UsesType(BlockType type)
-        {
-            foreach (var step in steps)
-            {
-                if (step.type == type) return true;
             }
 
             return false;

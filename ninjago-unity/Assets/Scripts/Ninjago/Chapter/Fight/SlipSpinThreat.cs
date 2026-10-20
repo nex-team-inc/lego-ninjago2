@@ -7,8 +7,8 @@ using UnityEngine;
 namespace Nex.Ninjago
 {
     /// <summary>
-    /// Slip and Spin for one lane. Tell: the enemy cocks its staff to the danger side and an arrow in the player's color
-    /// shows the safe side. Window and gesture: lean the chest to the safe side in time (hands do not count; the first
+    /// Slip and Spin for one lane. Tell: the enemy cocks its staff to the danger side, an arrow in the player's color
+    /// shows the safe side and LEAN LEFT! or LEAN RIGHT! goes up over the ninja. Window and gesture: lean the chest to the safe side in time (hands do not count; the first
     /// threshold crossing decides). A failed slip costs a heart and gives no counter. A good slip opens the counter in
     /// this lane's slow motion: wild hands (total travel plus a speed peak) fill the Spinjitzu swirl, and when it is full
     /// the ninja spins and bricks fly off the enemy.
@@ -18,6 +18,8 @@ namespace Nex.Ninjago
         const float restLiftDegrees = 50f;
         const float cockYawDegrees = 85f;
         const float cockLiftDegrees = 20f;
+        // Above the ninja's player tag, under the HUD strip.
+        const float promptHeight = 3f;
 
         readonly FightBlock block;
 
@@ -38,7 +40,7 @@ namespace Nex.Ninjago
             var cockYaw = -safeSide.Opposite().Sign() * cockYawDegrees;
             attacker.ShowStaff(true);
             lane.Arrow.ShowArrow(lane.Ninja.transform, Vector3.up * 1.3f + lane.Ninja.transform.right * (safeSide.Sign() * 0.9f), safeSide.Sign(), lane.Color);
-            block.TryHint(Gesture.Slip);
+            block.Calls.Lean(lane, safeSide, PromptPoint(lane));
             await lane.AnimateAsync(block.Context.Tuning.SwingTellSeconds * difficulty.windowScale / difficulty.speedScale, t =>
             {
                 var eased = 1f - (1f - t) * (1f - t);
@@ -48,6 +50,7 @@ namespace Nex.Ninjago
 
             var slipped = await SlipWindowAsync(lane, safeSide, cockYaw, cancellationToken);
             lane.Arrow.Hide();
+            FightCalls.Clear(lane);
             if (!slipped)
             {
                 block.LoseHeart(lane);
@@ -109,6 +112,7 @@ namespace Nex.Ninjago
             if (outcome == SlipDetector.Outcome.Slipped)
             {
                 block.Context.Log.Qte(lane.PlayerIndex, Gesture.Slip, true, decidedAt);
+                block.Context.Hints.Learned(Gesture.Slip);
                 attacker.Staff.SetStance(1f);
                 return true;
             }
@@ -128,7 +132,7 @@ namespace Nex.Ninjago
             var storms = block.Context.Storms;
             lane.Clock.EaseTo(fight.SlowMotionScale, fight.SlowMotionEaseSeconds);
             var meter = storms.Begin(lane.Body);
-            block.TryHint(Gesture.Spin);
+            block.Calls.Spin(lane, PromptPoint(lane));
             lane.Ninja.Fight.ShowSwirl(true);
             var swirl = PlayTinted(VfxManager.VisualEffect.SpinjitzuSwirl, lane.Ninja.FeetPosition, lane.Color);
             var window = fight.CounterWindowSeconds * block.Difficulty.windowScale;
@@ -149,6 +153,7 @@ namespace Nex.Ninjago
             }
 
             storms.End(lane.PlayerIndex);
+            FightCalls.Clear(lane);
             lane.Clock.EaseTo(1f, fight.SlowMotionEaseSeconds);
             if (swirl != null)
             {
@@ -167,6 +172,7 @@ namespace Nex.Ninjago
             }
 
             block.Context.Log.Qte(lane.PlayerIndex, Gesture.Spin, true, elapsed);
+            block.Context.Hints.Learned(Gesture.Spin);
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.NinjaSpin);
             PlayTinted(VfxManager.VisualEffect.SpinjitzuBurst, lane.Ninja.FeetPosition, lane.Color);
             VfxManager.Instance.PlayVisualEffect(VfxManager.VisualEffect.BruteBrickSpray, lane.Attacker.Center);
@@ -183,6 +189,8 @@ namespace Nex.Ninjago
         {
             if (lane.Body.TryGetLeanInches(out var lean)) lane.Ninja.Fight.SetLeanHint(lean.x / block.FightConfig.LeanThresholdInches);
         }
+
+        static Vector3 PromptPoint(ChapterFightLane lane) => lane.Ninja.FeetPosition + Vector3.up * promptHeight;
 
         static void Reset(ChapterFightLane lane)
         {

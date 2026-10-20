@@ -109,7 +109,10 @@ namespace Nex.Ninjago
             hud.SetPlayers(players);
         }
 
-        /// <summary>Lays out the level's stations along one route in the level's theme and initializes them.</summary>
+        /// <summary>
+        /// Lays out the level's stations along one route in the level's theme and initializes them. An entry the previous
+        /// station can host (the next Boss phase) gets that same station, so the list may repeat a block.
+        /// </summary>
         public IReadOnlyList<ChapterBlock> BuildLevel(LevelData level, ForgeCatalog catalog, BlockContext context, int levelSeed)
         {
             ClearLevel();
@@ -117,6 +120,13 @@ namespace Nex.Ninjago
             for (var i = 0; i < level.blocks.Count; i++)
             {
                 var entry = level.blocks[i];
+                var previous = i > 0 ? blocks[i - 1] : null;
+                if (previous != null && catalog.Block(entry.type).prefab == catalog.Block(level.blocks[i - 1].type).prefab && previous.CanHost(entry))
+                {
+                    blocks.Add(previous);
+                    continue;
+                }
+
                 var block = Instantiate(catalog.Block(entry.type).prefab!, routeRoot);
                 block.transform.localPosition = new Vector3(0f, 0f, z);
                 block.Initialize(context, entry, levelSeed * 31 + i);
@@ -150,17 +160,31 @@ namespace Nex.Ninjago
             block.ViewCamera.Priority = ++priority;
         }
 
-        /// <summary>The link's camera move into the next station's view; swings and cranes pass through a waypoint.</summary>
+        /// <summary>
+        /// The link's camera move into the next station's view; swings and cranes pass through a waypoint. Between two
+        /// phases of the same station the camera pushes in on that station's focus instead.
+        /// </summary>
         public async UniTask MoveCameraAsync(ChapterBlock from, ChapterBlock to, CameraMove move, float seconds, CancellationToken cancellationToken)
         {
+            var start = from.ViewCamera.transform;
+            var end = to.ViewCamera.transform;
+            if (from == to)
+            {
+                // A new phase in the same station: push in on its focus (the Boss roaring) and back out.
+                var focus = to.FocusPoint + Vector3.up * 1.5f;
+                var near = Vector3.Lerp(start.position, focus, 0.4f);
+                linkCamera.transform.SetPositionAndRotation(near, Quaternion.LookRotation(focus - near, Vector3.up));
+                await BlendAsync(linkCamera, CinemachineBlendDefinition.Styles.EaseInOut, seconds * 0.4f, cancellationToken);
+                await BlendAsync(to.ViewCamera, CinemachineBlendDefinition.Styles.EaseInOut, seconds * 0.6f, cancellationToken);
+                return;
+            }
+
             if (move == CameraMove.Glide)
             {
                 await BlendAsync(to.ViewCamera, CinemachineBlendDefinition.Styles.EaseInOut, seconds, cancellationToken);
                 return;
             }
 
-            var start = from.ViewCamera.transform;
-            var end = to.ViewCamera.transform;
             var middle = Vector3.Lerp(start.position, end.position, 0.5f);
             var forward = Vector3.ProjectOnPlane(end.position - start.position, Vector3.up);
             if (forward.sqrMagnitude < 1e-3f) forward = routeRoot.forward;

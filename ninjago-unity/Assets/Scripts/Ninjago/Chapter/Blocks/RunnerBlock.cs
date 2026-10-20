@@ -12,7 +12,8 @@ namespace Nex.Ninjago
     /// The ride, seen from behind the vehicle: Chest Chase's RunnerWorld with this entry's vehicles, length, pace and
     /// obstacle count. Every active chest steers the one vehicle through SharedSteer; an obstacle shows about 1.5 s
     /// before it arrives and a hit is a bump and a small speed loss, never a fail. With the Boss flag the Boss runs
-    /// ahead: clean dodges close in, bumps fall back, and at the end it always escapes.
+    /// ahead: clean dodges close in, bumps fall back, and at the end it always escapes. When the ride ends the vehicle
+    /// pulls up near the end of the short track, so the leap to the next station stays short and clear of scenery.
     /// </summary>
     public class RunnerBlock : ChapterBlock
     {
@@ -36,6 +37,18 @@ namespace Nex.Ninjago
         [SerializeField] LocalizedString escapeText = new();
         [Header("Escape Color")]
         [SerializeField] Color escapeColor = new(0.55f, 0.25f, 0.85f);
+        [Header("Dodge Text")]
+        [SerializeField] LocalizedString dodgeText = new();
+        [Header("Dodge How")]
+        [SerializeField] LocalizedString dodgeHow = new();
+        [Header("Dodge Color")]
+        [SerializeField] Color dodgeColor = new(0.95f, 0.2f, 0.15f);
+        [Header("Arrival Margin")]
+        [Tooltip("Meters before the end of the track where the vehicle pulls up.")]
+        [SerializeField] float arrivalMargin = 12f;
+        [Header("Arrival Camera Offset")]
+        [Tooltip("Where the camera ends up behind the parked vehicle.")]
+        [SerializeField] Vector3 arrivalCameraOffset = new(0f, 3f, -6.5f);
 
         readonly Dictionary<VehicleType, ChaseConfig.VehicleSettings> settings = new();
         float bossGap;
@@ -102,12 +115,13 @@ namespace Nex.Ninjago
                 ninja.SetVisible(false);
             }
 
-            TryHint(Gesture.Lean, vehiclePrompt, Color.white);
+            vehiclePrompt.Show(dodgeText, dodgeColor, Context.Tuning.RideOpeningSeconds + 1f, Teaches(Gesture.Lean) ? dodgeHow : null);
             riding = true;
             await world.RunAsync(Entry.ride.Vehicles(), vehicle => settings[vehicle], 0f, cancellationToken);
             riding = false;
             ChaseCloseness = Mathf.InverseLerp(Context.Tuning.BossStartGap, Context.Tuning.BossMinGap, bossGap);
             if (Entry.boss) await EscapeAsync(cancellationToken);
+            await ArriveAsync(cancellationToken);
             foreach (var player in Context.Players) Context.Log.Qte(player.PlayerIndex, Gesture.Lean, hits == 0, -1f, hits == 0 ? "" : $"hits_{hits}");
             ShowNinjas();
             return true;
@@ -170,12 +184,38 @@ namespace Nex.Ninjago
             bossFlyer.gameObject.SetActive(false);
         }
 
+        // Eases out to a stop: one last dash down the track that settles behind the parked vehicle.
+        async UniTask ArriveAsync(CancellationToken cancellationToken)
+        {
+            var vehicle = world.Vehicle.transform;
+            var camera = ViewCamera.transform;
+            var vehicleFrom = vehicle.localPosition;
+            var cameraFrom = camera.localPosition;
+            var vehicleTo = new Vector3(0f, 0f, RouteLength - arrivalMargin);
+            var seconds = Context.Tuning.RideArrivalSeconds;
+            var elapsed = 0f;
+            while (elapsed < seconds)
+            {
+                elapsed += Time.deltaTime;
+                var t = Mathf.Clamp01(elapsed / seconds);
+                var eased = 1f - (1f - t) * (1f - t);
+                vehicle.localPosition = Vector3.Lerp(vehicleFrom, vehicleTo, eased);
+                camera.localPosition = Vector3.Lerp(cameraFrom, vehicleTo + arrivalCameraOffset, eased);
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+            }
+        }
+
         void HandleObstacleResolved(VehicleType vehicle, bool hit, int dominantPlayer)
         {
             if (hit)
             {
                 hits++;
                 Context.Log.ObstacleHit(vehicle, dominantPlayer);
+                Context.Hud.FlashDanger(1f);
+            }
+            else
+            {
+                Context.Hints.Learned(Gesture.Lean);
             }
 
             if (!Entry.boss) return;

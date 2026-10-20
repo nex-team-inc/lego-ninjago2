@@ -235,22 +235,25 @@ namespace Nex.Ninjago.Editor
             return SavePrefab(root, path).GetComponent<ObstacleBlock>();
         }
 
-        internal static GameObject BuildRoad(Transform root, out ScrollingStrip strip)
+        /// <param name="length">Meters of road ahead of the vehicle; its scenery wraps at this length.</param>
+        internal static GameObject BuildRoad(Transform root, out ScrollingStrip strip, int length = 120)
         {
             var road = Empty("RoadScenery", root, Vector3.zero);
-            Block(PrimitiveType.Cube, "Asphalt", road, new Vector3(0f, -0.05f, 55f), new Vector3(6.4f, 0.1f, 140f), Lit("Road", new Color(0.27f, 0.27f, 0.3f)));
+            var center = (length - 10) * 0.5f;
+            var span = length + 20f;
+            Block(PrimitiveType.Cube, "Asphalt", road, new Vector3(0f, -0.05f, center), new Vector3(6.4f, 0.1f, span), Lit("Road", new Color(0.27f, 0.27f, 0.3f)));
             var grass = Lit("Grass", new Color(0.36f, 0.78f, 0.32f));
-            Block(PrimitiveType.Cube, "GrassL", road, new Vector3(-23.2f, -0.06f, 55f), new Vector3(40f, 0.1f, 140f), grass);
-            Block(PrimitiveType.Cube, "GrassR", road, new Vector3(23.2f, -0.06f, 55f), new Vector3(40f, 0.1f, 140f), grass);
+            Block(PrimitiveType.Cube, "GrassL", road, new Vector3(-23.2f, -0.06f, center), new Vector3(40f, 0.1f, span), grass);
+            Block(PrimitiveType.Cube, "GrassR", road, new Vector3(23.2f, -0.06f, center), new Vector3(40f, 0.1f, span), grass);
             var curb = Lit("Curb", new Color(0.95f, 0.95f, 0.92f));
-            Block(PrimitiveType.Cube, "CurbL", road, new Vector3(-3.3f, 0.03f, 55f), new Vector3(0.25f, 0.16f, 140f), curb);
-            Block(PrimitiveType.Cube, "CurbR", road, new Vector3(3.3f, 0.03f, 55f), new Vector3(0.25f, 0.16f, 140f), curb);
+            Block(PrimitiveType.Cube, "CurbL", road, new Vector3(-3.3f, 0.03f, center), new Vector3(0.25f, 0.16f, span), curb);
+            Block(PrimitiveType.Cube, "CurbR", road, new Vector3(3.3f, 0.03f, center), new Vector3(0.25f, 0.16f, span), curb);
             strip = road.gameObject.AddComponent<ScrollingStrip>();
             var items = new System.Collections.Generic.List<Object>();
             var dash = Lit("Lane Line", new Color(0.98f, 0.95f, 0.85f));
             var trunk = Lit("Tree Trunk", new Color(0.45f, 0.28f, 0.15f));
             var leaves = Lit("Tree Leaves", new Color(0.15f, 0.6f, 0.25f));
-            for (var z = 0; z < 120; z += 6)
+            for (var z = 0; z < length; z += 6)
             {
                 foreach (var x in new[] { -1f, 1f })
                 {
@@ -258,7 +261,7 @@ namespace Nex.Ninjago.Editor
                 }
             }
 
-            for (var z = 0; z < 120; z += 10)
+            for (var z = 0; z < length; z += 10)
             {
                 var side = z % 20 == 0 ? -1f : 1f;
                 var tree = Empty("Tree", road, new Vector3(side * 5.6f, 0f, z));
@@ -268,12 +271,13 @@ namespace Nex.Ninjago.Editor
             }
 
             SetArray(strip, "items", items);
-            Set(strip, "wrapLength", property => property.floatValue = 120f);
+            Set(strip, "wrapLength", property => property.floatValue = length);
             Set(strip, "minZ", property => property.floatValue = -10f);
             return road.gameObject;
         }
 
-        internal static GameObject BuildSky(Transform root, out ScrollingStrip strip)
+        /// <param name="length">Meters of sky ahead of the vehicle; the clouds wrap at this length.</param>
+        internal static GameObject BuildSky(Transform root, out ScrollingStrip strip, int length = 120)
         {
             var sky = Empty("SkyScenery", root, Vector3.zero);
             Block(PrimitiveType.Cube, "GroundFar", sky, new Vector3(0f, -14f, 60f), new Vector3(240f, 0.2f, 240f), Lit("Ground Far", new Color(0.42f, 0.74f, 0.36f)));
@@ -288,7 +292,7 @@ namespace Nex.Ninjago.Editor
             };
             for (var i = 0; i < placements.Length; i++)
             {
-                var puff = Empty("Cloud", sky, placements[i]);
+                var puff = Empty("Cloud", sky, Vector3.Scale(placements[i], new Vector3(1f, 1f, length / 120f)));
                 Block(PrimitiveType.Sphere, "A", puff, Vector3.zero, new Vector3(3.2f, 1.6f, 2.2f), cloud);
                 Block(PrimitiveType.Sphere, "B", puff, new Vector3(1.4f, 0.3f, 0.2f), new Vector3(2.2f, 1.4f, 1.8f), cloud);
                 Block(PrimitiveType.Sphere, "C", puff, new Vector3(-1.3f, 0.2f, -0.2f), new Vector3(2f, 1.2f, 1.6f), cloud);
@@ -296,7 +300,7 @@ namespace Nex.Ninjago.Editor
             }
 
             SetArray(strip, "items", items);
-            Set(strip, "wrapLength", property => property.floatValue = 120f);
+            Set(strip, "wrapLength", property => property.floatValue = length);
             Set(strip, "minZ", property => property.floatValue = -12f);
             return sky.gameObject;
         }

@@ -62,6 +62,7 @@ namespace Nex.Ninjago.Editor
             Set(prompt, "text", label.GetComponent<TextMeshProUGUI>());
             Set(prompt, "panel", panel);
             Set(prompt, "detail", detail);
+            Set(prompt, "detailText", detail.GetComponent<TextMeshProUGUI>());
             SavePrefab(root, PromptPath);
         }
 

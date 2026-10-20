@@ -21,16 +21,17 @@ namespace Nex.Ninjago
         public RockPieces Pieces { get; }
         public WindowMarker Marker { get; }
         public WindowMarker Arrow { get; }
+        /// <summary>Warnings and calls for this player's threat, in the world near it: INCOMING!, SLASH!, KICK!, LEAN LEFT!</summary>
+        public WorldPrompt Prompt { get; }
         public Transform HangPoint { get; }
         public LocalClock Clock { get; } = new();
-        public ShoulderSlash Slash { get; } = new();
+        public SlashStrokes Slash { get; } = new();
         public SlipDetector Slip { get; } = new();
-        public WiggleMeter Wiggle { get; } = new();
         public PlayerKicks Kicks { get; }
         public SweepSide NextSafeSide { get; set; }
-        /// <summary>A monster sits on this ninja until the player wiggles free.</summary>
+        /// <summary>A monster sits on this ninja until the player shakes it off.</summary>
         public bool Pinned { get; set; }
-        /// <summary>Another lane is pinned: this lane's enemies freeze.</summary>
+        /// <summary>Some lane is pinned: this lane's enemies and windows freeze (the pin itself runs in real time).</summary>
         public bool Frozen { get; set; }
         public bool KickOpen { get; set; }
         public int QueuedKicks { get; set; }
@@ -43,7 +44,7 @@ namespace Nex.Ninjago
         public float LocalDelta => Frozen ? 0f : Clock.DeltaTime;
 
         public ChapterFightLane(PlayerBody body, ChapterNinja ninja, ChapterEnemy attacker, Transform rock, RockPieces pieces, WindowMarker marker,
-            WindowMarker arrow, Transform hangPoint, SweepSide firstSafeSide)
+            WindowMarker arrow, WorldPrompt prompt, Transform hangPoint, SweepSide firstSafeSide)
         {
             Body = body;
             Ninja = ninja;
@@ -52,6 +53,7 @@ namespace Nex.Ninjago
             Pieces = pieces;
             Marker = marker;
             Arrow = arrow;
+            Prompt = prompt;
             HangPoint = hangPoint;
             Kicks = new PlayerKicks(body);
             NextSafeSide = firstSafeSide;

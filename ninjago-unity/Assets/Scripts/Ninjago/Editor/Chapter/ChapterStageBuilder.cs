@@ -12,7 +12,7 @@ namespace Nex.Ninjago.Editor
 {
     /// <summary>
     /// The stage every level plays on: the world camera with its Cinemachine brain and link camera, the sun, the route,
-    /// the theme painter with every role material, and the stage canvas with the world feed and the HUD frame.
+    /// the theme painter with every role material, and the stage canvas with the world feed, the danger glow and the HUD frame.
     /// </summary>
     public static class ChapterStageBuilder
     {
@@ -28,6 +28,9 @@ namespace Nex.Ninjago.Editor
             var ground = new GameObject("ChapterGround");
             Block(PrimitiveType.Cube, "Plane", ground.transform, Vector3.zero, new Vector3(1f, 0.04f, 1f), Role(ThemeRole.Ground));
             var groundPrefab = SavePrefab(ground, GroundPath).transform;
+            // Clear in the middle, red toward the screen edges.
+            BuildSprite("DangerGlow", 256, (u, v) => Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.7f, 1f, Mathf.Max(Mathf.Abs(u), Mathf.Abs(v)))),
+                Vector4.zero);
             var heartsRow = BuildHeartsRow();
             var stripIcon = BuildStripIcon();
 
@@ -96,6 +99,9 @@ namespace Nex.Ninjago.Editor
             var rect = NewRect("Hud", canvas);
             Stretch(rect);
             var hud = rect.gameObject.AddComponent<ChapterHud>();
+            var glow = NewImage(rect, "DangerGlow", GetSprite("DangerGlow"), new Color(0.95f, 0.1f, 0.05f, 0f));
+            glow.raycastTarget = false;
+            Stretch(glow.rectTransform);
             var rows = new List<Object>();
             for (var i = 0; i < SimulatedBody.MaxPlayers; i++)
             {
@@ -126,6 +132,7 @@ namespace Nex.Ninjago.Editor
             Set(hud, "caption", caption);
             Set(hud, "pipFrame", pipFrame);
             Set(hud, "pipIndicators", pip);
+            Set(hud, "dangerGlow", glow);
             return hud;
         }
 

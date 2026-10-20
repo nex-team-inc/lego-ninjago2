@@ -6,8 +6,8 @@ namespace Nex.Ninjago
 {
     /// <summary>
     /// Chapter runtime tuning. Detector thresholds stay in the configs that own them (CrouchRunConfig for the crouch,
-    /// ChaseConfig for steering, StoneKickConfig for slash speed and kicks, FightConfig for the slip and the hand storm,
-    /// OnePunchConfig for the wiggle); the values here are the base timings a block entry's difficulty scales.
+    /// ChaseConfig for steering, StoneKickConfig for slash speed, the frenzy and kicks, FightConfig for the slip and the
+    /// hand storm); the values here are the base timings a block entry's difficulty scales.
     /// Setters exist for the Debug Settings rows, which edit this asset live during a playtest.
     /// </summary>
     [CreateAssetMenu(fileName = "ChapterTuning", menuName = "Nex/Ninjago/Chapter/Chapter Tuning")]
@@ -38,16 +38,18 @@ namespace Nex.Ninjago
         [SerializeField, Range(0.5f, 6f)] float hangSeconds = 2.6f;
         [Tooltip("Time scale of the thrown thing while it hangs.")]
         [SerializeField, Range(0.05f, 1f)] float hangTimeScale = 0.2f;
-        [Tooltip("Slash circle radius around the shoulder line's middle, as a share of the shoulder span.")]
-        [SerializeField, Range(0.3f, 1.5f)] float slashRadiusShoulders = 0.75f;
-        [Tooltip("Stones a slashed rock splits into; each kick launches one.")]
-        [SerializeField, Range(1, 8)] int stonesPerRock = 4;
-        [Tooltip("Real seconds the KICK count stays open (times the window scale).")]
+        [Tooltip("Seconds before the same hand's next stroke counts, so one wobbly swipe is one slash.")]
+        [SerializeField, Range(0.05f, 0.6f)] float slashStrokeGapSeconds = 0.14f;
+        [Tooltip("Real seconds the KICK prompt stays open (times the window scale); one kick sends every stone.")]
         [SerializeField, Range(0.5f, 6f)] float kickWindowSeconds = 3f;
         [Tooltip("Share of throws that are a leaping brick monster instead of a rock.")]
         [SerializeField, Range(0f, 1f)] float leapShare = 0.35f;
         [Tooltip("Seconds per heart lost while pinned by a monster.")]
         [SerializeField, Range(0.5f, 6f)] float pinHeartSeconds = 2.5f;
+        [Tooltip("Inches both hands must travel together to shake a pinned monster off.")]
+        [SerializeField, Range(10f, 150f)] float pinTravelInches = 45f;
+        [Tooltip("Seconds that travel must happen in; slower shaking starts the count over.")]
+        [SerializeField, Range(0.4f, 4f)] float pinBurstSeconds = 1f;
 
         [Header("Slip and Spin")]
         [Tooltip("Seconds of the swing's tell (cocked staff and the safe-side arrow), times the window scale and divided by speed.")]
@@ -78,6 +80,8 @@ namespace Nex.Ninjago
         [SerializeField, Range(2f, 30f)] float bossMinGap = 7f;
         [Tooltip("Seconds of the Boss's escape at the end of the chase.")]
         [SerializeField, Range(1f, 8f)] float bossEscapeSeconds = 3.5f;
+        [Tooltip("Seconds the vehicle takes to pull up at the end of the track, so the leap to the next station is short.")]
+        [SerializeField, Range(0.5f, 4f)] float rideArrivalSeconds = 2.2f;
 
         #region Public API
 
@@ -91,11 +95,12 @@ namespace Nex.Ninjago
         public float ThrowFlightSeconds => throwFlightSeconds;
         public float HangSeconds { get => hangSeconds; set => hangSeconds = Mathf.Max(0.2f, value); }
         public float HangTimeScale { get => hangTimeScale; set => hangTimeScale = Mathf.Clamp(value, 0.02f, 1f); }
-        public float SlashRadiusShoulders { get => slashRadiusShoulders; set => slashRadiusShoulders = Mathf.Max(0.1f, value); }
-        public int StonesPerRock { get => stonesPerRock; set => stonesPerRock = Mathf.Max(1, value); }
+        public float SlashStrokeGapSeconds { get => slashStrokeGapSeconds; set => slashStrokeGapSeconds = Mathf.Max(0f, value); }
         public float KickWindowSeconds { get => kickWindowSeconds; set => kickWindowSeconds = Mathf.Max(0.3f, value); }
         public float LeapShare { get => leapShare; set => leapShare = Mathf.Clamp01(value); }
         public float PinHeartSeconds { get => pinHeartSeconds; set => pinHeartSeconds = Mathf.Max(0.2f, value); }
+        public float PinTravelInches { get => pinTravelInches; set => pinTravelInches = Mathf.Max(1f, value); }
+        public float PinBurstSeconds { get => pinBurstSeconds; set => pinBurstSeconds = Mathf.Max(0.1f, value); }
         public float SwingTellSeconds { get => swingTellSeconds; set => swingTellSeconds = Mathf.Max(0.1f, value); }
         public float ThreatGapSeconds { get => threatGapSeconds; set => threatGapSeconds = Mathf.Max(0f, value); }
         public float OverlapDelaySeconds => overlapDelaySeconds;
@@ -107,6 +112,7 @@ namespace Nex.Ninjago
         public float BossGapPerHit => bossGapPerHit;
         public float BossMinGap => bossMinGap;
         public float BossEscapeSeconds => bossEscapeSeconds;
+        public float RideArrivalSeconds => rideArrivalSeconds;
 
         #endregion
     }

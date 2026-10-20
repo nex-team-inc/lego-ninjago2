@@ -78,6 +78,30 @@ namespace Nex.Ninjago.Editor
                 }
             }
 
+            SaveSprite(path, texture, pixels, border);
+        }
+
+        // White with a soft alpha(u, v) in 0..1 (u, v in -1..1, v up), e.g. a glow or a vignette.
+        internal static void BuildSprite(string name, int size, Func<float, float, float> alpha, Vector4 border)
+        {
+            var path = $"{SpritesRoot}/{name}.png";
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false);
+            var pixels = new Color32[size * size];
+            for (var y = 0; y < size; y++)
+            {
+                for (var x = 0; x < size; x++)
+                {
+                    var u = (x + 0.5f) / size * 2f - 1f;
+                    var v = (y + 0.5f) / size * 2f - 1f;
+                    pixels[y * size + x] = new Color32(255, 255, 255, (byte)Mathf.RoundToInt(Mathf.Clamp01(alpha(u, v)) * 255f));
+                }
+            }
+
+            SaveSprite(path, texture, pixels, border);
+        }
+
+        static void SaveSprite(string path, Texture2D texture, Color32[] pixels, Vector4 border)
+        {
             texture.SetPixels32(pixels);
             File.WriteAllBytes(path, texture.EncodeToPNG());
             Object.DestroyImmediate(texture);

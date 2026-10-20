@@ -22,11 +22,12 @@ MonoBehaviour:
   throwFlightSeconds: 1.1
   hangSeconds: 2.6
   hangTimeScale: 0.2
-  slashRadiusShoulders: 0.75
-  stonesPerRock: 4
+  slashStrokeGapSeconds: 0.14
   kickWindowSeconds: 3
   leapShare: 0.35
   pinHeartSeconds: 2.5
+  pinTravelInches: 45
+  pinBurstSeconds: 1
   swingTellSeconds: 1.2
   threatGapSeconds: 1.4
   overlapDelaySeconds: 1.6
@@ -38,3 +39,4 @@ MonoBehaviour:
   bossGapPerHit: 2.5
   bossMinGap: 7
   bossEscapeSeconds: 3.5
+  rideArrivalSeconds: 2.2

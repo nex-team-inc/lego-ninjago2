@@ -425,10 +425,12 @@ namespace Nex
         public float ChapterHang { get => Chapter.HangSeconds; set => Chapter.HangSeconds = value; }
         [DebugOrder(-988), Description("Chapter: Hang Slow-mo Scale"), NumericSteps(Steps = 0.05, Min = 0.05, Max = 1), ES3NonSerializable]
         public float ChapterHangScale { get => Chapter.HangTimeScale; set => Chapter.HangTimeScale = value; }
-        [DebugOrder(-987), Description("Chapter: Slash Circle (shoulder spans)"), NumericSteps(Steps = 0.05, Min = 0.3, Max = 1.5), ES3NonSerializable]
-        public float ChapterSlashRadius { get => Chapter.SlashRadiusShoulders; set => Chapter.SlashRadiusShoulders = value; }
-        [DebugOrder(-986), Description("Chapter: Stones Per Rock"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 8), ES3NonSerializable]
-        public int ChapterStones { get => Chapter.StonesPerRock; set => Chapter.StonesPerRock = value; }
+        [DebugOrder(-987), Description("Chapter: Slash Stroke Gap Per Hand (s)"), NumericSteps(Steps = 0.02, Min = 0.05, Max = 0.6), ES3NonSerializable]
+        public float ChapterSlashStrokeGap { get => Chapter.SlashStrokeGapSeconds; set => Chapter.SlashStrokeGapSeconds = value; }
+        [DebugOrder(-986), Description("Chapter: Pin Shake Travel (in)"), NumericSteps(Steps = 2, Min = 10, Max = 150), ES3NonSerializable]
+        public float ChapterPinTravel { get => Chapter.PinTravelInches; set => Chapter.PinTravelInches = value; }
+        [DebugOrder(-978), Description("Chapter: Pin Shake Within (s)"), NumericSteps(Steps = 0.1, Min = 0.4, Max = 4), ES3NonSerializable]
+        public float ChapterPinBurst { get => Chapter.PinBurstSeconds; set => Chapter.PinBurstSeconds = value; }
         [DebugOrder(-985), Description("Chapter: Kick Window (s, x window)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 6), ES3NonSerializable]
         public float ChapterKickWindow { get => Chapter.KickWindowSeconds; set => Chapter.KickWindowSeconds = value; }
         [DebugOrder(-984), Description("Chapter: Throw Tell (s, / speed)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 3), ES3NonSerializable]

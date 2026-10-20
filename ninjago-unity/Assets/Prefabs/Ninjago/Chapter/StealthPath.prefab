@@ -266,6 +266,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  dangerGlow: 0.35
   references:
     version: 2
     RefIds: []

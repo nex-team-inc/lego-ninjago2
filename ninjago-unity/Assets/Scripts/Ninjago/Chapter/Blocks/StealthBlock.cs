@@ -59,6 +59,9 @@ namespace Nex.Ninjago
         [SerializeField] Color heardColor = new(1f, 0.25f, 0.2f);
         [Header("Time Up Text")]
         [SerializeField] LocalizedString timeUpText = new();
+        [Header("Talking Zone Glow")]
+        [Tooltip("HUD danger glow when the ninjas walk into a talking zone.")]
+        [SerializeField, Range(0f, 1f)] float dangerGlow = 0.35f;
 
         readonly List<CrouchDetector> stances = new();
         readonly CrouchRunConfig.Level level = new();
@@ -149,10 +152,15 @@ namespace Nex.Ninjago
                 var talking = level.zones[current].state == CrouchZoneState.Talking;
                 if (current != zone)
                 {
+                    if (zone >= 0 && current > zone && level.zones[zone].state == CrouchZoneState.Talking) Context.Hints.Learned(Gesture.Crouch);
                     zone = current;
                     var look = looks[level.zones[zone].state];
                     zoneSign.Show(look.title, look.color, 0f, look.instruction);
-                    if (talking) TryHint(Gesture.Crouch);
+                    if (talking)
+                    {
+                        TryHint(Gesture.Crouch);
+                        Context.Hud.FlashDanger(dangerGlow);
+                    }
                 }
 
                 runningInTalking = talking && anyStanding && frozen <= 0f ? runningInTalking + deltaTime : 0f;
@@ -234,6 +242,7 @@ namespace Nex.Ninjago
         void OnHeard(bool[] crouching, int zone, float timeLeft)
         {
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.Spotted);
+            Context.Hud.FlashDanger(1f);
             for (var i = 0; i < crouching.Length; i++)
             {
                 var ninja = Context.Ninjas[i];

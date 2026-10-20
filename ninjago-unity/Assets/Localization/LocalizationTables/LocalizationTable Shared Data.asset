@@ -2391,6 +2391,70 @@ MonoBehaviour:
     m_Key: chapter.mode.surprise_2026
     m_Metadata:
       m_Items: []
+  - m_Id: 200354788249952256
+    m_Key: chapter.fight.incoming
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340864
+    m_Key: chapter.fight.monster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340865
+    m_Key: chapter.fight.slash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340866
+    m_Key: chapter.fight.slash_count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340867
+    m_Key: chapter.fight.slash_how
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340868
+    m_Key: chapter.fight.frenzy_how
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340869
+    m_Key: chapter.fight.kick_how
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340870
+    m_Key: chapter.fight.smash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340871
+    m_Key: chapter.fight.lean_left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340872
+    m_Key: chapter.fight.lean_right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340873
+    m_Key: chapter.fight.lean_how
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340874
+    m_Key: chapter.fight.spin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340875
+    m_Key: chapter.fight.shake_how
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340876
+    m_Key: chapter.fight.pinned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340877
+    m_Key: chapter.runner.dodge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340878
+    m_Key: chapter.runner.dodge_how
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

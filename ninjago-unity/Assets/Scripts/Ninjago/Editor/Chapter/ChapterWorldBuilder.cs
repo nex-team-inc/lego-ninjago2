@@ -20,6 +20,8 @@ namespace Nex.Ninjago.Editor
         public const string ArenaPath = ChapterActorsBuilder.Root + "/FightArena.prefab";
         public const string StealthPath = ChapterActorsBuilder.Root + "/StealthPath.prefab";
         public const string RunnerPath = ChapterActorsBuilder.Root + "/RunnerTrack.prefab";
+        // Short, so the leap from the parked vehicle to the next station stays short.
+        const int RunnerTrackLength = 48;
         const string CrouchRoot = PrefabsRoot + "/CrouchRun";
 
         #region Entry Point
@@ -70,6 +72,7 @@ namespace Nex.Ninjago.Editor
         {
             var root = new GameObject("FightArena");
             var block = root.AddComponent<FightBlock>();
+            var calls = root.AddComponent<FightCalls>();
             var camera = ViewCamera(root.transform, new Vector3(0f, 2.8f, 2f), new Vector3(13f, 0f, 0f), 58f);
             Transform Spot(string name, Vector3 position) => Empty(name, root.transform, position);
             var solo = Spot("SoloSpot", new Vector3(0f, 0f, 6f));
@@ -113,12 +116,18 @@ namespace Nex.Ninjago.Editor
             Set(block, "markerPrefab", LoadComponent<WindowMarker>(ChapterActorsBuilder.MarkerPath));
             Set(block, "fightConfig", Load<FightConfig>(NinjagoAssetsBuilder.FightConfigPath));
             Set(block, "stoneKickConfig", Load<StoneKickConfig>(ConfigsRoot + "/StoneKickConfig.asset"));
-            Set(block, "onePunchConfig", Load<OnePunchConfig>(OnePunchBuilder.ConfigPath));
-            Texts(block, ("kickText", "chapter.fight.kick"), ("wiggleText", "chapter.fight.wiggle"));
+            Set(block, "calls", calls);
+            Set(block, "promptPrefab", LoadComponent<WorldPrompt>(ChapterActorsBuilder.PromptPath));
+            Texts(calls, ("incomingText", "chapter.fight.incoming"), ("monsterText", "chapter.fight.monster"), ("slashText", "chapter.fight.slash"),
+                ("slashCountText", "chapter.fight.slash_count"), ("slashHow", "chapter.fight.slash_how"), ("frenzyHow", "chapter.fight.frenzy_how"),
+                ("kickText", "chapter.fight.kick"), ("kickHow", "chapter.fight.kick_how"), ("smashText", "chapter.fight.smash"),
+                ("leanLeftText", "chapter.fight.lean_left"), ("leanRightText", "chapter.fight.lean_right"), ("leanHow", "chapter.fight.lean_how"),
+                ("spinText", "chapter.fight.spin"), ("shakeHow", "chapter.fight.shake_how"), ("pinnedText", "chapter.fight.pinned"));
             SavePrefab(root, ArenaPath);
         }
 
-        // An open plaza along the route: walls and roofs on three sides, lanterns, trees outside.
+        // An open plaza along the route: walls and roofs on three sides, lanterns, trees outside. The back wall has a tall
+        // gate in the middle that link cameras pass through on the way to the next station.
         static void BuildArenaScenery(Transform root)
         {
             var scenery = Empty("Scenery", root, Vector3.zero);
@@ -140,10 +149,14 @@ namespace Nex.Ninjago.Editor
                 }
             }
 
-            Block(PrimitiveType.Cube, "BackWall", scenery, new Vector3(0f, 2f, 25.5f), new Vector3(17f, 4f, 0.8f), Role(ThemeRole.Wall));
-            Block(PrimitiveType.Cube, "BackRoof", scenery, new Vector3(0f, 4.3f, 25.3f), new Vector3(18.5f, 0.5f, 2.2f), Role(ThemeRole.Roof));
-            Block(PrimitiveType.Cube, "GateL", scenery, new Vector3(-2.2f, 1.6f, 25f), new Vector3(0.6f, 3.2f, 1.2f), Role(ThemeRole.Accent));
-            Block(PrimitiveType.Cube, "GateR", scenery, new Vector3(2.2f, 1.6f, 25f), new Vector3(0.6f, 3.2f, 1.2f), Role(ThemeRole.Accent));
+            foreach (var side in new[] { -1f, 1f })
+            {
+                Block(PrimitiveType.Cube, "BackWall", scenery, new Vector3(side * 5.6f, 2f, 25.5f), new Vector3(5.8f, 4f, 0.8f), Role(ThemeRole.Wall));
+                Block(PrimitiveType.Cube, "BackRoof", scenery, new Vector3(side * 5.9f, 4.3f, 25.3f), new Vector3(6.6f, 0.5f, 2.2f), Role(ThemeRole.Roof));
+                Block(PrimitiveType.Cube, "GatePost", scenery, new Vector3(side * 2.5f, 3f, 25f), new Vector3(0.6f, 6f, 1.2f), Role(ThemeRole.Accent));
+            }
+
+            Block(PrimitiveType.Cube, "GateTop", scenery, new Vector3(0f, 6.2f, 25f), new Vector3(6.6f, 0.5f, 1.4f), Role(ThemeRole.Roof));
         }
 
         #endregion
@@ -225,8 +238,8 @@ namespace Nex.Ninjago.Editor
             carPose.localRotation = Quaternion.Euler(8.8f, 0f, 0f);
             var skyPose = Empty("SkyCameraPose", worldRoot, new Vector3(0f, 3.9f, -5f));
             skyPose.localRotation = Quaternion.Euler(1f, 0f, 0f);
-            var road = NinjagoWorldBuilder.BuildRoad(worldRoot, out var roadStrip);
-            var sky = NinjagoWorldBuilder.BuildSky(worldRoot, out var skyStrip);
+            var road = NinjagoWorldBuilder.BuildRoad(worldRoot, out var roadStrip, RunnerTrackLength);
+            var sky = NinjagoWorldBuilder.BuildSky(worldRoot, out var skyStrip, RunnerTrackLength);
             var car = NinjagoWorldBuilder.BuildCar(worldRoot);
             var skycraft = NinjagoWorldBuilder.BuildSkycraft(worldRoot);
             var barrierPool = Empty("BarrierPool", worldRoot, Vector3.zero).gameObject.AddComponent<ObstacleBlockPool>();
@@ -259,13 +272,13 @@ namespace Nex.Ninjago.Editor
             prompt.transform.localScale = Vector3.one * 1.5f;
 
             Set(block, "viewCamera", view);
-            Set(block, "routeLength", property => property.floatValue = 135f);
+            Set(block, "routeLength", property => property.floatValue = RunnerTrackLength);
             Set(block, "world", world);
             Set(block, "chaseConfig", Load<ChaseConfig>(NinjagoAssetsBuilder.ChaseConfigPath));
             Set(block, "vehiclePrompt", prompt);
             Set(block, "bossRunner", bossRunner);
             Set(block, "bossFlyer", flyer);
-            Texts(block, ("escapeText", "chapter.runner.escape"));
+            Texts(block, ("escapeText", "chapter.runner.escape"), ("dodgeText", "chapter.runner.dodge"), ("dodgeHow", "chapter.runner.dodge_how"));
             SavePrefab(root, RunnerPath);
         }
 

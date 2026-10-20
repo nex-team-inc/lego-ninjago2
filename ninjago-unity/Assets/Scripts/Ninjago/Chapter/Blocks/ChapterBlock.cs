@@ -42,6 +42,16 @@ namespace Nex.Ninjago
 
         #region Public API
 
+        /// <summary>True when this station also plays the next entry in place (e.g. Boss phases in one arena).</summary>
+        public virtual bool CanHost(BlockEntry next) => false;
+
+        /// <summary>Points the station at the entry it plays next; called before each of its entries starts.</summary>
+        public void Host(BlockEntry entry)
+        {
+            Entry = entry;
+            OnHosted();
+        }
+
         /// <summary>Resets the station to its start (enemies, zones, vehicle); called before a link arrives and before a restart.</summary>
         public abstract void Stage();
 
@@ -63,21 +73,19 @@ namespace Nex.Ninjago
 
         #region Helpers
 
-        /// <summary>Shows the gesture's one-word hint over every ninja when the entry's hint policy allows it.</summary>
-        public bool TryHint(Gesture gesture)
+        protected virtual void OnHosted()
         {
-            if (!Context.Hints.Consume(Entry.hints, gesture)) return false;
-            foreach (var ninja in Context.Ninjas) ninja.Hint.Show(Context.Catalog.HintWord(gesture), ninja.Color, Context.Tuning.HintSeconds);
-            return true;
         }
 
-        /// <summary>Shows the gesture's hint on one prompt (e.g. over the shared vehicle) when the policy allows it.</summary>
-        protected bool TryHint(Gesture gesture, WorldPrompt prompt, Color color)
+        /// <summary>Shows the gesture's one-word hint over every ninja while the entry's hint policy still teaches it.</summary>
+        protected void TryHint(Gesture gesture)
         {
-            if (!Context.Hints.Consume(Entry.hints, gesture)) return false;
-            prompt.Show(Context.Catalog.HintWord(gesture), color, Context.Tuning.HintSeconds);
-            return true;
+            if (!Teaches(gesture)) return;
+            foreach (var ninja in Context.Ninjas) ninja.Hint.Show(Context.Catalog.HintWord(gesture), ninja.Color, Context.Tuning.HintSeconds);
         }
+
+        /// <summary>True while the entry's hint policy still teaches this gesture.</summary>
+        protected bool Teaches(Gesture gesture) => Context.Hints.Teaches(Entry.hints, gesture);
 
         protected static UniTask WaitAsync(float seconds, CancellationToken cancellationToken)
         {

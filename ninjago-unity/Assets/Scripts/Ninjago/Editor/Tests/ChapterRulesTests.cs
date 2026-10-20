@@ -120,18 +120,20 @@ namespace Nex.Ninjago.Editor.Tests
         }
 
         [Test]
-        public void HintsShowOnceAndOnlyWhenNew()
+        public void HintsTeachUntilDoneAndOnlyWhenNew()
         {
             var hints = new ChapterHints();
             hints.BeginLevel();
-            Assert.IsTrue(hints.Consume(HintPolicy.FirstTime, Gesture.Slash));
-            Assert.IsFalse(hints.Consume(HintPolicy.FirstTime, Gesture.Slash));
+            Assert.IsTrue(hints.Teaches(HintPolicy.FirstTime, Gesture.Slash));
+            Assert.IsTrue(hints.Teaches(HintPolicy.FirstTime, Gesture.Slash), "still teaching: not done yet");
+            hints.Learned(Gesture.Slash);
+            Assert.IsFalse(hints.Teaches(HintPolicy.FirstTime, Gesture.Slash));
             hints.BeginLevel();
-            Assert.IsTrue(hints.Consume(HintPolicy.FirstTime, Gesture.Slash), "first time in a new level");
+            Assert.IsTrue(hints.Teaches(HintPolicy.FirstTime, Gesture.Slash), "first time in a new level");
             hints.BeginLevel();
-            Assert.IsFalse(hints.Consume(HintPolicy.NewOnly, Gesture.Slash), "seen in an earlier level");
-            Assert.IsTrue(hints.Consume(HintPolicy.NewOnly, Gesture.Spin));
-            Assert.IsFalse(hints.Consume(HintPolicy.None, Gesture.Kick));
+            Assert.IsFalse(hints.Teaches(HintPolicy.NewOnly, Gesture.Slash), "seen in an earlier level");
+            Assert.IsTrue(hints.Teaches(HintPolicy.NewOnly, Gesture.Spin));
+            Assert.IsFalse(hints.Teaches(HintPolicy.None, Gesture.Kick));
         }
 
         [Test]

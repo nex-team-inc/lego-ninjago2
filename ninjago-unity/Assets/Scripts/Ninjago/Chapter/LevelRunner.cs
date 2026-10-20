@@ -56,6 +56,7 @@ namespace Nex.Ninjago
             context.Hints.BeginLevel();
             var blocks = stage.BuildLevel(level, context.Catalog, context, levelIndex + 1);
             var first = blocks[startBlock];
+            first.Host(level.blocks[startBlock]);
             first.Stage();
             for (var slot = 0; slot < stage.Ninjas.Count; slot++)
             {
@@ -78,6 +79,7 @@ namespace Nex.Ninjago
                     log.Block = i;
                     log.BlockType = level.blocks[i].type;
                     stage.Hud.SetCurrent(i);
+                    block.Host(level.blocks[i]);
                     await ShowViewAsync(level.blocks[i].type);
                     UniTask<bool> run;
                     if (i > startBlock)

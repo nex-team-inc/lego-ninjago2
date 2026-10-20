@@ -1888,7 +1888,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 200334107248418829
-    m_Localized: WIGGLE
+    m_Localized: SHAKE
     m_Metadata:
       m_Items: []
   - m_Id: 200334107248418830
@@ -1937,10 +1937,9 @@ MonoBehaviour:
       m_Items:
       - rid: 3461314759755304034
   - m_Id: 200334107248418841
-    m_Localized: KICK x{count}
+    m_Localized: KICK!
     m_Metadata:
-      m_Items:
-      - rid: 3461314759755304034
+      m_Items: []
   - m_Id: 200334107248418842
     m_Localized: WIGGLE!
     m_Metadata:
@@ -2547,6 +2546,72 @@ MonoBehaviour:
     m_Localized: Cliff Night Raid #2026
     m_Metadata:
       m_Items: []
+  - m_Id: 200354788249952256
+    m_Localized: INCOMING!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340864
+    m_Localized: MONSTER INCOMING!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340865
+    m_Localized: SLASH IT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340866
+    m_Localized: SLASH x{count}!
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200354788258340867
+    m_Localized: Swipe fast, any direction!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340868
+    m_Localized: Keep slashing for more stones!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340869
+    m_Localized: Lift a knee! {count} stones fly back!
+    m_Metadata:
+      m_Items:
+      - rid: 3461314759755304034
+  - m_Id: 200354788258340870
+    m_Localized: SMASH!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340871
+    m_Localized: LEAN LEFT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340872
+    m_Localized: LEAN RIGHT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340873
+    m_Localized: Move your body away!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340874
+    m_Localized: SPIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340875
+    m_Localized: Shake both hands fast!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340876
+    m_Localized: SHAKE IT OFF!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340877
+    m_Localized: DODGE THE WALLS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200354788258340878
+    m_Localized: Lean your body left or right to steer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -2656,7 +2721,7 @@ MonoBehaviour:
         - id: 198912451606994957
         - id: 198912451606994958
         - id: 200334107248418840
-        - id: 200334107248418841
+        - id: 200354788258340869
         - id: 200334107248418864
         - id: 200334107248418865
         - id: 200334107248418866
@@ -2677,3 +2742,4 @@ MonoBehaviour:
         - id: 200340732239667214
         - id: 200340732239667220
         - id: 200340732239667221
+        - id: 200354788258340866

@@ -11,7 +11,8 @@ namespace Nex.Ninjago
     /// <summary>
     /// Plays one link between two blocks: a moment in the world that covers the swap (a roar, dust, a brick burst, the
     /// brick rebuild, a landing), the camera move into the next station's view, the one-line story beat and a stinger
-    /// over the level's music. The ninjas leap to the next station while the camera moves.
+    /// over the level's music. The ninjas leap to the next station while the camera moves; between two phases in the same
+    /// station (the Boss arena) they stay put and only the camera, the moment and the story line play.
     /// </summary>
     public sealed class LinkPlayer
     {
@@ -36,17 +37,18 @@ namespace Nex.Ninjago
             if (!string.IsNullOrEmpty(link.storyKey)) stage.Hud.ShowCaption(new LocalizedString(ForgeConfig.TableName, link.storyKey), tuning.CaptionSeconds);
             BgmManager.Instance.PlayStinger(link.stinger);
             var exit = previous.PlayExitAsync(link, cancellationToken);
-            PlayMoment(link.moment, previous.FocusPoint, next.FocusPoint);
+            PlayMoment(link.moment, previous.FocusPoint, next.FocusPoint, DustScale(previous.FocusPoint));
             next.Stage();
+            var stays = previous == next;
             var tasks = new List<UniTask>
             {
                 exit,
                 stage.MoveCameraAsync(previous, next, link.cameraMove, seconds, cancellationToken),
-                LeapAsync(next, seconds - tuning.TellLeadSeconds, cancellationToken),
                 RebuildAsync(link.moment, next.FocusPoint, seconds * 0.45f, cancellationToken),
             };
+            if (!stays) tasks.Add(LeapAsync(next, seconds - tuning.TellLeadSeconds, cancellationToken));
             await UniTask.WhenAll(tasks);
-            previous.Finish();
+            if (!stays) previous.Finish();
             log.LinkEnd();
         }
 
@@ -101,7 +103,10 @@ namespace Nex.Ninjago
             SfxManager.Instance.PlaySoundEffect(SfxManager.SoundEffect.BrickSnap);
         }
 
-        static void PlayMoment(LinkMoment moment, Vector3 from, Vector3 to)
+        // A takeoff right in front of the camera (leaving the ride) gets a small puff, not a cloud over the screen.
+        float DustScale(Vector3 at) => Mathf.Clamp(Vector3.Distance(at, stage.WorldCamera.transform.position) * 0.15f, 0.6f, 2f);
+
+        static void PlayMoment(LinkMoment moment, Vector3 from, Vector3 to, float fromDustScale)
         {
             var vfx = VfxManager.Instance;
             var sfx = SfxManager.Instance;
@@ -121,11 +126,11 @@ namespace Nex.Ninjago
                     sfx.PlaySoundEffect(SfxManager.SoundEffect.VehicleBump);
                     break;
                 case LinkMoment.EnemyFlees:
-                    vfx.PlayVisualEffect(VfxManager.VisualEffect.LinkDust, from, Quaternion.identity, 2f);
+                    vfx.PlayVisualEffect(VfxManager.VisualEffect.LinkDust, from, Quaternion.identity, fromDustScale);
                     sfx.PlaySoundEffect(SfxManager.SoundEffect.Spotted);
                     break;
                 default:
-                    vfx.PlayVisualEffect(VfxManager.VisualEffect.LinkDust, from, Quaternion.identity, 2f);
+                    vfx.PlayVisualEffect(VfxManager.VisualEffect.LinkDust, from, Quaternion.identity, fromDustScale);
                     sfx.PlaySoundEffect(SfxManager.SoundEffect.NinjaSlip);
                     break;
             }

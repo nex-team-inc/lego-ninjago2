@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using Nex.Localization;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.UI;
 
 namespace Nex.Ninjago
 {
     /// <summary>
     /// The HUD frame of a level, the same from the first block to the last: each player's hearts, a strip with one icon
-    /// per block (the current one lit), the one-line story caption, and the corner camera preview with player
-    /// indicators. Prompts live in the world, not here.
+    /// per block (the current one lit), the one-line story caption, the corner camera preview with player indicators,
+    /// and a red edge glow that flashes when danger comes in. Prompts live in the world, not here.
     /// </summary>
     public class ChapterHud : MonoBehaviour
     {
@@ -29,10 +30,16 @@ namespace Nex.Ninjago
         [SerializeField] AreaPreviewFrame pipFrame = null!;
         [Header("Camera Preview Indicators")]
         [SerializeField] PlayerIndicatorsManager pipIndicators = null!;
+        [Header("Danger Glow")]
+        [Tooltip("Full-screen edge vignette, transparent in the middle.")]
+        [SerializeField] Image dangerGlow = null!;
+        [Header("Danger Fade Seconds")]
+        [SerializeField] float dangerFadeSeconds = 0.7f;
 
         readonly List<StripIcon> icons = new();
         PlayerHearts hearts = null!;
         float captionUntil;
+        float danger;
 
         #region Initialization
 
@@ -42,6 +49,7 @@ namespace Nex.Ninjago
             hearts.Changed += HandleHeartsChanged;
             pipFrame.Initialize(detection.PlayAreaController);
             captionPanel.SetActive(false);
+            dangerGlow.enabled = false;
             pipIndicators.Initialize(requestedPlayers, pipFrame, detection.BodyPoseDetectionManager);
         }
 
@@ -94,6 +102,12 @@ namespace Nex.Ninjago
             captionUntil = Time.unscaledTime + seconds;
         }
 
+        /// <param name="strength">0..1; a hit flashes harder than a warning.</param>
+        public void FlashDanger(float strength)
+        {
+            danger = Mathf.Max(danger, strength);
+        }
+
         #endregion
 
         #region Life Cycle
@@ -101,6 +115,11 @@ namespace Nex.Ninjago
         void Update()
         {
             if (captionPanel.activeSelf && Time.unscaledTime >= captionUntil) captionPanel.SetActive(false);
+            danger = Mathf.MoveTowards(danger, 0f, Time.unscaledDeltaTime / dangerFadeSeconds);
+            dangerGlow.enabled = danger > 0f;
+            var color = dangerGlow.color;
+            color.a = danger;
+            dangerGlow.color = color;
         }
 
         void HandleHeartsChanged(int playerIndex, int left)

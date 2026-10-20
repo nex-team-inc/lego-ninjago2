@@ -353,6 +353,12 @@ MonoBehaviour:
   text: {fileID: 470684493682345845}
   panel: {fileID: 1076434336205974588}
   detail: {fileID: 1885667006556766893}
+  detailText: {fileID: 7424845400988809924}
+  sidePadding: 70
+  minWidth: 260
+  oneLineHeight: 120
+  twoLineHeight: 170
+  labelBottom: 0.35
   popSeconds: 0.25
 --- !u!1 &8127016940189308058
 GameObject:

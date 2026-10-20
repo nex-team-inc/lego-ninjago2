@@ -112,8 +112,16 @@ namespace Nex.Ninjago
 
         public void Pinned(int playerIndex) => Analytics.TrackEvent("chapter_pinned", Props(playerIndex));
 
-        public void WiggleFree(int playerIndex, float seconds) =>
-            Analytics.TrackEvent("chapter_wiggle_free", With(Props(playerIndex), "seconds", Round(seconds)));
+        public void ShookFree(int playerIndex, float seconds) =>
+            Analytics.TrackEvent("chapter_shook_free", With(Props(playerIndex), "seconds", Round(seconds)));
+
+        public void SlashFrenzy(int playerIndex, int slashes, int stones)
+        {
+            var props = Props(playerIndex);
+            props["slashes"] = slashes;
+            props["stones"] = stones;
+            Analytics.TrackEvent("chapter_slash_frenzy", props);
+        }
 
         #endregion
 

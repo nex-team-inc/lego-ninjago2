@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Nex.Ninjago
 {
-    /// <summary>What every block of a level shares: the active players and their ninjas, hearts, hints, the log and the tuning.</summary>
+    /// <summary>What every block of a level shares: the active players and their ninjas, hearts, hints, the log, the tuning and the HUD.</summary>
     public sealed class BlockContext
     {
         public IReadOnlyList<PlayerBody> Players { get; }
@@ -18,9 +18,11 @@ namespace Nex.Ninjago
         public ForgeCatalog Catalog { get; }
         public Camera Camera { get; }
         public HandStormSampler Storms { get; }
+        public ChapterHud Hud { get; }
 
         public BlockContext(IReadOnlyList<PlayerBody> players, IReadOnlyList<ChapterNinja> ninjas, PlayerHearts hearts, ChapterHints hints,
-            ChapterLog log, ChapterTuning tuning, ForgeCatalog catalog, Camera camera, HandStormSampler storms)
+            ChapterLog log, ChapterTuning tuning, ForgeCatalog catalog, Camera camera, HandStormSampler storms,
+            ChapterHud hud)
         {
             Players = players;
             Ninjas = ninjas;
@@ -31,6 +33,7 @@ namespace Nex.Ninjago
             Catalog = catalog;
             Camera = camera;
             Storms = storms;
+            Hud = hud;
         }
     }
 }

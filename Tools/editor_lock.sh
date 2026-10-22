@@ -4,7 +4,7 @@
 #   Waits for the lock (mkdir is atomic), runs the command, always releases the lock.
 #   A lock older than 20 minutes is considered stale and broken.
 set -u
-LOCK_DIR="/tmp/billiard_rogue_editor.lock"
+LOCK_DIR="${NINJAGO_EDITOR_LOCK:-/tmp/ninjago_dragon_rising_editor.lock}"
 OWNER="${1:?owner label required}"; shift
 while ! mkdir "$LOCK_DIR" 2>/dev/null; do
   if [ -n "$(find "$LOCK_DIR" -maxdepth 0 -mmin +20 2>/dev/null)" ]; then

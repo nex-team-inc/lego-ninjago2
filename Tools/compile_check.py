@@ -7,10 +7,16 @@ It never touches the Editor, Library/ScriptAssemblies or any asset, so parallel 
 run it while the Editor stays idle. Unity remains the source of truth: new asmdefs or
 package changes are only picked up after Unity regenerates the .rsp files.
 
-Usage: python3 Tools/compile_check.py [--warnings] [--filter SUBSTRING]
+Usage: python3 Tools/compile_check.py [--warnings] [--filter SUBSTRING] [--extra-editor DIR] [--project DIR]
 Exit code 0 = no errors.
+
+Project: --project, else $UNITY_PROJECT_PATH, else the first of <repo>/ninjago-unity, <repo>/Starter that exists.
+Editor:  $UNITY_EDITOR_PATH (Unity.app or its Contents/Resources/Scripting), else the version in
+         ProjectSettings/ProjectVersion.txt under /Applications/UnityEditors, /Applications/Unity/Hub/Editor or
+         ~/Applications/Unity/Hub/Editor (then any /Applications/*/<version>/Unity.app).
 """
 import argparse
+import glob
 import json
 import os
 import re
@@ -19,10 +25,62 @@ import sys
 import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT = os.path.join(ROOT, "Starter")
-UNITY = "/Applications/Unity/Hub/Editor/6000.3.9f1/Unity.app/Contents/Resources/Scripting"
-DOTNET = os.path.join(UNITY, "NetCoreRuntime", "dotnet")
-CSC = os.path.join(UNITY, "DotNetSdkRoslyn", "csc.dll")
+PROJECT_CANDIDATES = ("ninjago-unity", "Starter")
+EDITOR_ROOTS = ("/Applications/UnityEditors", "/Applications/Unity/Hub/Editor",
+                os.path.expanduser("~/Applications/Unity/Hub/Editor"))
+# Set by configure() in main().
+PROJECT = ""
+DOTNET = ""
+CSC = ""
+
+
+def find_project(explicit):
+    for path in (explicit, os.environ.get("UNITY_PROJECT_PATH")):
+        if path:
+            path = os.path.abspath(path)
+            if not os.path.exists(os.path.join(path, "ProjectSettings", "ProjectVersion.txt")):
+                sys.exit(f"Not a Unity project (no ProjectSettings/ProjectVersion.txt): {path}")
+            return path
+    for name in PROJECT_CANDIDATES:
+        path = os.path.join(ROOT, name)
+        if os.path.exists(os.path.join(path, "ProjectSettings", "ProjectVersion.txt")):
+            return path
+    sys.exit(f"No Unity project found under {ROOT} (tried {', '.join(PROJECT_CANDIDATES)}); pass --project.")
+
+
+def editor_version(project):
+    with open(os.path.join(project, "ProjectSettings", "ProjectVersion.txt"), encoding="utf-8") as fh:
+        for line in fh:
+            if line.startswith("m_EditorVersion:"):
+                return line.split(":", 1)[1].strip()
+    sys.exit("m_EditorVersion missing from ProjectSettings/ProjectVersion.txt")
+
+
+def scripting_dir(app_or_scripting):
+    if os.path.basename(os.path.normpath(app_or_scripting)) == "Scripting":
+        return app_or_scripting
+    return os.path.join(app_or_scripting, "Contents", "Resources", "Scripting")
+
+
+def find_scripting(version):
+    candidates = []
+    if os.environ.get("UNITY_EDITOR_PATH"):
+        candidates.append(os.environ["UNITY_EDITOR_PATH"])
+    candidates += [os.path.join(base, version, "Unity.app") for base in EDITOR_ROOTS]
+    candidates += sorted(glob.glob(f"/Applications/*/{version}/Unity.app")) + sorted(glob.glob(f"/Applications/*/*/{version}/Unity.app"))
+    for candidate in candidates:
+        scripting = scripting_dir(candidate)
+        if os.path.exists(os.path.join(scripting, "DotNetSdkRoslyn", "csc.dll")):
+            return scripting
+    sys.exit(f"Unity {version} not found (looked in {', '.join(EDITOR_ROOTS)}); set UNITY_EDITOR_PATH to its Unity.app.")
+
+
+def configure(explicit_project):
+    global PROJECT, DOTNET, CSC
+    PROJECT = find_project(explicit_project)
+    scripting = find_scripting(editor_version(PROJECT))
+    DOTNET = os.path.join(scripting, "NetCoreRuntime", "dotnet")
+    CSC = os.path.join(scripting, "DotNetSdkRoslyn", "csc.dll")
 
 SOURCE_RE = re.compile(r'^"?(Assets/.+\.cs)"?$')
 
@@ -39,7 +97,8 @@ def latest_rsp(name):
     return best
 
 
-OWN_ASMDEF_ROOT = "Assets/Scripts/BilliardRogue/"
+# Every asmdef under Assets/Scripts is ours (today the Nex.BilliardRogue.* ones; a new mode's asmdef is picked up too).
+OWN_ASMDEF_ROOT = "Assets/Scripts/"
 
 
 def asmdef_dirs():
@@ -51,7 +110,7 @@ def asmdef_dirs():
 
 
 def own_asmdefs():
-    """Our asmdefs (under Assets/Scripts/BilliardRogue), topologically sorted by references."""
+    """Our asmdefs (under OWN_ASMDEF_ROOT), topologically sorted by references."""
     found = {}
     for base, _, files in os.walk(os.path.join(PROJECT, OWN_ASMDEF_ROOT)):
         for f in files:
@@ -178,7 +237,9 @@ def main():
     parser.add_argument("--filter", default="", help="only print diagnostics containing this text")
     parser.add_argument("--extra-editor", action="append", default=[],
                         help="extra folder of editor .cs files to compile (e.g. staged scripts outside Assets)")
+    parser.add_argument("--project", default="", help="Unity project folder (default: <repo>/ninjago-unity)")
     args = parser.parse_args()
+    configure(args.project)
 
     runtime_now, editor_now = scan_sources()
     for extra in args.extra_editor:

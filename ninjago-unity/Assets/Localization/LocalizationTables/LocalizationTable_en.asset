@@ -2612,6 +2612,10 @@ MonoBehaviour:
     m_Localized: Lean your body left or right to steer
     m_Metadata:
       m_Items: []
+  - m_Id: 201234535892901888
+    m_Localized: Boss Battle
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -2455,6 +2455,10 @@ MonoBehaviour:
     m_Key: chapter.runner.dodge_how
     m_Metadata:
       m_Items: []
+  - m_Id: 201234535892901888
+    m_Key: ninjago.mode.boss_battle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

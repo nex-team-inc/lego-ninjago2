@@ -114,8 +114,8 @@ namespace Nex.Ninjago.Editor
 
         // The menu shows the Ninjago mini-games; the PressButtonToWin test entry stays defined but unlisted. The
         // StoneKick and EarthSeal definitions come from CursorGamesBuilder, RobotMecha from RobotMechaBuilder, CrouchRun from
-        // CrouchRunBuilder, ThreeWeapons from ThreeWeaponsBuilder, OnePunch from OnePunchBuilder, Guard, Call and Build from their builders.
-        // A mode whose builder has not run yet has no game prefab and stays out of the menu.
+        // CrouchRunBuilder, ThreeWeapons from ThreeWeaponsBuilder, OnePunch from OnePunchBuilder, Guard, Call and Build from their builders,
+        // BossBattle from BossBattleBuilder. A mode whose builder has not run yet has no game prefab and stays out of the menu.
         internal static void WriteMenuOrder()
         {
             var config = Load<GameModeConfig>(GameModeConfigPath);
@@ -123,15 +123,18 @@ namespace Nex.Ninjago.Editor
             var order = serialized.FindProperty("modeOrders");
             var modes = serialized.FindProperty("modes");
             var listed = new List<GameModeType>();
-            // Chapter modes are listed from the mode library before these; the Forge comes first among them.
+            var listedPrefabs = new HashSet<string>();
+            // Chapter modes are listed from the mode library before these; the Forge comes first among them, then Boss Battle.
             foreach (var mode in new[]
                      {
-                         GameModeType.Forge, GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal, GameModeType.RobotMecha,
-                         GameModeType.CrouchRun, GameModeType.ThreeWeapons, GameModeType.OnePunch, GameModeType.Guard, GameModeType.Call, GameModeType.Build,
+                         GameModeType.Forge, GameModeType.BossBattle, GameModeType.SlipAndSpin, GameModeType.ChestChase, GameModeType.StoneKick, GameModeType.EarthSeal,
+                         GameModeType.RobotMecha, GameModeType.CrouchRun, GameModeType.ThreeWeapons, GameModeType.OnePunch, GameModeType.Guard, GameModeType.Call,
+                         GameModeType.Build,
                      })
             {
                 var prefab = EnumDictionaryEditorUtils.GetValueProperty(modes, (int)mode).FindPropertyRelative("gamePrefab.m_AssetGUID").stringValue;
-                if (!string.IsNullOrEmpty(prefab)) listed.Add(mode);
+                // A key the EnumDictionary filled in by copying its neighbour points at that neighbour's game: never list it twice.
+                if (!string.IsNullOrEmpty(prefab) && listedPrefabs.Add(prefab)) listed.Add(mode);
             }
 
             order.arraySize = listed.Count;

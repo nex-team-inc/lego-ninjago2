@@ -18,5 +18,7 @@ namespace Nex
         // Every chapter mode, built-in or player-made, runs through this one runtime with a different definition.
         Chapter = 13,
         Forge = 14,
+        // Boss Battle: the Brick Titan fight (car then jet), its own mode apart from the chapter "Boss Rush".
+        BossBattle = 15,
     }
 }

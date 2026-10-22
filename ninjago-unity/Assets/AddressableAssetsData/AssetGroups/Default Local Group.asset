@@ -35,6 +35,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e0b6e22b7a034040b83b841d9807c7a
+    m_Address: BossBattleGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5986e24a8ed004f54b44c87167a47569
     m_Address: CallGame
     m_ReadOnly: 0

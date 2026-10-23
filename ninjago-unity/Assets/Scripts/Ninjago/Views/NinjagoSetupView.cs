@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Nex.Dev;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -14,7 +15,7 @@ namespace Nex.Ninjago
     /// origin (chest, and resting knees for kicks) is stored; One Punch also stores the shoulders, wrists and hips and
     /// waits until they are seen. Games with hand cursors then confirm each player's hands drive a cursor; Robot Mecha
     /// has each player hold the L with both arms instead. In two-player mode a player who never appears is dropped
-    /// after the solo-fallback wait.
+    /// after the solo-fallback wait. Debug builds: S skips the rest of the setup (see SetupSkip).
     /// </summary>
     public class NinjagoSetupView : SimpleCanvasView
     {
@@ -71,6 +72,7 @@ namespace Nex.Ninjago
         bool[] missingJoints = null!;
         LocalizedString? shownPrompt;
         bool quitRequested;
+        bool skipRequested;
 
         #region View Implementation
 
@@ -151,7 +153,7 @@ namespace Nex.Ninjago
                 if (calibrated == null) return null;
 
                 ShowPrompt(calibrated.Count < bodies.Count ? soloPrompt : readyPrompt);
-                await UniTask.Delay((int)(config.ReadyHoldSeconds * 1000f), DelayType.UnscaledDeltaTime, cancellationToken: cancellationToken);
+                if (!skipRequested) await UniTask.Delay((int)(config.ReadyHoldSeconds * 1000f), DelayType.UnscaledDeltaTime, cancellationToken: cancellationToken);
                 await previewsManager.MoveOut(true);
                 detection.ConfigForGameplay();
                 if (cursors != null)
@@ -186,6 +188,7 @@ namespace Nex.Ninjago
             var missingSeenTime = float.NegativeInfinity;
             while (!quitRequested)
             {
+                if (skipRequested) return SetupSkip.CalibrateNow(bodies, storeRestJoints);
                 var now = Time.unscaledTime;
                 var readyCount = 0;
                 var anyHolding = false;
@@ -307,6 +310,12 @@ namespace Nex.Ninjago
             var missingSeenTime = float.NegativeInfinity;
             while (!quitRequested)
             {
+                if (skipRequested)
+                {
+                    showReady();
+                    return calibrated;
+                }
+
                 var now = Time.unscaledTime;
                 for (var slot = 0; slot < calibrated.Count; slot++)
                 {
@@ -367,6 +376,18 @@ namespace Nex.Ninjago
             if (shownPrompt == prompt) return;
             shownPrompt = prompt;
             previewsManager.SetPromptText(prompt.GetLocalizedString());
+        }
+
+        #endregion
+
+        #region Debug
+
+        void Update()
+        {
+            // DebugInput is inert under PRODUCTION.
+            if (!IsActive || skipRequested || !DebugInput.GetKeyDown(KeyCode.S)) return;
+            skipRequested = true;
+            NinjagoAnalytics.UiAction(AnalyticsScreenName, "debug_skip_setup");
         }
 
         #endregion

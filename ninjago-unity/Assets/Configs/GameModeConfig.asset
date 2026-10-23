@@ -302,7 +302,7 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         maxPlayers: 2
-  modeOrders: 0e0000000f00000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
+  modeOrders: 030000000400000007000000
   references:
     version: 2
     RefIds: []

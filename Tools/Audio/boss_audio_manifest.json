@@ -1,0 +1,1834 @@
+{
+  "about": "Boss Battle audio (Tools/Audio/build_boss_audio.py; picks: boss_picks.py). Paths are relative to ninjago-unity/. Do not hand-edit.",
+  "sfx": {
+    "BossRockThrow": {
+      "enum": 800,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockThrow_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "At the release, end of the 0.8 s wind-up (arm above head, orange hand glow), as the rock leaves the hand.",
+      "notes": "Giant effort grunt (-3 st) + deep wide whoosh: the throw reads as heavy; the whistle (801) carries the flight."
+    },
+    "BossRockWhistle": {
+      "enum": 801,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockWhistle_1.wav"
+      ],
+      "category": "tell",
+      "loop": false,
+      "trigger": "Together with BossRockThrow: the rock is hurled up into the sky (air time 1.0 s); ~1.05 s, recedes upward.",
+      "notes": "Synth rising whistle with air noise (GDD 4.1 step 1 'whistle'): rises and fades out as the rock leaves the screen."
+    },
+    "BossRockLock": {
+      "enum": 802,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockLock_1.wav"
+      ],
+      "category": "tell",
+      "loop": false,
+      "trigger": "When the reticle locks (turns magenta-red, '!' shakes). Beeps sit on the 6 Hz blink (0.167 s apart), 0.5 s.",
+      "notes": "Latch click + three rising beeps F6-G6-C7: 'locked on' reads instantly and is unlike any other cue."
+    },
+    "BossRockImpact": {
+      "enum": 803,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockImpact_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockImpact_2.wav"
+      ],
+      "category": "impact_big",
+      "loop": false,
+      "trigger": "When the rock lands (end of the 0.35 s fall), with the crater dust and shake.",
+      "notes": "Stone demolish crack + debris rumble + deep stone thud + sub: heavy, instant (impact on the visual frame)."
+    },
+    "BossRoar": {
+      "enum": 804,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRoar_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRoar_2.wav"
+      ],
+      "category": "voice",
+      "loop": false,
+      "trigger": "Ready beat (after 3-2-1), transform cutscene (0.8-2.0 s, with the BossAppear stinger), wake (with BossWake). Duck music.",
+      "notes": "Deep monster roar (-2 st) for the body, alien roar (-5 st) for the bite, stone grind under it (a brick titan), sub weight."
+    },
+    "BossGroundSlam": {
+      "enum": 805,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossGroundSlam_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossGroundSlam_2.wav"
+      ],
+      "category": "impact_big",
+      "loop": false,
+      "trigger": "On the slam (both fists hit the ground after the 1.0 s red wind-up), with the shockwave ring and shake.",
+      "notes": "Hammer-impact boom (209 Hz centroid) + deep stone + rumble tail: the biggest ground hit in the mode."
+    },
+    "BossBrickGrow": {
+      "enum": 806,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossBrickGrow_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossBrickGrow_2.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossBrickGrow_3.wav"
+      ],
+      "category": "frequent",
+      "loop": false,
+      "trigger": "When a brick row starts growing out of the road (0.3 s grow, after its crack glowed). One per row, not per brick.",
+      "notes": "Fast Lego-click stack + a retro rising blip, landing on a real brick knock at 0.24 s: brick-built, readable, short."
+    },
+    "BossMinionThrow": {
+      "enum": 807,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionThrow_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "When the Titan releases the minion (end of the wind-up); the minion's 'wooah!' rides the start of the arc.",
+      "notes": "Titan grunt + throw whoosh + a small squeaky 'wooah!' (+6 st) for the flying skeleton minion: funny, not scary."
+    },
+    "BossMinionLand": {
+      "enum": 808,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionLand_1.wav"
+      ],
+      "category": "impact",
+      "loop": false,
+      "trigger": "When the minion lands and clings on the car roof corner.",
+      "notes": "Thunk on the car's roof plate + brick rattle + a tiny 'yah!': the minion is now ON the car."
+    },
+    "BossMinionHit": {
+      "enum": 809,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionHit_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionHit_2.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "Each minion damage tick (the minion whacks the car; 1 heart). BossVehicleHit plays too if the arena's hit path fires it.",
+      "notes": "Metal whack on the roof + punch body + brick click: a sharp, short 'bonk' that says the minion is hurting the car."
+    },
+    "BossWallGrow": {
+      "enum": 810,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossWallGrow_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "When the side wall starts rising along the road edge (0.6 s rise).",
+      "notes": "Brick grind + ten Lego clicks stacking up + a final brick knock at 0.58 s when the wall tops out."
+    },
+    "BossWallSmash": {
+      "enum": 811,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossWallSmash_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossWallSmash_2.wav"
+      ],
+      "category": "impact_big",
+      "loop": false,
+      "trigger": "When the car smashes the wall (wall bursts into bricks, minion scraped off). The success moment of the minion beat.",
+      "notes": "Demolish crash + brick knock + a shower of Lego bricks: satisfying and toy-like."
+    },
+    "BossPowerUpSpawn": {
+      "enum": 812,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossPowerUpSpawn_1.wav"
+      ],
+      "category": "tell",
+      "loop": false,
+      "trigger": "When the rocket crate appears ahead ('Grab the rockets!').",
+      "notes": "Bright rising C-major sparkle + crystal shimmer: positive, inviting, clearly not a hazard."
+    },
+    "BossPowerUpPickup": {
+      "enum": 813,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossPowerUpPickup_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "When the car picks the crate up (before the volley launches).",
+      "notes": "Fast rising arpeggio + metal lock-and-load clunk at 0.28 s: 'rockets armed'."
+    },
+    "BossRocketLaunch": {
+      "enum": 814,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketLaunch_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketLaunch_2.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketLaunch_3.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "Per rocket leaving the car roof (stagger 0.15 s; 3 pitch variants so a volley does not phase).",
+      "notes": "Deep rocket launch + bright exhaust hiss + a small pop at t=0 for the instant of launch."
+    },
+    "BossRocketHit": {
+      "enum": 815,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketHit_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketHit_2.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketHit_3.wav"
+      ],
+      "category": "impact",
+      "loop": false,
+      "trigger": "Per rocket hitting the boss's chest (with hit-stop and flinch). Also the right sound for the finale's chained ExplodeSmall bursts (short, chain-safe).",
+      "notes": "Punchy explosion with an arcade transient on frame 0, brick debris rattle and a boss-mass thud; 3 RR variants."
+    },
+    "BossHurt": {
+      "enum": 816,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossHurt_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossHurt_2.wav"
+      ],
+      "category": "voice",
+      "loop": false,
+      "trigger": "Boss flinch after a volley lands (once per volley, after the rocket hits), and on big laser damage if wanted.",
+      "notes": "Pained monster groan (-3 st) + a stone crack in the Titan's bricks: 'it hurts' and 'it is breaking'."
+    },
+    "BossTakeOff": {
+      "enum": 817,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossTakeOff_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "Transform cutscene 2.0 s: the Titan leaps, wings unfold (flap at 0 and 0.45 s), jets ignite (from ~0.35 s).",
+      "notes": "Big wing flaps + rising turbine whine + afterburner roar: the Titan becomes a flying boss."
+    },
+    "BossTransform": {
+      "enum": 818,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossTransform_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "Transform cutscene 3.2 s: the car bursts into bricks (t=0), rebuilds into the ninja jet (clicks 0.6-2.2 s, faster and louder), snaps together at 2.3 s (= cutscene 5.5 s, just before lift-off).",
+      "notes": "Brick burst + Lego shower, a riser and an accelerating Lego-click rebuild ending in a snap + chime: toy-like assembly."
+    },
+    "BossDevilWind": {
+      "enum": 819,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossDevilWind_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossDevilWind_2.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "When the Titan blows a gust barrage (after the 0.8 s violet wind-up); once per barrage row is fine (~1.8 s).",
+      "notes": "Howling storm gust + deep whoosh + the Titan's huge breath (-4 st): wind that comes from the boss."
+    },
+    "BossTired": {
+      "enum": 820,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossTired_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "When the Titan slumps after a barrage (Zzz, 'It's tired - FIRE!').",
+      "notes": "Exhausted monster pant (-3 st) + a falling slide whistle: comic 'out of breath' cue that invites the attack."
+    },
+    "BossLaserLoop": {
+      "enum": 821,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserLoop_1.wav"
+      ],
+      "category": "loop",
+      "loop": true,
+      "trigger": "SfxManager.StartLoop while the plane auto-fires (8 bolts/s = config laser.fireInterval 0.125 s); StopLoop on wake. Exactly 1.000 s = 8 bolts; start it on the first bolt so the pews line up with the visuals.",
+      "notes": "Retro 'pew' bolts (4 pitch steps, cycled) + a sampled blaster transient over an 8 Hz-pulsed energy hum; seamless."
+    },
+    "BossLaserHit": {
+      "enum": 822,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserHit_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserHit_2.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserHit_3.wav"
+      ],
+      "category": "frequent",
+      "loop": false,
+      "trigger": "When a bolt strikes the Core (on target). Can fire up to 8/s; SfxManager's 35 ms throttle is fine.",
+      "notes": "Short energy impact + crushed zap: crunchy 'damage' confirmation, 0.3 s max so 8/s never smears."
+    },
+    "BossWake": {
+      "enum": 823,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossWake_1.wav"
+      ],
+      "category": "voice",
+      "loop": false,
+      "trigger": "When the Titan wakes at a notch (70/30/5 %): shockwave, laser stops. Pair with BossRoar if the roar is wanted too.",
+      "notes": "Downward shockwave sweep + angry growl (-3 st) + energy pulse: the wake reads as a blast, not just a voice."
+    },
+    "BossClapInhale": {
+      "enum": 824,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossClapInhale_1.wav"
+      ],
+      "category": "action",
+      "loop": false,
+      "trigger": "At the start of the clap inhale (0.8 s, white palms); the file is 0.80 s and stops dead where the blow (push) starts.",
+      "notes": "Rising band-passed air swell + reversed breath: a huge inhale that cuts off right before the blow."
+    },
+    "BossClapWarning": {
+      "enum": 825,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossClapWarning_1.wav"
+      ],
+      "category": "tell",
+      "loop": false,
+      "trigger": "When the 'DIVE!' warning starts (vertical control returns; 1.8 s normal / 2.2 s large). One shot, 0.95 s.",
+      "notes": "Two submarine 'ah-OO-gah' dive klaxon calls: literally 'DIVE!', the most urgent cue in the mode."
+    },
+    "BossSpikeSlam": {
+      "enum": 826,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossSpikeSlam_1.wav"
+      ],
+      "category": "impact_big",
+      "loop": false,
+      "trigger": "When the spiked walls smash together (0.22 s slam).",
+      "notes": "Hammer boom + metal demolish + trap snap: the heaviest metallic hit (2-heart hazard)."
+    },
+    "BossExplode": {
+      "enum": 827,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossExplode_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossExplode_2.wav"
+      ],
+      "category": "impact_big",
+      "loop": false,
+      "trigger": "Finale ExplodeBig (the final burst: parts fly apart into a brick shower), and the knockout vehicle burst if wanted. Use BossRocketHit for the chained ExplodeSmall bursts.",
+      "notes": "Long bright explosion with falling debris and a 1 s Lego brick shower: the Titan comes apart into bricks."
+    },
+    "BossVehicleHit": {
+      "enum": 828,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossVehicleHit_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossVehicleHit_2.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossVehicleHit_3.wav"
+      ],
+      "category": "impact",
+      "loop": false,
+      "trigger": "Every hazard hit on the car/jet (brick, rock, minion tick, wind, spike), with the i-frame blink.",
+      "notes": "Plastic-and-metal crunch + brick rattle + a falling 'bwomp': clearly 'you got hit', distinct from boss hits."
+    },
+    "BossKnockout": {
+      "enum": 829,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossKnockout_1.wav"
+      ],
+      "category": "impact",
+      "loop": false,
+      "trigger": "Hearts reach 0: the vehicle tumbles and bursts (with hit-stop / slow-mo); then the Defeat stinger and BossLaugh.",
+      "notes": "Crash into a pile of bricks + a cartoon 'wah wah wah waaah': a soft, kid-friendly fail."
+    },
+    "BossBannerSlam": {
+      "enum": 830,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossBannerSlam_1.wav"
+      ],
+      "category": "impact",
+      "loop": false,
+      "trigger": "When a banner slams in (BOSS name, PHASE 1/2, WAKE, VICTORY!, KNOCKED OUT), on the frame it lands.",
+      "notes": "Taiko drum + stone thud + cymbal shimmer + brick snap: a dramatic ninja 'BOOM' under the banner."
+    },
+    "BossLaserDeflect": {
+      "enum": 831,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserDeflect_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserDeflect_2.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserDeflect_3.wav"
+      ],
+      "category": "soft",
+      "loop": false,
+      "trigger": "When a bolt misses and glances off the armour ('tink', no damage). Up to 8/s; keep it quiet.",
+      "notes": "Small inharmonic metal tink: audible feedback that the shot missed, never louder than a hit."
+    },
+    "BossCountdown": {
+      "enum": 832,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossCountdown_1.wav"
+      ],
+      "category": "tell",
+      "loop": false,
+      "trigger": "On each Ready digit 3, 2, 1 (one shot per digit, 0.3 s); BossRoar acts as the 'GO'.",
+      "notes": "A5 arcade beep over a low brick-drum knock: crisp, the same pitch for each digit."
+    },
+    "BossLaugh": {
+      "enum": 833,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaugh_1.wav"
+      ],
+      "category": "voice",
+      "loop": false,
+      "trigger": "Knockout: the Titan laughs (after the crash, ~1 s into the 3 s knockout).",
+      "notes": "A villain 'ha-ha-ha' pitched down 6 st with a growl under it: big and goofy-menacing, kid-safe."
+    },
+    "BossCrackGlow": {
+      "enum": 834,
+      "files": [
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossCrackGlow_1.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossCrackGlow_2.wav",
+        "Assets/Audio/Sfx/Ninjago/BossBattle/BossCrackGlow_3.wav"
+      ],
+      "category": "frequent",
+      "loop": false,
+      "trigger": "When a row's crack line starts glowing (0.45 s before its bricks grow). One per row.",
+      "notes": "Stone crack + a swelling, trembling hot hum: warns 'something is coming out of the ground here'."
+    }
+  },
+  "bgm": {
+    "BossBattleRoad": {
+      "enum": 51,
+      "file": "Assets/Audio/Bgm/Ninjago/BossBattle/BossBattleRoad.ogg",
+      "source": "music-cell-shared-assets/Assets/Ultimate Game Music Collection/Combat/Boss Battle 2 Loop.wav",
+      "licence": "Ultimate Game Music Collection (royalty-free asset-store music pack, team-licensed; music-cell-shared-assets)",
+      "notes": "Phase 1 road (dusk). ~150 BPM, steady 8th-note drive for the whole loop (LRA 4.4, centroid 305 Hz), 83.2 s = 52 bars, perfectly continuous wrap. Not used by any other mode (fingerprinted against every Assets/Audio/Bgm loop; Boss Battle 1 is BilliardRogue's Boss).",
+      "int_lufs": -14.57,
+      "peak_db": -2.8,
+      "seconds": 83.2
+    },
+    "BossBattleSky": {
+      "enum": 52,
+      "file": "Assets/Audio/Bgm/Ninjago/BossBattle/BossBattleSky.ogg",
+      "source": "music-cell-shared-assets/Assets/Ultimate Game Music Collection/Combat/Boss Battle 5 Loop.wav",
+      "licence": "Ultimate Game Music Collection (royalty-free asset-store music pack, team-licensed; music-cell-shared-assets)",
+      "notes": "Phase 2 sky (storm night). Same series and key centre as the road loop (smooth transform crossfade), darker (centroid 190 vs 305 Hz, 83 % of its energy under 200 Hz) and busier (4.6 vs 3.8 onsets/s); 80.0 s = 40 bars with a built-in swell back into the top; perfectly continuous wrap. Unused elsewhere.",
+      "int_lufs": -14.52,
+      "peak_db": -2.47,
+      "seconds": 80.0
+    }
+  },
+  "sources": {
+    "BossRockThrow_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Effort_06_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Classic/WHOOSH_Wide_Deep_Slow_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Air/WHOOSH_Air_Fast_Wind_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRockWhistle_1.wav": [
+      {
+        "source": "synth:rock_whistle",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Air/WHOOSH_Air_Fast_Wind_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossRockLock_1.wav": [
+      {
+        "source": "synth:lock_beeps",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      }
+    ],
+    "BossRockImpact_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Stone_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Medium/EXPLOSION_Medium_Debris_Rumble_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Stone/IMPACT_Stone_Deep_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Hard_Ground_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRockImpact_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Stone_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Medium/EXPLOSION_Medium_Fast_with_Rock_Debris_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Stone/IMPACT_Stone_Deep_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Hard_Ground_RR4_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRoar_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Roar_02_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/ALIENS/ALIEN_Attack_Roar_07_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Stone_02_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRoar_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Roar_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/ALIENS/ALIEN_Attack_Roar_09_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Stone_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossGroundSlam_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/HAZARDS_TRAPS/HAZARD_Hammer_Impact_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Stone/IMPACT_Stone_Deep_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Stone_02_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Long/EXPLOSION_Long_Distant_Impact_Rumble_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossGroundSlam_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/HAZARDS_TRAPS/HAZARD_Hammer_Impact_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Concrete/IMPACT_Concrete_Slab_on_Concrete_Slab_Deep_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Stone_03_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Medium/EXPLOSION_Medium_Debris_Rumble_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossBrickGrow_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect5.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect6.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:brick_rise",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Hard_Ground_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossBrickGrow_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect5.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect6.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:brick_rise",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Hard_Ground_RR4_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossBrickGrow_3.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect5.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect6.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:brick_rise",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Hard_Ground_RR6_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossMinionThrow_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Air/WHOOSH_Air_Fast_Wind_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Grunt_Short_02_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/VOICES/Exclamations/EXCLAMATION_Male_B_Wooah_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Classic/WHOOSH_Wide_Deep_Slow_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossMinionLand_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Metal/IMPACT_Metal_Soft_Plate_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Punch/IMPACT_Punch_03_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/VOICES/Exclamations/EXCLAMATION_Male_B_Yah_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossMinionHit_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Metal/IMPACT_Metal_Hit_Sheet_Metal_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Punch/IMPACT_Punch_03_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      }
+    ],
+    "BossMinionHit_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Metal/IMPACT_Metal_Medium_Hollow_Single_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Metal/IMPACT_Metal_Hit_Sheet_Metal_RR2_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Punch/IMPACT_Punch_07_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      }
+    ],
+    "BossWallGrow_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/FRICTION/Bricks/FRICTION_Brick_Slide_03_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect5.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect6.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Brick_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossWallSmash_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Short_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Brick_RR3_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:boss_thud",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossWallSmash_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Short_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bricks/IMPACT_Brick_vs_Brick_RR7_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:boss_thud",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossPowerUpSpawn_1.wav": [
+      {
+        "source": "synth:sparkle",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/8BIT/Powerups/8BIT_RETRO_Powerup_Spawn_Appear_Fading_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Cute UI _ Interact Sound Effects Pack/AUDIO/Powerup/SFX_Powerup_Crystal_1.wav",
+        "licence": "Cute UI & Interact Sound Effects Pack (royalty-free asset-store pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossPowerUpPickup_1.wav": [
+      {
+        "source": "synth:power_up",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Cute UI _ Interact Sound Effects Pack/AUDIO/Powerup/SFX_Powerup_Bright_1.wav",
+        "licence": "Cute UI & Interact Sound Effects Pack (royalty-free asset-store pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MECHANICS/MECHANICS_Metal_Mechanism_13_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossRocketLaunch_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/Rockets/ROCKET_Launch_Deep_Short_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/Rockets/ROCKET_Launch_Bright_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:blast_crack",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "synth:sub_thump",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRocketLaunch_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/Rockets/ROCKET_Launch_Deep_Short_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/Rockets/ROCKET_Launch_Bright_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:blast_crack",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "synth:sub_thump",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRocketLaunch_3.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/Rockets/ROCKET_Launch_Deep_Short_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/Rockets/ROCKET_Launch_Bright_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:blast_crack",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "synth:sub_thump",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRocketHit_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Quick/EXPLOSION_Quick_02_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Arcade/EXPLOSION_Arcade_12_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:boss_thud",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRocketHit_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Medium/EXPLOSION_Medium_Kickback_Debris_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Arcade/EXPLOSION_Arcade_07_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:boss_thud",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossRocketHit_3.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Quick/EXPLOSION_Quick_Debris_05_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Arcade/EXPLOSION_Arcade_12_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:boss_thud",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossHurt_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Pain_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/BREAKS_SNAPS/BREAK_Deep_Crack_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossHurt_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Grunt_Deep_Hurt_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/BREAKS_SNAPS/CRACK_Deep_Medium_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossTakeOff_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WING_FLAPS/WING_FLAP_Large_01_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WING_FLAPS/WING_FLAP_Large_02_RR1_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:jet_whine",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/THRUSTERS_FLAMES/THRUSTER_Afterburner_Power_Distorted_loop_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/Rockets/ROCKET_Launch_Deep_Slow_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossTransform_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Quick/EXPLOSION_Quick_Debris_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/CHARGE_UPS_DOWNS/CHARGE_Complex_Wet_12_Semi_Up_2000ms_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego click4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect5.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect6.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Metal/IMPACT_Metal_Soft_Plate_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:rebuild_chime",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossDevilWind_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WIND/WIND_Storm_Blowing_Howling_04_loop_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Classic/WHOOSH_Wide_Deep_Slow_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Breath_06_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossDevilWind_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WIND/WIND_Storm_Blowing_Howling_02_loop_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Classic/WHOOSH_Wide_Deep_Slow_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Breath_06_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossTired_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Exhausted_05_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/CARTOON/CARTOON_Slide_Down_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossLaserLoop_1.wav": [
+      {
+        "source": "synth:laser_pew",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WEAPONS/SciFi/Blasters_Simple/BLASTER_Very_Short_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:laser_hum",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossLaserHit_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Energy/IMPACT_Energy_Solid_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:zap",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossLaserHit_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Energy/IMPACT_Energy_Solid_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:zap",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossLaserHit_3.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Energy/IMPACT_Energy_Solid_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:zap",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossWake_1.wav": [
+      {
+        "source": "synth:whoom",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Growl_Long_02_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/FORCE_FIELDS/FORCE_FIELD_Scifi_Pulse_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossClapInhale_1.wav": [
+      {
+        "source": "synth:inhale",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/WHOOSHES/Mixed/WHOOSH_Breath_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossClapWarning_1.wav": [
+      {
+        "source": "synth:dive_klaxon",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossSpikeSlam_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/HAZARDS_TRAPS/HAZARD_Hammer_Impact_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/DEMOLISH/DEMOLISH_Metal_02_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/HAZARDS_TRAPS/TRAP_Close_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Metal/IMPACT_Metal_Hit_Large_Metal_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossExplode_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Long/EXPLOSION_Long_Bright_Debris_Tail_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Medium/EXPLOSION_Medium_Burst_with_Falling_Debris_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "synth:power_boom",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossExplode_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Medium/EXPLOSION_Medium_Smash_Debris_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Quick/EXPLOSION_Quick_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "synth:power_boom",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossVehicleHit_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Generic/IMPACT_Generic_05_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide3.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:bwomp",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossVehicleHit_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Generic/IMPACT_Generic_07_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:bwomp",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossVehicleHit_3.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Generic/IMPACT_Generic_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:bwomp",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossKnockout_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/EXPLOSIONS/Medium/EXPLOSION_Medium_Smash_Debris_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide2.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego collide4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      },
+      {
+        "source": "synth:sad_horn",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossBannerSlam_1.wav": [
+      {
+        "source": "synth:taiko",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Stone/IMPACT_Stone_Deep_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Ultimate Game Music Collection/Short Cues/Scares/Large Cymbal SCARE.wav",
+        "licence": "Ultimate Game Music Collection (royalty-free asset-store music pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      }
+    ],
+    "BossLaserDeflect_1.wav": [
+      {
+        "source": "synth:tink",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bullets/IMPACT_Bullet_Metal_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossLaserDeflect_2.wav": [
+      {
+        "source": "synth:tink",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bullets/IMPACT_Bullet_Metal_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossLaserDeflect_3.wav": [
+      {
+        "source": "synth:tink",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/IMPACTS/Bullets/IMPACT_Bullet_Metal_01_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      }
+    ],
+    "BossCountdown_1.wav": [
+      {
+        "source": "synth:countdown_beep",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/NEX/Sound effect/Lego/Lego connect4.wav",
+        "licence": "NEX team sound library (music-cell-shared-assets/Assets/NEX)"
+      }
+    ],
+    "BossLaugh_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/VOICES/Laugh/VOICE_Male_Hahaha_Psycho_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/MONSTERS_CREATURES/MONSTER_Growl_Deep_03_Long_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:sub_rumble",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossCrackGlow_1.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/BREAKS_SNAPS/CRACK_Deep_Medium_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:glow_sizzle",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossCrackGlow_2.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/BREAKS_SNAPS/BREAK_Crack_03_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:glow_sizzle",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ],
+    "BossCrackGlow_3.wav": [
+      {
+        "source": "music-cell-shared-assets/Assets/Universal Sound FX/BREAKS_SNAPS/CRACK_Deep_Medium_04_mono.wav",
+        "licence": "Universal Sound FX (royalty-free asset-store SFX pack, team-licensed; music-cell-shared-assets)"
+      },
+      {
+        "source": "synth:glow_sizzle",
+        "licence": "original, synthesized by Tools/Audio/boss_presets.py / synth_presets.py"
+      }
+    ]
+  },
+  "sfx_levels": {
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossBannerSlam_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.5,
+      "samples": 43313,
+      "seconds": 0.982
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossBrickGrow_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -16.5,
+      "samples": 23005,
+      "seconds": 0.522
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossBrickGrow_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -16.5,
+      "samples": 20873,
+      "seconds": 0.473
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossBrickGrow_3.wav": {
+      "peak_db": -4.82,
+      "short_lufs": -16.5,
+      "samples": 23500,
+      "seconds": 0.533
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossClapInhale_1.wav": {
+      "peak_db": -5.86,
+      "short_lufs": -14.03,
+      "samples": 35354,
+      "seconds": 0.802
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossClapWarning_1.wav": {
+      "peak_db": -9.08,
+      "short_lufs": -13.0,
+      "samples": 40563,
+      "seconds": 0.92
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossCountdown_1.wav": {
+      "peak_db": -5.57,
+      "short_lufs": -15.0,
+      "samples": 7001,
+      "seconds": 0.159
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossCrackGlow_1.wav": {
+      "peak_db": -3.27,
+      "short_lufs": -16.5,
+      "samples": 22003,
+      "seconds": 0.499
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossCrackGlow_2.wav": {
+      "peak_db": -4.21,
+      "short_lufs": -16.5,
+      "samples": 22003,
+      "seconds": 0.499
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossCrackGlow_3.wav": {
+      "peak_db": -4.96,
+      "short_lufs": -16.5,
+      "samples": 21999,
+      "seconds": 0.499
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossDevilWind_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.0,
+      "samples": 78301,
+      "seconds": 1.776
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossDevilWind_2.wav": {
+      "peak_db": -4.16,
+      "short_lufs": -13.01,
+      "samples": 78054,
+      "seconds": 1.77
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossExplode_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.14,
+      "samples": 112773,
+      "seconds": 2.557
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossExplode_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.14,
+      "samples": 105840,
+      "seconds": 2.4
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossGroundSlam_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.76,
+      "samples": 70502,
+      "seconds": 1.599
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossGroundSlam_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.76,
+      "samples": 62662,
+      "seconds": 1.421
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossHurt_1.wav": {
+      "peak_db": -3.27,
+      "short_lufs": -11.49,
+      "samples": 43404,
+      "seconds": 0.984
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossHurt_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -11.5,
+      "samples": 32387,
+      "seconds": 0.734
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossKnockout_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.5,
+      "samples": 96521,
+      "seconds": 2.189
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserDeflect_1.wav": {
+      "peak_db": -10.39,
+      "short_lufs": -20.0,
+      "samples": 8820,
+      "seconds": 0.2
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserDeflect_2.wav": {
+      "peak_db": -10.81,
+      "short_lufs": -20.0,
+      "samples": 8820,
+      "seconds": 0.2
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserDeflect_3.wav": {
+      "peak_db": -9.72,
+      "short_lufs": -20.0,
+      "samples": 8820,
+      "seconds": 0.2
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserHit_1.wav": {
+      "peak_db": -5.29,
+      "short_lufs": -17.0,
+      "samples": 9875,
+      "seconds": 0.224
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserHit_2.wav": {
+      "peak_db": -5.57,
+      "short_lufs": -17.0,
+      "samples": 10131,
+      "seconds": 0.23
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserHit_3.wav": {
+      "peak_db": -4.67,
+      "short_lufs": -17.0,
+      "samples": 8547,
+      "seconds": 0.194
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaserLoop_1.wav": {
+      "peak_db": -6.02,
+      "short_lufs": -18.5,
+      "samples": 44100,
+      "seconds": 1.0
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossLaugh_1.wav": {
+      "peak_db": -4.29,
+      "short_lufs": -12.0,
+      "samples": 80272,
+      "seconds": 1.82
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionHit_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -15.26,
+      "samples": 16508,
+      "seconds": 0.374
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionHit_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -15.26,
+      "samples": 15995,
+      "seconds": 0.363
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionLand_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.48,
+      "samples": 19558,
+      "seconds": 0.443
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossMinionThrow_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.5,
+      "samples": 32144,
+      "seconds": 0.729
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossPowerUpPickup_1.wav": {
+      "peak_db": -4.27,
+      "short_lufs": -13.0,
+      "samples": 38939,
+      "seconds": 0.883
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossPowerUpSpawn_1.wav": {
+      "peak_db": -6.34,
+      "short_lufs": -15.0,
+      "samples": 34480,
+      "seconds": 0.782
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRoar_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -11.5,
+      "samples": 86479,
+      "seconds": 1.961
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRoar_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -11.5,
+      "samples": 105840,
+      "seconds": 2.4
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockImpact_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -11.95,
+      "samples": 52242,
+      "seconds": 1.185
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockImpact_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -11.95,
+      "samples": 50418,
+      "seconds": 1.143
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockLock_1.wav": {
+      "peak_db": -10.0,
+      "short_lufs": -14.0,
+      "samples": 21534,
+      "seconds": 0.488
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockThrow_1.wav": {
+      "peak_db": -3.49,
+      "short_lufs": -13.5,
+      "samples": 38860,
+      "seconds": 0.881
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRockWhistle_1.wav": {
+      "peak_db": -8.12,
+      "short_lufs": -15.0,
+      "samples": 46290,
+      "seconds": 1.05
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketHit_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.04,
+      "samples": 38123,
+      "seconds": 0.864
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketHit_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.04,
+      "samples": 39247,
+      "seconds": 0.89
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketHit_3.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.04,
+      "samples": 39053,
+      "seconds": 0.886
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketLaunch_1.wav": {
+      "peak_db": -4.14,
+      "short_lufs": -13.5,
+      "samples": 32055,
+      "seconds": 0.727
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketLaunch_2.wav": {
+      "peak_db": -4.35,
+      "short_lufs": -13.5,
+      "samples": 29430,
+      "seconds": 0.667
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossRocketLaunch_3.wav": {
+      "peak_db": -3.75,
+      "short_lufs": -13.5,
+      "samples": 34955,
+      "seconds": 0.793
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossSpikeSlam_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.81,
+      "samples": 51751,
+      "seconds": 1.173
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossTakeOff_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.5,
+      "samples": 77027,
+      "seconds": 1.747
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossTired_1.wav": {
+      "peak_db": -5.57,
+      "short_lufs": -14.01,
+      "samples": 90177,
+      "seconds": 2.045
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossTransform_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.26,
+      "samples": 132293,
+      "seconds": 3.0
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossVehicleHit_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.5,
+      "samples": 15108,
+      "seconds": 0.343
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossVehicleHit_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -12.5,
+      "samples": 16029,
+      "seconds": 0.363
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossVehicleHit_3.wav": {
+      "peak_db": -3.26,
+      "short_lufs": -12.5,
+      "samples": 16556,
+      "seconds": 0.375
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossWake_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -13.07,
+      "samples": 52522,
+      "seconds": 1.191
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossWallGrow_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -14.4,
+      "samples": 45182,
+      "seconds": 1.025
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossWallSmash_1.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -14.36,
+      "samples": 52920,
+      "seconds": 1.2
+    },
+    "Assets/Audio/Sfx/Ninjago/BossBattle/BossWallSmash_2.wav": {
+      "peak_db": -3.05,
+      "short_lufs": -14.36,
+      "samples": 40792,
+      "seconds": 0.925
+    }
+  },
+  "loudness_plan": {
+    "sfx_peak_ceiling_dbfs": -3.0,
+    "bgm_integrated_lufs": -14.5,
+    "bgm_peak_ceiling_dbfs": -1.0,
+    "sfx_categories_short_lufs": {
+      "impact_big": -11.0,
+      "impact": -12.5,
+      "voice": -11.5,
+      "action": -13.5,
+      "tell": -14.0,
+      "frequent": -16.5,
+      "soft": -20.0,
+      "loop": -18.5
+    }
+  },
+  "unity_import": {
+    "sfx": {
+      "loadType": "DecompressOnLoad",
+      "compressionFormat": "ADPCM",
+      "preloadAudioData": true,
+      "forceToMono": false,
+      "normalize": false,
+      "loadInBackground": false,
+      "ambisonic": false,
+      "why": "files are already mono and loudness-matched; forceToMono+normalize (KidsAudio.Import) would re-normalise every clip to 0 dBFS and undo the levels; preload avoids a first-play hitch"
+    },
+    "bgm": {
+      "loadType": "Streaming",
+      "compressionFormat": "Vorbis",
+      "quality": 1.0,
+      "preloadAudioData": false,
+      "forceToMono": false,
+      "normalize": false,
+      "why": "as KidsAudio.RegisterMusic and the other Ninjago loops (quality 1 = importer default); keep the exact sample count (no trimming) so AudioSource.loop wraps seamlessly"
+    },
+    "loops": {
+      "BossLaserLoop_1.wav": "SfxManager.StartLoop (AudioSource.loop = true); exactly 44100 samples"
+    }
+  }
+}

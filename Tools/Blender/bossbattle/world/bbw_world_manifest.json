@@ -1,0 +1,1510 @@
+{
+ "BB_Arch_A": {
+  "bounds_max_unity": [
+   6.95,
+   8.923,
+   0.75
+  ],
+  "bounds_min_unity": [
+   -6.95,
+   0.0,
+   -0.75
+  ],
+  "budget": 800,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Arch_A.fbx",
+  "kind": "arena",
+  "name": "BB_Arch_A",
+  "notes": "torii arch spanning the road; pillars at x +-5",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     6.95,
+     8.923,
+     0.75
+    ],
+    "bounds_min_unity": [
+     -6.95,
+     0.0,
+     -0.75
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Arch",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 436
+   }
+  ],
+  "pivot": "bottom",
+  "shadows": true,
+  "size_unity": [
+   13.9,
+   8.923,
+   1.5
+  ],
+  "tris": 436
+ },
+ "BB_Arch_B": {
+  "bounds_max_unity": [
+   8.925,
+   8.923,
+   4.352
+  ],
+  "bounds_min_unity": [
+   -6.95,
+   -0.665,
+   -0.75
+  ],
+  "budget": 800,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Arch_B.fbx",
+  "kind": "arena",
+  "name": "BB_Arch_B",
+  "notes": "torii arch spanning the road; pillars at x +-5",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     8.925,
+     8.923,
+     4.352
+    ],
+    "bounds_min_unity": [
+     -6.95,
+     -0.665,
+     -0.75
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Arch",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 440
+   }
+  ],
+  "pivot": "free",
+  "shadows": true,
+  "size_unity": [
+   15.875,
+   9.587,
+   5.102
+  ],
+  "tris": 440
+ },
+ "BB_Backdrop_Ridge": {
+  "bounds_max_unity": [
+   120.0,
+   58.347,
+   16.0
+  ],
+  "bounds_min_unity": [
+   -120.0,
+   0.0,
+   0.0
+  ],
+  "budget": 700,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Backdrop_Ridge.fbx",
+  "kind": "arena",
+  "name": "BB_Backdrop_Ridge",
+  "notes": "backdrop mountains; front face at z 0; place at z ~100",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     120.0,
+     58.347,
+     16.0
+    ],
+    "bounds_min_unity": [
+     -120.0,
+     0.0,
+     0.0
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Ridge",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 176
+   }
+  ],
+  "pivot": "front",
+  "shadows": false,
+  "size_unity": [
+   240.0,
+   58.347,
+   16.0
+  ],
+  "tris": 176
+ },
+ "BB_Backdrop_Temple": {
+  "bounds_max_unity": [
+   12.359,
+   45.08,
+   5.579
+  ],
+  "bounds_min_unity": [
+   -11.454,
+   0.0,
+   -5.495
+  ],
+  "budget": 600,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Backdrop_Temple.fbx",
+  "kind": "arena",
+  "name": "BB_Backdrop_Temple",
+  "notes": "backdrop temple on a spire; place at z ~100-115",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     12.359,
+     45.08,
+     5.579
+    ],
+    "bounds_min_unity": [
+     -11.454,
+     0.0,
+     -5.495
+    ],
+    "emissive_faces": 54,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Temple",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 318
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   23.813,
+   45.08,
+   11.074
+  ],
+  "tris": 318
+ },
+ "BB_Brazier": {
+  "bounds_max_unity": [
+   0.554,
+   2.391,
+   0.554
+  ],
+  "bounds_min_unity": [
+   -0.554,
+   0.0,
+   -0.554
+  ],
+  "budget": 360,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Brazier.fbx",
+  "kind": "arena",
+  "name": "BB_Brazier",
+  "notes": "stone brazier; Flame child flickers; ambience <= HDR 1.3",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.554,
+     1.66,
+     0.554
+    ],
+    "bounds_min_unity": [
+     -0.554,
+     0.0,
+     -0.554
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Brazier",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 186
+   },
+   {
+    "bounds_max_unity": [
+     0.401,
+     2.391,
+     0.278
+    ],
+    "bounds_min_unity": [
+     -0.356,
+     1.588,
+     -0.362
+    ],
+    "emissive_faces": 76,
+    "local_position_unity": [
+     -0.0,
+     1.66,
+     -0.0
+    ],
+    "name": "Flame",
+    "parent": "Brazier",
+    "pivot_unity": [
+     0.0,
+     1.66,
+     0.0
+    ],
+    "tris": 136
+   }
+  ],
+  "pivot": "bottom",
+  "shadows": false,
+  "size_unity": [
+   1.109,
+   2.391,
+   1.109
+  ],
+  "tris": 322
+ },
+ "BB_Brick": {
+  "bounds_max_unity": [
+   1.0,
+   1.23,
+   0.35
+  ],
+  "bounds_min_unity": [
+   -1.0,
+   0.0,
+   -0.35
+  ],
+  "budget": 160,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Brick.fbx",
+  "kind": "prop",
+  "name": "BB_Brick",
+  "notes": "lane-cell brick barrier; scale root Y 0->1 to grow",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     1.0,
+     1.23,
+     0.35
+    ],
+    "bounds_min_unity": [
+     -1.0,
+     0.0,
+     -0.35
+    ],
+    "emissive_faces": 8,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Brick",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 118
+   }
+  ],
+  "pivot": "bottom",
+  "shadows": false,
+  "size_unity": [
+   2.0,
+   1.23,
+   0.7
+  ],
+  "tris": 118
+ },
+ "BB_Cliff_L_A": {
+  "bounds_max_unity": [
+   0.49,
+   13.267,
+   10.388
+  ],
+  "bounds_min_unity": [
+   -10.152,
+   -0.153,
+   -10.499
+  ],
+  "budget": 800,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Cliff_L_A.fbx",
+  "kind": "arena",
+  "name": "BB_Cliff_L_A",
+  "notes": "canyon cliff chunk; local x 0 = cliff foot at the road side",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.49,
+     13.267,
+     10.388
+    ],
+    "bounds_min_unity": [
+     -10.152,
+     -0.153,
+     -10.499
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Cliff",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 390
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   10.643,
+   13.421,
+   20.886
+  ],
+  "tris": 390
+ },
+ "BB_Cliff_L_B": {
+  "bounds_max_unity": [
+   0.631,
+   12.672,
+   10.447
+  ],
+  "bounds_min_unity": [
+   -10.222,
+   -0.153,
+   -10.435
+  ],
+  "budget": 800,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Cliff_L_B.fbx",
+  "kind": "arena",
+  "name": "BB_Cliff_L_B",
+  "notes": "canyon cliff chunk; local x 0 = cliff foot at the road side",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.631,
+     12.672,
+     10.447
+    ],
+    "bounds_min_unity": [
+     -10.222,
+     -0.153,
+     -10.435
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Cliff",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 374
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   10.853,
+   12.825,
+   20.882
+  ],
+  "tris": 374
+ },
+ "BB_Cliff_R_A": {
+  "bounds_max_unity": [
+   10.026,
+   12.348,
+   10.495
+  ],
+  "bounds_min_unity": [
+   -0.53,
+   -0.153,
+   -10.406
+  ],
+  "budget": 800,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Cliff_R_A.fbx",
+  "kind": "arena",
+  "name": "BB_Cliff_R_A",
+  "notes": "canyon cliff chunk; local x 0 = cliff foot at the road side",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     10.026,
+     12.348,
+     10.495
+    ],
+    "bounds_min_unity": [
+     -0.53,
+     -0.153,
+     -10.406
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Cliff",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 374
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   10.556,
+   12.501,
+   20.902
+  ],
+  "tris": 374
+ },
+ "BB_Cliff_R_B": {
+  "bounds_max_unity": [
+   8.609,
+   13.393,
+   10.319
+  ],
+  "bounds_min_unity": [
+   -0.533,
+   -0.153,
+   -10.474
+  ],
+  "budget": 800,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Cliff_R_B.fbx",
+  "kind": "arena",
+  "name": "BB_Cliff_R_B",
+  "notes": "canyon cliff chunk; local x 0 = cliff foot at the road side",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     8.609,
+     13.393,
+     10.319
+    ],
+    "bounds_min_unity": [
+     -0.533,
+     -0.153,
+     -10.474
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Cliff",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 390
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   9.142,
+   13.546,
+   20.793
+  ],
+  "tris": 390
+ },
+ "BB_CloudSlab_A": {
+  "bounds_max_unity": [
+   19.015,
+   4.885,
+   13.309
+  ],
+  "bounds_min_unity": [
+   -11.812,
+   -0.294,
+   -13.091
+  ],
+  "budget": 650,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_CloudSlab_A.fbx",
+  "kind": "arena",
+  "name": "BB_CloudSlab_A",
+  "notes": "storm cloud slab; pivot centre of the flat base",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     19.015,
+     4.885,
+     13.309
+    ],
+    "bounds_min_unity": [
+     -11.812,
+     -0.294,
+     -13.091
+    ],
+    "emissive_faces": 3,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Cloud",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 380
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   30.827,
+   5.178,
+   26.4
+  ],
+  "tris": 380
+ },
+ "BB_CloudSlab_B": {
+  "bounds_max_unity": [
+   20.569,
+   4.105,
+   10.676
+  ],
+  "bounds_min_unity": [
+   -17.938,
+   -0.255,
+   -12.822
+  ],
+  "budget": 650,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_CloudSlab_B.fbx",
+  "kind": "arena",
+  "name": "BB_CloudSlab_B",
+  "notes": "storm cloud slab; pivot centre of the flat base",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     20.569,
+     4.105,
+     10.676
+    ],
+    "bounds_min_unity": [
+     -17.938,
+     -0.255,
+     -12.822
+    ],
+    "emissive_faces": 6,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Cloud",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 380
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   38.508,
+   4.36,
+   23.498
+  ],
+  "tris": 380
+ },
+ "BB_CrackGlow": {
+  "bounds_max_unity": [
+   1.023,
+   0.008,
+   0.715
+  ],
+  "bounds_min_unity": [
+   -1.023,
+   0.0,
+   -0.708
+  ],
+  "budget": 300,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_CrackGlow.fbx",
+  "kind": "prop",
+  "name": "BB_CrackGlow",
+  "notes": "crack glow decal for one lane cell",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     1.023,
+     0.008,
+     0.715
+    ],
+    "bounds_min_unity": [
+     -1.023,
+     0.0,
+     -0.708
+    ],
+    "emissive_faces": 44,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Crack",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 132
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   2.047,
+   0.008,
+   1.422
+  ],
+  "tris": 132
+ },
+ "BB_FloatingIsle_A": {
+  "bounds_max_unity": [
+   5.356,
+   4.0,
+   5.963
+  ],
+  "bounds_min_unity": [
+   -5.512,
+   -9.71,
+   -5.517
+  ],
+  "budget": 900,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_FloatingIsle_A.fbx",
+  "kind": "arena",
+  "name": "BB_FloatingIsle_A",
+  "notes": "floating ruined island; pivot centre of the top surface",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     5.356,
+     4.0,
+     5.963
+    ],
+    "bounds_min_unity": [
+     -5.512,
+     -9.71,
+     -5.517
+    ],
+    "emissive_faces": 6,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Isle",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 350
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   10.868,
+   13.71,
+   11.48
+  ],
+  "tris": 350
+ },
+ "BB_FloatingIsle_B": {
+  "bounds_max_unity": [
+   5.714,
+   4.432,
+   5.397
+  ],
+  "bounds_min_unity": [
+   -5.363,
+   -9.833,
+   -5.596
+  ],
+  "budget": 900,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_FloatingIsle_B.fbx",
+  "kind": "arena",
+  "name": "BB_FloatingIsle_B",
+  "notes": "floating ruined island; pivot centre of the top surface",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     5.714,
+     4.432,
+     5.397
+    ],
+    "bounds_min_unity": [
+     -5.363,
+     -9.833,
+     -5.596
+    ],
+    "emissive_faces": 6,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Isle",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 314
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   11.077,
+   14.265,
+   10.993
+  ],
+  "tris": 314
+ },
+ "BB_LaserBolt": {
+  "bounds_max_unity": [
+   0.1,
+   0.087,
+   0.6
+  ],
+  "bounds_min_unity": [
+   -0.1,
+   -0.087,
+   -0.6
+  ],
+  "budget": 48,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_LaserBolt.fbx",
+  "kind": "prop",
+  "name": "BB_LaserBolt",
+  "notes": "laser bolt along +Z",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.1,
+     0.087,
+     0.6
+    ],
+    "bounds_min_unity": [
+     -0.1,
+     -0.087,
+     -0.6
+    ],
+    "emissive_faces": 18,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Bolt",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 24
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   0.2,
+   0.173,
+   1.2
+  ],
+  "tris": 24
+ },
+ "BB_Moon": {
+  "bounds_max_unity": [
+   14.2,
+   14.2,
+   0.35
+  ],
+  "bounds_min_unity": [
+   -14.2,
+   -14.2,
+   -0.05
+  ],
+  "budget": 160,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Moon.fbx",
+  "kind": "arena",
+  "name": "BB_Moon",
+  "notes": "moon disc facing -Z; radius 10",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     14.2,
+     14.2,
+     0.35
+    ],
+    "bounds_min_unity": [
+     -14.2,
+     -14.2,
+     -0.05
+    ],
+    "emissive_faces": 47,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Moon",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 141
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   28.4,
+   28.4,
+   0.4
+  ],
+  "tris": 141
+ },
+ "BB_PowerCrate": {
+  "bounds_max_unity": [
+   0.487,
+   0.55,
+   0.487
+  ],
+  "bounds_min_unity": [
+   -0.487,
+   -0.45,
+   -0.487
+  ],
+  "budget": 300,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_PowerCrate.fbx",
+  "kind": "prop",
+  "name": "BB_PowerCrate",
+  "notes": "rocket power-up crate; spins/bobs in code; centred",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.487,
+     0.55,
+     0.487
+    ],
+    "bounds_min_unity": [
+     -0.487,
+     -0.45,
+     -0.487
+    ],
+    "emissive_faces": 48,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Crate",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 204
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   0.974,
+   1.0,
+   0.974
+  ],
+  "tris": 204
+ },
+ "BB_Reticle": {
+  "bounds_max_unity": [
+   1.0,
+   0.0,
+   1.0
+  ],
+  "bounds_min_unity": [
+   -1.0,
+   -0.01,
+   -1.0
+  ],
+  "budget": 200,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Reticle.fbx",
+  "kind": "prop",
+  "name": "BB_Reticle",
+  "notes": "rock reticle decal; Ring/RingLocked/Shadow siblings",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.989,
+     0.0,
+     0.989
+    ],
+    "bounds_min_unity": [
+     -0.989,
+     0.0,
+     -0.989
+    ],
+    "emissive_faces": 32,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Ring",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 64
+   },
+   {
+    "bounds_max_unity": [
+     1.0,
+     0.0,
+     1.0
+    ],
+    "bounds_min_unity": [
+     -1.0,
+     0.0,
+     -1.0
+    ],
+    "emissive_faces": 28,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "RingLocked",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 52
+   },
+   {
+    "bounds_max_unity": [
+     0.72,
+     -0.01,
+     0.72
+    ],
+    "bounds_min_unity": [
+     -0.72,
+     -0.01,
+     -0.72
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Shadow",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 16
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   2.0,
+   0.01,
+   2.0
+  ],
+  "tris": 132
+ },
+ "BB_RoadSegment": {
+  "bounds_max_unity": [
+   3.2,
+   0.0,
+   10.0
+  ],
+  "bounds_min_unity": [
+   -3.2,
+   0.0,
+   -10.0
+  ],
+  "budget": 400,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_RoadSegment.fbx",
+  "kind": "arena",
+  "name": "BB_RoadSegment",
+  "notes": "road surface 6.4 x 20 m; pivot centre of the top face",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     3.2,
+     0.0,
+     10.0
+    ],
+    "bounds_min_unity": [
+     -3.2,
+     0.0,
+     -10.0
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Road",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 160
+   }
+  ],
+  "pivot": "top",
+  "shadows": false,
+  "size_unity": [
+   6.4,
+   0.0,
+   20.0
+  ],
+  "tris": 160
+ },
+ "BB_Rock": {
+  "bounds_max_unity": [
+   0.711,
+   0.686,
+   0.634
+  ],
+  "bounds_min_unity": [
+   -0.632,
+   -0.583,
+   -0.629
+  ],
+  "budget": 160,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Rock.fbx",
+  "kind": "prop",
+  "name": "BB_Rock",
+  "notes": "thrown rock; tumbles; centred",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.711,
+     0.686,
+     0.634
+    ],
+    "bounds_min_unity": [
+     -0.632,
+     -0.583,
+     -0.629
+    ],
+    "emissive_faces": 20,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Rock",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 142
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   1.344,
+   1.269,
+   1.263
+  ],
+  "tris": 142
+ },
+ "BB_Rocket": {
+  "bounds_max_unity": [
+   0.157,
+   0.157,
+   0.45
+  ],
+  "bounds_min_unity": [
+   -0.157,
+   -0.157,
+   -0.95
+  ],
+  "budget": 150,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Rocket.fbx",
+  "kind": "prop",
+  "name": "BB_Rocket",
+  "notes": "homing rocket along +Z; Exhaust child flickers",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.157,
+     0.157,
+     0.45
+    ],
+    "bounds_min_unity": [
+     -0.157,
+     -0.157,
+     -0.47
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Rocket",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 106
+   },
+   {
+    "bounds_max_unity": [
+     0.121,
+     0.14,
+     -0.45
+    ],
+    "bounds_min_unity": [
+     -0.121,
+     -0.14,
+     -0.95
+    ],
+    "emissive_faces": 13,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.45
+    ],
+    "name": "Exhaust",
+    "parent": "Rocket",
+    "pivot_unity": [
+     0.0,
+     0.0,
+     -0.45
+    ],
+    "tris": 22
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   0.314,
+   0.314,
+   1.4
+  ],
+  "tris": 128
+ },
+ "BB_Shoulder": {
+  "bounds_max_unity": [
+   2.578,
+   0.455,
+   10.02
+  ],
+  "bounds_min_unity": [
+   0.0,
+   -0.02,
+   -10.027
+  ],
+  "budget": 450,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_Shoulder.fbx",
+  "kind": "arena",
+  "name": "BB_Shoulder",
+  "notes": "road shoulder; local x 0 = road edge, +x outward; y 0 ground",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     2.578,
+     0.455,
+     10.02
+    ],
+    "bounds_min_unity": [
+     0.0,
+     -0.02,
+     -10.027
+    ],
+    "emissive_faces": 36,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Shoulder",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 416
+   }
+  ],
+  "pivot": "free",
+  "shadows": false,
+  "size_unity": [
+   2.578,
+   0.475,
+   20.047
+  ],
+  "tris": 416
+ },
+ "BB_SideWall": {
+  "bounds_max_unity": [
+   0.5,
+   2.13,
+   3.0
+  ],
+  "bounds_min_unity": [
+   -0.5,
+   0.0,
+   -3.0
+  ],
+  "budget": 800,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_SideWall.fbx",
+  "kind": "prop",
+  "name": "BB_SideWall",
+  "notes": "minion side wall along the road edge; grows from the floor",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.5,
+     2.13,
+     3.0
+    ],
+    "bounds_min_unity": [
+     -0.5,
+     0.0,
+     -3.0
+    ],
+    "emissive_faces": 0,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Wall",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 636
+   }
+  ],
+  "pivot": "bottom",
+  "shadows": false,
+  "size_unity": [
+   1.0,
+   2.13,
+   6.0
+  ],
+  "tris": 636
+ },
+ "BB_SpikeWall": {
+  "bounds_max_unity": [
+   1.63,
+   1.88,
+   1.5
+  ],
+  "bounds_min_unity": [
+   -0.5,
+   -1.75,
+   -1.5
+  ],
+  "budget": 900,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_SpikeWall.fbx",
+  "kind": "prop",
+  "name": "BB_SpikeWall",
+  "notes": "clap spike wall; Spikes child slides out +X",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.6,
+     1.88,
+     1.5
+    ],
+    "bounds_min_unity": [
+     -0.5,
+     -1.75,
+     -1.5
+    ],
+    "emissive_faces": 12,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Wall",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 444
+   },
+   {
+    "bounds_max_unity": [
+     1.63,
+     1.191,
+     1.091
+    ],
+    "bounds_min_unity": [
+     0.58,
+     -1.191,
+     -1.091
+    ],
+    "emissive_faces": 52,
+    "local_position_unity": [
+     0.5,
+     0.0,
+     -0.0
+    ],
+    "name": "Spikes",
+    "parent": "Wall",
+    "pivot_unity": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "tris": 156
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   2.13,
+   3.63,
+   3.0
+  ],
+  "tris": 600
+ },
+ "BB_WindGust": {
+  "bounds_max_unity": [
+   0.724,
+   0.947,
+   0.688
+  ],
+  "bounds_min_unity": [
+   -0.724,
+   -0.947,
+   -0.688
+  ],
+  "budget": 360,
+  "fbx": "ninjago-unity/Assets/Models/Ninjago/BossBattle/World/BB_WindGust.fbx",
+  "kind": "prop",
+  "name": "BB_WindGust",
+  "notes": "devil wind gust column; spin about Y",
+  "parts": [
+   {
+    "bounds_max_unity": [
+     0.724,
+     0.947,
+     0.688
+    ],
+    "bounds_min_unity": [
+     -0.724,
+     -0.947,
+     -0.688
+    ],
+    "emissive_faces": 72,
+    "local_position_unity": [
+     -0.0,
+     0.0,
+     -0.0
+    ],
+    "name": "Gust",
+    "parent": null,
+    "pivot_unity": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tris": 296
+   }
+  ],
+  "pivot": "centre",
+  "shadows": false,
+  "size_unity": [
+   1.449,
+   1.893,
+   1.377
+  ],
+  "tris": 296
+ }
+}

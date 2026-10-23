@@ -31,6 +31,9 @@ namespace Nex
             Guard = 48,
             Call = 49,
             Build = 50,
+            // Boss Battle
+            BossBattleRoad = 51,
+            BossBattleSky = 52,
         }
 
         public enum StingerType

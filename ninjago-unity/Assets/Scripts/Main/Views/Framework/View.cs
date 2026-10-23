@@ -71,6 +71,18 @@ namespace Nex
             ChapterEnding,
             ForgeHome,
             ForgeEditor,
+
+            // Boss Battle (append only).
+            BossBattleStart,
+            BossIntro,
+            BossRoad,
+            BossTransform,
+            BossSky,
+            BossFinale,
+            BossKnockout,
+            BossPause,
+            BossBattleResult,
+            BossSetup,
         }
 
         /// <summary>

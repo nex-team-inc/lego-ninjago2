@@ -409,6 +409,111 @@ MonoBehaviour:
       value:
         clips:
         - {fileID: 8300000, guid: 73f43ecfafe584ba5ac40f09b9690a02, type: 3}
+    - key: 800
+      value:
+        clips: []
+    - key: 801
+      value:
+        clips: []
+    - key: 802
+      value:
+        clips: []
+    - key: 803
+      value:
+        clips: []
+    - key: 804
+      value:
+        clips: []
+    - key: 805
+      value:
+        clips: []
+    - key: 806
+      value:
+        clips: []
+    - key: 807
+      value:
+        clips: []
+    - key: 808
+      value:
+        clips: []
+    - key: 809
+      value:
+        clips: []
+    - key: 810
+      value:
+        clips: []
+    - key: 811
+      value:
+        clips: []
+    - key: 812
+      value:
+        clips: []
+    - key: 813
+      value:
+        clips: []
+    - key: 814
+      value:
+        clips: []
+    - key: 815
+      value:
+        clips: []
+    - key: 816
+      value:
+        clips: []
+    - key: 817
+      value:
+        clips: []
+    - key: 818
+      value:
+        clips: []
+    - key: 819
+      value:
+        clips: []
+    - key: 820
+      value:
+        clips: []
+    - key: 821
+      value:
+        clips: []
+    - key: 822
+      value:
+        clips: []
+    - key: 823
+      value:
+        clips: []
+    - key: 824
+      value:
+        clips: []
+    - key: 825
+      value:
+        clips: []
+    - key: 826
+      value:
+        clips: []
+    - key: 827
+      value:
+        clips: []
+    - key: 828
+      value:
+        clips: []
+    - key: 829
+      value:
+        clips: []
+    - key: 830
+      value:
+        clips: []
+    - key: 831
+      value:
+        clips: []
+    - key: 832
+      value:
+        clips: []
+    - key: 833
+      value:
+        clips: []
+    - key: 834
+      value:
+        clips: []
 --- !u!82 &3197796902356267032
 AudioSource:
   m_ObjectHideFlags: 0

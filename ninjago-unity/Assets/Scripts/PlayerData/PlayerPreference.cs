@@ -27,5 +27,15 @@ namespace Nex
         public bool screenShake = true;
 
         #endregion
+
+        #region Boss Battle
+
+        // BossDifficulty as int: 0 easy, 1 normal.
+        public int bossDifficulty = 1;
+        // Seen once: OK/Back skips the cutscene next time.
+        public bool bossSeenIntro;
+        public bool bossSeenTransform;
+
+        #endregion
     }
 }

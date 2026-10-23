@@ -84,6 +84,10 @@ MonoBehaviour:
       value: {fileID: 8300000, guid: 206f29c32cd894fe98af8fe98221cb64, type: 3}
     - key: 50
       value: {fileID: 8300000, guid: 024df251436bc47cbb1cb4e02761c34b, type: 3}
+    - key: 51
+      value: {fileID: 0}
+    - key: 52
+      value: {fileID: 0}
   secondarySource: {fileID: 0}
   stingerSource: {fileID: 0}
   stingerDict:

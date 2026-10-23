@@ -49,6 +49,8 @@ namespace Nex
         [SerializeField] ChapterTuning chapterTuning = null!;
         [Header("Chapter Forge Config")]
         [SerializeField] ForgeConfig forgeConfig = null!;
+        [Header("Ninjago Boss Battle Tuning")]
+        [SerializeField] BossBattleConfig bossBattleConfig = null!;
         public string MainScene => mainScene;
         public string ARGameScene => arGameScene;
         public string NonARGameScene => nonARGameScene;
@@ -71,6 +73,7 @@ namespace Nex
         public ForgeCatalog ForgeCatalog => forgeCatalog;
         public ChapterTuning ChapterTuning => chapterTuning;
         public ForgeConfig ForgeConfig => forgeConfig;
+        public BossBattleConfig BossBattleConfig => bossBattleConfig;
 
         public GameModeType SelectedMode { get; set; }
         /// <summary>The chapter mode the Chapter game plays (built-in or player-made id).</summary>

@@ -446,6 +446,97 @@ namespace Nex
         [DebugOrder(-979), Description("Chapter: Stealth Clear Zone (m)"), NumericSteps(Steps = 1, Min = 4, Max = 60), ES3NonSerializable]
         public float ChapterClearZone { get => Chapter.ClearZoneMeters; set => Chapter.ClearZoneMeters = value; }
 
+        // Boss Battle: the saved jumps and cheats apply when a battle starts (debug builds only, keep them off by
+        // default); the config rows edit BossBattleConfig live (session only); the method rows act on the running battle
+        // through BossBattleDebugHooks. The config rows read 0 until GameConfigsManager has a BossBattleConfig.
+        [DebugOrder(-1100), Description("Boss: God Mode (the vehicle takes no damage)")]
+        public bool bossGodMode;
+        [DebugOrder(-1099), Description("Boss: Skip Cutscenes")]
+        public bool bossSkipCutscenes;
+        [DebugOrder(-1098), Description("Boss: Start Phase (-1 = off, 0 road, 1 sky)"), NumericSteps(IntSteps = 1, IntMin = -1, IntMax = 1)]
+        public int bossStartPhase = -1;
+        [DebugOrder(-1097), Description("Boss: Force Beat (-1 = off; 1 slam, 2 rock, 3 minion, 4 power-up, 10 wind, 11 laser, 12 clap)"),
+         NumericSteps(IntSteps = 1, IntMin = -1, IntMax = 13)]
+        public int bossForceBeat = -1;
+
+        [DebugOrder(-1090), Description("Boss: Hearts (Normal)"), NumericSteps(IntSteps = 1, IntMin = 1, IntMax = 12), ES3NonSerializable]
+        public int BossHearts { get => Boss != null ? Boss.NormalHearts : 0; set { if (Boss != null) Boss.NormalHearts = value; } }
+        [DebugOrder(-1089), Description("Boss: Rock Lock (s)"), NumericSteps(Steps = 0.1, Min = 0.3, Max = 4), ES3NonSerializable]
+        public float BossRockLock { get => Boss != null ? Boss.Rock.lockSeconds : 0f; set { if (Boss != null) Boss.Rock.lockSeconds = value; } }
+        [DebugOrder(-1088), Description("Boss: Minion Tick (s)"), NumericSteps(Steps = 0.25, Min = 0.5, Max = 8), ES3NonSerializable]
+        public float BossMinionTick { get => Boss != null ? Boss.Minion.tickSeconds : 0f; set { if (Boss != null) Boss.Minion.tickSeconds = value; } }
+        [DebugOrder(-1087), Description("Boss: Slam Row Spacing (s, every slam)"), NumericSteps(Steps = 0.1, Min = 0.8, Max = 4), ES3NonSerializable]
+        public float BossSlamSpacing { get => Boss != null ? Boss.SlamRowSpacing : 0f; set { if (Boss != null) Boss.SlamRowSpacing = value; } }
+        [DebugOrder(-1086), Description("Boss: Wind Spacing (s, first barrage)"), NumericSteps(Steps = 0.1, Min = 0.8, Max = 4), ES3NonSerializable]
+        public float BossWindSpacing { get => Boss != null ? Boss.Wind.spacingStart : 0f; set { if (Boss != null) Boss.Wind.spacingStart = value; } }
+        [DebugOrder(-1085), Description("Boss: Laser Damage (x)"), NumericSteps(Steps = 0.25, Min = 0, Max = 10), ES3NonSerializable]
+        public float BossLaserDamage { get => Boss != null ? Boss.Laser.damageScale : 0f; set { if (Boss != null) Boss.Laser.damageScale = value; } }
+        [DebugOrder(-1084), Description("Boss: Laser Hit Radius (m)"), NumericSteps(Steps = 0.05, Min = 0.2, Max = 3), ES3NonSerializable]
+        public float BossLaserRadius { get => Boss != null ? Boss.Laser.hitRadius : 0f; set { if (Boss != null) Boss.Laser.hitRadius = value; } }
+        [DebugOrder(-1083), Description("Boss: Clap Warning, Normal (s)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 5), ES3NonSerializable]
+        public float BossClapWarn { get => Boss != null ? Boss.Clap.WarnSeconds(0) : 0f; set { if (Boss != null) Boss.Clap.SetWarnSeconds(0, value); } }
+        [DebugOrder(-1082), Description("Boss: Clap Warning, Large (s)"), NumericSteps(Steps = 0.1, Min = 0.5, Max = 5), ES3NonSerializable]
+        public float BossClapWarnLarge { get => Boss != null ? Boss.Clap.WarnSeconds(1) : 0f; set { if (Boss != null) Boss.Clap.SetWarnSeconds(1, value); } }
+
+        [DebugOrder(-1070), Description("Boss: Skip To Sky (phase 2)")]
+        public void BossSkipToSky()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {BossBattleDebugHooks.SkipToSky()}");
+#endif
+        }
+
+        [DebugOrder(-1069), Description("Boss: Damage 10%")]
+        public void BossDamage10()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {BossBattleDebugHooks.SetBossHpPercent(System.Math.Max(0f, BossBattleDebugHooks.BossHpPercent - 10f))}");
+#endif
+        }
+
+        [DebugOrder(-1068), Description("Boss: Grant Power-Up")]
+        public void BossGrantPowerUp()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {BossBattleDebugHooks.GrantPowerUp()}");
+#endif
+        }
+
+        [DebugOrder(-1067), Description("Boss: Play The Force Beat Now"), SaveBeforeInvoking]
+        public void BossPlayForcedBeat()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {BossBattleDebugHooks.ForceBeat(bossForceBeat)}");
+#endif
+        }
+
+        [DebugOrder(-1066), Description("Boss: Win Now")]
+        public void BossWinNow()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {BossBattleDebugHooks.WinNow()}");
+#endif
+        }
+
+        [DebugOrder(-1065), Description("Boss: Knock Out Now")]
+        public void BossKnockOut()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {BossBattleDebugHooks.KnockOutNow()}");
+#endif
+        }
+
+        [DebugOrder(-1064), Description("Boss: Log Status")]
+        public void BossLogStatus()
+        {
+#if ENABLE_DEBUG_SETTINGS || DEVELOPMENT_BUILD || UNITY_EDITOR
+            UnityEngine.Debug.Log($"[DebugSettings] {BossBattleDebugHooks.Status()}");
+#endif
+        }
+
+        [DebugOrder(-1050), Description("Save: Clear Boss Battle Checkpoint"), SaveBeforeInvoking]
+        public void BossClearSave() => PlayerDataManager.Instance.ClearBossBattleSave();
+
         static FightConfig Fight => GameConfigsManager.Instance.FightConfig;
         static ChaseConfig Chase => GameConfigsManager.Instance.ChaseConfig;
         static ChaseConfig.VehicleSettings Car => Chase.GetVehicle(VehicleType.Car);
@@ -463,6 +554,17 @@ namespace Nex
         static CallConfig Call => GameConfigsManager.Instance.CallConfig;
         static BuildConfig Build => GameConfigsManager.Instance.BuildConfig;
         static ChapterTuning Chapter => GameConfigsManager.Instance.ChapterTuning;
+        // Null until the GameConfigsManager prefab is wired (the Boss rows then read 0 instead of throwing in the panel).
+        static BossBattleConfig? Boss
+        {
+            get
+            {
+                var configs = GameConfigsManager.Instance;
+                if (configs == null) return null;
+                var config = configs.BossBattleConfig;
+                return config != null ? config : null;
+            }
+        }
         static EarthSealConfig.WaveSettings W1 => EarthSeal.GetWave(EarthSealWave.Wave1);
         static EarthSealConfig.WaveSettings W2 => EarthSeal.GetWave(EarthSealWave.Wave2);
         static EarthSealConfig.WaveSettings W3 => EarthSeal.GetWave(EarthSealWave.Wave3);

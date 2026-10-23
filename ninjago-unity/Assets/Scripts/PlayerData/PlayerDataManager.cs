@@ -348,6 +348,73 @@ namespace Nex
 
         #endregion
 
+        #region Boss Battle Save
+
+        // Checkpoints are saved at calm moments only (never mid-attack); the file is rewritten on every save. Own key, so a
+        // bad checkpoint never resets the bests in NinjagoProgress.
+        const string bossBattleSaveKey = "bossBattleSave";
+
+#if DISABLE_PERSISTENCE
+        BossBattleSave? memoryBossBattleSave;
+#endif
+
+        public bool HasBossBattleSave()
+        {
+#if DISABLE_PERSISTENCE
+            return memoryBossBattleSave != null;
+#else
+            return ES3.KeyExists(bossBattleSaveKey);
+#endif
+        }
+
+        /// <summary>The saved checkpoint or null. An unreadable or other-version save is deleted so HasBossBattleSave() stops reporting it.</summary>
+        public BossBattleSave? LoadBossBattleSave()
+        {
+#if DISABLE_PERSISTENCE
+            return memoryBossBattleSave == null ? null : Copy(memoryBossBattleSave);
+#else
+            try
+            {
+                if (!ES3.KeyExists(bossBattleSaveKey)) return null;
+                var save = ES3.Load<BossBattleSave>(bossBattleSaveKey);
+                if (save != null && save.version == BossBattleSave.CurrentVersion) return save;
+                Debug.LogWarning($"[PlayerDataManager] Discarding boss battle save of version {save?.version.ToString() ?? "null"}.");
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[PlayerDataManager] Discarding unreadable boss battle save: {e}");
+            }
+
+            ES3.DeleteKey(bossBattleSaveKey);
+            return null;
+#endif
+        }
+
+        public void SaveBossBattle(BossBattleSave save)
+        {
+#if DISABLE_PERSISTENCE
+            // A copy, like the file: the live state keeps changing after the checkpoint.
+            memoryBossBattleSave = Copy(save);
+#else
+            ES3.Save(bossBattleSaveKey, save);
+#endif
+        }
+
+        public void ClearBossBattleSave()
+        {
+#if DISABLE_PERSISTENCE
+            memoryBossBattleSave = null;
+#else
+            ES3.DeleteKey(bossBattleSaveKey);
+#endif
+        }
+
+#if DISABLE_PERSISTENCE
+        static BossBattleSave Copy(BossBattleSave save) => JsonUtility.FromJson<BossBattleSave>(JsonUtility.ToJson(save));
+#endif
+
+        #endregion
+
         #region App View State
 
         public class AppViewState : AbstractViewState

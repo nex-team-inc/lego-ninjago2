@@ -71,5 +71,15 @@ namespace Nex.Ninjago
         public int buildRuns;
         // Fastest bridge in seconds; -1 until the way first opens.
         public float buildBestSeconds = -1f;
+
+        public int bossBattleRuns;
+        public int bossBattleWins;
+        // Fastest win in seconds (play time summed across continues); -1 until the first win.
+        public float bossBattleBestSeconds = -1f;
+        // Furthest point reached: 0 none, 1 road phase, 2 sky phase, 3 boss defeated.
+        public int bossBattleFurthestPhase;
+        // Fewest hits taken in a win; -1 until the first win.
+        public int bossBattleFewestHits = -1;
+        public int bossBattleKnockouts;
     }
 }

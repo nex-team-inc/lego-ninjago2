@@ -1,0 +1,1319 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ffcf513828c45d882ea28dd1894be2, type: 3}
+  m_Name: BossBattleConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Nex.Ninjago.BossBattleConfig
+  steer:
+    deadzoneInches: 1.5
+    fullLeanInches: 7
+    fullRiseInches: 4
+    playerOneShare: 0.5
+  vehicles:
+    pairs:
+    - key: 0
+      value:
+        segmentSeconds: 20
+        speed: 14
+        usesVerticalLean: 0
+        halfWidth: 2.2
+        centerHeight: 0
+        halfHeight: 0
+        steerSmoothingSeconds: 0.35
+        maxSteerSpeed: 7
+        obstacleSpacingSeconds: 1.7
+        obstacleLeadSeconds: 1.5
+        openingSeconds: 2
+        cellWidth: 2
+        cellHeight: 1.6
+        vehicleHalfExtents: {x: 0.7, y: 0.3}
+    - key: 1
+      value:
+        segmentSeconds: 20
+        speed: 13
+        usesVerticalLean: 1
+        halfWidth: 2.2
+        centerHeight: 3.2
+        halfHeight: 1.6
+        steerSmoothingSeconds: 0.3
+        maxSteerSpeed: 7
+        obstacleSpacingSeconds: 1.7
+        obstacleLeadSeconds: 1.5
+        openingSeconds: 2
+        cellWidth: 2
+        cellHeight: 1.6
+        vehicleHalfExtents: {x: 0.6, y: 0.25}
+  difficulties:
+    pairs:
+    - key: 0
+      value:
+        hearts: 8
+        timingScale: 1.25
+        laserRadiusScale: 1.3
+    - key: 1
+      value:
+        hearts: 5
+        timingScale: 1
+        laserRadiusScale: 1
+  hazardDamage:
+    pairs:
+    - key: 0
+      value: 1
+    - key: 1
+      value: 1
+    - key: 2
+      value: 1
+    - key: 3
+      value: 1
+    - key: 4
+      value: 2
+  invulnerableSeconds: 1
+  hitStopSeconds: 0.06
+  bumpSpeedDrop: 0.35
+  bumpRecoverSeconds: 1.2
+  healPerVolley: 1
+  healPerWake: 1
+  trackingLostSeconds: 2
+  road:
+    bossDistance: 30
+    bossSwayX: 1.2
+    bossSwayPeriod: 6
+    readySeconds: 3
+    steerCheckReach: 1.6
+    steerCheckMaxSeconds: 8
+    breatherSeconds: 1.2
+    enrageFraction: 0.3
+    enrageWindupScale: 0.85
+    script:
+    - beat: 5
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 6
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 1
+      count: 2
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 4
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 2
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 3
+      count: 1
+      sides: 1
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 4
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 1
+      count: 3
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 2
+      count: 2
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 4
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 3
+      count: 1
+      sides: 2
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 1
+      count: 3
+      sides: 0
+      size: 0
+      overlapNext: 1
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 2
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 4
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 2
+      count: 3
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 3
+      count: 1
+      sides: 3
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 1
+      count: 4
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 4
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    loopFrom: 9
+  rock:
+    windupSeconds: 0.8
+    airSeconds: 1
+    followSeconds: 1.6
+    followSmoothSeconds: 0.25
+    lockSeconds: 1.2
+    firstLockSeconds: 1.6
+    fallSeconds: 0.35
+    rockRadius: 0.55
+    nextLockAfterImpactSeconds: 1.5
+    overlapMinGapFromRow: 0.8
+  slam:
+    windupSeconds: 1
+    crackSeconds: 0.45
+    growSeconds: 0.3
+    finishZSeconds: 1.5
+    rowSpacingBySlam:
+    - 1.9
+    - 1.7
+    - 1.7
+    - 1.5
+    maxLaneJumpBelow: 1.8
+    firstMasks: 0500000006000000
+    cellFill: 0.9
+  minion:
+    windupSeconds: 0.9
+    flightSeconds: 1
+    graceSeconds: 2.5
+    tickSeconds: 2.5
+    maxTicks: 2
+    firstWindupSeconds: 1.2
+    firstFlightSeconds: 1.6
+    firstGraceSeconds: 4
+    firstTickSeconds: 3.5
+    firstMaxTicks: 1
+    wallGrowSeconds: 0.6
+    walledReach: 2.45
+    smashX: 2
+    smashMinOutwardSpeed: 0.5
+    soloSmashSteer: 0.82
+    soloDriveSeconds: 0.25
+    bothGraceSeconds: 3.5
+    bothSecondStartMaxSeconds: 3
+    roofOffset: {x: 0.55, y: 1, z: -0.2}
+  powerUp:
+    volleys:
+    - rockets: 1
+      damageMultiplier: 1
+    - rockets: 2
+      damageMultiplier: 2
+    - rockets: 3
+      damageMultiplier: 2
+    - rockets: 3
+      damageMultiplier: 2
+    - rockets: 3
+      damageMultiplier: 2
+    baseRocketDamage: 10
+    pickupsToPhase2: 5
+    leadSeconds: 0.3
+    spawnLeadSeconds: 1.6
+    rocketFlightSeconds: 1
+    rocketStaggerSeconds: 0.15
+    pickupHalfWidth: 0.9
+    rocketHitStopSeconds: 0.04
+  sky:
+    bossDistance: 30
+    readySeconds: 3
+    riseDuckHigh: 4.2
+    riseDuckLow: 2.2
+    riseDuckMaxSeconds: 8
+    skyHp: 100
+    wakeThresholds:
+    - 0.7
+    - 0.3
+    - 0.05
+    tiredSeconds: 1.2
+    wakeSeconds: 1.2
+    script:
+    - beat: 5
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 13
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 10
+      count: 4
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 11
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 12
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 10
+      count: 4
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 11
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 12
+      count: 1
+      sides: 0
+      size: 1
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 10
+      count: 5
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 11
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 12
+      count: 1
+      sides: 0
+      size: 1
+      overlapNext: 1
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 10
+      count: 3
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    - beat: 11
+      count: 1
+      sides: 0
+      size: 0
+      overlapNext: 0
+      skipBreather: 0
+      extraDelay: 0
+    timeoutRepeatGusts: 3
+  wind:
+    windupSeconds: 0.8
+    spacingStart: 1.9
+    spacingMin: 1.6
+    spacingStepPerBarrage: 0.1
+    leadSeconds: 1.5
+    frameLeadSeconds: 1
+    noClimbDiveBelow: 1.8
+    cellFill: 0.9
+  laser:
+    fireIntervalSeconds: 0.125
+    boltDamageByWindow:
+    - 0.7
+    - 0.9
+    - 0.6
+    - 0.25
+    hitRadius: 0.95
+    assistStartSeconds: 6
+    assistFullSeconds: 12
+    assistScale: 1.4
+    pathHalfSize: {x: 1.8, y: 1}
+    pathPeriodSeconds: 8
+    pathCentre: {x: 0, y: 3.2}
+    maxWindowSeconds: 18
+    damageScale: 1
+  clap:
+    inhaleSeconds: 0.8
+    pushSeconds: 1.2
+    wallRiseSeconds: 0.5
+    sizes:
+    - band: 0.45
+      warnSeconds: 1.8
+    - band: 0.7
+      warnSeconds: 2.2
+    slamSeconds: 0.22
+    recoverSeconds: 1
+    wallX: 3.6
+  cutscenes:
+    introSeconds: 5
+    transformSeconds: 6.5
+    finaleSeconds: 6
+    knockoutSeconds: 3
+    skyRejoinSeconds: 2
+    slowMoScale: 0.35
+    slowMoSeconds: 0.8
+    knockoutSlowMoScale: 0.4
+    letterboxPixels: 96
+  fx:
+    pairs:
+    - key: 0
+      value:
+        hasSound: 1
+        sound: 800
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 1
+      value:
+        hasSound: 1
+        sound: 801
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 300
+        visualScale: 1
+        loopVisual: 1
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 2
+      value:
+        hasSound: 0
+        sound: -1
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 3
+      value:
+        hasSound: 1
+        sound: 802
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 4
+      value:
+        hasSound: 1
+        sound: 803
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 301
+        visualScale: 1.5
+        loopVisual: 0
+        shake: 0.25
+        shakeSeconds: 0.3
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 5
+      value:
+        hasSound: 0
+        sound: -1
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 6
+      value:
+        hasSound: 1
+        sound: 805
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 302
+        visualScale: 3
+        loopVisual: 0
+        shake: 0.35
+        shakeSeconds: 0.4
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 7
+      value:
+        hasSound: 1
+        sound: 834
+        volume: 0.6
+        loopSound: 0
+        hasVisual: 1
+        visual: 304
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 8
+      value:
+        hasSound: 1
+        sound: 806
+        volume: 0.8
+        loopSound: 0
+        hasVisual: 1
+        visual: 303
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 9
+      value:
+        hasSound: 1
+        sound: 807
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 10
+      value:
+        hasSound: 1
+        sound: 808
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 305
+        visualScale: 1
+        loopVisual: 0
+        shake: 0.08
+        shakeSeconds: 0.15
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 11
+      value:
+        hasSound: 1
+        sound: 809
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 306
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 12
+      value:
+        hasSound: 1
+        sound: 810
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 303
+        visualScale: 1.5
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 13
+      value:
+        hasSound: 1
+        sound: 811
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 307
+        visualScale: 1.5
+        loopVisual: 0
+        shake: 0.2
+        shakeSeconds: 0.25
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 14
+      value:
+        hasSound: 1
+        sound: 812
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 308
+        visualScale: 1
+        loopVisual: 1
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 15
+      value:
+        hasSound: 1
+        sound: 813
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 309
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 1
+        lightColor: {r: 1, g: 0.85, b: 0.4, a: 1}
+        lightIntensity: 2.5
+        lightSeconds: 0.35
+    - key: 16
+      value:
+        hasSound: 1
+        sound: 814
+        volume: 0.8
+        loopSound: 0
+        hasVisual: 1
+        visual: 310
+        visualScale: 1
+        loopVisual: 1
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 17
+      value:
+        hasSound: 1
+        sound: 815
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 311
+        visualScale: 2
+        loopVisual: 0
+        shake: 0.15
+        shakeSeconds: 0.2
+        pointLight: 1
+        lightColor: {r: 1, g: 0.6, b: 0.25, a: 1}
+        lightIntensity: 3
+        lightSeconds: 0.3
+    - key: 18
+      value:
+        hasSound: 1
+        sound: 816
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 312
+        visualScale: 2
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 19
+      value:
+        hasSound: 1
+        sound: 804
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0.2
+        shakeSeconds: 0.8
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 20
+      value:
+        hasSound: 1
+        sound: 817
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 313
+        visualScale: 3
+        loopVisual: 0
+        shake: 0.3
+        shakeSeconds: 0.6
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 21
+      value:
+        hasSound: 1
+        sound: 818
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 314
+        visualScale: 2
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 1
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 3
+        lightSeconds: 0.5
+    - key: 22
+      value:
+        hasSound: 1
+        sound: 819
+        volume: 0.8
+        loopSound: 1
+        hasVisual: 1
+        visual: 315
+        visualScale: 2
+        loopVisual: 1
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 23
+      value:
+        hasSound: 0
+        sound: -1
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 316
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 24
+      value:
+        hasSound: 1
+        sound: 820
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 317
+        visualScale: 2
+        loopVisual: 1
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 25
+      value:
+        hasSound: 1
+        sound: 821
+        volume: 0.7
+        loopSound: 1
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 26
+      value:
+        hasSound: 1
+        sound: 822
+        volume: 0.7
+        loopSound: 0
+        hasVisual: 1
+        visual: 319
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 1
+        lightColor: {r: 0.45, g: 0.9, b: 1, a: 1}
+        lightIntensity: 1.5
+        lightSeconds: 0.15
+    - key: 27
+      value:
+        hasSound: 1
+        sound: 831
+        volume: 0.5
+        loopSound: 0
+        hasVisual: 1
+        visual: 329
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 28
+      value:
+        hasSound: 1
+        sound: 823
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 320
+        visualScale: 3
+        loopVisual: 0
+        shake: 0.3
+        shakeSeconds: 0.5
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 29
+      value:
+        hasSound: 1
+        sound: 824
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 30
+      value:
+        hasSound: 1
+        sound: 819
+        volume: 0.8
+        loopSound: 0
+        hasVisual: 1
+        visual: 321
+        visualScale: 2
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 31
+      value:
+        hasSound: 1
+        sound: 825
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 32
+      value:
+        hasSound: 1
+        sound: 826
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 322
+        visualScale: 2
+        loopVisual: 0
+        shake: 0.4
+        shakeSeconds: 0.4
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 33
+      value:
+        hasSound: 1
+        sound: 827
+        volume: 0.7
+        loopSound: 0
+        hasVisual: 1
+        visual: 323
+        visualScale: 2
+        loopVisual: 0
+        shake: 0.15
+        shakeSeconds: 0.2
+        pointLight: 1
+        lightColor: {r: 1, g: 0.6, b: 0.25, a: 1}
+        lightIntensity: 3
+        lightSeconds: 0.25
+    - key: 34
+      value:
+        hasSound: 1
+        sound: 827
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 324
+        visualScale: 4
+        loopVisual: 0
+        shake: 0.5
+        shakeSeconds: 0.8
+        pointLight: 1
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 4
+        lightSeconds: 0.6
+    - key: 35
+      value:
+        hasSound: 1
+        sound: 607
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 325
+        visualScale: 2
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 36
+      value:
+        hasSound: 1
+        sound: 828
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 326
+        visualScale: 1
+        loopVisual: 0
+        shake: 0.25
+        shakeSeconds: 0.3
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 37
+      value:
+        hasSound: 1
+        sound: 829
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 323
+        visualScale: 2
+        loopVisual: 0
+        shake: 0.3
+        shakeSeconds: 0.4
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 38
+      value:
+        hasSound: 1
+        sound: 830
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 39
+      value:
+        hasSound: 1
+        sound: 804
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0.2
+        shakeSeconds: 0.5
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 40
+      value:
+        hasSound: 1
+        sound: 832
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 41
+      value:
+        hasSound: 1
+        sound: 833
+        volume: 1
+        loopSound: 0
+        hasVisual: 0
+        visual: 0
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 42
+      value:
+        hasSound: 0
+        sound: -1
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 331
+        visualScale: 4
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 1
+        lightColor: {r: 0.75, g: 0.45, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.2
+    - key: 43
+      value:
+        hasSound: 1
+        sound: 780
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 330
+        visualScale: 2
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 44
+      value:
+        hasSound: 0
+        sound: -1
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 318
+        visualScale: 1
+        loopVisual: 0
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 45
+      value:
+        hasSound: 0
+        sound: -1
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 327
+        visualScale: 1
+        loopVisual: 1
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+    - key: 46
+      value:
+        hasSound: 0
+        sound: -1
+        volume: 1
+        loopSound: 0
+        hasVisual: 1
+        visual: 328
+        visualScale: 1
+        loopVisual: 1
+        shake: 0
+        shakeSeconds: 0
+        pointLight: 0
+        lightColor: {r: 1, g: 1, b: 1, a: 1}
+        lightIntensity: 2
+        lightSeconds: 0.3
+  prompts:
+    pairs:
+    - key: 0
+      value:
+        key: ninjago.boss.prompt.lean_to_steer
+        color: {r: 1, g: 1, b: 1, a: 1}
+        seconds: 0
+        arrow: 5
+    - key: 1
+      value:
+        key: ninjago.boss.prompt.grab_rockets
+        color: {r: 1, g: 0.9, b: 0.3, a: 1}
+        seconds: 2.5
+        arrow: 0
+    - key: 2
+      value:
+        key: ninjago.boss.prompt.dodge_rock
+        color: {r: 1, g: 0.65, b: 0.25, a: 1}
+        seconds: 2
+        arrow: 5
+    - key: 3
+      value:
+        key: ninjago.boss.prompt.smash_left
+        color: {r: 0.45, g: 1, b: 0.45, a: 1}
+        seconds: 0
+        arrow: 1
+    - key: 4
+      value:
+        key: ninjago.boss.prompt.smash_right
+        color: {r: 0.45, g: 1, b: 0.45, a: 1}
+        seconds: 0
+        arrow: 2
+    - key: 5
+      value:
+        key: ninjago.boss.prompt.smash_both
+        color: {r: 0.45, g: 1, b: 0.45, a: 1}
+        seconds: 0
+        arrow: 5
+    - key: 6
+      value:
+        key: ninjago.boss.prompt.dodge_bricks
+        color: {r: 1, g: 0.35, b: 0.3, a: 1}
+        seconds: 2
+        arrow: 5
+    - key: 7
+      value:
+        key: ninjago.boss.prompt.rise_and_duck
+        color: {r: 1, g: 1, b: 1, a: 1}
+        seconds: 0
+        arrow: 6
+    - key: 8
+      value:
+        key: ninjago.boss.prompt.dodge_wind
+        color: {r: 0.5, g: 0.9, b: 1, a: 1}
+        seconds: 2
+        arrow: 0
+    - key: 9
+      value:
+        key: ninjago.boss.prompt.tired_fire
+        color: {r: 1, g: 0.9, b: 0.3, a: 1}
+        seconds: 2.5
+        arrow: 0
+    - key: 10
+      value:
+        key: ninjago.boss.prompt.fly_into_ring
+        color: {r: 0.45, g: 1, b: 0.45, a: 1}
+        seconds: 3
+        arrow: 0
+    - key: 11
+      value:
+        key: ninjago.boss.prompt.on_target
+        color: {r: 0.45, g: 1, b: 0.45, a: 1}
+        seconds: 0
+        arrow: 0
+    - key: 12
+      value:
+        key: ninjago.boss.prompt.dive
+        color: {r: 1, g: 0.35, b: 0.3, a: 1}
+        seconds: 0
+        arrow: 4
+    - key: 13
+      value:
+        key: ninjago.boss.prompt.brace
+        color: {r: 1, g: 0.65, b: 0.25, a: 1}
+        seconds: 1.5
+        arrow: 0
+    - key: 14
+      value:
+        key: ninjago.boss.prompt.finish_it
+        color: {r: 1, g: 0.9, b: 0.3, a: 1}
+        seconds: 2.5
+        arrow: 0
+    - key: 15
+      value:
+        key: ninjago.boss.prompt.enraged
+        color: {r: 1, g: 0.35, b: 0.3, a: 1}
+        seconds: 2
+        arrow: 0
+    - key: 16
+      value:
+        key: ninjago.boss.prompt.minion_hurry
+        color: {r: 1, g: 0.35, b: 0.3, a: 1}
+        seconds: 0
+        arrow: 0
+    - key: 17
+      value:
+        key: ninjago.boss.prompt.get_ready
+        color: {r: 1, g: 1, b: 1, a: 1}
+        seconds: 3
+        arrow: 0
+  tellColors:
+    pairs:
+    - key: 0
+      value: {r: 0, g: 0, b: 0, a: 1}
+    - key: 1
+      value: {r: 3, g: 1.4, b: 0.25, a: 1}
+    - key: 2
+      value: {r: 0.5, g: 3, b: 0.6, a: 1}
+    - key: 3
+      value: {r: 3, g: 0.35, b: 0.3, a: 1}
+    - key: 4
+      value: {r: 1.8, g: 0.6, b: 3, a: 1}
+    - key: 5
+      value: {r: 2.8, g: 2.8, b: 2.8, a: 1}
+    - key: 6
+      value: {r: 0.8, g: 1.3, b: 2.6, a: 1}

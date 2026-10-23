@@ -139,6 +139,7 @@ namespace Nex.Ninjago
             GameModeType.Guard => "guard",
             GameModeType.Call => "call",
             GameModeType.Build => "build",
+            GameModeType.BossBattle => "boss_battle",
             _ => mode.ToString(),
         };
 

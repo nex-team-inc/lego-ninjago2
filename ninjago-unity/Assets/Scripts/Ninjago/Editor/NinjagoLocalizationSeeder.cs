@@ -15,6 +15,7 @@ namespace Nex.Ninjago.Editor
         // (key, English, smart)
         static readonly (string key, string english, bool smart)[] rows =
         {
+            ("ninjago.menu.playtest", "Playtest", false),
             ("ninjago.mode.slip_and_spin", "Slip and Spin", false),
             ("ninjago.mode.chest_chase", "Chest Chase", false),
             ("ninjago.players.title", "How many players?", false),

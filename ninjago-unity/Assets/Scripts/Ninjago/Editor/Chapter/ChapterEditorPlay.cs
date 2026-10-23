@@ -69,7 +69,7 @@ namespace Nex.Ninjago.Editor
                 return;
             }
 
-            Debug.LogWarning($"[ChapterEditorPlay] Mode '{modeId}' is not in the menu; add it to the ChapterModeLibrary.");
+            Debug.LogWarning($"[ChapterEditorPlay] Mode '{modeId}' is not in the menu; add it to the ChapterModeLibrary, or to the GameModeConfig playtest list when Playtest Only is on.");
             Clear();
         }
 

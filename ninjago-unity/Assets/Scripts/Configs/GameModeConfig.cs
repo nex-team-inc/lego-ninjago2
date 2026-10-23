@@ -25,10 +25,28 @@ namespace Nex
         [Header("Modes")]
         [SerializeField] EnumDictionary<GameModeType, ModeDefinition> modes = new();
 
+        [Serializable]
+        public class PlaytestEntry
+        {
+            public GameModeType mode;
+            [Tooltip("Chapter only: id of the built-in or player-made chapter mode to start (e.g. ninja_chapter_proof).")]
+            public string chapterModeId = "";
+        }
+
         [Header("Menu Order")]
         [SerializeField] List<GameModeType> modeOrders = new();
 
+        [Header("Playtest")]
+        [Tooltip("Entries of the menu's Playtest column, in order.")]
+        [SerializeField] List<PlaytestEntry> playtestEntries = new();
+
+        [Header("Playtest Only")]
+        [Tooltip("The menu shows only the playtest entries and hides every other mode, chapter modes included.")]
+        [SerializeField] bool playtestOnly;
+
         public IReadOnlyList<GameModeType> ModeOrders => modeOrders;
+        public IReadOnlyList<PlaytestEntry> PlaytestEntries => playtestEntries;
+        public bool PlaytestOnly => playtestOnly;
 
         #region Public API
 

@@ -303,6 +303,8 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         maxPlayers: 2
   modeOrders: 030000000400000007000000
+  playtestEntries: []
+  playtestOnly: 0
   references:
     version: 2
     RefIds: []
